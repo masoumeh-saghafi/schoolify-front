@@ -14,9 +14,9 @@ import Typography from "@mui/material/Typography";
 // Custom Utilities
 
 // Custom Types
-interface LandingProps {}
+interface AboutUsProps {}
 
-const Landing = (props: LandingProps) => {
+const AboutUs = (props: AboutUsProps) => {
   // Context
 
   // States
@@ -26,9 +26,9 @@ const Landing = (props: LandingProps) => {
   // Render
   return (
     <>
-      <Typography>Landing</Typography>
+      <Typography>AboutUs</Typography>
     </>
   );
 };
 
-export default Landing;
+export default AboutUs;
