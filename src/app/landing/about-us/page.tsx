@@ -1,7 +1,6 @@
 // Custom Hooks
 
 // Core Components
-import LandingHeader from "@schoolify/features/user/landing/header";
 import AboutUs from "@schoolify/features/user/landing/aboutUs";
 
 // Common Components
@@ -27,7 +26,6 @@ const AboutUsPage = (props: AboutUsPageProps) => {
   // Render
   return (
     <>
-      <LandingHeader />
       <AboutUs />
     </>
   );
