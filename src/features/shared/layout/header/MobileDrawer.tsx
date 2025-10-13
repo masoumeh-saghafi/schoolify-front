@@ -1,0 +1,52 @@
+// MUI Components
+import Drawer from '@mui/material/Drawer'
+import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
+
+// React Types
+import type { ReactNode } from 'react'
+
+// Custom Types
+interface HeaderMobileDrawerProps {
+  drawerWidth: number
+  collapsedDrawerWidth: number
+  open: boolean
+  onClose: () => void
+  children: ReactNode
+}
+
+const HeaderMobileDrawer = (props: HeaderMobileDrawerProps) => {
+  // Props
+  const { drawerWidth, collapsedDrawerWidth, open, onClose, children } = props
+
+  // Hooks
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+
+  // Render
+  return (
+    <Drawer
+      sx={{
+        width: open ? drawerWidth : collapsedDrawerWidth,
+        flexShrink: 0,
+        '.MuiDrawer-paper': {
+          width: open ? drawerWidth : collapsedDrawerWidth,
+          overflowX: 'hidden',
+          position: 'fixed',
+          top: isMobile ? 54 : 64,
+          right: 1,
+          height: `calc(100% - ${isMobile ? 54 : 64}px)`,
+          display: { xs: 'flex', md: 'none' }
+        }
+      }}
+      variant='temporary'
+      open={open}
+      onClose={onClose}
+      ModalProps={{ keepMounted: true }}
+    >
+      {children}
+    </Drawer>
+  )
+}
+
+export default HeaderMobileDrawer

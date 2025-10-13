@@ -14,9 +14,9 @@ import Typography from "@mui/material/Typography";
 // Custom Utilities
 
 // Custom Types
-interface AboutUsProps {}
+// interface AboutUsProps {}
 
-const AboutUs = (props: AboutUsProps) => {
+const AboutUs = () => {
   // Context
 
   // States
@@ -26,7 +26,21 @@ const AboutUs = (props: AboutUsProps) => {
   // Render
   return (
     <>
-      <Typography>AboutUs</Typography>
+        <Typography
+          variant="h5"
+          fontWeight="bold"
+          align="center"
+          gutterBottom
+          color="text.title"
+        >
+          درباره اسکولیفای: نوآوری از دل تجربه
+        </Typography>
+        <Typography variant="body1" align="center" color="text.secondary"  mb={6}>
+          اسکولیفای، تنها یک سامانه مدیریت مالی نیست؛ بلکه حاصل هم‌افزایی تجربه
+          و نوآوری تیمی متخصص است که با درک عمیق نیازهای مراکز آموزشی، به توسعه
+          راه‌حلی جامع و کاربردی پرداخته است.
+        </Typography>
+
     </>
   );
 };
