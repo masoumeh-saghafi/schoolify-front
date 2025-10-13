@@ -17,7 +17,7 @@ import Typography from "@mui/material/Typography";
 // Custom Types
 interface HeaderProps {
   title: string;
-  buttons: string[];
+  buttons: any[];
 }
 
 const Header = (props: HeaderProps) => {
@@ -32,7 +32,7 @@ const Header = (props: HeaderProps) => {
     <>
       <Typography>{props.title ?? "HEADER"}</Typography>
       {props.buttons.map((button) => (
-        <Button>{button}</Button>
+        <Button>{button.title}</Button>
       ))}
     </>
   );
