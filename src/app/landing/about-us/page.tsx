@@ -1,34 +1,13 @@
-// Custom Hooks
-
-// Core Components
-import AboutUs from "@schoolify/features/user/landing/aboutUs";
-
-// Common Components
-
 // Feature Components
+import AboutUs from '@schoolify/features/user/landing/aboutUs'
 
-// Icon Components
-
-// Context
-
-// Custom Utilities
-
-// Custom Types
-interface AboutUsPageProps {}
-
-const AboutUsPage = (props: AboutUsPageProps) => {
-  // Context
-
-  // States
-
-  // Hooks
-
+const AboutUsPage = () => {
   // Render
   return (
     <>
       <AboutUs />
     </>
-  );
-};
+  )
+}
 
-export default AboutUsPage;
+export default AboutUsPage

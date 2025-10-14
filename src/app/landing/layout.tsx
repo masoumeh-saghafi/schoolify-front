@@ -1,28 +1,11 @@
-// Custom Hooks
-
-// Core Components
-import LandingHeader from "@schoolify/features/user/landing/header";
 import { Outlet } from "react-router-dom";
 
-// Common Components
-
 // Feature Components
+import LandingHeader from "@schoolify/features/user/landing/header";
 
-// Icon Components
 
-// Context
 
-// Custom Utilities
-
-// Custom Types
-interface LandingLayoutProps {}
-
-const LandingLayout = (props: LandingLayoutProps) => {
-  // Context
-
-  // States
-
-  // Hooks
+const LandingLayout = () => {
 
   // Render
   return (

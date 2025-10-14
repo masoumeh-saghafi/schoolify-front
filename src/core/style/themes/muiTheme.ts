@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles'
 
-// Extend Material-UI theme types
+
 
 declare module '@mui/material/styles' {
   interface Palette {

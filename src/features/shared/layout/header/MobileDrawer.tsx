@@ -1,6 +1,6 @@
 // MUI Components
 import Drawer from "@mui/material/Drawer";
-import { useTheme } from "@mui/material/styles";
+
 import useMediaQuery from "@mui/material/useMediaQuery";
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 

@@ -1,34 +1,13 @@
-// Custom Hooks
-
-// Core Components
-import Landing from "@schoolify/features/user/landing";
-
-// Common Components
-
 // Feature Components
+import Landing from '@schoolify/features/user/landing'
 
-// Icon Components
-
-// Context
-
-// Custom Utilities
-
-// Custom Types
-interface LandingPageProps {}
-
-const LandingPage = (props: LandingPageProps) => {
-  // Context
-
-  // States
-
-  // Hooks
-
+const LandingPage = () => {
   // Render
   return (
     <>
       <Landing />
     </>
-  );
-};
+  )
+}
 
-export default LandingPage;
+export default LandingPage
