@@ -4,6 +4,9 @@
     "paths": {
       "@schoolify/*": [
         "./src/*"
+      ],
+      "@public/*": [
+        "./public/*"
       ]
     }
   },

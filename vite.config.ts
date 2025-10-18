@@ -7,6 +7,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@schoolify": path.resolve(__dirname, "./src"),
+      "@public": path.resolve(__dirname, "./public"),
     },
   },
 });
