@@ -7,3 +7,9 @@ export const phoneSchema = z.object({
     message: "شماره موبایل وارد شده صحیح نمی باشد",
   }),
 });
+
+export const codeSchema = z.object({
+  code: z.string().regex(/^\d{6}$/, {
+    message: "کد وارد شده باید شامل ۶ عدد باشد",
+  }),
+});

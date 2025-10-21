@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { phoneSchema } from "@schoolify/features/shared/authentiation/validations/phoneValidation";
+import { phoneSchema } from "@schoolify/features/shared/authentication/validations/phoneValidation";
 import { useForm, type FieldErrors, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, Typography } from "@mui/material";
@@ -22,12 +22,12 @@ import { sendCode } from "../../utilities/api/api";
 // Custom Utilities
 
 // Custom Types
-type form = z.infer<typeof phoneSchema>;
+export type SendCodeFormProps = z.infer<typeof phoneSchema>;
 
-interface SendCodeFormProps {
-  onSubmit: SubmitHandler<form>;
+interface SendCodeProps {
+  onSubmit: SubmitHandler<SendCodeFormProps>;
 }
-const SendCodeForm = (props: SendCodeFormProps) => {
+const SendCode = (props: SendCodeProps) => {
   const { onSubmit } = props;
 
   // Hooks
@@ -35,7 +35,7 @@ const SendCodeForm = (props: SendCodeFormProps) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<form>({
+  } = useForm<SendCodeFormProps>({
     resolver: zodResolver(phoneSchema),
     mode: "onChange",
   });
@@ -53,17 +53,7 @@ const SendCodeForm = (props: SendCodeFormProps) => {
   return (
     <Box
       component="form"
-      onSubmit={
-        // handleSubmit(onSubmit)
-        async () => {
-          const res = await sendCode("0911587522");
-          if (res.isSuccess) {
-            // then
-          } else {
-            // catch
-          }
-        }
-      }
+      onSubmit={handleSubmit(onSubmit)}
       sx={{ width: "100%", maxWidth: 400 }}
     >
       <Typography sx={{ direction: "ltr", fontSize: "0.75rem", mb: 2 }}>
@@ -75,7 +65,7 @@ const SendCodeForm = (props: SendCodeFormProps) => {
         type="text"
         placeholder="*********09"
         register={register}
-        error={(errors as FieldErrors<form>).phoneNumber}
+        error={(errors as FieldErrors<SendCodeFormProps>).phoneNumber}
       />
 
       <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
@@ -106,4 +96,4 @@ const SendCodeForm = (props: SendCodeFormProps) => {
   );
 };
 
-export default SendCodeForm;
+export default SendCode;

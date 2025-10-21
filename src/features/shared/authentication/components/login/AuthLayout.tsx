@@ -22,13 +22,12 @@ import loginBgSmall from "@public/images/loginBgSmall.png";
 
 // Custom Types
 interface AuthLayoutProps {
-  title?: string;
   children: React.ReactNode;
 }
 
 const AuthLayout = (props: AuthLayoutProps) => {
   // Props
-  const { title, children } = props;
+  const { children } = props;
 
   // Hooks
   const theme = useAppTheme();
@@ -96,7 +95,7 @@ const AuthLayout = (props: AuthLayoutProps) => {
             variant="h6"
             sx={{ mb: 4, color: theme.palette.text.title }}
           >
-            {title}
+            {"ورود | ثبت نام"}
           </Typography>
 
           {/* Children (Form Fields / Buttons) */}

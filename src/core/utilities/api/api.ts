@@ -73,7 +73,11 @@ async function request<T>(
       isSuccess: false,
       errors: [err],
       data: null,
-      errorDetails: [],
+      errorDetails: [
+        {
+          __public__: err,
+        },
+      ],
       isExceptionThrown: true,
       message: "",
       requestDate: new Date().toISOString(),

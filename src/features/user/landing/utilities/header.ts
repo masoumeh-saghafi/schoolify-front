@@ -1,17 +1,18 @@
 import routes from "@schoolify/core/utilities/routes";
 
-
-const headerButtonsData = [ {
-    title: 'خانه',
-    link: routes.home
+const headerButtonsData = [
+  {
+    title: "خانه",
+    link: routes.index,
   },
   {
-    title: 'ورود',
-    link: '/login'
+    title: "ورود",
+    link: routes.login,
   },
   {
-    title: 'درباره ما ',
-    link: routes.aboutUs
-  }];
+    title: "درباره ما ",
+    link: routes.aboutUs,
+  },
+];
 
 export default headerButtonsData;
