@@ -4,6 +4,8 @@ import LandingPage from "@schoolify/app/landing/page";
 import LoginPage from "@schoolify/app/authentication/login/page";
 import AboutUsPage from "@schoolify/app/landing/about-us/page";
 import routes from "@schoolify/core/utilities/routes";
+import ProfileLayout from "./profile/layout";
+import ProfilePage from "./profile/page";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +27,17 @@ const router = createBrowserRouter([
     path: routes.login,
     element: <LoginPage />,
     // errorElement: <ErrorPage />,
+  },
+  {
+    path: routes.profile,
+    element: <ProfileLayout />,
+    // errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <ProfilePage />,
+      },
+    ],
   },
 ]);
 

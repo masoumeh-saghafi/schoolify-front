@@ -9,18 +9,24 @@ import { useEffect, useState } from "react";
 import routes from "@schoolify/core/utilities/routes";
 
 // Feature Components
-import SendCode, { type SendCodeFormProps }  from "@schoolify/features/shared/authentication/components/login/SendCode";
-import VerifyCode, { type VerifyCodeFormProps }  from "@schoolify/features/shared/authentication/components/login/VerifyCode";
-import AuthLayout  from "@schoolify/features/shared/authentication/components/login/AuthLayout";
+import SendCode, {
+  type SendCodeFormProps,
+} from "@schoolify/features/shared/authentication/components/login/SendCode";
+import VerifyCode, {
+  type VerifyCodeFormProps,
+} from "@schoolify/features/shared/authentication/components/login/VerifyCode";
+import AuthLayout from "@schoolify/features/shared/authentication/components/login/AuthLayout";
 
 // Custom Utilities
-import {sendCode,verifyCode} from "@schoolify/features/shared/authentication/utilities/api/api";
+import {
+  sendCode,
+  verifyCode,
+} from "@schoolify/features/shared/authentication/utilities/api/api";
 
 // Custom Types
-interface LoginProps { }
+interface LoginProps {}
 
 const Login = (props: LoginProps) => {
-
   // States
   const [step, setStep] = useState<"sendCode" | "verifyCode">("sendCode");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -53,7 +59,7 @@ const Login = (props: LoginProps) => {
     const response = await verifyCode(phoneNumber, data.code);
     if (response.isSuccess) {
       // then
-      navigate(routes.index);
+      navigate(routes.profile);
     } else {
       // catch
     }
@@ -63,20 +69,19 @@ const Login = (props: LoginProps) => {
 
   // Render
   return (
-    <Box  sx={{ direction: "ltr" }}>
-      
-    <AuthLayout >
-      {step === "sendCode" ? (
-        <SendCode onSubmit={handleSendCode} />
-      ) : (
-        <VerifyCode
-        onSubmit={handleVerifyCode}
-        countdown={countdown}
-        onBack={() => setStep("sendCode")}
-        />
-      )}
-    </AuthLayout>
-      </Box>
+    <Box sx={{ direction: "ltr" }}>
+      <AuthLayout>
+        {step === "sendCode" ? (
+          <SendCode onSubmit={handleSendCode} />
+        ) : (
+          <VerifyCode
+            onSubmit={handleVerifyCode}
+            countdown={countdown}
+            onBack={() => setStep("sendCode")}
+          />
+        )}
+      </AuthLayout>
+    </Box>
   );
 };
 

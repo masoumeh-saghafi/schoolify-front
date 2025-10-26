@@ -1,20 +1,20 @@
 // MUI Components
-import ListItem from '@schoolify/core/components/base/inputs/ListItem'
-import SidebarButton from '@schoolify/features/shared/dashboard/components/SidebarButton'
-import ListItemText from '@schoolify/core/components/base/inputs/ListItemText'
+import ListItem from "@schoolify/core/components/base/inputs/ListItem";
+import SidebarButton from "@schoolify/features/shared/dashboard/components/Sidebar/SidebarButton";
+import ListItemText from "@schoolify/core/components/base/inputs/ListItemText";
 
 // React Types
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 
 // Custom Types
 interface SidebarListItemProps {
-  text: string
-  icon?: ReactNode
-  onClick?: () => void
-  isActive?: boolean
-  enableBorder?: boolean
-  disabled?: boolean
-  nested?: boolean
+  text: string;
+  icon?: ReactNode;
+  onClick?: () => void;
+  isActive?: boolean;
+  enableBorder?: boolean;
+  disabled?: boolean;
+  nested?: boolean;
 }
 
 const SidebarListItem = (props: SidebarListItemProps) => {
@@ -26,8 +26,8 @@ const SidebarListItem = (props: SidebarListItemProps) => {
     isActive,
     enableBorder = true,
     disabled = false,
-    nested = false
-  } = props
+    nested = false,
+  } = props;
 
   // Render
   return (
@@ -41,17 +41,17 @@ const SidebarListItem = (props: SidebarListItemProps) => {
         {icon}
         <ListItemText
           sx={{
-            display: 'block',
-            textWrap: 'nowrap',
-            textAlign: 'left',
-            ml: 1
+            display: "block",
+            textWrap: "nowrap",
+            textAlign: "left",
+            ml: 1,
           }}
         >
           {text}
         </ListItemText>
       </SidebarButton>
     </ListItem>
-  )
-}
+  );
+};
 
-export default SidebarListItem
+export default SidebarListItem;
