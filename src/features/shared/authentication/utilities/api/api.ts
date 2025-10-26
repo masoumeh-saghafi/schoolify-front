@@ -1,9 +1,10 @@
 import { postData } from "@schoolify/core/utilities/api";
 import authEndpoints from "@schoolify/features/shared/authentication/utilities/api/endpoints";
-import type SendCodeEntity from "../../types/api/sendCodeEntity";
-import type VerifyCodeEntity from "../../types/api/VerifyCodeEntity";
+import type SendCodeEntity from "@schoolify/features/shared/authentication/types/api/SendCodeEntity";
+import type VerifyCodeEntity from "@schoolify/features/shared/authentication/types/api/VerifyCodeEntity";
 
-export const sendCode = async (phoneNumber: string) => {
+
+export  const sendCode = async (phoneNumber: string) => {
   return await postData<SendCodeEntity>(authEndpoints.sendCode, {
     phoneNumber: phoneNumber,
     token: "set empty string for now",

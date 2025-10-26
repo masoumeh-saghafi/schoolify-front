@@ -1,6 +1,8 @@
 // MUI Components
-import Drawer from "@mui/material/Drawer";
+import Drawer from "@schoolify/core/components/base/inputs/Drawer";
 
+
+// Custom Hooks
 import useMediaQuery from "@mui/material/useMediaQuery";
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
@@ -27,7 +29,7 @@ const HeaderMobileDrawer = (props: HeaderMobileDrawerProps) => {
   // Render
   return (
     <Drawer
-      sx={{
+        sx={{
         width: open ? drawerWidth : collapsedDrawerWidth,
         flexShrink: 0,
         ".MuiDrawer-paper": {

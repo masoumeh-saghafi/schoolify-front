@@ -9,9 +9,10 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
 // MUI Components
-import Grid2 from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import Grid from '@schoolify/core/components/base/inputs/Grid'
+import Box from '@schoolify/core/components/base/inputs/Box'
+import Typography from '@schoolify/core/components/base/inputs/Typography'
+
 
 // Core Components
 import Logo from "@schoolify/core/shared/Logo";
@@ -19,6 +20,7 @@ import Logo from "@schoolify/core/shared/Logo";
 //Public
 import loginBgLarge from "@public/images/loginBgLarge.png";
 import loginBgSmall from "@public/images/loginBgSmall.png";
+
 
 // Custom Types
 interface AuthLayoutProps {
@@ -35,18 +37,18 @@ const AuthLayout = (props: AuthLayoutProps) => {
 
   // Render
   return (
-    <Grid2
+    <Grid
       container
       sx={{
         height: "100vh",
         backgroundColor: theme.palette.background.paper,
-        Directions: "ltr",
+        directions: "ltr",
       }}
     >
       {/* Desktop Background & Logo */}
 
       {!isMobile && (
-        <Grid2
+        <Grid
           size={{ md: 6 }}
           sx={{
             backgroundImage: `url(${loginBgLarge})`,
@@ -58,10 +60,10 @@ const AuthLayout = (props: AuthLayoutProps) => {
           }}
         >
           <Logo variant="h4" sx={{ color: theme.palette.text.white }} />
-        </Grid2>
+        </Grid>
       )}
 
-      <Grid2 size={{ xs: 12, md: 6 }}>
+      <Grid size={{ xs: 12, md: 6 }}>
         {/* Mobile Top Logo & Background */}
         {isMobile && (
           <Box
@@ -101,8 +103,8 @@ const AuthLayout = (props: AuthLayoutProps) => {
           {/* Children (Form Fields / Buttons) */}
           {children}
         </Box>
-      </Grid2>
-    </Grid2>
+      </Grid>
+    </Grid>
   );
 };
 

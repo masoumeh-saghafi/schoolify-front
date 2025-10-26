@@ -1,6 +1,13 @@
-import { Box, FormHelperText, InputAdornment, TextField } from "@mui/material";
+
 import React from "react";
 import type { FieldError } from "react-hook-form";
+
+import Box from '@schoolify/core/components/base/inputs/Box'
+import TextField from '@schoolify/core/components/base/inputs/TextField'
+import FormHelperText from '@schoolify/core/components/base/inputs/FormHelperText'
+import InputAdornment from '@schoolify/core/components/base/inputs/InputAdornment'
+
+
 
 interface FormFieldProps {
   name: string;

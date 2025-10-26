@@ -1,25 +1,17 @@
 import { z } from "zod";
-import { codeSchema } from "@schoolify/features/shared/authentication/validations/phoneValidation";
-import { useForm, type FieldErrors, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Box, Button, Typography } from "@mui/material";
-import type { theme } from "@schoolify/core/style/themes/muiTheme";
-import FormField from "@schoolify/core/components/base/inputs/FormField";
-import { useNavigate } from "react-router-dom";
-import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
-import { sendCode } from "../../utilities/api/api";
-
 // MUI Components
+import Typography from "@schoolify/core/components/base/inputs/Typography";
+import Box from "@schoolify/core/components/base/inputs/Box";
+import Button from "@schoolify/core/components/base/inputs/Button";
 
 // Custom Hooks
-
-// Core Components
+import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
+import FormField from "@schoolify/core/components/base/inputs/FormField";
+import { useForm, type FieldErrors, type SubmitHandler } from "react-hook-form";
 
 // Feature Components
-
-// Icon Components
-
-// Custom Utilities
+import { codeSchema } from "@schoolify/features/shared/authentication/validations/phoneValidation";
 
 // Custom Types
 export type VerifyCodeFormProps = z.infer<typeof codeSchema>;
@@ -45,12 +37,6 @@ const VerifyCode = (props: VerifyCodeProps) => {
 
   const theme = useAppTheme();
 
-  // States
-
-  // Handlers
-
-  // Helpers
-
   // Render
   return (
     <Box
@@ -58,7 +44,7 @@ const VerifyCode = (props: VerifyCodeProps) => {
       onSubmit={handleSubmit(onSubmit)}
       sx={{ width: "100%", maxWidth: 400 }}
     >
-      <Typography sx={{ direction: "ltr", fontSize: "0.75rem", mb: 1 }}>
+      <Typography sx={{ direction: "rtl", fontSize: "0.75rem", mb: 1 }}>
         لطفا کد دریافتی را وارد نمایید.
       </Typography>
       <FormField

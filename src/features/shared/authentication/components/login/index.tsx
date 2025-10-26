@@ -1,26 +1,26 @@
-import { useNavigate } from "react-router-dom";
-import { sendCode, verifyCode } from "../../utilities/api/api";
-import { useEffect, useState } from "react";
-import AuthLayout from "./AuthLayout";
-import SendCode, { type SendCodeFormProps } from "./SendCode";
-import VerifyCode, { type VerifyCodeFormProps } from "./VerifyCode";
-import routes from "@schoolify/core/utilities/routes";
-
 // MUI Components
+import Box from "@schoolify/core/components/base/inputs/Box";
 
 // Custom Hooks
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 // Core Components
+import routes from "@schoolify/core/utilities/routes";
 
 // Feature Components
-
-// Icon Components
+import SendCode, { type SendCodeFormProps }  from "@schoolify/features/shared/authentication/components/login/SendCode";
+import VerifyCode, { type VerifyCodeFormProps }  from "@schoolify/features/shared/authentication/components/login/VerifyCode";
+import AuthLayout  from "@schoolify/features/shared/authentication/components/login/AuthLayout";
 
 // Custom Utilities
+import {sendCode,verifyCode} from "@schoolify/features/shared/authentication/utilities/api/api";
 
 // Custom Types
-interface LoginProps {}
+interface LoginProps { }
+
 const Login = (props: LoginProps) => {
+
   // States
   const [step, setStep] = useState<"sendCode" | "verifyCode">("sendCode");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -63,17 +63,20 @@ const Login = (props: LoginProps) => {
 
   // Render
   return (
-    <AuthLayout>
+    <Box  sx={{ direction: "ltr" }}>
+      
+    <AuthLayout >
       {step === "sendCode" ? (
         <SendCode onSubmit={handleSendCode} />
       ) : (
         <VerifyCode
-          onSubmit={handleVerifyCode}
-          countdown={countdown}
-          onBack={() => setStep("sendCode")}
+        onSubmit={handleVerifyCode}
+        countdown={countdown}
+        onBack={() => setStep("sendCode")}
         />
       )}
     </AuthLayout>
+      </Box>
   );
 };
 

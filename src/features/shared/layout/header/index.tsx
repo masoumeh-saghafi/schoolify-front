@@ -2,13 +2,13 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 
 // MUI Components
-import useMediaQuery from '@mui/material/useMediaQuery'
-import Box from '@mui/material/Box'
-import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
+import Box from '@schoolify/core/components/base/inputs/Box'
+import Toolbar from '@schoolify/core/components/base/inputs/Toolbar'
+import IconButton from '@schoolify/core/components/base/inputs/IconButton'
 import HeaderMobileDrawer from '@schoolify/features/shared/layout/header/MobileDrawer'
 
 // Custom Hooks
+import useMediaQuery from '@mui/material/useMediaQuery'
 import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
 
 // Core Components
@@ -24,6 +24,7 @@ import { CloseIcon } from '@schoolify/core/components/icon/CloseIcon'
 
 // Custom Utilities
 import headerButtonsData from '@schoolify/features/user/landing/utilities/header'
+
 
 const Header = () => {
   // Hooks

@@ -1,5 +1,7 @@
 // MUI Components
-import Typography from '@mui/material/Typography'
+
+import Typography from "@schoolify/core/components/base/inputs/Typography"
+
 
 const Landing = () => {
   // Render
