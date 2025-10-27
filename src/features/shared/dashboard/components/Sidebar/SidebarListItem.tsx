@@ -5,11 +5,15 @@ import ListItemText from "@schoolify/core/components/base/inputs/ListItemText";
 
 // React Types
 import type { ReactNode } from "react";
+import type { JSX } from "@emotion/react/jsx-runtime";
+import { useNavigate } from "react-router-dom";
+import List from "@mui/material/List";
 
 // Custom Types
 interface SidebarListItemProps {
   text: string;
-  icon?: ReactNode;
+  href?: string;
+  icon?: JSX.Element;
   onClick?: () => void;
   isActive?: boolean;
   enableBorder?: boolean;
@@ -21,6 +25,7 @@ const SidebarListItem = (props: SidebarListItemProps) => {
   // Props
   const {
     text,
+    href,
     icon,
     onClick,
     isActive,
@@ -29,28 +34,34 @@ const SidebarListItem = (props: SidebarListItemProps) => {
     nested = false,
   } = props;
 
+  // Hooks
+  // const navigate = useNavigate();
+
   // Render
   return (
-    <ListItem disablePadding sx={{ mb: 1, pl: nested ? 4 : 0 }}>
-      <SidebarButton
-        onClick={onClick}
-        isActive={isActive}
-        enableBorder={enableBorder}
-        disabled={disabled}
-      >
-        {icon}
-        <ListItemText
-          sx={{
-            display: "block",
-            textWrap: "nowrap",
-            textAlign: "left",
-            ml: 1,
-          }}
+    <List sx={{ px: 1 }}>
+      <ListItem disablePadding sx={{ mb: 1, pl: nested ? 4 : 0 }}>
+        <SidebarButton
+          onClick={onClick}
+          href={href}
+          isActive={isActive}
+          enableBorder={enableBorder}
+          disabled={disabled}
         >
-          {text}
-        </ListItemText>
-      </SidebarButton>
-    </ListItem>
+          {icon}
+          <ListItemText
+            sx={{
+              display: "block",
+              textWrap: "nowrap",
+              textAlign: "left",
+              ml: 1,
+            }}
+          >
+            {text}
+          </ListItemText>
+        </SidebarButton>
+      </ListItem>
+    </List>
   );
 };
 

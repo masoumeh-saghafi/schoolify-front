@@ -7,25 +7,25 @@ import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
 // React Types
 import { useState, type ReactNode } from "react";
-import DashboardSidebar from "@schoolify/features/shared/dashboard/components/Sidebar";
+import DashboardSidebar, {
+  type DashboardSidebarDataProps,
+} from "@schoolify/features/shared/dashboard/components/Sidebar";
 import useClientDeviceType from "@schoolify/core/hooks/common/useClientDeviceType";
-import DashboardAppBar from "./AppBar";
+import DashboardAppBar, { type DashboardAppBarDataProps } from "./AppBar";
 import SmallBox from "./core/SmallBox";
+import SidebarButton from "./Sidebar/SidebarButton";
 
 // Custom Types
 interface DashboardProps {
-  // href?: string;
-  // key?: string;
-  // onClick?: () => void;
-  // isActive?: boolean;
-  // enableBorder?: boolean;
-  // disabled?: boolean;
-  // children?: ReactNode;
+  appbarData?: DashboardAppBarDataProps[];
+  sidebarData?: DashboardSidebarDataProps[];
+
+  children: ReactNode;
 }
 
 function Dashboard(props: DashboardProps) {
   // Props
-  // const { href, key, onClick, isActive, enableBorder, disabled, children } =    props;
+  const { appbarData, sidebarData, children } = props;
 
   // States
 
@@ -42,21 +42,20 @@ function Dashboard(props: DashboardProps) {
     <>
       <SmallBox>
         <DashboardAppBar
+          data={appbarData}
           open={open}
           handleDrawerClose={handleDrawerClose}
           handleDrawerOpen={handleDrawerOpen}
-        >
-          a
-        </DashboardAppBar>
+        />
       </SmallBox>
 
-      <DashboardSidebar open={open} handleDrawerClose={handleDrawerClose}>
-        <Button>aaa</Button>
-      </DashboardSidebar>
+      <DashboardSidebar
+        data={sidebarData}
+        open={open}
+        handleDrawerClose={handleDrawerClose}
+      />
 
-      <SmallBox>
-        <Box>DASHBOARD</Box>
-      </SmallBox>
+      <SmallBox>{children}</SmallBox>
     </>
   );
 }

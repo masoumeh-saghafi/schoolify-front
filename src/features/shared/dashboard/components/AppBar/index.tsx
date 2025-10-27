@@ -1,5 +1,6 @@
 // Custom Hooks
 import Box from "@schoolify/core/components/base/inputs/Box";
+import Button from "@schoolify/core/components/base/inputs/Button";
 import IconButton from "@schoolify/core/components/base/inputs/IconButton";
 import Toolbar from "@schoolify/core/components/base/inputs/Toolbar";
 import { CloseIcon } from "@schoolify/core/components/icon/CloseIcon";
@@ -11,28 +12,29 @@ import useClientDeviceType from "@schoolify/core/hooks/common/useClientDeviceTyp
 import LogoTitle from "@schoolify/core/shared/Logo";
 import AppBar from "@schoolify/features/shared/layout/header/AppBar";
 
-// React Types
-import { type ReactNode } from "react";
-
 // Custom Types
+export interface DashboardAppBarDataProps {
+  title: string;
+  link: string;
+}
+
 interface DashboardAppBarProps {
   open: boolean;
   handleDrawerClose: () => void;
   handleDrawerOpen: () => void;
 
-  children: ReactNode;
+  data?: DashboardAppBarDataProps[];
 }
 
 function DashboardAppBar(props: DashboardAppBarProps) {
   // Props
-  const { open, handleDrawerClose, handleDrawerOpen, children } = props;
+  const { open, handleDrawerClose, handleDrawerOpen, data } = props;
 
   // Hooks
   const theme = useAppTheme();
 
   // States
   const deviceType = useClientDeviceType();
-  const isMobile = deviceType === "mobile";
 
   // Render
   return (
@@ -70,6 +72,10 @@ function DashboardAppBar(props: DashboardAppBarProps) {
               <CloseIcon /> نام کاربر
             </Box>
           )}
+
+          {data?.map((item) => (
+            <Button href={item.link}>{item.title}</Button>
+          ))}
 
           <LogoTitle sx={{ fontSize: "1.4rem" }} />
         </Toolbar>

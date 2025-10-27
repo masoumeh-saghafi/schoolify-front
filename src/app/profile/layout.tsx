@@ -1,4 +1,6 @@
+import Box from "@schoolify/core/components/base/inputs/Box";
 import Dashboard from "@schoolify/features/shared/dashboard/components";
+import ProfileDashboard from "@schoolify/features/user/profile/components/dashboard";
 import { Outlet } from "react-router-dom";
 
 // Feature Components
@@ -8,8 +10,10 @@ const ProfileLayout = () => {
   // Render
   return (
     <>
-      <Dashboard />
-      <Outlet />
+      <ProfileDashboard>
+        <Box>ProfileDashboard</Box>
+        <Outlet />
+      </ProfileDashboard>
     </>
   );
 };
