@@ -69,7 +69,7 @@ const Login = (props: LoginProps) => {
 
   // Render
   return (
-    <Box sx={{ direction: "ltr" }}>
+    <Box sx={{ direction: "rtl" }}>
       <AuthLayout>
         {step === "sendCode" ? (
           <SendCode onSubmit={handleSendCode} />

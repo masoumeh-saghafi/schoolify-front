@@ -56,7 +56,7 @@ const SendCode = (props: SendCodeProps) => {
       onSubmit={handleSubmit(onSubmit)}
       sx={{ width: '100%', maxWidth: 400 }}
     >
-      <Typography sx={{ direction: 'rtl', fontSize: '0.75rem', mb: 2 }}>
+      <Typography sx={{ direction: 'ltr', fontSize: '0.75rem', mb: 2 }}>
         لطفا شماره موبایل خود را وارد نمایید.
       </Typography>
 

@@ -1,7 +1,6 @@
-// Feature Components
-// import Landing from '@schoolify/features/user/landing'
-
+// MUI Components
 import Box from "@schoolify/core/components/base/inputs/Box";
+
 
 const ProfilePage = () => {
   // Render

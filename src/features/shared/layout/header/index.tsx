@@ -25,8 +25,9 @@ import { CloseIcon } from '@schoolify/core/components/icon/CloseIcon'
 // Custom Utilities
 import headerButtonsData from '@schoolify/features/user/landing/utilities/header'
 
-
-const Header = () => {
+// Custom Types
+interface HeaderProps {}
+const Header = (props: HeaderProps) => {
   // Hooks
   const location = useLocation()
   const theme = useAppTheme()
@@ -83,7 +84,17 @@ const Header = () => {
                       backgroundColor: isActive(page.link)
                         ? theme.palette.primary.main
                         : 'transparent',
-                      borderRadius: 2
+                      borderRadius: 2,
+                      transition: 'background-color 0.2s ease, color 0.2s ease',
+                      '&:hover': {
+                        backgroundColor: isActive(page.link)
+                          ? theme.palette.primary.dark
+                          : theme.palette.action.hover,
+                        color: isActive(page.link)
+                          ? theme.palette.text.white
+                          : theme.palette.text.primary,
+                        cursor: 'pointer'
+                      }
                     }}
                   >
                     {page.title}

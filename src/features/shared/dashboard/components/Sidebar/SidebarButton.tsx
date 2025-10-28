@@ -1,7 +1,7 @@
-// Custom Hooks
+// MUI Components
 import Button from '@schoolify/core/components/base/inputs/Button'
 
-// React Types
+// Custom Hooks
 import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
 
 // React Types
@@ -18,7 +18,7 @@ interface SidebarButtonProps {
   children?: ReactNode
 }
 
-function SidebarButton (props: SidebarButtonProps) {
+const SidebarButton =(props: SidebarButtonProps)=> {
   // Props
   const { href, key, onClick, isActive, enableBorder, disabled, children } =
     props
@@ -42,7 +42,17 @@ function SidebarButton (props: SidebarButtonProps) {
         border: enableBorder ? 1 : undefined,
         borderColor: enableBorder ? theme.palette.grey[100] : undefined,
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        transition: 'background-color 0.2s ease, color 0.2s ease',
+        '&:hover': {
+          backgroundColor: isActive
+            ? theme.palette.primary.dark
+            : theme.palette.action.hover,
+          color: isActive
+            ? theme.palette.text.white
+            : theme.palette.text.primary,
+          cursor: 'pointer',
+        }
       }}
       size='small'
     >

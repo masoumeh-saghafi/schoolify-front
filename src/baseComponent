@@ -1,7 +1,8 @@
-
 // MUI Components
 
 // Custom Hooks
+
+//Type Definitions
 
 // Core Components
 
@@ -14,12 +15,13 @@
 // Custom Types
 
 // Hooks
-   
-  // States
 
-  // Handlers
+// States
 
-  // Helpers
+// Handlers
 
-  // Render
+// Render Helpers
 
+// Helpers
+
+// Render

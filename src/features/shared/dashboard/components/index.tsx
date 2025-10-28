@@ -1,41 +1,32 @@
-// Custom Hooks
-import Box from "@schoolify/core/components/base/inputs/Box";
-import Button from "@schoolify/core/components/base/inputs/Button";
-
 // React Types
-import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
+import { useState, type ReactNode } from 'react'
 
-// React Types
-import { useState, type ReactNode } from "react";
+// Feature Components
 import DashboardSidebar, {
-  type DashboardSidebarDataProps,
-} from "@schoolify/features/shared/dashboard/components/Sidebar";
-import useClientDeviceType from "@schoolify/core/hooks/common/useClientDeviceType";
-import DashboardAppBar, { type DashboardAppBarDataProps } from "./AppBar";
-import SmallBox from "./core/SmallBox";
-import SidebarButton from "./Sidebar/SidebarButton";
+  type DashboardSidebarDataProps
+} from '@schoolify/features/shared/dashboard/components/Sidebar'
+import DashboardAppBar, {
+  type DashboardAppBarDataProps
+} from '@schoolify/features/shared/dashboard/components/AppBar/index'
+import SmallBox from '@schoolify/features/shared/dashboard/components/core/SmallBox'
 
 // Custom Types
 interface DashboardProps {
-  appbarData?: DashboardAppBarDataProps[];
-  sidebarData?: DashboardSidebarDataProps[];
-
-  children: ReactNode;
+  appbarData?: DashboardAppBarDataProps[]
+  sidebarData?: DashboardSidebarDataProps[]
+  children: ReactNode
 }
 
-function Dashboard(props: DashboardProps) {
+const Dashboard = (props: DashboardProps) => {
   // Props
-  const { appbarData, sidebarData, children } = props;
+  const { appbarData, sidebarData, children } = props
 
   // States
-
-  // Hooks
-  const [open, setOpen] = useState(false);
-  const theme = useAppTheme();
+  const [open, setOpen] = useState(false)
 
   // Handlers
-  const handleDrawerOpen = () => setOpen(true);
-  const handleDrawerClose = () => setOpen(false);
+  const handleDrawerOpen = () => setOpen(true)
+  const handleDrawerClose = () => setOpen(false)
 
   // Render
   return (
@@ -57,6 +48,6 @@ function Dashboard(props: DashboardProps) {
 
       <SmallBox>{children}</SmallBox>
     </>
-  );
+  )
 }
-export default Dashboard;
+export default Dashboard

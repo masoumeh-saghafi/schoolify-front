@@ -13,7 +13,6 @@ import Grid from '@schoolify/core/components/base/inputs/Grid'
 import Box from '@schoolify/core/components/base/inputs/Box'
 import Typography from '@schoolify/core/components/base/inputs/Typography'
 
-
 // Core Components
 import Logo from "@schoolify/core/shared/Logo";
 
@@ -42,7 +41,7 @@ const AuthLayout = (props: AuthLayoutProps) => {
       sx={{
         height: "100vh",
         backgroundColor: theme.palette.background.paper,
-        directions: "ltr",
+        directions: "rtl",
       }}
     >
       {/* Desktop Background & Logo */}
