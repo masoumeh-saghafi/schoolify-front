@@ -1,4 +1,4 @@
-export default interface BaseResponseEntity<T> {
+export interface BaseResponseEntity<T> {
   data: T | null;
   errors: string[];
   errorDetails: object;
@@ -8,4 +8,8 @@ export default interface BaseResponseEntity<T> {
   isExceptionThrown: boolean;
   requestDate: string;
   responseDate: string;
+}
+export interface BaseIdDataEntity<T> {
+  id: string;
+  data: T | null;
 }

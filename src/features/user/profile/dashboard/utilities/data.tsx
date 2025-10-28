@@ -4,8 +4,19 @@ import { SettingIcon } from "@schoolify/core/components/icon/settingIcon";
 import { SupportAgentIcon } from "@schoolify/core/components/icon/SupportAgentIcon";
 
 import routes from "@schoolify/core/utilities/routes";
+import { genUUID } from "@schoolify/core/utilities/uuid";
 
 export const sidebarData: DashboardSidebarDataProps[] = [
-  { title: " پشتیبانی", link: routes.index, icon: <SupportAgentIcon /> },
-  { title: "مدیریت حساب کاربری", link: routes.index, icon: <SettingIcon /> },
+  {
+    key: genUUID(),
+    title: " پشتیبانی",
+    link: routes.ticket,
+    icon: <SupportAgentIcon />,
+  },
+  {
+    key: genUUID(),
+    title: "مدیریت حساب کاربری",
+    link: routes.profile,
+    icon: <SettingIcon />,
+  },
 ];

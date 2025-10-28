@@ -2,7 +2,7 @@
 import Dashboard from "@schoolify/features/shared/dashboard/components";
 
 // Custom Utilities
-import { sidebarData } from "@schoolify/features/user/profile/utilities/data";
+import { sidebarData } from "@schoolify/features/user/profile/dashboard/utilities/data";
 
 // React Types
 import type { ReactNode } from "react";
@@ -16,7 +16,7 @@ const ProfileDashboard = (props: ProfileDashboardProps) => {
   // Props
   const { children } = props;
 
-// Render
+  // Render
   return (
     <>
       <Dashboard sidebarData={sidebarData}>{children}</Dashboard>

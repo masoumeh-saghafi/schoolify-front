@@ -2,9 +2,9 @@ import { postData } from "@schoolify/core/utilities/api";
 import authEndpoints from "@schoolify/features/shared/authentication/utilities/api/endpoints";
 import type SendCodeEntity from "@schoolify/features/shared/authentication/types/api/SendCodeEntity";
 import type VerifyCodeEntity from "@schoolify/features/shared/authentication/types/api/VerifyCodeEntity";
+import Cookies from "js-cookie";
 
-
-export  const sendCode = async (phoneNumber: string) => {
+export const sendCode = async (phoneNumber: string) => {
   return await postData<SendCodeEntity>(authEndpoints.sendCode, {
     phoneNumber: phoneNumber,
     token: "set empty string for now",
@@ -23,7 +23,7 @@ export const verifyCode = async (phoneNumber: string, code: string) => {
 
   if (token && expireDate) {
     const date = new Date(expireDate);
-    // Cookies.set("authToken", token, { expires: date });
+    Cookies.set("authToken", token, { expires: date });
   }
 
   return response;

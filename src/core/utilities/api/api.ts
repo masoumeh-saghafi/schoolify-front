@@ -1,4 +1,4 @@
-import type BaseResponseEntity from "@schoolify/core/types/core/api/response";
+import type { BaseResponseEntity } from "@schoolify/core/types/core/api/response";
 import Cookies from "js-cookie";
 // import BaseResponseEntity from "../entities/BaseResponseEntity";
 // import useUserImpersonationStore, { useNotificationStore } from "../store";
@@ -6,8 +6,8 @@ import Cookies from "js-cookie";
 // ---------------------------
 // Base URL
 // ---------------------------
-const BASE_URL = "https://schoolify.ir/api/v1";
-// const BASE_URL = "https://localhost:7251/api/v1";
+// const BASE_URL = "https://schoolify.ir/api/v1";
+const BASE_URL = "https://localhost:7251/api/v1";
 
 // ---------------------------
 // Helpers
