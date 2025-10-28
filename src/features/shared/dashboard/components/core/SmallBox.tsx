@@ -4,22 +4,19 @@ import Box from "@schoolify/core/components/base/inputs/Box";
 // React Types
 import { type ReactNode } from "react";
 import useClientDeviceType from "@schoolify/core/hooks/common/useClientDeviceType";
+import useClientDeviceTypeIsMobile from "@schoolify/core/hooks/common/useClientDeviceTypeIsMobile";
 
 // Custom Types
 interface SmallBoxProps {
   children: ReactNode;
 }
 
-const SmallBox=(props: SmallBoxProps)=> {
+const SmallBox = (props: SmallBoxProps) => {
   // Props
   const { children } = props;
 
- 
-
   // Hooks
-  const deviceType = useClientDeviceType();
-  const isMobile = deviceType === "mobile";
-
+  const isMobile = useClientDeviceTypeIsMobile();
 
   // Render
   return (
@@ -27,11 +24,10 @@ const SmallBox=(props: SmallBoxProps)=> {
       sx={{
         width: !isMobile ? "calc(100%-300px)" : undefined,
         ml: !isMobile ? "300px" : undefined,
-        
       }}
     >
       {children}
     </Box>
   );
-}
+};
 export default SmallBox;

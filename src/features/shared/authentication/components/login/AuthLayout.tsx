@@ -9,9 +9,9 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
 // MUI Components
-import Grid from '@schoolify/core/components/base/inputs/Grid'
-import Box from '@schoolify/core/components/base/inputs/Box'
-import Typography from '@schoolify/core/components/base/inputs/Typography'
+import Grid from "@schoolify/core/components/base/inputs/Grid";
+import Box from "@schoolify/core/components/base/inputs/Box";
+import Typography from "@schoolify/core/components/base/inputs/Typography";
 
 // Core Components
 import Logo from "@schoolify/core/shared/Logo";
@@ -19,7 +19,7 @@ import Logo from "@schoolify/core/shared/Logo";
 //Public
 import loginBgLarge from "@public/images/loginBgLarge.png";
 import loginBgSmall from "@public/images/loginBgSmall.png";
-
+import useClientDeviceTypeIsMobile from "@schoolify/core/hooks/common/useClientDeviceTypeIsMobile";
 
 // Custom Types
 interface AuthLayoutProps {
@@ -32,7 +32,7 @@ const AuthLayout = (props: AuthLayoutProps) => {
 
   // Hooks
   const theme = useAppTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isMobile = useClientDeviceTypeIsMobile();
 
   // Render
   return (
