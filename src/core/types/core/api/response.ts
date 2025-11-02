@@ -9,7 +9,18 @@ export interface BaseResponseEntity<T> {
   requestDate: string;
   responseDate: string;
 }
+
 export interface BaseIdDataEntity<T> {
   id: string;
   data: T | null;
+}
+
+export default interface BasePaginationDataEntity<T> {
+  docs: T[];
+  pagination: {
+    totalDocs: number;
+    page: number;
+    size: number;
+    totalPages: number;
+  };
 }

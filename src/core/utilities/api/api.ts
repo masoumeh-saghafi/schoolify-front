@@ -1,3 +1,4 @@
+import type BasePaginationDataEntity from "@schoolify/core/types/core/api/response";
 import type { BaseResponseEntity } from "@schoolify/core/types/core/api/response";
 import Cookies from "js-cookie";
 // import BaseResponseEntity from "../entities/BaseResponseEntity";
@@ -106,12 +107,18 @@ export async function postData<T>(
 }
 
 export async function getAllData<T>(
-  endpoint: string
-): Promise<BaseResponseEntity<T>> {
-  return request<T>(`${BASE_URL}${endpoint}`, {
-    method: "GET",
-    headers: getHeaders(),
-  });
+  endpoint: string,
+  filters?: Record<string, string>
+): Promise<BaseResponseEntity<BasePaginationDataEntity<T>>> {
+  const filterParams = filters ? new URLSearchParams(filters) : "";
+
+  return request<BasePaginationDataEntity<T>>(
+    `${BASE_URL}${endpoint}?${filterParams}`,
+    {
+      method: "GET",
+      headers: getHeaders(),
+    }
+  );
 }
 
 export async function getData<T>(
