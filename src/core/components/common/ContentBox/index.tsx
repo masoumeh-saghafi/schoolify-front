@@ -1,7 +1,8 @@
-import Paper from "@mui/material/Paper";
+
 import type { ElementType, FormEventHandler, ReactNode } from "react";
 import Typography from "../../base/inputs/Typography";
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
+import Paper from "@schoolify/core/components/base/inputs/Paper";
 
 interface ContentBoxProps {
   label: string;

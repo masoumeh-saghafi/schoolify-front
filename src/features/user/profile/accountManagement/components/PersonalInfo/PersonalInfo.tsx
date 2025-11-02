@@ -1,102 +1,68 @@
-import Box from "@schoolify/core/components/base/inputs/Box";
-import Button from "@schoolify/core/components/base/inputs/Button";
-import Grid from "@schoolify/core/components/base/inputs/Grid";
-import TextField from "@schoolify/core/components/base/inputs/TextField";
-import ContentBox from "@schoolify/core/components/common/ContentBox";
-import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
-import useUserProfile from "../../hooks/useUserProfile";
+import Box from '@schoolify/core/components/base/inputs/Box'
+import Button from '@schoolify/core/components/base/inputs/Button'
+import Grid from '@schoolify/core/components/base/inputs/Grid'
+
+import ContentBox from '@schoolify/core/components/common/ContentBox'
+import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
+import useUserProfile from '../../hooks/useUserProfile'
+
+import DetailField from '@schoolify/core/components/common/DetailField'
+import AsyncStateHandler from '@schoolify/core/components/common/AsyncStateHandler'
+import { EditIcon } from '@schoolify/core/components/icon/EditIcon'
+import { PersonalInfoData } from '@schoolify/features/user/profile/accountManagement/utilities/personalInfoData'
 
 interface PersonalInfoProps {}
 
 const PersonalInfo = (props: PersonalInfoProps) => {
   // Props
-  const {} = props;
+  // const {} = props;
 
   // Hooks
-  const { data, isLoading, error } = useUserProfile();
-  console.log(data);
+  const { data, isLoading, error } = useUserProfile()
 
-  const theme = useAppTheme();
+  const theme = useAppTheme()
+
+  // Helpers
+  const user = data?.data
+  const userFields = PersonalInfoData(user)
 
   return (
     <Box>
-      <ContentBox label="مشخصات کاربر">
-        <Grid container sx={{ margin: 2 }} spacing={2}>
-          <Grid size={{ xs: 12, sm: 6 }} sx={{ mb: 2 }}>
-            <TextField
-              label="نام"
-              type="text"
-              size="small"
-              value={data?.data?.firstName}
-              fullWidth
-              slotProps={{
-                inputLabel: {
-                  shrink: true,
-                },
-                input: {
-                  readOnly: true,
-                },
-              }}
-            />
-          </Grid>
+      <ContentBox label='مشخصات کاربر'>
+        <AsyncStateHandler isLoading={isLoading} error={error}>
+          <Grid container sx={{ margin: 2 }} spacing={2}>
+            {userFields.map((field, index) => (
+              <DetailField
+                key={index}
+                label={field.label}
+                value={field.value}
+              />
+            ))}
 
-          <Grid size={{ xs: 12, sm: 6 }} sx={{ mb: 2 }}>
-            <TextField
-              label="نام خانوادگی"
-              type="text"
-              size="small"
-              value={data?.data?.lastName}
-              fullWidth
-              slotProps={{
-                inputLabel: {
-                  shrink: true,
-                },
-                input: {
-                  readOnly: true,
-                },
-              }}
-            />
+            <Grid size={{ xs: 12, sm: 6 }}>
+              <Button
+                fullWidth
+                size='small'
+                variant='contained'
+                onClick={() => {}}
+                startIcon={<EditIcon/>} 
+                sx={{
+                  direction: 'rtl',
+                  gap: 1,
+                  backgroundColor: theme.palette.primary.main,
+                  color: theme.palette.text.white
+                }}
+              >
+                ویرایش اطلاعات
+              </Button>
+            </Grid>
           </Grid>
-          <Grid size={{ xs: 12, sm: 6 }} sx={{ mb: 1 }}>
-            <TextField
-              label="شماره موبایل"
-              type="text"
-              size="small"
-              value={data?.data?.phoneNumber}
-              fullWidth
-              slotProps={{
-                inputLabel: {
-                  shrink: true,
-                },
-                input: {
-                  readOnly: true,
-                },
-              }}
-            />
-          </Grid>
-          <Grid size={{ xs: 12, sm: 6 }}>
-            <Button
-              fullWidth
-              size="small"
-              variant="contained"
-              onClick={() => {}}
-              // startIcon={<EditIcon />} // TODO - ADD THIS ICON
-              sx={{
-                direction: "rtl",
-                gap: 1,
-                backgroundColor: theme.palette.primary.main,
-                color: theme.palette.text.white,
-              }}
-            >
-              ویرایش اطلاعات
-            </Button>
-          </Grid>
-        </Grid>
+        </AsyncStateHandler>
       </ContentBox>
 
       {/* <NotificationInfo /> */}
     </Box>
-  );
-};
+  )
+}
 
-export default PersonalInfo;
+export default PersonalInfo

@@ -1,24 +1,20 @@
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 // MUI Components
-
-// Custom Hooks
-import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
-import { useForm, type FieldErrors, type SubmitHandler } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import Box from '@schoolify/core/components/base/inputs/Box'
+import Button from '@schoolify/core/components/base/inputs/Button'
+import Typography from '@schoolify/core/components/base/inputs/Typography'
 
 // Core Components
 import FormField from '@schoolify/core/components/base/inputs/FormField'
+import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
 
 // Feature Components
 import { phoneSchema } from '@schoolify/features/shared/authentication/validations/phoneValidation'
-import Box from '@schoolify/core/components/base/inputs/Box'
-import Typography from '@schoolify/core/components/base/inputs/Typography'
-import Button from '@schoolify/core/components/base/inputs/Button'
 
-// Icon Components
-
-// Custom Utilities
+// React Types
+import { useForm, type FieldErrors, type SubmitHandler } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 // Custom Types
 export type SendCodeFormProps = z.infer<typeof phoneSchema>
@@ -27,6 +23,7 @@ interface SendCodeProps {
   onSubmit: SubmitHandler<SendCodeFormProps>
 }
 const SendCode = (props: SendCodeProps) => {
+  // Props
   const { onSubmit } = props
 
   // Hooks
@@ -39,15 +36,9 @@ const SendCode = (props: SendCodeProps) => {
     mode: 'onChange'
   })
 
-   const navigate = useNavigate()
-
+  const navigate = useNavigate()
+  
   const theme = useAppTheme()
-
-  // States
-
-  // Handlers
-
-  // Helpers
 
   // Render
   return (
