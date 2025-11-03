@@ -1,5 +1,4 @@
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
-import { useNavigate } from "react-router-dom";
 import useListSubscriptions from "../hooks/useListSubscriptions";
 import { useState } from "react";
 import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
@@ -10,38 +9,25 @@ import Grid from "@schoolify/core/components/base/inputs/Grid";
 import Typography from "@schoolify/core/components/base/inputs/Typography";
 import Button from "@schoolify/core/components/base/inputs/Button";
 import TextField from "@schoolify/core/components/base/inputs/TextField";
-import { postBuySubscriptions } from "../utilities/api/api";
-import routes from "@schoolify/core/utilities/routes";
+import useBuySubscription from "../hooks/useBuySubscription";
 
 const BuySubscription = () => {
-  const navigate = useNavigate();
   const theme = useAppTheme();
   const { data, isLoading, error } = useListSubscriptions();
   const [schoolTitles, setSchoolTitles] = useState<Record<number, string>>({});
+
+  const { mutateAsync: buySubscription, isPending } = useBuySubscription();
 
   const handleBuySubscription = async (
     subscription: BaseIdDataEntity<ListSubscriptionsEntity>,
     schoolTitle: string
   ) => {
-    try {
-      const payload = {
-        schoolTitle,
-        subscriptionId: subscription.id,
-      };
+    const payload = {
+      schoolTitle,
+      subscriptionId: subscription.id,
+    };
 
-      const response = await postBuySubscriptions(payload);
-
-      if (response.data?.paymentId) {
-        navigate(routes.paymentGateway(response.data.paymentId), {
-          state: { from: location.pathname },
-        });
-      } else {
-        alert("مشکلی در دریافت اطلاعات پرداخت وجود دارد");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("خطا در برقراری ارتباط با سرور");
-    }
+    await buySubscription(payload);
   };
 
   return (

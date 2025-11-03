@@ -2,9 +2,11 @@ import ms from "ms";
 import { useQuery } from "@tanstack/react-query";
 import { getListUserSubscription } from "@schoolify/features/user/profile/accountManagement/subscription/utilities/api/api";
 
+export const listUserSubscriptionsQueryKey = "getListUserSubscription";
+
 const useListUserSubscriptions = () => {
   return useQuery({
-    queryKey: ["getListUserSubscription"],
+    queryKey: [listUserSubscriptionsQueryKey],
     queryFn: getListUserSubscription,
     staleTime: ms("1h"),
     gcTime: ms("24h"),

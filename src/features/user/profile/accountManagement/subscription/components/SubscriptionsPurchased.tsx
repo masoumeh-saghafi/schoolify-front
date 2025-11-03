@@ -18,6 +18,7 @@ import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 import { postRenewalSubscription } from "../utilities/api/api";
 import useListUserSubscriptions from "../hooks/useListUserSubscriptions";
 import routes from "@schoolify/core/utilities/routes";
+import useRenewalSubscription from "../hooks/useRenewalSubscription";
 
 dayjs.extend(jalaliday);
 
@@ -35,6 +36,9 @@ const SubscriptionsPurchased = () => {
   const { data, isLoading, error } = useListUserSubscriptions();
   const theme = useAppTheme();
 
+  const { mutateAsync: renewalSubscription, isPending } =
+    useRenewalSubscription();
+
   if (isLoading) return <Typography>در حال بارگذاری...</Typography>;
   if (error)
     return <Typography color="error">خطا در دریافت اطلاعات</Typography>;
@@ -43,24 +47,10 @@ const SubscriptionsPurchased = () => {
     subscriptionData: any,
     subscriptionId: string
   ) => {
-    try {
-      const response = await postRenewalSubscription(
-        subscriptionData,
-        subscriptionId
-      );
-      console.log(response.data);
-      console.log(response);
-
-      if (response.data?.paymentId) {
-        navigate(routes.paymentGateway(response.data.paymentId), {
-          state: { from: location.pathname },
-        });
-      } else {
-        alert("مشکلی در دریافت اطلاعات پرداخت وجود دارد");
-      }
-    } catch (error) {
-      alert("خطا در تمدید اشتراک. لطفاً دوباره تلاش کنید.");
-    }
+    await renewalSubscription({
+      data: subscriptionData,
+      subscriptionId: subscriptionId,
+    });
   };
 
   const activeSubscriptions =
