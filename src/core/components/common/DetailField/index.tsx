@@ -1,7 +1,7 @@
 // src/features/user/profile/components/DetailField.tsx
 
-import Grid from '@schoolify/core/components/base/inputs/Grid'
-import BaseField from '@schoolify/core/components/common/BaseField/index'
+import Grid from "@schoolify/core/components/base/inputs/Grid";
+import BaseField from "@schoolify/core/components/common/BaseField/index";
 
 interface DetailFieldProps {
    label: string
@@ -18,15 +18,15 @@ const DetailField = (props: DetailFieldProps) => {
 }
 =props
   return (
-    <Grid size={{ xs, sm }} sx={{ mb:1}}>
+    <Grid size={{ xs, sm }} sx={{ mb: 1 }}>
       <BaseField
         label={label}
-        value={value ? String(value) : ''}
+        value={value ? String(value) : ""}
         type={type}
         readOnly={readOnly}
       />
     </Grid>
-  )
-}
+  );
+};
 
-export default DetailField
+export default DetailField;
