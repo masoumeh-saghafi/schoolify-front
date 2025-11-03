@@ -1,3 +1,4 @@
+import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
 import type BasePaginationDataEntity from "@schoolify/core/types/core/api/response";
 import type { BaseResponseEntity } from "@schoolify/core/types/core/api/response";
 import Cookies from "js-cookie";
@@ -108,9 +109,21 @@ export async function postData<T>(
 
 export async function getAllData<T>(
   endpoint: string,
+  pagination?: BaseRequestPaginationParams,
   filters?: Record<string, string>
 ): Promise<BaseResponseEntity<BasePaginationDataEntity<T>>> {
-  const filterParams = filters ? new URLSearchParams(filters) : "";
+  const allParams = {
+    ...filters,
+    ...(pagination && {
+      page: (pagination.page ?? 0).toString(),
+      size: (pagination.size ?? 10).toString(),
+      order: pagination.order,
+    }),
+  };
+
+  const filterParams = new URLSearchParams(
+    allParams as Record<string, string>
+  ).toString();
 
   return request<BasePaginationDataEntity<T>>(
     `${BASE_URL}${endpoint}?${filterParams}`,
