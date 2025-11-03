@@ -1,7 +1,6 @@
 // Feature Components
 import TabBox from "@schoolify/core/components/common/TabBox";
 import routes from "@schoolify/core/utilities/routes";
-import Dashboard from "@schoolify/features/shared/dashboard/components";
 
 // Custom Utilities
 import { tabData } from "@schoolify/features/user/profile/accountManagement/utilities/data";

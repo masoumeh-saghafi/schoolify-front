@@ -1,9 +1,10 @@
 import type { TabBoxDataProps } from '@schoolify/core/components/common/TabBox'
-import PersonalInfo from '@schoolify/features/user/profile/accountManagement/components/PersonalInfo/PersonalInfo'
+import PersonalInfoPage from '@schoolify/features/user/profile/accountManagement/personalInfo/components/Page'
+import SubscriptionPage from '../subscription/components/Page'
 
 export const tabData: TabBoxDataProps[] = [
-  { label: 'اطلاعات شخصی', key: 'personal-info', children: <PersonalInfo/> },
-  { label: 'اشتراک', key: 'subscription', children: <></> },
+  { label: 'اطلاعات شخصی', key: 'personal-info', children: <PersonalInfoPage/> },
+  { label: 'اشتراک', key: 'subscription', children: <SubscriptionPage/> },
   { label: 'تراکنش ها', key: 'payments', children: <></> },
   { label: 'ویرایش اطلاعات', key: 'edit-info', children: <></> }
 ]

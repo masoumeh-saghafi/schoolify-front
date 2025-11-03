@@ -1,7 +1,6 @@
 import ms from 'ms'
-
 import { useQuery } from '@tanstack/react-query'
-import { getListSubscription} from '../utilities/api/api'
+import { getListSubscription} from '@schoolify/features/user/profile/accountManagement/subscription/utilities/api/api'
 
 const useListSubscriptions = () => {
   return useQuery({

@@ -3,7 +3,7 @@
 import Grid from '@schoolify/core/components/base/inputs/Grid'
 import BaseField from '@schoolify/core/components/common/BaseField/index'
 
-interface DetailFielddProps {
+interface DetailFieldProps {
    label: string
    value?: string | number | null
    xs?: number
@@ -12,7 +12,7 @@ interface DetailFielddProps {
    readOnly?: boolean
 }
 
-const DetailField = (props: DetailFielddProps) => {
+const DetailField = (props: DetailFieldProps) => {
    const {
   label, value, xs = 12, sm = 6, type = 'text', readOnly = true
 }

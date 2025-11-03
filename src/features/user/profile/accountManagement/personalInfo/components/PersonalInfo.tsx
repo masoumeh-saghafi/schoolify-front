@@ -1,16 +1,24 @@
+// MUI Components
 import Box from '@schoolify/core/components/base/inputs/Box'
 import Button from '@schoolify/core/components/base/inputs/Button'
 import Grid from '@schoolify/core/components/base/inputs/Grid'
-
 import ContentBox from '@schoolify/core/components/common/ContentBox'
-import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
-import useUserProfile from '../../hooks/useUserProfile'
 
+// Core Components
 import DetailField from '@schoolify/core/components/common/DetailField'
 import AsyncStateHandler from '@schoolify/core/components/common/AsyncStateHandler'
-import { EditIcon } from '@schoolify/core/components/icon/EditIcon'
-import { PersonalInfoData } from '@schoolify/features/user/profile/accountManagement/utilities/personalInfoData'
 
+// Icon Components
+import { EditIcon } from '@schoolify/core/components/icon/EditIcon'
+
+// Feature Components
+import { PersonalInfoData } from '@schoolify/features/user/profile/accountManagement/personalInfo/utilities/personalInfoData'
+
+// Custom Hooks
+import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
+import useUserProfile from '@schoolify/features/user/profile/accountManagement/personalInfo/hooks/useUserProfile'
+
+// Custom Types
 interface PersonalInfoProps {}
 
 const PersonalInfo = (props: PersonalInfoProps) => {
@@ -45,7 +53,7 @@ const PersonalInfo = (props: PersonalInfoProps) => {
                 size='small'
                 variant='contained'
                 onClick={() => {}}
-                startIcon={<EditIcon/>} 
+                startIcon={<EditIcon />}
                 sx={{
                   direction: 'rtl',
                   gap: 1,
@@ -59,8 +67,6 @@ const PersonalInfo = (props: PersonalInfoProps) => {
           </Grid>
         </AsyncStateHandler>
       </ContentBox>
-
-      {/* <NotificationInfo /> */}
     </Box>
   )
 }
