@@ -59,6 +59,7 @@ async function request<T>(
     const response = await fetch(url, options);
     const isImpersonation = response.headers.get("is-impersonation");
     handleImpersonation(isImpersonation);
+    // console.log(response);
 
     const data = (await response.json()) as BaseResponseEntity<T>;
 

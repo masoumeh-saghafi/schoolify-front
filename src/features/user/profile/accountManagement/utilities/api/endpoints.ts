@@ -1,9 +1,12 @@
 const profileAccountManagementEndpoints = {
   profile: "/profile",
-  subscription: "/profile/subscriptions",
+  subscription: "/subscriptions",
+  userSubscription: "/profile/subscriptions",
   buySubscription: "/profile/subscriptions/buy",
+  renewalSubscription: (subscriptionId: string) =>
+    `/profile/subscriptions/${subscriptionId}/renewal`,
   notification: "/profile/notifications",
-  payment:"/payments"
+  payment: "/payments",
 };
 
 export default profileAccountManagementEndpoints;

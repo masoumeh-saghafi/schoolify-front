@@ -1,5 +1,5 @@
 export interface BaseResponseEntity<T> {
-  data: T | null;
+  data?: T | null | undefined;
   errors: string[];
   errorDetails: object;
   message: string;

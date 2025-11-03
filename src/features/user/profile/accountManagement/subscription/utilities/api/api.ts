@@ -4,6 +4,7 @@ import profileAccountManagementEndpoints from "@schoolify/features/user/profile/
 import type ListSubscriptionsEntity from "@schoolify/features/user/profile/accountManagement/subscription/types/api/ListSubscriptionsEntity";
 import type BuySubscriptionsEntitiy from "../../types/api/BuySubscriptionsEntitiy";
 import type RenewalSubscriptionEntity from "../../types/api/RenewalSubscriptionEntity";
+import type ListUserSubscriptionsEntity from "../../types/api/ListUserSubscriptionsEntity";
 
 export const getListSubscription = async () => {
   return await getData<BaseIdDataEntity<ListSubscriptionsEntity>[]>(
@@ -11,16 +12,25 @@ export const getListSubscription = async () => {
   );
 };
 
-export const  postBuySubscriptions= async (data: any) => {
-  return await postData<BaseIdDataEntity<BuySubscriptionsEntitiy>>(
+export const postBuySubscriptions = async (data: any) => {
+  return await postData<BuySubscriptionsEntitiy>(
     profileAccountManagementEndpoints.buySubscription,
     data
-  )
-}
+  );
+};
 
-export const patchRenewalSubscription = async (data: any,subscriptionId: string) => {
-  return await postData<BaseIdDataEntity<RenewalSubscriptionEntity>>(
-    `${ profileAccountManagementEndpoints.buySubscription }/${subscriptionId}/renewal`,
+export const getListUserSubscription = async () => {
+  return await getData<BaseIdDataEntity<ListUserSubscriptionsEntity>[]>(
+    profileAccountManagementEndpoints.userSubscription
+  );
+};
+
+export const postRenewalSubscription = async (
+  data: any,
+  subscriptionId: string
+) => {
+  return await postData<RenewalSubscriptionEntity>(
+    profileAccountManagementEndpoints.renewalSubscription(subscriptionId),
     data
-  )
-}
+  );
+};
