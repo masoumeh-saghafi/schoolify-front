@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { postRenewalSubscription } from "../utilities/api/api";
+import { postRenewalSubscription } from "@schoolify/features/user/profile/accountManagement/subscription/utilities/api/api";
 import { useNavigate } from "react-router-dom";
 import routes from "@schoolify/core/utilities/routes";
-import { listUserSubscriptionsQueryKey } from "./useListUserSubscriptions";
+import { listUserSubscriptionsQueryKey } from "@schoolify/features/user/profile/accountManagement/subscription/hooks/useListUserSubscriptions";
 
 const useRenewalSubscription = () => {
   const navigate = useNavigate();

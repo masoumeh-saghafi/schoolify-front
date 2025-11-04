@@ -1,13 +1,18 @@
-import useAppTheme from "@schoolify/core/hooks/common/useAppTheme"
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
-import { postPaymentStatus } from "../utilities/api/api"
+import Button from "@schoolify/core/components/base/inputs/Button"
+import Typography from "@schoolify/core/components/base/inputs/Typography"
 import Box from "@schoolify/core/components/base/inputs/Box"
 import IconButton from "@schoolify/core/components/base/inputs/IconButton"
+
+import { postPaymentStatus } from "@schoolify/features/user/profile/accountManagement/payment/utilities/api/api"
+
 import { CloseIcon } from "@schoolify/core/components/icon/CloseIcon"
-import Typography from "@schoolify/core/components/base/inputs/Typography"
-import Button from "@schoolify/core/components/base/inputs/Button"
+
+import useAppTheme from "@schoolify/core/hooks/common/useAppTheme"
+
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 
 const PaymentGateway = () => {
+  
   const navigate = useNavigate()
   const theme = useAppTheme()
   const location = useLocation()

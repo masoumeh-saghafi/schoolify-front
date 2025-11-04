@@ -1,9 +1,9 @@
-import type UserProfileEntity from "../types/api/UserProfileEntity";
+import type UserProfileEntity from '@schoolify/features/user/profile/accountManagement/personalInfo/types/api/UserProfileEntity'
 
 export const PersonalInfoData = (
   user: UserProfileEntity | null | undefined
 ) => [
-  { label: "نام", value: user?.firstName },
-  { label: "نام خانوادگی", value: user?.lastName },
-  { label: "شماره موبایل", value: user?.phoneNumber },
-];
+  { label: 'نام', value: user?.firstName },
+  { label: 'نام خانوادگی', value: user?.lastName },
+  { label: 'شماره موبایل', value: user?.phoneNumber }
+]

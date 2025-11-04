@@ -1,28 +1,24 @@
 // Feature Components
+import BuySubscription from '@schoolify/features/user/profile/accountManagement/subscription/components/BuySubscription'
+import SubscriptionsPurchased from '@schoolify/features/user/profile/accountManagement/subscription/components/SubscriptionsPurchased'
 
-import BuySubscription from "./BuySubscription";
-import SubscriptionsPurchased from "./SubscriptionsPurchased";
-
-// Custom Utilities
-
-// React Types
 
 // Custom Types
 interface SubscriptionPageProps {
-//   children: ReactNode;
+
 }
 
 const SubscriptionPage = (props: SubscriptionPageProps) => {
   // Props
-//   const { children } = props;
+  //   const { } = props;
 
   // Render
   return (
     <>
-        <BuySubscription />
-        <SubscriptionsPurchased/>
+      <BuySubscription />
+      <SubscriptionsPurchased />
     </>
-  );
-};
+  )
+}
 
-export default SubscriptionPage;
+export default SubscriptionPage

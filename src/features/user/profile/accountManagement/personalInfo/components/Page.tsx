@@ -1,27 +1,23 @@
 // Feature Components
-
-// Custom Utilities
-
-// React Types
-import PersonalInfo from "./PersonalInfo";
-import NotificationInfo from "./NotificationInfo";
+import PersonalInfo from '@schoolify/features/user/profile/accountManagement/personalInfo/components/PersonalInfo'
+import NotificationInfo from '@schoolify/features/user/profile/accountManagement/personalInfo/components/NotificationInfo'
 
 // Custom Types
 interface PersonalInfoPageProps {
-//   children: ReactNode;
+
 }
 
 const PersonalInfoPage = (props: PersonalInfoPageProps) => {
   // Props
-//   const { children } = props;
+  //   const { } = props;
 
   // Render
   return (
     <>
-        <PersonalInfo />
-        <NotificationInfo/>
+      <PersonalInfo />
+      <NotificationInfo />
     </>
-  );
-};
+  )
+}
 
-export default PersonalInfoPage;
+export default PersonalInfoPage

@@ -11,7 +11,7 @@ import AsyncStateHandler from '@schoolify/core/components/common/AsyncStateHandl
 // Icon Components
 import { EditIcon } from '@schoolify/core/components/icon/EditIcon'
 
-// Feature Components
+// Custom Utilities
 import { PersonalInfoData } from '@schoolify/features/user/profile/accountManagement/personalInfo/utilities/personalInfoData'
 
 // Custom Hooks

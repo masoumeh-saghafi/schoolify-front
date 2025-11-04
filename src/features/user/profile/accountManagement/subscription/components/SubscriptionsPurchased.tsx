@@ -1,128 +1,105 @@
-import Button from "@schoolify/core/components/base/inputs/Button";
-import Typography from "@schoolify/core/components/base/inputs/Typography";
-import ContentBox from "@schoolify/core/components/common/ContentBox";
-import dayjs from "dayjs";
-import jalaliday from "jalaliday";
-import { useNavigate } from "react-router-dom";
-import useListSubscriptions from "../hooks/useListSubscriptions";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
-import FormattedDate from "@schoolify/core/components/common/FormattedDate";
-import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
-import { postRenewalSubscription } from "../utilities/api/api";
-import useListUserSubscriptions from "../hooks/useListUserSubscriptions";
-import routes from "@schoolify/core/utilities/routes";
-import useRenewalSubscription from "../hooks/useRenewalSubscription";
+// MUI Components
+import Button from '@schoolify/core/components/base/inputs/Button'
+import Box from '@schoolify/core/components/base/inputs/Box'
 
-dayjs.extend(jalaliday);
+// Core Components
+import FormattedDate from '@schoolify/core/components/common/FormattedDate'
+import AsyncStateHandler from '@schoolify/core/components/common/AsyncStateHandler'
+import DataTable from '@schoolify/core/components/common/DataTable'
+
+// Custom Hooks
+import useListUserSubscriptions from '@schoolify/features/user/profile/accountManagement/subscription/hooks/useListUserSubscriptions'
+import useRenewalSubscription from '@schoolify/features/user/profile/accountManagement/subscription/hooks/useRenewalSubscription'
+import { useAppTheme } from '@schoolify/core/hooks/common/useAppTheme'
+
+// Custom Utilities
+import { SubscriptionsPurchasedColumns } from '@schoolify/features/user/profile/accountManagement/subscription/utilities/SubscriptionsPurchasedData'
+
+//Type Definitions
+
+import dayjs from 'dayjs'
+import jalaliday from 'jalaliday'
+import ContentBox from '@schoolify/core/components/common/ContentBox'
+
+dayjs.extend(jalaliday)
 
 const calculateRemainingDays = (endDate: string | undefined) => {
-  if (!endDate) return 0;
-
-  const now = dayjs();
-  const end = dayjs(endDate);
-  const difference = end.diff(now, "day");
-  return difference > 0 ? difference : 0;
-};
+  if (!endDate) return 0
+  const now = dayjs()
+  const end = dayjs(endDate)
+  const diff = end.diff(now, 'day')
+  return diff > 0 ? diff : 0
+}
 
 const SubscriptionsPurchased = () => {
-  const navigate = useNavigate();
-  const { data, isLoading, error } = useListUserSubscriptions();
-  const theme = useAppTheme();
+  // Hooks
+  const { data, isLoading, error } = useListUserSubscriptions()
+  const { mutateAsync: renewalSubscription } = useRenewalSubscription()
+  const theme = useAppTheme()
+  const columns = SubscriptionsPurchasedColumns()
 
-  const { mutateAsync: renewalSubscription, isPending } =
-    useRenewalSubscription();
+  // Helpers
+  const active = data?.filter((sub: any) => sub.data.status === 'active') || []
 
-  if (isLoading) return <Typography>در حال بارگذاری...</Typography>;
-  if (error)
-    return <Typography color="error">خطا در دریافت اطلاعات</Typography>;
-
-  const renewalHandler = async (
+  // Handlers
+  const handleRenewal = async (
     subscriptionData: any,
     subscriptionId: string
   ) => {
     await renewalSubscription({
       data: subscriptionData,
-      subscriptionId: subscriptionId,
-    });
-  };
+      subscriptionId: subscriptionId
+    })
+  }
 
-  const activeSubscriptions =
-    data?.filter((sub: any) => sub.data.status === "active") || [];
-
+  // Render
   return (
-    <ContentBox label=" اشتراک‌های خریداری‌شده">
-      <TableContainer
-        sx={{
-          borderColor: theme.palette.grey[100],
-          borderRadius: 2,
-          boxShadow: 1,
-        }}
-      >
-        <Table>
-          <TableHead>
-            <TableRow sx={{ color: theme.palette.text.header }}>
-              <TableCell>نام مدرسه</TableCell>
-              <TableCell>زمان خرید</TableCell>
-              <TableCell>زمان پایان</TableCell>
-              <TableCell>مدت‌زمان باقی‌مانده (روز)</TableCell>
-              <TableCell>آخرین بروزرسانی</TableCell>
-              <TableCell>تمدید</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {activeSubscriptions.map((sub, index) => {
-              const daysRemaining = calculateRemainingDays(
-                sub.data?.expireDate
-              );
-              return (
-                <TableRow key={index} sx={{ color: theme.palette.text.black }}>
-                  <TableCell>{sub.data?.school.data?.title}</TableCell>
-                  <TableCell>
-                    {sub.data?.createDate && (
-                      <FormattedDate date={+new Date(sub.data.createDate)} />
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    {sub.data?.expireDate && (
-                      <FormattedDate date={+new Date(sub.data.expireDate)} />
-                    )}
-                  </TableCell>
-                  <TableCell>{daysRemaining}</TableCell>
-                  <TableCell>
-                    {sub.data?.updateDate && (
-                      <FormattedDate date={+new Date(sub.data.updateDate)} />
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    <Button
-                      variant="contained"
-                      size="small"
-                      disabled={daysRemaining <= 0}
-                      onClick={() => renewalHandler({}, sub.id)}
-                      sx={{
-                        backgroundColor:
-                          daysRemaining > 0
-                            ? theme.palette.primary.main
-                            : theme.palette.primary.dark,
-                      }}
-                    >
-                      تمدید
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
+    <ContentBox label=' اشتراک‌های خریداری‌شده'>
+      <AsyncStateHandler isLoading={isLoading} error={error}>
+        <DataTable
+          columns={columns}
+          rows={active.map(sub => ({
+            id: sub.id,
+            school: sub.data?.school.data?.title,
+            createDate: sub.data?.createDate,
+            expireDate: sub.data?.expireDate
+          }))}
+          renderCell={(row, col) => {
+            const daysRemaining = calculateRemainingDays(row.expireDate)
+            switch (col.id) {
+              case 'createDate':
+              case 'expireDate':
+                return row[col.id] ? (
+                  <FormattedDate date={+new Date(row[col.id])} />
+                ) : (
+                  '---'
+                )
+              case 'remaining':
+                return calculateRemainingDays(row.expireDate)
+              case 'actions':
+                return (
+                  <Button
+                    variant='contained'
+                    size='small'
+                    disabled={daysRemaining <= 0}
+                    onClick={() => handleRenewal({}, row.id)}
+                    sx={{
+                      backgroundColor:
+                        daysRemaining > 0
+                          ? theme.palette.primary.main
+                          : theme.palette.primary.dark
+                    }}
+                  >
+                    تمدید
+                  </Button>
+                )
+              default:
+                return row[col.id]
+            }
+          }}
+        />
+      </AsyncStateHandler>
     </ContentBox>
-  );
-};
-export default SubscriptionsPurchased;
+  )
+}
+export default SubscriptionsPurchased

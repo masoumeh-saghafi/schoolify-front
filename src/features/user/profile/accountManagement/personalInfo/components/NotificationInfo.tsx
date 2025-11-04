@@ -1,13 +1,26 @@
+// Core Components
 import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
-import useListUserNotifications from "../hooks/useListUserNotification";
 import ContentBox from "@schoolify/core/components/common/ContentBox";
 import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
-import { NotificationData } from "../utilities/notificationsData";
 
+// Custom Hooks
+import useListUserNotifications from "@schoolify/features/user/profile/accountManagement/personalInfo/hooks/useListUserNotification";
+
+// Custom Utilities
+import { NotificationData } from "@schoolify/features/user/profile/accountManagement/personalInfo/utilities/notificationsData";
+
+
+
+
+// Custom Types
 interface UserNotificationsGridProps {}
 
 const NotificationInfo = (props: UserNotificationsGridProps) => {
-  const {} = props;
+  // Props
+  // const {} = props;
+
+  
+  // Hooks
   const {
     filters,
     paginationData,
@@ -18,6 +31,8 @@ const NotificationInfo = (props: UserNotificationsGridProps) => {
 
   const { data, isLoading } = useListUserNotifications(paginationData, filters);
 
+
+  // Render
   return (
     <ContentBox label="اعلانات">
       <TableDataGrid

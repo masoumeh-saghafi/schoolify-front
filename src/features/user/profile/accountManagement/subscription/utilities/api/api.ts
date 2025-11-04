@@ -1,10 +1,10 @@
 import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
-import { getData, patchData, postData } from "@schoolify/core/utilities/api";
+import { getData,  postData } from "@schoolify/core/utilities/api";
 import profileAccountManagementEndpoints from "@schoolify/features/user/profile/accountManagement/utilities/api/endpoints";
 import type ListSubscriptionsEntity from "@schoolify/features/user/profile/accountManagement/subscription/types/api/ListSubscriptionsEntity";
-import type BuySubscriptionsEntitiy from "../../types/api/BuySubscriptionsEntitiy";
-import type RenewalSubscriptionEntity from "../../types/api/RenewalSubscriptionEntity";
-import type ListUserSubscriptionsEntity from "../../types/api/ListUserSubscriptionsEntity";
+import type BuySubscriptionsEntitiy from "@schoolify/features/user/profile/accountManagement/subscription/types/api/BuySubscriptionsEntitiy";
+import type RenewalSubscriptionEntity from "@schoolify/features/user/profile/accountManagement/subscription/types/api/RenewalSubscriptionEntity";
+import type ListUserSubscriptionsEntity from "@schoolify/features/user/profile/accountManagement/subscription/types/api/ListUserSubscriptionsEntity";
 
 export const getListSubscription = async () => {
   return await getData<BaseIdDataEntity<ListSubscriptionsEntity>[]>(

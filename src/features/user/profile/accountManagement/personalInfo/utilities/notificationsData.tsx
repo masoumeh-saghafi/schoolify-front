@@ -1,9 +1,13 @@
-import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
-import type ListNotificationsEntity from '../types/api/ListNotificationsEntity'
-import type { GridColDef } from '@mui/x-data-grid/models/colDef'
 import Typography from '@schoolify/core/components/base/inputs/Typography'
+
+import type ListNotificationsEntity from '@schoolify/features/user/profile/accountManagement/personalInfo/types/api/ListNotificationsEntity'
+
 import FormattedDate from '@schoolify/core/components/common/FormattedDate'
+import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
+
+import type { GridColDef } from '@mui/x-data-grid/models/colDef'
+
 
 export const NotificationData = (): GridColDef<
   BaseIdDataEntity<ListNotificationsEntity>
