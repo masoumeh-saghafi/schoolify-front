@@ -6,6 +6,7 @@ import AboutUsPage from "@schoolify/app/landing/about-us/page";
 import routes from "@schoolify/core/utilities/routes";
 import ProfileLayout from "./profile/layout";
 import ProfilePage from "./profile/page";
+import PaymentGatewayPage from "./gateway/page";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
   {
     path: routes.login,
     element: <LoginPage />,
+    // errorElement: <ErrorPage />,
+  },
+  {
+    path: routes.paymentGatewayBase,
+    element: <PaymentGatewayPage />,
     // errorElement: <ErrorPage />,
   },
   {
