@@ -1,19 +1,19 @@
-import { useForm } from 'react-hook-form'
-import { fullNameSchema } from '../validations/fullNameValidation'
-import { zodResolver } from '@hookform/resolvers/zod'
-import useUpdateUserProfile from '../hooks/useUpdateUserProfile'
-import { useEffect, useState } from 'react'
-import useUserProfile from '../../personalInfo/hooks/useUserProfile'
-import type z from 'zod'
-import ContentBox from '@schoolify/core/components/common/ContentBox'
+import { useForm } from "react-hook-form";
+import { fullNameSchema } from "../validations/fullNameValidation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import useUpdateUserProfile from "../hooks/useUpdateUserProfile";
+import { useEffect, useState } from "react";
+import useUserProfile from "../../personalInfo/hooks/useUserProfile";
+import type z from "zod";
+import ContentBox from "@schoolify/core/components/common/ContentBox";
 
-import Grid from '@schoolify/core/components/base/inputs/Grid'
-import ControlledGridTextField from '@schoolify/core/components/common/ControlledGridTextField'
-import { ChangeFullNameData } from '../utilities/ChangeFullNameData'
-import Button from '@schoolify/core/components/base/inputs/Button'
-import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
+import Grid from "@schoolify/core/components/base/inputs/Grid";
+import ControlledGridTextField from "@schoolify/core/components/common/ControlledGridTextField";
+import { ChangeFullNameData } from "../utilities/ChangeFullNameData";
+import Button from "@schoolify/core/components/base/inputs/Button";
+import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
-export type FullNameSchemaProps = z.infer<typeof fullNameSchema>
+export type FullNameSchemaProps = z.infer<typeof fullNameSchema>;
 
 const ChangeFullName = () => {
   const {
@@ -22,52 +22,52 @@ const ChangeFullName = () => {
     handleSubmit,
     setValue,
     watch,
-    formState: { isValid }
+    formState: { isValid },
   } = useForm<FullNameSchemaProps>({
     resolver: zodResolver(fullNameSchema),
-    mode: 'onChange'
-  })
+    mode: "onChange",
+  });
 
-  const { data: userData } = useUserProfile()
-  const { mutateAsync: updateUserProfile } = useUpdateUserProfile()
-  const theme = useAppTheme()
-  const filed = ChangeFullNameData
+  const { data: userData } = useUserProfile();
+  const { mutateAsync: updateUserProfile } = useUpdateUserProfile();
+  const theme = useAppTheme();
+  const filed = ChangeFullNameData;
 
   const [initialValues, setInitialValues] = useState<FullNameSchemaProps>({
-    FirstName: '',
-    LastName: ''
-  })
+    FirstName: "",
+    LastName: "",
+  });
 
   useEffect(() => {
     if (userData) {
       const initial = {
-        FirstName: userData.data?.firstName ?? '',
-        LastName: userData.data?.lastName ?? ''
-      }
-      setInitialValues(initial)
-      setValue('FirstName', initial.FirstName)
-      setValue('LastName', initial.LastName)
+        FirstName: userData.data?.firstName ?? "",
+        LastName: userData.data?.lastName ?? "",
+      };
+      setInitialValues(initial);
+      setValue("FirstName", initial.FirstName);
+      setValue("LastName", initial.LastName);
     }
-  }, [userData, setValue])
+  }, [userData, setValue]);
 
-  const watchFirstName = watch('FirstName')
-  const watchLastName = watch('LastName')
+  const watchFirstName = watch("FirstName");
+  const watchLastName = watch("LastName");
 
   const hasChanged =
     watchFirstName !== initialValues.FirstName ||
-    watchLastName !== initialValues.LastName
+    watchLastName !== initialValues.LastName;
 
   const onSubmitChangeFullName = async (data: FullNameSchemaProps) => {
     try {
-      await updateUserProfile(data)
+      await updateUserProfile(data);
     } catch (error) {
-      alert('مشکلی در دریافت اطلاعات وجود دارد')
+      alert("مشکلی در دریافت اطلاعات وجود دارد");
     }
-  }
+  };
   return (
     <ContentBox
-      label='تغییر مشخصات کاربر '
-      component='form'
+      label="تغییر مشخصات کاربر "
+      component="form"
       onSubmit={handleSubmit(onSubmitChangeFullName)}
     >
       {/* <Grid2 container sx={{ margin: 2 }} spacing={2}>
@@ -143,29 +143,28 @@ const ChangeFullName = () => {
             control={control}
             name={item.name as keyof FullNameSchemaProps}
             label={item.label}
-            showHelperText={item.message}
           />
         ))}
         <Grid size={{ xs: 12, sm: 6 }}>
           <Button
-            type='submit'
+            type="submit"
             fullWidth
-            size='small'
-            variant='contained'
+            size="small"
+            variant="contained"
             disabled={!isValid || !hasChanged}
             sx={{
-              direction: 'rtl',
+              direction: "rtl",
               gap: 1,
               backgroundColor:
                 isValid && hasChanged
                   ? {
                       backgroundColor: theme.palette.primary.main,
-                      color: theme.palette.text.white
+                      color: theme.palette.text.white,
                     }
                   : {
                       backgroundColor: theme.palette.secondary.main,
-                      color: theme.palette.text.white
-                    }
+                      color: theme.palette.text.white,
+                    },
             }}
           >
             ویرایش اطلاعات
@@ -173,7 +172,7 @@ const ChangeFullName = () => {
         </Grid>
       </Grid>
     </ContentBox>
-  )
-}
+  );
+};
 
-export default ChangeFullName
+export default ChangeFullName;
