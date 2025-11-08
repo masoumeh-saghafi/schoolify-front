@@ -1,4 +1,3 @@
-
 import type { ElementType, FormEventHandler, ReactNode } from "react";
 import Typography from "../../base/inputs/Typography";
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
@@ -28,8 +27,8 @@ const ContentBox = (props: ContentBoxProps) => {
         borderColor: "grey.300",
         mb: 2,
         p: 2,
+        alignItems: "center",
       }}
-      alignItems="center"
       component={component}
       {...(component === "form" && onSubmit ? { onSubmit } : {})}
     >

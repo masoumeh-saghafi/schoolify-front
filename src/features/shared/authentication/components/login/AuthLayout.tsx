@@ -17,8 +17,8 @@ import Typography from "@schoolify/core/components/base/inputs/Typography";
 import Logo from "@schoolify/core/shared/Logo";
 
 //Public
-import loginBgLarge from "@public/images/loginBgLarge.png";
-import loginBgSmall from "@public/images/loginBgSmall.png";
+import loginBgLarge from "/images/loginBgLarge.png?url";
+import loginBgSmall from "/images/loginBgSmall.png?url";
 import useClientDeviceTypeIsMobile from "@schoolify/core/hooks/common/useClientDeviceTypeIsMobile";
 
 // Custom Types

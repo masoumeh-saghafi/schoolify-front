@@ -54,7 +54,7 @@ function handleError(error: any) {
 async function request<T>(
   url: string,
   options: RequestInit
-): Promise<BaseResponseEntity<T> | any> {
+): Promise<BaseResponseEntity<T>> {
   try {
     const response = await fetch(url, options);
     const isImpersonation = response.headers.get("is-impersonation");

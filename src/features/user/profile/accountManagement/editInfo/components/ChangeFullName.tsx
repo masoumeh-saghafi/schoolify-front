@@ -16,6 +16,16 @@ import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 export type FullNameSchemaProps = z.infer<typeof fullNameSchema>;
 
 const ChangeFullName = () => {
+  const { data: userData } = useUserProfile();
+  const { mutateAsync: updateUserProfile } = useUpdateUserProfile();
+  const theme = useAppTheme();
+  const filed = ChangeFullNameData;
+
+  const [initialValues, setInitialValues] = useState<FullNameSchemaProps>({
+    FirstName: "",
+    LastName: "",
+  });
+
   const {
     control,
     register,
@@ -26,16 +36,7 @@ const ChangeFullName = () => {
   } = useForm<FullNameSchemaProps>({
     resolver: zodResolver(fullNameSchema),
     mode: "onChange",
-  });
-
-  const { data: userData } = useUserProfile();
-  const { mutateAsync: updateUserProfile } = useUpdateUserProfile();
-  const theme = useAppTheme();
-  const filed = ChangeFullNameData;
-
-  const [initialValues, setInitialValues] = useState<FullNameSchemaProps>({
-    FirstName: "",
-    LastName: "",
+    defaultValues: initialValues,
   });
 
   useEffect(() => {
