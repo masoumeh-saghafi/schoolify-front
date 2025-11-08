@@ -1,4 +1,4 @@
 export const ChangeFullNameData = [
-  { name: 'firstName', label: 'نام' },
-  { name: 'lastName', label: 'نام خانوادگی' }
-]
+  { name: "FirstName", label: "نام" },
+  { name: "LastName", label: "نام خانوادگی" },
+];
