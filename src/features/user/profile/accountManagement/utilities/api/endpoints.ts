@@ -2,7 +2,7 @@ const profileAccountManagementEndpoints = {
   profile: "/profile",
   subscription: "/subscriptions",
   userSubscription: "/profile/subscriptions",
-  buySubscription: "/profile/subscriptions/buy",
+  buySubscription: "profile/subscriptions/buy",
   renewalSubscription: (subscriptionId: string) =>
     `/profile/subscriptions/${subscriptionId}/renewal`,
   notification: "/profile/notifications",

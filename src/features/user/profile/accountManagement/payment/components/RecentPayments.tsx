@@ -1,13 +1,23 @@
-import { useNavigate } from 'react-router-dom'
-import useListPayment from '../hooks/useListPayment'
-import ContentBox from '@schoolify/core/components/common/ContentBox'
-import FormattedDate from '@schoolify/core/components/common/FormattedDate'
+// MUI Components
 import Button from '@schoolify/core/components/base/inputs/Button'
+
+// Core Components
+import ContentBox from '@schoolify/core/components/common/ContentBox'
+import DataTable from '@schoolify/core/components/common/DataTable'
+import FormattedDate from '@schoolify/core/components/common/FormattedDate'
+
+// Custom Hooks
+import useListPayment from '@schoolify/features/user/profile/accountManagement/payment/hooks/useListPayment'
 import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
 import AsyncStateHandler from '@schoolify/core/components/common/AsyncStateHandler'
-import DataTable from '@schoolify/core/components/common/DataTable'
-import { TransactionsColumns } from '../utilities/RecentPaymentsData'
 
+// Custom Utilities
+import { TransactionsColumns } from '@schoolify/features/user/profile/accountManagement/payment/utilities/RecentPaymentsData'
+
+// React Type
+import { useNavigate } from 'react-router-dom'
+
+// Utility Function
 const translateStatus = (status: string) => {
   switch (status) {
     case 'processing':
@@ -22,15 +32,20 @@ const translateStatus = (status: string) => {
 }
 
 const RecentPayments = () => {
+  // Hooks
   const navigate = useNavigate()
   const { data, isLoading, error } = useListPayment()
   const theme = useAppTheme()
+
+  // Helpers
   const columns = TransactionsColumns()
 
+  // Handlers
   const redirectToPaymentHandler = (paymentId: string) => {
     navigate(`/payment?paymentId=${paymentId}`)
   }
 
+  // Render
   return (
     <ContentBox label='تراکنش‌های اخیر'>
       <AsyncStateHandler isLoading={isLoading} error={error}>

@@ -1,11 +1,11 @@
 import ms from 'ms'
 import { useQuery } from '@tanstack/react-query'
-import { getListPayment } from '../utilities/api/api'
+import { getListPayment } from '@schoolify/features/user/profile/accountManagement/payment/utilities/api/api'
 
 const useListPayment = () => {
   return useQuery({
     queryKey: ['ListPayment'],
-    queryFn:getListPayment ,
+    queryFn: getListPayment,
     staleTime: ms('1h'),
     gcTime: ms('24h'),
     refetchOnWindowFocus: false,
@@ -18,4 +18,3 @@ const useListPayment = () => {
 }
 
 export default useListPayment
-
