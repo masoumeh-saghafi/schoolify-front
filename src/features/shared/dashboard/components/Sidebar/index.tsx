@@ -53,9 +53,10 @@ const DashboardSidebar = (props: DashboardSidebarProps) => {
       <SidebarListItem
         key={item.key}
         title={item.title}
-        href={item.link}
+        link={item.link}
         icon={item?.icon}
         type={item.type ?? "listItem"}
+        isActive={item.link === location.pathname}
         children={item.children?.map((child) => ({ ...child }))}
       />
     ));

@@ -1,12 +1,15 @@
-import { createBrowserRouter } from 'react-router-dom'
-import LandingLayout from '@schoolify/app/landing/layout'
-import LandingPage from '@schoolify/app/landing/page'
-import LoginPage from '@schoolify/app/authentication/login/page'
-import AboutUsPage from '@schoolify/app/landing/about-us/page'
-import routes from '@schoolify/core/utilities/routes'
-import ProfileLayout from '@schoolify/app/profile/layout'
-import ProfilePage from '@schoolify/app/profile/page'
-import PaymentGatewayPage from '@schoolify/app/gateway/page'
+import { createBrowserRouter } from "react-router-dom";
+import LandingLayout from "@schoolify/app/landing/layout";
+import LandingPage from "@schoolify/app/landing/page";
+import LoginPage from "@schoolify/app/authentication/login/page";
+import AboutUsPage from "@schoolify/app/landing/about-us/page";
+import routes from "@schoolify/core/utilities/routes";
+import ProfileLayout from "@schoolify/app/profile/layout";
+import ProfilePage from "@schoolify/app/profile/page";
+import PaymentGatewayPage from "@schoolify/app/gateway/page";
+import SchoolManagementLayout from "./school/management/layout";
+import SchoolManagementInformationPage from "./school/management/information/page";
+import SchoolManagementStudentPage from "./school/management/students/page";
 
 const router = createBrowserRouter([
   {
@@ -16,22 +19,22 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <LandingPage />
+        element: <LandingPage />,
       },
       {
         path: routes.aboutUs,
-        element: <AboutUsPage />
-      }
-    ]
+        element: <AboutUsPage />,
+      },
+    ],
   },
   {
     path: routes.login,
-    element: <LoginPage />
+    element: <LoginPage />,
     // errorElement: <ErrorPage />,
   },
   {
     path: routes.paymentGatewayBase,
-    element: <PaymentGatewayPage />
+    element: <PaymentGatewayPage />,
     // errorElement: <ErrorPage />,
   },
   {
@@ -41,10 +44,25 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <ProfilePage />
-      }
-    ]
-  }
-])
+        element: <ProfilePage />,
+      },
+    ],
+  },
+  {
+    path: routes.school.management.baseUrl,
+    element: <SchoolManagementLayout />,
+    // errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <SchoolManagementInformationPage />,
+      },
+      {
+        path: routes.school.management.student.url,
+        element: <SchoolManagementStudentPage />,
+      },
+    ],
+  },
+]);
 
-export default router
+export default router;

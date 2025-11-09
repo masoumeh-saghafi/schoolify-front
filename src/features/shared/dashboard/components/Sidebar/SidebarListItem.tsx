@@ -18,7 +18,7 @@ import Typography from "@schoolify/core/components/base/inputs/Typography";
 // Custom Types
 interface SidebarListItemProps {
   title: string;
-  href?: string;
+  link?: string;
   icon?: JSX.Element | null;
   type?: "text" | "listItem";
   onClick?: () => void;
@@ -30,7 +30,7 @@ interface SidebarListItemProps {
 }
 interface SidebarListItemChildrenProps {
   title: string;
-  href?: string;
+  link?: string;
   icorn?: JSX.Element | null;
   type?: "text" | "listItem";
   onClick?: () => void;
@@ -44,7 +44,7 @@ const SidebarListItem = (props: SidebarListItemProps) => {
   // Props
   const {
     title,
-    href,
+    link,
     icon,
     onClick,
     isActive,
@@ -94,7 +94,7 @@ const SidebarListItem = (props: SidebarListItemProps) => {
             >
               <SidebarButton
                 onClick={onClick}
-                href={href}
+                href={link}
                 isActive={isActive}
                 enableBorder={enableBorder}
                 disabled={disabled}
