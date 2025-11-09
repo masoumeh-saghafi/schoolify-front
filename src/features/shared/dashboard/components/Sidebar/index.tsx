@@ -1,55 +1,69 @@
 // MUI Components
-import Box from '@schoolify/core/components/base/inputs/Box'
+import Box from "@schoolify/core/components/base/inputs/Box";
 
 // Feature Components
-import SidebarListItem from '@schoolify/features/shared/dashboard/components/Sidebar/SidebarListItem'
-import HeaderMobileDrawer from '@schoolify/features/shared/layout/header/MobileDrawer'
+import SidebarListItem from "@schoolify/features/shared/dashboard/components/Sidebar/SidebarListItem";
+import HeaderMobileDrawer from "@schoolify/features/shared/layout/header/MobileDrawer";
 
 // Custom Hooks
-import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
-import useClientDeviceType from '@schoolify/core/hooks/common/useClientDeviceType'
+import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
+import useClientDeviceType from "@schoolify/core/hooks/common/useClientDeviceType";
 
 //Type Definitions
-import type { JSX } from '@emotion/react/jsx-runtime'
+import type { JSX } from "@emotion/react/jsx-runtime";
 
 // Custom Types
 export interface DashboardSidebarDataProps {
-  key: string
-  title: string
-  link: string
-  icon?: JSX.Element
+  key: string;
+  title: string;
+  link?: string;
+  type?: "text" | "listItem";
+  icon?: JSX.Element | null;
+  disabled?: boolean;
+  children?: DashboardSidebarDataChildrenProps[];
+}
+
+export interface DashboardSidebarDataChildrenProps {
+  key: string;
+  title: string;
+  link?: string;
+  type?: "text" | "listItem";
+  icon?: JSX.Element | null;
+  disabled?: boolean;
 }
 
 interface DashboardSidebarProps {
-  open: boolean
-  handleDrawerClose: () => void
+  open: boolean;
+  handleDrawerClose: () => void;
 
-  data?: DashboardSidebarDataProps[]
+  data?: DashboardSidebarDataProps[];
 }
 
 const DashboardSidebar = (props: DashboardSidebarProps) => {
   // Props
-  const { open, handleDrawerClose, data } = props
+  const { open, handleDrawerClose, data } = props;
 
   // Hooks
-  const theme = useAppTheme()
-  const deviceType = useClientDeviceType()
+  const theme = useAppTheme();
+  const deviceType = useClientDeviceType();
 
   // Render Helpers
   const renderItems = () =>
-    data?.map(item => (
+    data?.map((item) => (
       <SidebarListItem
         key={item.key}
-        text={item.title}
+        title={item.title}
         href={item.link}
-        icon={item.icon}
+        icon={item?.icon}
+        type={item.type ?? "listItem"}
+        children={item.children?.map((child) => ({ ...child }))}
       />
-    ))
+    ));
 
   // Render
   return (
     <>
-      {deviceType === 'mobile' && (
+      {deviceType === "mobile" && (
         <Box>
           <HeaderMobileDrawer
             collapsedDrawerWidth={0}
@@ -59,7 +73,7 @@ const DashboardSidebar = (props: DashboardSidebarProps) => {
           >
             <Box
               sx={{
-                mt: 2
+                mt: 2,
               }}
             >
               {renderItems()}
@@ -68,14 +82,14 @@ const DashboardSidebar = (props: DashboardSidebarProps) => {
         </Box>
       )}
 
-      {deviceType === 'desktop' && (
+      {deviceType === "desktop" && (
         <Box
           sx={{
-            width: '300px',
-            position: 'fixed',
-            display: 'flex',
+            width: "300px",
+            position: "fixed",
+            display: "flex",
             top: 0,
-            bottom: 0
+            bottom: 0,
           }}
         >
           <Box
@@ -86,7 +100,7 @@ const DashboardSidebar = (props: DashboardSidebarProps) => {
               borderRadius: 5,
               backgroundColor: theme.palette.background.paper,
               flexGrow: 1,
-              position: 'relative'
+              position: "relative",
             }}
           >
             {renderItems()}
@@ -94,6 +108,6 @@ const DashboardSidebar = (props: DashboardSidebarProps) => {
         </Box>
       )}
     </>
-  )
-}
-export default DashboardSidebar
+  );
+};
+export default DashboardSidebar;
