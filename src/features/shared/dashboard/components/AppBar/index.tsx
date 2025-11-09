@@ -17,6 +17,7 @@ import LogoTitle from '@schoolify/core/shared/Logo'
 
 // Feature Components
 import AppBar from '@schoolify/features/shared/layout/header/AppBar'
+import UserProfileButton from '@schoolify/features/user/profile/needComponenet/UserProfileButton'
 
 // Custom Types
 export interface DashboardAppBarDataProps {
@@ -58,6 +59,7 @@ const DashboardAppBar = (props: DashboardAppBarProps) => {
           sx={{ display: 'flex', justifyContent: 'space-between' }}
         >
           {deviceType === 'mobile' && (
+            
             <IconButton
               color='inherit'
               aria-label='open drawer'
@@ -70,11 +72,10 @@ const DashboardAppBar = (props: DashboardAppBarProps) => {
             >
               {open ? <CloseIcon /> : <MenuIcon />}
             </IconButton>
+            
           )}
           {deviceType === 'desktop' && (
-            <Box>
-              <CloseIcon /> نام کاربر
-            </Box>
+         <UserProfileButton/>
           )}
 
           {data?.map(item => (

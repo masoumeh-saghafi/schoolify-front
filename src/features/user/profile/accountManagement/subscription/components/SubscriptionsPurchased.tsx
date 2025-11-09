@@ -1,6 +1,5 @@
 // MUI Components
 import Button from '@schoolify/core/components/base/inputs/Button'
-import Box from '@schoolify/core/components/base/inputs/Box'
 
 // Core Components
 import FormattedDate from '@schoolify/core/components/common/FormattedDate'
@@ -16,7 +15,6 @@ import { useAppTheme } from '@schoolify/core/hooks/common/useAppTheme'
 import { SubscriptionsPurchasedColumns } from '@schoolify/features/user/profile/accountManagement/subscription/utilities/SubscriptionsPurchasedData'
 
 //Type Definitions
-
 import dayjs from 'dayjs'
 import jalaliday from 'jalaliday'
 import ContentBox from '@schoolify/core/components/common/ContentBox'

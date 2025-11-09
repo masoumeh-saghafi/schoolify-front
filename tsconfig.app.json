@@ -39,5 +39,5 @@
   },
   "include": [
     "src"
-  ]
+, "src/features/user/profile/school/utilities/.ts"  ]
 }

@@ -18,10 +18,11 @@ import { PersonalInfoData } from '@schoolify/features/user/profile/accountManage
 import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
 import useUserProfile from '@schoolify/features/user/profile/accountManagement/personalInfo/hooks/useUserProfile'
 
-// Custom Types
-interface PersonalInfoProps {}
 
-const PersonalInfo = (props: PersonalInfoProps) => {
+// Custom Types
+// interface PersonalInfoProps {}
+
+const PersonalInfo = () => {
   // Props
   // const {} = props;
 

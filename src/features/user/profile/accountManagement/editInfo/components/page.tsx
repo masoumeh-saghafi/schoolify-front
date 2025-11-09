@@ -2,9 +2,9 @@
 import ChangeFullName from './ChangeFullName'
 
 // Custom Types
-interface EditInfoPageProps {}
+// interface EditInfoPageProps {}
 
-const EditInfoPage = (props: EditInfoPageProps) => {
+const EditInfoPage = () => {
   // Props
   //   const { } = props;
 

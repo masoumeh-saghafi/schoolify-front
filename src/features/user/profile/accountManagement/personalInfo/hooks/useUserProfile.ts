@@ -1,7 +1,5 @@
 import ms from "ms";
-
 import { useQuery } from "@tanstack/react-query";
-
 import { getUserProfile } from "@schoolify/features/user/profile/accountManagement/personalInfo/utilities/api/api";
 
 

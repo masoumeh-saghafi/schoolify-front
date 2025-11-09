@@ -5,6 +5,7 @@ import IconButton from '@schoolify/core/components/base/inputs/IconButton'
 
 // Icon Components
 import { AccountIcon } from '@schoolify/core/components/icon/AccountIcon'
+import useUserProfile from '../accountManagement/personalInfo/hooks/useUserProfile'
 // import { AdminPanelIcon } from '@schoolify/core/components/icon/AdminPanelIcon'
 
 // Custom Types
@@ -20,7 +21,7 @@ const UserProfileButton = (props: UserProfileButtonProps) => {
 
   // Hooks
 
-  //   const { data } = useUserProfile()
+  const { data } = useUserProfile()
   //   const userImpersonationStore = useUserImpersonationStore()
 
   // Handlers
@@ -53,10 +54,7 @@ const UserProfileButton = (props: UserProfileButtonProps) => {
           fontWeight: 500
         }}
       >
-        {
-          //   data?.fullName ??
-          'کاربر'
-        }
+        {data?.data?.fullName ?? 'کاربری اسکولیفای '}
       </Typography>
     </IconButton>
   )

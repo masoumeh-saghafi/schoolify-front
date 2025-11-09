@@ -14,8 +14,7 @@ const useListUserSubscriptions = () => {
     refetchOnReconnect: true,
     retry: 2,
     retryDelay: 1000,
-    // enabled: !!token,
-    select: (data) => data.data,
+     select: (data) => data.data,
   });
 };
 

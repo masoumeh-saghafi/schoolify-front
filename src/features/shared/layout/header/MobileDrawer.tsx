@@ -1,10 +1,6 @@
 // MUI Components
 import Drawer from "@schoolify/core/components/base/inputs/Drawer";
 
-// Custom Hooks
-import useMediaQuery from "@mui/material/useMediaQuery";
-import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
-
 // React Types
 import type { ReactNode } from "react";
 import useClientDeviceTypeIsMobile from "@schoolify/core/hooks/common/useClientDeviceTypeIsMobile";
@@ -23,11 +19,11 @@ const HeaderMobileDrawer = (props: HeaderMobileDrawerProps) => {
   const { drawerWidth, collapsedDrawerWidth, open, onClose, children } = props;
 
   // Hooks
-  const theme = useAppTheme();
   const isMobile = useClientDeviceTypeIsMobile();
 
   // Render
   return (
+
     <Drawer
       anchor="left"
       open={open}
@@ -36,7 +32,7 @@ const HeaderMobileDrawer = (props: HeaderMobileDrawerProps) => {
       ModalProps={{ keepMounted: true }}
       slotProps={{
         transition: {
-          direction: "left", // ← جهت انیمیشن از کجا شروع بشه
+          direction: "left", 
           timeout: 300,
         },
       }}
@@ -51,7 +47,7 @@ const HeaderMobileDrawer = (props: HeaderMobileDrawerProps) => {
           right: 0,
           height: `calc(100% - ${isMobile ? 54 : 64}px)`,
           display: { xs: "flex", md: "none" },
-          // direction:'rtl'
+        
         },
       }}
     >

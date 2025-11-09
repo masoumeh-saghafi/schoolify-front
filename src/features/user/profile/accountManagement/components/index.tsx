@@ -6,9 +6,9 @@ import routes from "@schoolify/core/utilities/routes";
 import { tabData } from "@schoolify/features/user/profile/accountManagement/utilities/data";
 
 // Custom Types
-interface AccountManagementTabBoxProps {}
+// interface AccountManagementTabBoxProps {}
 
-const AccountManagementTabBox = (props: AccountManagementTabBoxProps) => {
+const AccountManagementTabBox = () => {
   // Props
   // const {} = props;
 

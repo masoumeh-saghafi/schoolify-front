@@ -22,13 +22,13 @@ import { useState } from 'react'
 import AsyncStateHandler from '@schoolify/core/components/common/AsyncStateHandler'
 
 // Custom Types
-interface BuySubscriptionProps {}
+// interface BuySubscriptionProps {}
 
-const BuySubscription = (props: BuySubscriptionProps) => {
+const BuySubscription = () => {
   // Hooks
   const theme = useAppTheme()
   const { data, isLoading, error } = useListSubscriptions()
-  const { mutateAsync: buySubscription, isPending } = useBuySubscription()
+  const { mutateAsync: buySubscription } = useBuySubscription()
 
   // States
   const [schoolTitles, setSchoolTitles] = useState<Record<number, string>>({})

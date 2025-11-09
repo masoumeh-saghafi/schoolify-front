@@ -3,11 +3,9 @@ import PersonalInfo from '@schoolify/features/user/profile/accountManagement/per
 import NotificationInfo from '@schoolify/features/user/profile/accountManagement/personalInfo/components/NotificationInfo'
 
 // Custom Types
-interface PersonalInfoPageProps {
+// interface PersonalInfoPageProps {}
 
-}
-
-const PersonalInfoPage = (props: PersonalInfoPageProps) => {
+const PersonalInfoPage = () => {
   // Props
   //   const { } = props;
 

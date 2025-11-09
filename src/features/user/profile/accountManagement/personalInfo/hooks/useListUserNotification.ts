@@ -1,11 +1,7 @@
 import ms from 'ms'
-
 import { useQuery } from '@tanstack/react-query'
-
 import { getListNotification } from '@schoolify/features/user/profile/accountManagement/personalInfo/utilities/api/api'
-
 import type { BaseRequestPaginationParams } from '@schoolify/core/types/core/api/request'
-
 
 const useListUserNotifications = (
   pagination: BaseRequestPaginationParams,

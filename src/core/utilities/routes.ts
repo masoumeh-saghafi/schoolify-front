@@ -1,13 +1,15 @@
 const routes = {
-  index: "/",
-  aboutUs: "/about-us",
-  login: "/login",
-  profile: "/profile",
-  ticket: "/ticket",
-  management: "/school/management",
-  paymentGatewayBase: "/payment",
+  index: '/',
+  aboutUs: '/about-us',
+  login: '/login',
+  profile: '/profile',
+  ticket: '/ticket',
+  management: '/school/management',
+
+  paymentGatewayBase: '/payment',
   paymentGateway: (paymentId: string) =>
     `${routes.paymentGatewayBase}?paymentId=${paymentId}`,
-};
+  school: 'school'
+}
 
-export default routes;
+export default routes

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateUserProfile } from "../utilities/api/api";
+import { updateUserProfile } from "@schoolify/features/user/profile/accountManagement/editInfo/utilities/api/api";
 
 const useUpdateUserProfile = () => {
   const queryClient = useQueryClient();

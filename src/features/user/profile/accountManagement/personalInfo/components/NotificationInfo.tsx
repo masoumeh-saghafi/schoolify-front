@@ -13,9 +13,9 @@ import { NotificationData } from "@schoolify/features/user/profile/accountManage
 
 
 // Custom Types
-interface UserNotificationsGridProps {}
+// interface UserNotificationsGridProps {}
 
-const NotificationInfo = (props: UserNotificationsGridProps) => {
+const NotificationInfo = () => {
   // Props
   // const {} = props;
 

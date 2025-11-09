@@ -1,9 +1,9 @@
-import useClientDeviceType from "./useClientDeviceType";
+import useClientDeviceType from '@schoolify/core/hooks/common/useClientDeviceType'
 
 // Contex
-export function useClientDeviceTypeIsMobile() {
-  const deviceType = useClientDeviceType();
-  return deviceType === "mobile";
+export function useClientDeviceTypeIsMobile () {
+  const deviceType = useClientDeviceType()
+  return deviceType === 'mobile'
 }
 
-export default useClientDeviceTypeIsMobile;
+export default useClientDeviceTypeIsMobile

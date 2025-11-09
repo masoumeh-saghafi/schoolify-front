@@ -1,15 +1,15 @@
-import { useMediaQuery, useTheme } from "@mui/material";
-import useAppTheme from "./useAppTheme";
+import { useMediaQuery } from '@mui/material'
+import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
 
 // Contex
-export function useClientDeviceType() {
-  const theme = useAppTheme();
+export function useClientDeviceType () {
+  const theme = useAppTheme()
 
   // Mobile
-  if (useMediaQuery(theme.breakpoints.down("md"))) {
-    return "mobile";
+  if (useMediaQuery(theme.breakpoints.down('md'))) {
+    return 'mobile'
   }
-  return "desktop";
+  return 'desktop'
 }
 
-export default useClientDeviceType;
+export default useClientDeviceType
