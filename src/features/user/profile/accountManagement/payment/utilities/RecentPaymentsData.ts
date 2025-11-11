@@ -1,4 +1,4 @@
-export const TransactionsColumns = () => [
+export const RecentPaymentsData = () => [
   { id: 'title', label: 'عنوان اشتراک' },
   { id: 'createDate', label: 'تاریخ خرید' },
   { id: 'amount', label: 'مبلغ' },

@@ -10,14 +10,18 @@ interface FormTextFieldProps<T extends FieldValues> {
   control: Control<T>
   name: Path<T>
   label?: string
+  defaultValue?: any
 }
 
-const FormTextField = <T extends FieldValues>(props: FormTextFieldProps<T>) => {
-  const { control, name, label, ...rest } = props
+const ControlledTextField = <T extends FieldValues>(
+  props: FormTextFieldProps<T>
+) => {
+  const { control, name, defaultValue, label, ...rest } = props
   return (
     <Controller
       name={name}
       control={control}
+      defaultValue={defaultValue ?? ''}
       render={({ field, fieldState }) => (
         <TextField
           {...field}
@@ -26,7 +30,7 @@ const FormTextField = <T extends FieldValues>(props: FormTextFieldProps<T>) => {
           fullWidth
           size='small'
           error={!!fieldState.error}
-          helperText={fieldState.error?.message ??''}
+          helperText={fieldState.error?.message ?? ''}
           slotProps={{
             inputLabel: {
               shrink: true
@@ -38,4 +42,4 @@ const FormTextField = <T extends FieldValues>(props: FormTextFieldProps<T>) => {
   )
 }
 
-export default FormTextField
+export default ControlledTextField

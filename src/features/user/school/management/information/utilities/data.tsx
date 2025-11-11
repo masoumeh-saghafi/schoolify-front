@@ -1,0 +1,18 @@
+import type { TabBoxDataProps } from '@schoolify/core/components/common/TabBox'
+import SchoolName from '@schoolify/features/user/school/management/information/components/SchoolName'
+import ChangeSchoolName from '@schoolify/features/user/school/management/information/components/ChangeSchoolName'
+import { genUUID } from '@schoolify/core/utilities/uuid'
+import SchoolSubscriptionDetails from '@schoolify/features/user/school/management/information/components/SchoolSubscriptionDetails'
+export const tabSchoolInfoData: TabBoxDataProps[] = [
+  {
+    label: ' نام مدرسه',
+    key: genUUID(),
+    children: <SchoolName />
+  },
+  { label: 'ویرایش نام ', key: genUUID(), children: <ChangeSchoolName /> },
+  {
+    label: ' مشخصات اشتراک',
+    key: genUUID(),
+    children: <SchoolSubscriptionDetails />
+  }
+]

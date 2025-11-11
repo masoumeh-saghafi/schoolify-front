@@ -14,7 +14,7 @@ import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 import AsyncStateHandler from "@schoolify/core/components/common/AsyncStateHandler";
 
 // Custom Utilities
-import { TransactionsColumns } from "@schoolify/features/user/profile/accountManagement/payment/utilities/RecentPaymentsData";
+import { RecentPaymentsData } from "@schoolify/features/user/profile/accountManagement/payment/utilities/RecentPaymentsData";
 
 // React Type
 import { useNavigate } from "react-router-dom";
@@ -41,7 +41,7 @@ const RecentPayments = () => {
   const theme = useAppTheme();
 
   // Helpers
-  const columns = TransactionsColumns();
+  const columns = RecentPaymentsData();
 
   // Handlers
   const redirectToPaymentHandler = (paymentId: string) => {

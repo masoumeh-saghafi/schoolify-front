@@ -1,11 +1,14 @@
 // MUI Components
-import Information from "@schoolify/features/user/school/management/information/components";
+import TabBox from "@schoolify/core/components/common/TabBox";
+import routes from "@schoolify/core/utilities/routes";
+import { tabSchoolInfoData } from "@schoolify/features/user/school/management/information/utilities/data";
 
 const SchoolManagementInformationPage = () => {
   // Render
   return (
     <>
-      <Information />
+     <TabBox baseUrlPath={routes.school.management.baseUrl} data={tabSchoolInfoData} />
+
     </>
   );
 };
