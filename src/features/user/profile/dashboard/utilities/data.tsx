@@ -30,7 +30,7 @@ import { genUUID } from "@schoolify/core/utilities/uuid";
 // import { SupportAgentIcon } from '@schoolify/core/components/icon/SupportAgentIcon'
 // import { SettingIcon } from '@schoolify/core/components/icon/settingIcon'
 import { useMemo } from "react";
-import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
+
 import useListSummarySchools from "@schoolify/features/user/shared/school/hooks/useListSummarySchools";
 
 export const useDashboardSidebarData = (): DashboardSidebarDataProps[] => {

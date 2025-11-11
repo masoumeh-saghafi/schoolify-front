@@ -1,28 +1,36 @@
-import ms from 'ms'
-import { useQuery } from '@tanstack/react-query'
-import { getListNotification } from '@schoolify/features/user/profile/accountManagement/personalInfo/utilities/api/api'
-import type { BaseRequestPaginationParams } from '@schoolify/core/types/core/api/request'
+import ms from "ms";
+import { useQuery } from "@tanstack/react-query";
+import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
+import { getListStudent } from "../utilities/api/api";
 
-const useListStudents = (
-  pagination: BaseRequestPaginationParams,
-  filters: Record<string, string>
-) => {
+interface useListStudentsProps {
+  schoolId: string;
+  pagination?: BaseRequestPaginationParams;
+  filters?: Record<string, string>;
+}
+
+export const listStudentsQueryKey = (props: useListStudentsProps) =>
+  ["listStudents", props.schoolId, props.pagination, props.filters].filter(
+    (item) => !!item
+  );
+
+const useListStudents = (props: useListStudentsProps) => {
   return useQuery({
-    queryKey: ['listStudents', pagination, filters],
+    queryKey: listStudentsQueryKey(props),
     queryFn: ({ queryKey }) =>
-      getListNotification(
-        queryKey[1] as BaseRequestPaginationParams,
-        queryKey[2] as Record<string, string>
+      getListStudent(
+        queryKey[1] as string,
+        queryKey[2] as BaseRequestPaginationParams,
+        queryKey[3] as Record<string, string>
       ),
-    staleTime: ms('1h'),
-    gcTime: ms('24h'),
+    staleTime: ms("1h"),
+    gcTime: ms("24h"),
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,
     retry: 2,
     retryDelay: 1000,
-    select: data => data.data
-  })
-}
+    select: (data) => data.data,
+  });
+};
 
-export default useListStudents
-
+export default useListStudents;

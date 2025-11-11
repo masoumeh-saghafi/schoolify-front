@@ -44,8 +44,8 @@ interface TableDataGridProps {
   onFilterChange: (filter: Record<string, string>) => void;
   disableUpdateRowButton?: boolean;
   onUpdateRow?: (id: string, updatedFields: any, row: any) => Promise<void>;
-  disableDeleteRowButton?: boolean;
   onDeleteRowGetTitle?: (row: any) => string;
+  disableDeleteRowButton?: boolean;
   onDeleteRow?: (id: string, row: any) => Promise<void>;
 
   columns: GridColDef[];
@@ -80,9 +80,11 @@ const TableDataGrid = (params: TableDataGridProps) => {
     disableDeleteRowButton = false,
     onDeleteRowGetTitle,
     onDeleteRow,
-    columns,
     disableActions = false,
   } = params;
+
+  var columns = params.columns;
+
   const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
     page: 0,
     pageSize: 10,
@@ -167,90 +169,99 @@ const TableDataGrid = (params: TableDataGridProps) => {
   };
 
   if (!disableUpdateRowButton) {
-    columns.push({
-      field: "actions",
-      headerName: "ویرایش",
-      width: 100,
-      sortable: false,
-      filterable: false,
-      editable: false,
-      resizable: false,
+    columns = [
+      ...columns,
+      {
+        field: "actions",
+        headerName: "ویرایش",
+        width: 100,
+        sortable: false,
+        filterable: false,
+        editable: false,
+        resizable: false,
 
-      renderCell: (params: any) => {
-        const isEditing = editRows[params.row.id];
+        renderCell: (params: any) => {
+          const isEditing = editRows[params.row.id];
 
-        return isEditing ? (
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: theme.palette.warning.light }}
-            size="small"
-            onClick={() => handleUpdateRow(params.row)}
-            disabled={disableActions}
-          >
-            اتمام
-          </Button>
-        ) : (
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: theme.palette.warning.main }}
-            size="small"
-            onClick={() =>
-              setEditRows((prev) => ({ ...prev, [params.row.id]: true }))
-            }
-            disabled={disableActions}
-          >
-            <EditIcon fontSize="small" />
-          </Button>
-        );
+          return isEditing ? (
+            <Button
+              variant="contained"
+              sx={{ backgroundColor: theme.palette.warning.light }}
+              size="small"
+              onClick={() => handleUpdateRow(params.row)}
+              disabled={disableActions}
+            >
+              اتمام
+            </Button>
+          ) : (
+            <Button
+              variant="contained"
+              sx={{ backgroundColor: theme.palette.warning.main }}
+              size="small"
+              onClick={() =>
+                setEditRows((prev) => ({ ...prev, [params.row.id]: true }))
+              }
+              disabled={disableActions}
+            >
+              <EditIcon fontSize="small" />
+            </Button>
+          );
+        },
       },
-    });
+    ];
   }
 
   if (!disableDeleteRowButton) {
-    columns.push({
-      field: "delete",
-      headerName: "حذف",
-      width: 100,
-      sortable: false,
-      filterable: false,
-      editable: false,
-      resizable: false,
+    columns = [
+      ...columns,
+      {
+        field: "delete",
+        headerName: "حذف",
+        width: 100,
+        sortable: false,
+        filterable: false,
+        editable: false,
+        resizable: false,
 
-      renderCell: (params: any) => (
-        <Button
-          variant="contained"
-          color="error"
-          size="small"
-          onClick={() => handleDeleteClick(params.row)}
-          disabled={disableActions}
-        >
-          <DeleteIcon fontSize="small" />
-        </Button>
-      ),
-    });
+        renderCell: (params: any) => (
+          <Button
+            variant="contained"
+            color="error"
+            size="small"
+            onClick={() => handleDeleteClick(params.row)}
+            disabled={disableActions}
+          >
+            <DeleteIcon fontSize="small" />
+          </Button>
+        ),
+      },
+    ];
   }
 
   if (!disableAddRowButton) {
-    columns.push({
-      field: "add",
-      headerName: addRowTitle,
-      width: 150,
-      sortable: false,
-      filterable: false,
-      editable: false,
-      resizable: false,
-      renderCell: (params: any) => (
-        <Button
-          variant="contained"
-          color={addRowColor}
-          size="small"
-          onClick={() => onAddRow?.(params.row.id, params.row)}
-          disabled={disableActions}
-        >
-          {addRowTitle}
-        </Button>
-      ),
-    });
+    columns = [
+      ...columns,
+      {
+        field: "add",
+        headerName: addRowTitle,
+        width: 150,
+        sortable: false,
+        filterable: false,
+        editable: false,
+        resizable: false,
+        renderCell: (params: any) => (
+          <Button
+            variant="contained"
+            color={addRowColor}
+            size="small"
+            onClick={() => onAddRow?.(params.row.id, params.row)}
+            disabled={disableActions}
+          >
+            {addRowTitle}
+          </Button>
+        ),
+      },
+    ];
   }
 
   const newColumns = columns.map((col) => {

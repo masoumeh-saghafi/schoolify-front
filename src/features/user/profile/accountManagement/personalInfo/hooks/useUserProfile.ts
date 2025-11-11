@@ -2,10 +2,10 @@ import ms from "ms";
 import { useQuery } from "@tanstack/react-query";
 import { getUserProfile } from "@schoolify/features/user/profile/accountManagement/personalInfo/utilities/api/api";
 
-
+export const userProfileQueryKey = ["userProfile"];
 const useUserProfile = () => {
   return useQuery({
-    queryKey: ["userProfile"], // Unique identifier for cache
+    queryKey: userProfileQueryKey, // Unique identifier for cache
     queryFn: getUserProfile, // Must return a Promise
     staleTime: ms("1h"), // How long data is considered “fresh”
     gcTime: ms("24h"), // How long inactive data stays in cache

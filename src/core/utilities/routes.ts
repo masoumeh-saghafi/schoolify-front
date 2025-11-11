@@ -22,6 +22,13 @@ const routes = {
           "/" +
           routes.school.management.student.url,
       },
+      educationYear: {
+        url: "education-years",
+        index: (schoolId: string) =>
+          routes.school.management.baseUrl.replace(":schoolId", schoolId) +
+          "/" +
+          routes.school.management.educationYear.url,
+      },
     },
   },
 };

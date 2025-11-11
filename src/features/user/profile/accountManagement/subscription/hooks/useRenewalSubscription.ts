@@ -25,9 +25,6 @@ const useRenewalSubscription = () => {
             refetchQueryKey: listUserSubscriptionsQueryKey,
           },
         });
-        // queryClient.invalidateQueries({
-        //   queryKey: [listUserSubscriptionsQueryKey],
-        // });
       } else {
         alert("مشکلی در دریافت اطلاعات پرداخت وجود دارد");
       }

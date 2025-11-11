@@ -24,3 +24,7 @@ export default interface BasePaginationDataEntity<T> {
     totalPages: number;
   };
 }
+
+export interface BaseAddResponseEntity {
+  id: string;
+}

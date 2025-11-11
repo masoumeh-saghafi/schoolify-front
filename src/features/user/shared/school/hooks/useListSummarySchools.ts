@@ -2,9 +2,11 @@ import ms from "ms";
 import { useQuery } from "@tanstack/react-query";
 import { getlistSummarySchools } from "@schoolify/features/user/school/utilities/api/api";
 
-const useUserProfile = (ignoreFetchData: boolean = false) => {
+export const listSummarySchoolsQueryKey = ["listSummarySchools"];
+
+const useListSummarySchools = (ignoreFetchData: boolean = false) => {
   return useQuery({
-    queryKey: ["listSummarySchools"],
+    queryKey: listSummarySchoolsQueryKey,
 
     queryFn: () =>
       !ignoreFetchData ? getlistSummarySchools() : Promise.resolve(null),
@@ -17,4 +19,4 @@ const useUserProfile = (ignoreFetchData: boolean = false) => {
   });
 };
 
-export default useUserProfile;
+export default useListSummarySchools;

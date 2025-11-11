@@ -1,75 +1,54 @@
-import ContentBox from '@schoolify/core/components/common/ContentBox'
-import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
-import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGridState'
-import { useParams } from 'react-router-dom'
-import useListStudents from '../hooks/useListStudents'
-import { changeStudentInfo, deleteStudent } from '../utilities/api/api'
-import { listStudentData } from '../utilities/listStudentData'
+import ContentBox from "@schoolify/core/components/common/ContentBox";
+import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
+import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
+import { useParams } from "react-router-dom";
+import useListStudents from "../hooks/useListStudents";
+import { updateStudent, deleteStudent } from "../utilities/api/api";
+import { listStudentData } from "../utilities/listStudentData";
+import useUpdateStudent from "../hooks/useUpdateStudent";
+import useDeleteStudent from "../hooks/useDeleteStudent";
 
-interface ListStudentProps {
-  onAddRow?: (id: string, row: any) => void
-  addRowTitle?: string
-  addRowColor?:
-    | 'error'
-    | 'success'
-    | 'primary'
-    | 'secondary'
-    | 'info'
-    | 'warning'
+interface ListStudentProps {}
 
-  isSelector?: boolean
-
-  educationYearId?: string
-  classId?: string
-  ignoreFetchData?: boolean
-  fetchNumber?: number
-}
-
-const ListStudent = ({
-  onAddRow,
-  addRowTitle,
-  addRowColor,
-  isSelector = false,
-  educationYearId = '',
-  classId = '',
-  ignoreFetchData = false
-}: ListStudentProps) => {
-  const { schoolId = '' } = useParams()
+const ListStudent = (props: ListStudentProps) => {
+  const {} = props;
+  const { schoolId = "" } = useParams();
 
   const {
     filters,
-    paginationData,
+    paginationData: pagination,
     handleFilterChange,
     handlePaginationModelChange,
-    handleSortModelChange
-  } = useTableDataGridState()
+    handleSortModelChange,
+  } = useTableDataGridState();
 
-  const { data, isLoading, refetch } = useListStudents(
+  const { data, isLoading } = useListStudents({
     schoolId,
-    paginationData,
-    { ...filters, educationYearId: educationYearId, classRoomId: classId },
-    ignoreFetchData
-  )
-const columns=listStudentData
+    pagination,
+    filters,
+  });
+
+  const { mutateAsync: updateStudent } = useUpdateStudent();
+  const { mutateAsync: deleteStudent } = useDeleteStudent();
+
+  const columns = listStudentData;
   const handleChangeStudentInfo = async (id: string, updatedFields: any) => {
-    try {
-      await changeStudentInfo(updatedFields, id)
-    } catch (error) {
-      alert('مشکلی در دریافت اطلاعات وجود دارد')
-    }
-  }
+    await updateStudent({
+      data: updatedFields,
+      studentId: id,
+      schoolId: schoolId,
+    });
+  };
 
   const handleDelete = async (id: string, row: any) => {
-    try {
-      await deleteStudent(id)
-      await refetch()
-    } catch (error: any) {
-      alert('مشکلی در حذف دانش‌آموز وجود دارد')
-    }
-  }
+    await deleteStudent({
+      studentId: id,
+      schoolId: schoolId,
+    });
+  };
 
   return (
-    <ContentBox label='لیست دانش آموزان'>
+    <ContentBox label="لیست دانش آموزان">
       <TableDataGrid
         data={data}
         isLoading={isLoading}
@@ -79,17 +58,11 @@ const columns=listStudentData
         onFilterChange={handleFilterChange}
         onUpdateRow={handleChangeStudentInfo}
         onDeleteRow={handleDelete}
-        onDeleteRowGetTitle={row =>
+        onDeleteRowGetTitle={(row) =>
           `${row.data.firstName} ${row.data.lastName}`
         }
-        onAddRow={onAddRow}
-        addRowColor={addRowColor}
-        addRowTitle={addRowTitle}
-        disableAddRowButton={!isSelector}
-        disableDeleteRowButton={isSelector}
-        disableUpdateRowButton={isSelector}
       />
     </ContentBox>
-  )
-}
-export default ListStudent
+  );
+};
+export default ListStudent;
