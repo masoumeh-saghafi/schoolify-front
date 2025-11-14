@@ -1,6 +1,6 @@
 import ms from "ms";
 import { useQuery } from "@tanstack/react-query";
-import { getlistSummarySchools } from "@schoolify/features/user/school/utilities/api/api";
+import { listSummarySchools } from "@schoolify/features/user/school/management/base/utilities/api/api";
 
 export const listSummarySchoolsQueryKey = ["listSummarySchools"];
 
@@ -9,7 +9,7 @@ const useListSummarySchools = (ignoreFetchData: boolean = false) => {
     queryKey: listSummarySchoolsQueryKey,
 
     queryFn: () =>
-      !ignoreFetchData ? getlistSummarySchools() : Promise.resolve(null),
+      !ignoreFetchData ? listSummarySchools() : Promise.resolve(null),
 
     staleTime: ms("1h"),
     refetchOnWindowFocus: false,

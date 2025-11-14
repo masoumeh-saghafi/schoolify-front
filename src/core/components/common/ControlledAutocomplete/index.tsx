@@ -1,13 +1,17 @@
+// React Type
 import {
   Controller,
   type Control,
   type FieldValues,
   type Path
 } from 'react-hook-form'
+
+// MUI Components
 import Autocomplete from '@schoolify/core/components/base/inputs/Autocomplete'
 import TextField from '@schoolify/core/components/base/inputs/TextField'
 import Grid from '@schoolify/core/components/base/inputs/Grid'
 
+// Custom Types
 interface OptionType {
   key: string
   value: string
@@ -27,6 +31,8 @@ interface ControlledAutocompleteProps<T extends FieldValues> {
 const ControlledAutocomplete = <T extends FieldValues>(
   props: ControlledAutocompleteProps<T>
 ) => {
+
+  // Props
   const {
     control,
     name,
@@ -38,6 +44,7 @@ const ControlledAutocomplete = <T extends FieldValues>(
     sm = 6
   } = props
 
+  // Render
   return (
     <Grid size={{ xs, sm }}>
       <Controller

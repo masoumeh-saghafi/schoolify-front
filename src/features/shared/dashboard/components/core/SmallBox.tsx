@@ -3,7 +3,6 @@ import Box from "@schoolify/core/components/base/inputs/Box";
 
 // React Types
 import { type ReactNode } from "react";
-import useClientDeviceType from "@schoolify/core/hooks/common/useClientDeviceType";
 import useClientDeviceTypeIsMobile from "@schoolify/core/hooks/common/useClientDeviceTypeIsMobile";
 
 // Custom Types

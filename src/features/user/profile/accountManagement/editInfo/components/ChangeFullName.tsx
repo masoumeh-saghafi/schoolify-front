@@ -62,7 +62,7 @@ const ChangeFullName = () => {
   }, [userData, setValue])
 
   // Handlers
-  const onSubmitChangeFullName = async (data: FullNameSchemaProps) => {
+  const handleChangeFullName = async (data: FullNameSchemaProps) => {
     try {
       await updateUserProfile(data)
     } catch (error) {
@@ -85,7 +85,7 @@ const ChangeFullName = () => {
     <ContentBox
       label='تغییر مشخصات کاربر '
       component='form'
-      onSubmit={handleSubmit(onSubmitChangeFullName)}
+      onSubmit={handleSubmit(handleChangeFullName)}
     >
       <Grid container sx={{ margin: 2 }} spacing={2}>
         {filed.map((item: any) => (

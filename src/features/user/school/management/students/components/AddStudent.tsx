@@ -1,53 +1,66 @@
-import type z from "zod";
-import { validationSchema } from "../validation/studentInfovalidation";
-import { useParams } from "react-router-dom";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { addStudent } from "../utilities/api/api";
-import Box from "@schoolify/core/components/base/inputs/Box";
-import ContentBox from "@schoolify/core/components/common/ContentBox";
-import Grid from "@schoolify/core/components/base/inputs/Grid";
-import { addStudentData } from "../utilities/addStudentData";
-import ControlledGridTextField from "@schoolify/core/components/common/ControlledGridTextField";
-import ControlledAutocomplete from "@schoolify/core/components/common/ControlledAutocomplete";
-import SubmitButton from "@schoolify/core/components/common/SubmitButton";
-import { identityTypeOptions } from "../validation/identityType";
-import useAddStudent from "../hooks/useAddStudent";
+// MUI Components
+import Box from '@schoolify/core/components/base/inputs/Box'
+import Grid from '@schoolify/core/components/base/inputs/Grid'
 
-type SchemaProps = z.infer<typeof validationSchema>;
+// Core Components
+import ContentBox from '@schoolify/core/components/common/ContentBox'
+import ControlledGridTextField from '@schoolify/core/components/common/ControlledGridTextField'
+import ControlledAutocomplete from '@schoolify/core/components/common/ControlledAutocomplete'
+import SubmitButton from '@schoolify/core/components/common/SubmitButton'
+
+// Feature Components
+import { validationSchema } from '@schoolify/features/user/school/management/students/validation/studentInfovalidation'
+import { addStudentData } from '@schoolify/features/user/school/management/students/utilities/addStudentData'
+import { identityTypeOptions } from '@schoolify/features/user/school/management/students/validation/identityType'
+
+// Custom Hooks
+import useAddStudent from '@schoolify/features/user/school/management/students/hooks/useAddStudent'
+
+// React Type
+import { useParams } from 'react-router-dom'
+import { Controller, useForm } from 'react-hook-form'
+
+//Type Definitions
+import { zodResolver } from '@hookform/resolvers/zod'
+import type z from 'zod'
+
+type SchemaProps = z.infer<typeof validationSchema>
 
 interface AddStudentProps {}
 
 const AddStudent = (props: AddStudentProps) => {
-  const {} = props;
-  const { schoolId = "" } = useParams();
+  // const {} = props;
+  const { schoolId = '' } = useParams()
 
+  // Hooks
   const {
     handleSubmit,
     control,
     reset,
-    formState: { isValid, isDirty },
+    formState: { isValid, isDirty }
   } = useForm<SchemaProps>({
     resolver: zodResolver(validationSchema),
-    mode: "onChange",
-  });
+    mode: 'onChange'
+  })
 
-  const { mutateAsync: addStudent } = useAddStudent();
+  const { mutateAsync: addStudent } = useAddStudent()
 
-  const onSubmitAddStudent = async (data: SchemaProps) => {
-    const result = await addStudent({ data: data, schoolId: schoolId });
-    if (result.isSuccess) reset();
-  };
+  // Handlers
+  const handleAddStudent = async (data: SchemaProps) => {
+    const result = await addStudent({ data: data, schoolId: schoolId })
+    if (result.isSuccess) reset()
+  }
 
+  // Render
   return (
     <Box>
       <ContentBox
-        label="افزودن دانش آموز"
-        onSubmit={handleSubmit(onSubmitAddStudent)}
-        component="form"
+        label='افزودن دانش آموز'
+        onSubmit={handleSubmit(handleAddStudent)}
+        component='form'
       >
         <Grid container spacing={2}>
-          {addStudentData.map((field) => (
+          {addStudentData.map(field => (
             <ControlledGridTextField
               key={field.name}
               control={control}
@@ -58,19 +71,19 @@ const AddStudent = (props: AddStudentProps) => {
 
           <ControlledAutocomplete
             control={control}
-            name="identityType"
-            label="ملیت"
-            placeholder="لطفا یک مورد را انتخاب نمایید"
+            name='identityType'
+            label='ملیت'
+            placeholder='لطفا یک مورد را انتخاب نمایید'
             options={identityTypeOptions}
-            size="small"
+            size='small'
           />
 
           {/* Hidden input for schoolId */}
           <Controller
-            name="schoolId"
+            name='schoolId'
             control={control}
             defaultValue={schoolId}
-            render={({ field }) => <input type="hidden" {...field} />}
+            render={({ field }) => <input type='hidden' {...field} />}
           />
 
           <Grid size={{ xs: 12, sm: 6 }}>
@@ -81,7 +94,7 @@ const AddStudent = (props: AddStudentProps) => {
         </Grid>
       </ContentBox>
     </Box>
-  );
-};
+  )
+}
 
-export default AddStudent;
+export default AddStudent

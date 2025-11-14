@@ -1,7 +1,14 @@
-import type { ElementType, FormEventHandler, ReactNode } from "react";
-import Typography from "../../base/inputs/Typography";
-import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
+// MUI Components
+import Typography from "@schoolify/core/components/base/inputs/Typography";
 import Paper from "@schoolify/core/components/base/inputs/Paper";
+
+// Custom Hooks
+import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
+
+// React Type
+import type { ElementType, FormEventHandler, ReactNode } from "react";
+
+// Custom Types
 
 interface ContentBoxProps {
   label: string;

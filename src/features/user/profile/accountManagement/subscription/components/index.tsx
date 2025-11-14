@@ -4,11 +4,11 @@ import SubscriptionsPurchased from '@schoolify/features/user/profile/accountMana
 
 
 // Custom Types
-interface SubscriptionPageProps {
+// interface SubscriptionTabProps {
 
-}
+// }
 
-const SubscriptionPage = (props: SubscriptionPageProps) => {
+const SubscriptionTab = () => {
   // Props
   //   const { } = props;
 
@@ -21,4 +21,4 @@ const SubscriptionPage = (props: SubscriptionPageProps) => {
   )
 }
 
-export default SubscriptionPage
+export default SubscriptionTab

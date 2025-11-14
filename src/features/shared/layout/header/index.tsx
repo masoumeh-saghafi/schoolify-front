@@ -8,7 +8,6 @@ import IconButton from "@schoolify/core/components/base/inputs/IconButton";
 import HeaderMobileDrawer from "@schoolify/features/shared/layout/header/MobileDrawer";
 
 // Custom Hooks
-import useMediaQuery from "@mui/material/useMediaQuery";
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
 // Core Components

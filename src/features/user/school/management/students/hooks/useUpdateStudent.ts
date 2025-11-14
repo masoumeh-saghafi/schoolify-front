@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateStudent } from "../utilities/api/api";
-import { listStudentsQueryKey } from "./useListStudents";
+import { updateStudent } from "@schoolify/features/user/school/management/students/utilities/api/api";
+import { listStudentsQueryKey } from "@schoolify/features/user/school/management/students/hooks/useListStudents";
 
 const useUpdateStudent = () => {
   const queryClient = useQueryClient();

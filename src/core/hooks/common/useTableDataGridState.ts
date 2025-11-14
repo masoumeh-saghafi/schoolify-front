@@ -1,6 +1,6 @@
+import type { BaseRequestPaginationParams } from '@schoolify/core/types/core/api/request'
 import { useState } from 'react'
 import { type GridPaginationModel } from '@mui/x-data-grid'
-import type { BaseRequestPaginationParams } from '@schoolify/core/types/core/api/request'
 
 const useTableDataGridState = () => {
   const [filters, setFilters] = useState<Record<string, string>>({})

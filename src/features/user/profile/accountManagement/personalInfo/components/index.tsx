@@ -5,7 +5,7 @@ import NotificationInfo from '@schoolify/features/user/profile/accountManagement
 // Custom Types
 // interface PersonalInfoPageProps {}
 
-const PersonalInfoPage = () => {
+const PersonalInfoTab = () => {
   // Props
   //   const { } = props;
 
@@ -18,4 +18,4 @@ const PersonalInfoPage = () => {
   )
 }
 
-export default PersonalInfoPage
+export default PersonalInfoTab

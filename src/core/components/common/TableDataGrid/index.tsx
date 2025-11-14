@@ -47,9 +47,7 @@ interface TableDataGridProps {
   onDeleteRowGetTitle?: (row: any) => string;
   disableDeleteRowButton?: boolean;
   onDeleteRow?: (id: string, row: any) => Promise<void>;
-
   columns: GridColDef[];
-
   disableAddRowButton?: boolean;
   addRowTitle?: string;
   onAddRow?: (id: string, row: any) => void;
@@ -83,7 +81,7 @@ const TableDataGrid = (params: TableDataGridProps) => {
     disableActions = false,
   } = params;
 
-  var columns = params.columns;
+  var columns = params.columns
 
   const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
     page: 0,

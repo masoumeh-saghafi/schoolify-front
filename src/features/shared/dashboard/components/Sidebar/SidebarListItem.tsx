@@ -8,9 +8,7 @@ import SidebarButton from "@schoolify/features/shared/dashboard/components/Sideb
 
 //Type Definitions
 import type { JSX } from "@emotion/react/jsx-runtime";
-import Box from "@schoolify/core/components/base/inputs/Box";
 import { useState } from "react";
-import { fa } from "zod/v4/locales";
 import { ArrowDownIcon } from "@schoolify/core/components/icon/ArrowDownIcon";
 import { ArrowUpIcon } from "@schoolify/core/components/icon/ArrowUpIcon";
 import Typography from "@schoolify/core/components/base/inputs/Typography";

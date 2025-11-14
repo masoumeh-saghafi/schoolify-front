@@ -1,7 +1,7 @@
-import ms from "ms";
-import { useQuery } from "@tanstack/react-query";
 import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
-import { getListStudent } from "../utilities/api/api";
+import { listStudent } from "@schoolify/features/user/school/management/students/utilities/api/api";
+import { useQuery } from "@tanstack/react-query";
+import ms from "ms";
 
 interface useListStudentsProps {
   schoolId: string;
@@ -18,7 +18,7 @@ const useListStudents = (props: useListStudentsProps) => {
   return useQuery({
     queryKey: listStudentsQueryKey(props),
     queryFn: ({ queryKey }) =>
-      getListStudent(
+      listStudent(
         queryKey[1] as string,
         queryKey[2] as BaseRequestPaginationParams,
         queryKey[3] as Record<string, string>

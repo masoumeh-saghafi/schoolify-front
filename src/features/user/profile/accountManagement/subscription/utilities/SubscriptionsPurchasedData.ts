@@ -5,4 +5,3 @@ export const SubscriptionsPurchasedColumns = () => [
   { id: 'remaining', label: 'باقی‌مانده (روز)' },
   { id: 'actions', label: 'عملیات' }
 ]
-

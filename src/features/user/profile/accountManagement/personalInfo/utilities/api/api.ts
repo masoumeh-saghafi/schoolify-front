@@ -11,7 +11,7 @@ export const getUserProfile = async () => {
   );
 };
 
-export const getListNotification = async (
+export const listNotification = async (
   pagination: BaseRequestPaginationParams,
   filters: Record<string, string>
 ) => {

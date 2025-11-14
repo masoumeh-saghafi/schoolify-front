@@ -1,11 +1,11 @@
 import ms from 'ms'
 import { useQuery } from '@tanstack/react-query'
-import { getListSubscription} from '@schoolify/features/user/profile/accountManagement/subscription/utilities/api/api'
+import { listSubscription} from '@schoolify/features/user/profile/accountManagement/subscription/utilities/api/api'
 
 const useListSubscriptions = () => {
   return useQuery({
     queryKey: ['getListSubscription'], 
-    queryFn: getListSubscription, 
+    queryFn: listSubscription, 
     staleTime: ms('1h'), 
     gcTime: ms('24h'), 
     refetchOnWindowFocus: false, 

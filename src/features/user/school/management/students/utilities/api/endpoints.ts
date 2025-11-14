@@ -1,8 +1,8 @@
 const schoolStudentEndpoints = {
-  addStudent: "/students",
+  addStudent: '/students',
   changeStudentInfo: (studentId: string) => `/students/${studentId}`,
-  deleteStudent: "/students",
-  listStudent: (schoolId: string) => `/schools/${schoolId}/students`,
-};
+  deleteStudent: '/students',
+  listStudent: (schoolId: string) => `/schools/${schoolId}/students`
+}
 
-export default schoolStudentEndpoints;
+export default schoolStudentEndpoints

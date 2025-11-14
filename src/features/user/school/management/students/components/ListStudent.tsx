@@ -1,54 +1,68 @@
-import ContentBox from "@schoolify/core/components/common/ContentBox";
-import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
-import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
-import { useParams } from "react-router-dom";
-import useListStudents from "../hooks/useListStudents";
-import { updateStudent, deleteStudent } from "../utilities/api/api";
-import { listStudentData } from "../utilities/listStudentData";
-import useUpdateStudent from "../hooks/useUpdateStudent";
-import useDeleteStudent from "../hooks/useDeleteStudent";
+// Core Components
+import ContentBox from '@schoolify/core/components/common/ContentBox'
+import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
+import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGridState'
 
-interface ListStudentProps {}
+// Feature Components
+import { listStudentData } from '@schoolify/features/user/school/management/students/utilities/listStudentData'
+import useUpdateStudent from '@schoolify/features/user/school/management/students/hooks/useUpdateStudent'
+import useDeleteStudent from '@schoolify/features/user/school/management/students/hooks/useDeleteStudent'
 
-const ListStudent = (props: ListStudentProps) => {
-  const {} = props;
-  const { schoolId = "" } = useParams();
+// Custom Hooks
+import useListStudents from '@schoolify/features/user/school/management/students/hooks/useListStudents'
+
+// React Type
+import { useParams } from 'react-router-dom'
+
+// Custom Types
+// interface ListStudentProps {}
+
+const ListStudent = () => {
+  // Props
+  // const {} = props;
+
+  // Hooks
+  const { schoolId = '' } = useParams()
 
   const {
     filters,
     paginationData: pagination,
     handleFilterChange,
     handlePaginationModelChange,
-    handleSortModelChange,
-  } = useTableDataGridState();
+    handleSortModelChange
+  } = useTableDataGridState()
 
   const { data, isLoading } = useListStudents({
     schoolId,
     pagination,
-    filters,
-  });
+    filters
+  })
 
-  const { mutateAsync: updateStudent } = useUpdateStudent();
-  const { mutateAsync: deleteStudent } = useDeleteStudent();
+  const { mutateAsync: updateStudent } = useUpdateStudent()
+  const { mutateAsync: deleteStudent } = useDeleteStudent()
 
-  const columns = listStudentData;
+  // Helpers
+  const columns = listStudentData
+
+  // Handlers
   const handleChangeStudentInfo = async (id: string, updatedFields: any) => {
     await updateStudent({
       data: updatedFields,
       studentId: id,
-      schoolId: schoolId,
-    });
-  };
+      schoolId: schoolId
+    })
+  }
 
   const handleDelete = async (id: string, row: any) => {
     await deleteStudent({
       studentId: id,
-      schoolId: schoolId,
-    });
-  };
+      schoolId: schoolId
+    })
+  }
 
+  // Render
   return (
-    <ContentBox label="لیست دانش آموزان">
+    <ContentBox label='لیست دانش آموزان'>
       <TableDataGrid
         data={data}
         isLoading={isLoading}
@@ -58,11 +72,11 @@ const ListStudent = (props: ListStudentProps) => {
         onFilterChange={handleFilterChange}
         onUpdateRow={handleChangeStudentInfo}
         onDeleteRow={handleDelete}
-        onDeleteRowGetTitle={(row) =>
+        onDeleteRowGetTitle={row =>
           `${row.data.firstName} ${row.data.lastName}`
         }
       />
     </ContentBox>
-  );
-};
-export default ListStudent;
+  )
+}
+export default ListStudent

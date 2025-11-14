@@ -1,13 +1,14 @@
+// MUI Components
 import Table from "@schoolify/core/components/base/inputs/Table";
 import TableBody from "@schoolify/core/components/base/inputs/TableBody";
 import TableCell from "@schoolify/core/components/base/inputs/TableCell";
 import TableContainer from "@schoolify/core/components/base/inputs/TableContainer";
 import TableHead from "@schoolify/core/components/base/inputs/TableHead";
 import TableRow from "@schoolify/core/components/base/inputs/TableRow";
-import Paper from "@schoolify/core/components/base/inputs/Paper";
 
+// Custom Hooks
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
-
+// Custom Types
 interface Column {
   id: string;
   label: string;
@@ -23,6 +24,8 @@ interface DataTableProps {
 }
 
 const DataTable = (props: DataTableProps) => {
+
+  // Props
   const { columns, rows, renderCell, sx } = props;
   const theme = useAppTheme();
   return (

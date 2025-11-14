@@ -5,7 +5,6 @@
 // ==============================
 
 // Custom Hooks
-import useMediaQuery from "@mui/material/useMediaQuery";
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
 // MUI Components

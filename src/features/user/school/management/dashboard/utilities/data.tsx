@@ -3,21 +3,26 @@ import type { DashboardSidebarDataProps } from "@schoolify/features/shared/dashb
 import { SettingIcon } from "@schoolify/core/components/icon/settingIcon";
 
 import routes from "@schoolify/core/utilities/routes";
-import { genUUID } from "@schoolify/core/utilities/uuid";
 
 export const schoolManagementSidebarData = (
   schoolId: string
 ): DashboardSidebarDataProps[] => [
   {
-    key: genUUID(),
+    key: 'schoolManagement',
     title: "مدیریت مدرسه",
     link: routes.school.management.index(schoolId),
     icon: <SettingIcon />,
   },
   {
-    key: genUUID(),
+    key: 'students',
     title: "دانش‌آموزان",
     link: routes.school.management.student.index(schoolId),
+    // icon: <SettingIcon />,
+    },
+   {
+    key: 'educationYear',
+    title: "سال تحصیلی ",
+    link: routes.school.management.educationYear.index(schoolId),
     // icon: <SettingIcon />,
   },
 ];

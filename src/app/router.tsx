@@ -7,9 +7,10 @@ import routes from "@schoolify/core/utilities/routes";
 import ProfileLayout from "@schoolify/app/profile/layout";
 import ProfilePage from "@schoolify/app/profile/page";
 import PaymentGatewayPage from "@schoolify/app/gateway/page";
-import SchoolManagementLayout from "./school/management/layout";
-import SchoolManagementInformationPage from "./school/management/information/page";
-import SchoolManagementStudentPage from "./school/management/students/page";
+import SchoolManagementLayout from "@schoolify/app/school/management/layout";
+import SchoolManagementInformationPage from "@schoolify/app/school/management/information/page";
+import SchoolManagementStudentPage from "@schoolify/app/school/management/students/page";
+import SchoolManagementEucationYearPage from "@schoolify/app/school/management/eucationYear/page";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,9 @@ const router = createBrowserRouter([
       {
         path: routes.school.management.student.url,
         element: <SchoolManagementStudentPage />,
+      },{
+        path: routes.school.management.educationYear.url,
+        element: <SchoolManagementEucationYearPage />,
       },
     ],
   },

@@ -1,5 +1,4 @@
 // MUI Components
-import Box from '@schoolify/core/components/base/inputs/Box'
 import Button from '@schoolify/core/components/base/inputs/Button'
 import IconButton from '@schoolify/core/components/base/inputs/IconButton'
 import Toolbar from '@schoolify/core/components/base/inputs/Toolbar'
@@ -17,7 +16,7 @@ import LogoTitle from '@schoolify/core/shared/Logo'
 
 // Feature Components
 import AppBar from '@schoolify/features/shared/layout/header/AppBar'
-import UserProfileButton from '@schoolify/features/user/profile/needComponenet/UserProfileButton'
+import UserProfileButton from '@schoolify/core/shared/UserProfileButton'
 
 // Custom Types
 export interface DashboardAppBarDataProps {

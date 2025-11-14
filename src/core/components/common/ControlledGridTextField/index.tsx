@@ -1,28 +1,32 @@
+// React Type
 import {
   Controller,
   type Control,
   type FieldValues,
-  type Path,
-} from "react-hook-form";
-import TextField from "@schoolify/core/components/base/inputs/TextField";
-import Grid from "@schoolify/core/components/base/inputs/Grid";
+  type Path
+} from 'react-hook-form'
+
+// MUI Components
+import TextField from '@schoolify/core/components/base/inputs/TextField'
+import Grid from '@schoolify/core/components/base/inputs/Grid'
+
+// Custom Types
 interface FormGridTextFieldProps<T extends FieldValues> {
-  control: Control<T>;
-  name: Path<T>;
-  label?: string;
-  xs?: number;
-  sm?: number;
+  control: Control<T>
+  name: Path<T>
+  label?: string
+   helperText?: string;
+  xs?: number
+  sm?: number
 }
 
-const ControlledGridTextField = <T extends FieldValues>({
-  control,
-  name,
-  label,
-  xs = 12,
-  sm = 6,
+const ControlledGridTextField = <T extends FieldValues>(
+  Props: FormGridTextFieldProps<T>
+) => {
 
-  ...props
-}: FormGridTextFieldProps<T>) => {
+  // Props
+  const { control, name, label,helperText, xs = 12, sm = 6, ...props } = Props
+  // Render
   return (
     <Grid size={{ xs, sm }}>
       <Controller
@@ -35,20 +39,20 @@ const ControlledGridTextField = <T extends FieldValues>({
               {...props}
               label={label}
               fullWidth
-              size="small"
+              size='small'
               error={!!fieldState.error}
-              helperText={fieldState.error?.message ?? ""}
+             helperText={helperText ?? fieldState.error?.message ?? ""}
               slotProps={{
                 inputLabel: {
-                  shrink: true,
-                },
+                  shrink: true
+                }
               }}
             />
           </>
         )}
       />
     </Grid>
-  );
-};
+  )
+}
 
-export default ControlledGridTextField;
+export default ControlledGridTextField
