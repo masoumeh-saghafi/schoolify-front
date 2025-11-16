@@ -1,24 +1,24 @@
-import type { BaseRequestPaginationParams } from '@schoolify/core/types/core/api/request'
+import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
 import type {
   BaseAddResponseEntity,
-  BaseIdDataEntity
-} from '@schoolify/core/types/core/api/response'
+  BaseIdDataEntity,
+} from "@schoolify/core/types/core/api/response";
 import {
   deleteData,
-  getAllData,
+  getListPaginatedData,
   patchData,
-  postData
-} from '@schoolify/core/utilities/api/api'
+  postData,
+} from "@schoolify/core/utilities/api/api";
 
-import eucationYearEndpoints from '@schoolify/features/user/school/management/educationYear/utilities/api/endpoints'
-import type ListEucationYearEntity from '@schoolify/features/user/school/management/educationYear/types/api/ListEucationYearEntity'
+import eucationYearEndpoints from "@schoolify/features/user/school/management/educationYear/utilities/api/endpoints";
+import type ListEucationYearEntity from "@schoolify/features/user/school/management/educationYear/types/api/ListEucationYearEntity";
 
 export const addEucationYear = async (data: any) => {
   return await postData<BaseAddResponseEntity>(
     eucationYearEndpoints.addEucationYear,
     data
-  )
-}
+  );
+};
 
 export const updateEucationYear = async (
   data: any,
@@ -27,24 +27,24 @@ export const updateEucationYear = async (
   return await patchData<void>(
     eucationYearEndpoints.updateEucationYear(educationYearId),
     data
-  )
-}
+  );
+};
 
 export const deleteEucationYear = async (educationYearId: string) => {
   return await deleteData<void>(
     eucationYearEndpoints.deleteEucationYear,
     educationYearId
-  )
-}
+  );
+};
 
 export const listEucationYear = async (
   schoolId: string,
   pagination: BaseRequestPaginationParams,
   filters: Record<string, string>
 ) => {
-  return await getAllData<BaseIdDataEntity<ListEucationYearEntity>>(
+  return await getListPaginatedData<BaseIdDataEntity<ListEucationYearEntity>>(
     eucationYearEndpoints.listEucationYear(schoolId),
     pagination,
     filters
-  )
-}
+  );
+};

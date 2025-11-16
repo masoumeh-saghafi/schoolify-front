@@ -108,7 +108,7 @@ export async function postData<T>(
   return res;
 }
 
-export async function getAllData<T>(
+export async function getListPaginatedData<T>(
   endpoint: string,
   pagination?: BaseRequestPaginationParams,
   filters?: Record<string, string>

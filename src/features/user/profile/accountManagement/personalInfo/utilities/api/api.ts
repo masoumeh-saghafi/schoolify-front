@@ -1,5 +1,5 @@
 import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
-import { getAllData, getData } from "@schoolify/core/utilities/api";
+import { getListPaginatedData, getData } from "@schoolify/core/utilities/api";
 import type UserProfileEntity from "@schoolify/features/user/profile/accountManagement/personalInfo/types/api/UserProfileEntity";
 import profileAccountManagementEndpoints from "@schoolify/features/user/profile/accountManagement/utilities/api/endpoints";
 import type ListNotificationsEntity from "@schoolify/features/user/profile/accountManagement/personalInfo/types/api/ListNotificationsEntity";
@@ -15,7 +15,7 @@ export const listNotification = async (
   pagination: BaseRequestPaginationParams,
   filters: Record<string, string>
 ) => {
-  return await getAllData<BaseIdDataEntity<ListNotificationsEntity>>(
+  return await getListPaginatedData<BaseIdDataEntity<ListNotificationsEntity>>(
     profileAccountManagementEndpoints.notification,
     pagination,
     filters
