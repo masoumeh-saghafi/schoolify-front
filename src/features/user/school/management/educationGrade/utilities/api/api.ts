@@ -6,6 +6,7 @@ import type {
 import {
   deleteData,
   getListPaginatedData,
+  getListSummaryData,
   patchData,
   postData,
 } from "@schoolify/core/utilities/api/api";
@@ -48,8 +49,8 @@ export const listEducationGrade = async (
   );
 };
 
-export const listSummaryEducationLevel = async (schoolId: string) => {
-  return await getListPaginatedData<
-    BaseIdDataEntity<ListSummaryEducationLevelEntity>[]
-  >(EducationGradeEndpoints.listSummaryEducationLevel(schoolId));
+export const listSummaryEducationLevel = async (educationYearId: string) => {
+  return await getListSummaryData<
+    BaseIdDataEntity<ListSummaryEducationLevelEntity>
+  >(EducationGradeEndpoints.listSummaryEducationLevel(educationYearId));
 };

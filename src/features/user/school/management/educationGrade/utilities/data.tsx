@@ -1,5 +1,5 @@
 import type { TabBoxDataProps } from "@schoolify/core/components/common/TabBox";
-import AddEducationGrade from "../components/AddEducationLevel";
+import AddEducationGrade from "../components/AddEducationGrade";
 import ListEducationGrade from "../components/ListEducationGrade";
 
 export const tabEducationGradeEndpointsData: TabBoxDataProps[] = [

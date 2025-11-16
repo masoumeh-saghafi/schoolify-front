@@ -10,6 +10,9 @@ import { listEducationGradeData } from "../utilities/listEducationLGradeData";
 import useListSummaryEducationYears from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationYears";
 import useListSummaryEducationLevel from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationLevel";
 import { useParams } from "react-router-dom";
+import useListSummaryEducationYear from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationYears";
+import Autocomplete from "@schoolify/core/components/base/inputs/Autocomplete";
+import TextField from "@schoolify/core/components/base/inputs/TextField";
 
 // Feature Components
 
@@ -23,11 +26,14 @@ import { useParams } from "react-router-dom";
 const ListEducationGrade = () => {
   // Props
   // const {} = props;
-  const [educationYearId] = useState("");
-  const [educationLevelId] = useState("");
+  const [educationYearId, setEducationYearId] = useState("");
+  const [educationLevelId, setEducationLevelId] = useState("");
 
   // Hooks
   const { schoolId = "" } = useParams();
+  const { data: educationYearData } = useListSummaryEducationYear(schoolId);
+  const { data: educationLevelData } =
+    useListSummaryEducationLevel(educationYearId);
 
   const {
     filters,
@@ -42,9 +48,6 @@ const ListEducationGrade = () => {
     pagination,
     filters,
   });
-  const { data: educationYearsData } = useListSummaryEducationYears(schoolId);
-  const { data: educationLevelsData } =
-    useListSummaryEducationLevel(educationYearId);
 
   const { mutateAsync: updateEducationGrade } = useUpdateEducationGrade();
   const { mutateAsync: deleteEducationGrade } = useDeleteEducationGrade();
@@ -71,6 +74,60 @@ const ListEducationGrade = () => {
   // Render
   return (
     <ContentBox label="لیست مقطع های تحصیلی ">
+      <Autocomplete
+        size="small"
+        options={educationYearData ?? []}
+        getOptionLabel={(option) => option.data?.title ?? ""}
+        loading={isLoading}
+        onChange={(_, value) => setEducationYearId(value?.id ?? "")}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="سال تحصیلی "
+            placeholder=" لطفا یک سال را انتخاب نمایید"
+            slotProps={{
+              inputLabel: {
+                shrink: true,
+              },
+            }}
+          />
+        )}
+        slotProps={{
+          listbox: {
+            sx: {
+              fontSize: "0.75rem",
+            },
+          },
+        }}
+      />
+
+      <Autocomplete
+        size="small"
+        options={educationLevelData ?? []}
+        getOptionLabel={(option) => option.data?.title ?? ""}
+        loading={isLoading}
+        onChange={(_, value) => setEducationLevelId(value?.id ?? "")}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="سال تحصیلی "
+            placeholder=" لطفا یک سال را انتخاب نمایید"
+            slotProps={{
+              inputLabel: {
+                shrink: true,
+              },
+            }}
+          />
+        )}
+        slotProps={{
+          listbox: {
+            sx: {
+              fontSize: "0.75rem",
+            },
+          },
+        }}
+      />
+
       <TableDataGrid
         data={data}
         isLoading={isLoading}
