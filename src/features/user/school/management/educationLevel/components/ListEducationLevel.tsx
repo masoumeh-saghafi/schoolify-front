@@ -12,7 +12,7 @@ import useListEducationLevel from "../hooks/useListEducationLevel";
 import useDeleteEducationLevel from "../hooks/useDeleteEducationLevel";
 import useUpdateEducationLevel from "../hooks/useUpdateEducationLevel";
 import { useState } from "react";
-import { listEducationLevelData } from "../utilities/listEucationLevelData";
+import { listEducationLevelData } from "../utilities/listEducationLevelData";
 
 // Custom Types
 // interface ListStudentProps {}
