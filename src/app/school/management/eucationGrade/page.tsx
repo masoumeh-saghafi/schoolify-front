@@ -1,24 +1,23 @@
 // MUI Components
 
-import TabBox from '@schoolify/core/components/common/TabBox'
-import routes from '@schoolify/core/utilities/routes'
-import { tabEucationGradeEndpointsData } from '@schoolify/features/user/school/management/educationGrade/utilities/data'
-import { useParams } from 'react-router-dom'
+import TabBox from "@schoolify/core/components/common/TabBox";
+import routes from "@schoolify/core/utilities/routes";
+import { tabEducationGradeEndpointsData } from "@schoolify/features/user/school/management/educationGrade/utilities/data";
+import { useParams } from "react-router-dom";
 
-const SchoolManagementEucationGradePage = () => {
+const SchoolManagementEducationGradePage = () => {
   // Hooks
-  const { schoolId = '' } = useParams()
+  const { schoolId = "" } = useParams();
 
   // Render
   return (
     <>
       <TabBox
         baseUrlPath={routes.school.management.educationGrade.index(schoolId)}
-        data={tabEucationGradeEndpointsData}
+        data={tabEducationGradeEndpointsData}
       />
     </>
-  )
-}
+  );
+};
 
-export default SchoolManagementEucationGradePage
-
+export default SchoolManagementEducationGradePage;

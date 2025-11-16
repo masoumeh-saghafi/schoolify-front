@@ -2,7 +2,7 @@ import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api
 
 import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
-import { listEucationYear } from "../utilities/api/api";
+import { listEducationYear } from "../utilities/api/api";
 
 interface useListEducationYearProps {
   schoolId: string;
@@ -19,7 +19,7 @@ const useListEducationYear = (props: useListEducationYearProps) => {
   return useQuery({
     queryKey: listEducationYearQueryKey(props),
     queryFn: ({ queryKey }) =>
-      listEucationYear(
+      listEducationYear(
         queryKey[1] as string,
         queryKey[2] as BaseRequestPaginationParams,
         queryKey[3] as Record<string, string>

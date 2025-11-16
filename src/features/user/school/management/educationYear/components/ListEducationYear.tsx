@@ -12,14 +12,14 @@ import { useParams } from "react-router-dom";
 import useUpdateEducationYear from "@schoolify/features/user/school/management/educationYear/hooks/useUpdateEducationYear";
 import useDeleteEducationYear from "@schoolify/features/user/school/management/educationYear/hooks/useDeleteEducationYear";
 import useListEducationYear from "../hooks/useListEducationYear";
-import { listEucationYearData } from "../utilities/listEucationYearData";
+import { listEducationYearData } from "../utilities/listEducationYearData";
 import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
-import type ListEucationYearEntity from "../types/api/ListEucationYearEntity";
+import type ListEducationYearEntity from "../types/api/ListEducationYearEntity";
 
 // Custom Types
 // interface ListStudentProps {}
 
-const ListEucationYear = () => {
+const ListEducationYear = () => {
   // Props
   // const {} = props;
 
@@ -44,7 +44,7 @@ const ListEucationYear = () => {
   const { mutateAsync: deleteEducationYear } = useDeleteEducationYear();
 
   // Helpers
-  const columns = listEucationYearData;
+  const columns = listEducationYearData;
 
   // Handlers
   const handleUpdateEducationYear = async (id: string, updatedFields: any) => {
@@ -74,11 +74,11 @@ const ListEucationYear = () => {
         onFilterChange={handleFilterChange}
         onUpdateRow={handleUpdateEducationYear}
         onDeleteRow={handleDeleteEducationYear}
-        onDeleteRowGetTitle={(row: BaseIdDataEntity<ListEucationYearEntity>) =>
+        onDeleteRowGetTitle={(row: BaseIdDataEntity<ListEducationYearEntity>) =>
           `${row.data?.title}`
         }
       />
     </ContentBox>
   );
 };
-export default ListEucationYear;
+export default ListEducationYear;

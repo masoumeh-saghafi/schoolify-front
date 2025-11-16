@@ -20,16 +20,16 @@ import Grid from "@schoolify/core/components/base/inputs/Grid";
 import ControlledGridTextField from "@schoolify/core/components/common/ControlledGridTextField";
 import SubmitButton from "@schoolify/core/components/common/SubmitButton";
 
-import useAddEucationLevel from "../hooks/useAddEducationLevel";
+import useAddEducationLevel from "../hooks/useAddEducationLevel";
 import { validationSchema } from "../validation/educationLevelValid";
 import useListSummaryEducationYear from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationYears";
 import ControlledAutocomplete from "@schoolify/core/components/common/ControlledAutocomplete";
 
 type SchemaProps = z.infer<typeof validationSchema>;
 
-interface AddEucationLevelProps {}
+interface AddEducationLevelProps {}
 
-const AddEucationLevel = (props: AddEucationLevelProps) => {
+const AddEducationLevel = (props: AddEducationLevelProps) => {
   // const {} = props;
   const { schoolId = "" } = useParams();
 
@@ -45,19 +45,19 @@ const AddEucationLevel = (props: AddEucationLevelProps) => {
   });
 
   const { data: educationYearData } = useListSummaryEducationYear(schoolId);
-  const { mutateAsync: addEucationLevel } = useAddEucationLevel();
+  const { mutateAsync: addEducationLevel } = useAddEducationLevel();
 
   console.log(educationYearData);
   console.log(
-    educationYearData?.docs?.map((item) => ({
+    educationYearData?.map((item) => ({
       key: item.id,
       value: item.data?.title ?? "",
     })) ?? []
   );
 
   // Handlers
-  const handleAddEucationLevel = async (data: SchemaProps) => {
-    const result = await addEucationLevel({
+  const handleAddEducationLevel = async (data: SchemaProps) => {
+    const result = await addEducationLevel({
       data: data,
       educationYearId: data.educationYearId,
     });
@@ -69,12 +69,12 @@ const AddEucationLevel = (props: AddEucationLevelProps) => {
     <Box>
       <ContentBox
         label="افزودن مقطع تحصیلی"
-        onSubmit={handleSubmit(handleAddEucationLevel)}
+        onSubmit={handleSubmit(handleAddEducationLevel)}
         component="form"
       >
         <Grid container spacing={2}>
           <ControlledGridTextField
-            key="eucationLevel"
+            key="EducationLevel"
             control={control}
             name="title"
             label="مقطع تحصیلی "
@@ -85,7 +85,7 @@ const AddEucationLevel = (props: AddEucationLevelProps) => {
             label="سال تحصیلی"
             placeholder="لطفا یک سال را انتخاب نمایید"
             options={
-              educationYearData?.docs?.map((item) => ({
+              educationYearData?.map((item) => ({
                 key: item.id,
                 value: item.data?.title ?? "",
               })) ?? []
@@ -103,4 +103,4 @@ const AddEucationLevel = (props: AddEucationLevelProps) => {
   );
 };
 
-export default AddEucationLevel;
+export default AddEducationLevel;

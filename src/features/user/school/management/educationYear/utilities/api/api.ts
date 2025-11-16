@@ -10,40 +10,40 @@ import {
   postData,
 } from "@schoolify/core/utilities/api/api";
 
-import eucationYearEndpoints from "@schoolify/features/user/school/management/educationYear/utilities/api/endpoints";
-import type ListEucationYearEntity from "@schoolify/features/user/school/management/educationYear/types/api/ListEucationYearEntity";
+import EducationYearEndpoints from "@schoolify/features/user/school/management/educationYear/utilities/api/endpoints";
+import type ListEducationYearEntity from "@schoolify/features/user/school/management/educationYear/types/api/ListEducationYearEntity";
 
-export const addEucationYear = async (data: any) => {
+export const addEducationYear = async (data: any) => {
   return await postData<BaseAddResponseEntity>(
-    eucationYearEndpoints.addEucationYear,
+    EducationYearEndpoints.addEducationYear,
     data
   );
 };
 
-export const updateEucationYear = async (
+export const updateEducationYear = async (
   data: any,
   educationYearId: string
 ) => {
   return await patchData<void>(
-    eucationYearEndpoints.updateEucationYear(educationYearId),
+    EducationYearEndpoints.updateEducationYear(educationYearId),
     data
   );
 };
 
-export const deleteEucationYear = async (educationYearId: string) => {
+export const deleteEducationYear = async (educationYearId: string) => {
   return await deleteData<void>(
-    eucationYearEndpoints.deleteEucationYear,
+    EducationYearEndpoints.deleteEducationYear,
     educationYearId
   );
 };
 
-export const listEucationYear = async (
+export const listEducationYear = async (
   schoolId: string,
   pagination: BaseRequestPaginationParams,
   filters: Record<string, string>
 ) => {
-  return await getListPaginatedData<BaseIdDataEntity<ListEucationYearEntity>>(
-    eucationYearEndpoints.listEucationYear(schoolId),
+  return await getListPaginatedData<BaseIdDataEntity<ListEducationYearEntity>>(
+    EducationYearEndpoints.listEducationYear(schoolId),
     pagination,
     filters
   );

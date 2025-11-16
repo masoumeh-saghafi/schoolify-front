@@ -1,28 +1,28 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { addEucationLevel } from '../utilities/api/api'
-import { listEducationLevelQueryKey } from './useListEducationLevel'
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { addEducationLevel } from "../utilities/api/api";
+import { listEducationLevelQueryKey } from "./useListEducationLevel";
 
-const useAddEucationLevel = () => {
-  const queryClient = useQueryClient()
+const useAddEducationLevel = () => {
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({
       data,
-      educationYearId
+      educationYearId,
     }: {
-      data: any
-      educationYearId: string
-    }) => addEucationLevel(data),
+      data: any;
+      educationYearId: string;
+    }) => addEducationLevel(data),
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
         queryKey: listEducationLevelQueryKey({
-          educationYearId: variables.educationYearId
-        })
-      })
+          educationYearId: variables.educationYearId,
+        }),
+      });
     },
-    onError: error => {}
-  })
-}
+    onError: (error) => {},
+  });
+};
 
-export default useAddEucationLevel
+export default useAddEducationLevel;

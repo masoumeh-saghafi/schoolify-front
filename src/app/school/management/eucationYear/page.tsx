@@ -1,24 +1,23 @@
 // MUI Components
 
-import TabBox from '@schoolify/core/components/common/TabBox'
-import routes from '@schoolify/core/utilities/routes'
-import { tabEucationYearEndpointsData } from '@schoolify/features/user/school/management/educationYear/utilities/data'
-import { useParams } from 'react-router-dom'
+import TabBox from "@schoolify/core/components/common/TabBox";
+import routes from "@schoolify/core/utilities/routes";
+import { tabEducationYearEndpointsData } from "@schoolify/features/user/school/management/educationYear/utilities/data";
+import { useParams } from "react-router-dom";
 
-const SchoolManagementEucationYearPage = () => {
+const SchoolManagementEducationYearPage = () => {
   // Hooks
-  const { schoolId = '' } = useParams()
+  const { schoolId = "" } = useParams();
 
   // Render
   return (
     <>
       <TabBox
         baseUrlPath={routes.school.management.educationYear.index(schoolId)}
-        data={tabEucationYearEndpointsData}
+        data={tabEducationYearEndpointsData}
       />
     </>
-  )
-}
+  );
+};
 
-export default SchoolManagementEucationYearPage
-
+export default SchoolManagementEducationYearPage;

@@ -1,28 +1,28 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { listEducationGradeQueryKey } from './useListEducationGrade'
-import { addEucationGrade } from '../utilities/api/api'
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { listEducationGradeQueryKey } from "./useListEducationGrade";
+import { addEducationGrade } from "../utilities/api/api";
 
-const useAddEucationGrade = () => {
-  const queryClient = useQueryClient()
+const useAddEducationGrade = () => {
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({
       data,
-      educationLevelId
+      educationLevelId,
     }: {
-      data: any
-      educationLevelId: string
-    }) => addEucationGrade(data),
+      data: any;
+      educationLevelId: string;
+    }) => addEducationGrade(data),
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
         queryKey: listEducationGradeQueryKey({
-          educationLevelId: variables.educationLevelId
-        })
-      })
+          educationLevelId: variables.educationLevelId,
+        }),
+      });
     },
-    onError: error => {}
-  })
-}
+    onError: (error) => {},
+  });
+};
 
-export default useAddEucationGrade
+export default useAddEducationGrade;

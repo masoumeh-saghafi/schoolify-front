@@ -1,31 +1,30 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { updateEucationYear } from '../utilities/api/api'
-import { listEducationYearQueryKey } from './useListEducationYear'
-
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { updateEducationYear } from "../utilities/api/api";
+import { listEducationYearQueryKey } from "./useListEducationYear";
 
 const useUpdateEducationYear = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({
       data,
       educationYearId,
-      schoolId
+      schoolId,
     }: {
-      data: any
-      educationYearId: string
-      schoolId: string
-    }) => updateEucationYear(data, educationYearId),
+      data: any;
+      educationYearId: string;
+      schoolId: string;
+    }) => updateEducationYear(data, educationYearId),
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
-        queryKey: listEducationYearQueryKey({ schoolId: variables.schoolId })
-      })
+        queryKey: listEducationYearQueryKey({ schoolId: variables.schoolId }),
+      });
     },
-    onError: error => {
+    onError: (error) => {
       //logError(`Error Updating Student: ${error}`);
-    }
-  })
-}
+    },
+  });
+};
 
-export default useUpdateEducationYear
+export default useUpdateEducationYear;

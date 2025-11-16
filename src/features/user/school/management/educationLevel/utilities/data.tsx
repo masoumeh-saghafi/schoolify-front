@@ -1,16 +1,16 @@
 import type { TabBoxDataProps } from "@schoolify/core/components/common/TabBox";
-import AddEucationLevel from "../components/AddEducationLevel";
-import ListEucationLevel from "../components/ListEducationYear";
+import AddEducationLevel from "../components/AddEducationLevel";
+import ListEducationLevel from "../components/ListEducationLevel";
 
-export const tabEucationLevelEndpointsData: TabBoxDataProps[] = [
+export const tabEducationLevelEndpointsData: TabBoxDataProps[] = [
   {
     label: " افزودن ",
-      key: "create",
-    children: <AddEucationLevel />,
+    key: "create",
+    children: <AddEducationLevel />,
   },
   {
     label: " لیست  ",
     key: "list",
-    children: <ListEucationLevel />,
+    children: <ListEducationLevel />,
   },
 ];

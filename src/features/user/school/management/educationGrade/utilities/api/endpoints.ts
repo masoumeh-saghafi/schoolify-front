@@ -1,12 +1,12 @@
- const eucationGradeEndpoints = {
-  addEucationGrade: '/education-grades',
-  updateEucationGrade: (educationGradeId: string) =>
+const EducationGradeEndpoints = {
+  addEducationGrade: "/education-grades",
+  updateEducationGrade: (educationGradeId: string) =>
     `/education-grade/${educationGradeId}`,
-  deleteEucationGrade: '/education-grades',
-  listEucationGrade: (educationLevelId: string) =>
+  deleteEducationGrade: "/education-grades",
+  listEducationGrade: (educationLevelId: string) =>
     `/education-levels/${educationLevelId}/education-grades`,
   listSummaryEducationLevel: (educationYearId: string) =>
-    `/education-years/${educationYearId}/education-levels/summary`
-}
+    `/education-years/${educationYearId}/education-levels/summary`,
+};
 
-export default eucationGradeEndpoints
+export default EducationGradeEndpoints;

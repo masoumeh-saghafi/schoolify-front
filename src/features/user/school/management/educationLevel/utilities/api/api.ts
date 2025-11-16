@@ -6,50 +6,51 @@ import type {
 import {
   deleteData,
   getListPaginatedData,
+  getListSummaryData,
   patchData,
   postData,
 } from "@schoolify/core/utilities/api/api";
-import eucationLevelEndpoints from "./endpoints";
-import type ListEducationLevelEntity from "../../types/api/ListEucationLevelEntity";
+import EducationLevelEndpoints from "./endpoints";
+import type ListEducationLevelEntity from "../../types/api/ListEducationLevelEntity";
 
-export const addEucationLevel = async (data: any) => {
+export const addEducationLevel = async (data: any) => {
   return await postData<BaseAddResponseEntity>(
-    eucationLevelEndpoints.addEucationLevel,
+    EducationLevelEndpoints.addEducationLevel,
     data
   );
 };
 
-export const updateEucationLevel = async (
+export const updateEducationLevel = async (
   data: any,
   educationLevelId: string
 ) => {
   return await patchData<void>(
-    eucationLevelEndpoints.updateEucationLevel(educationLevelId),
+    EducationLevelEndpoints.updateEducationLevel(educationLevelId),
     data
   );
 };
 
 export const deleteEducationLevel = async (educationLevelId: string) => {
   return await deleteData<void>(
-    eucationLevelEndpoints.deleteEucationLevel,
+    EducationLevelEndpoints.deleteEducationLevel,
     educationLevelId
   );
 };
 
-export const listEucationLevel = async (
+export const listEducationLevel = async (
   educationYearId: string,
   pagination: BaseRequestPaginationParams,
   filters: Record<string, string>
 ) => {
   return await getListPaginatedData<BaseIdDataEntity<ListEducationLevelEntity>>(
-    eucationLevelEndpoints.listEucationLevel(educationYearId),
+    EducationLevelEndpoints.listEducationLevel(educationYearId),
     pagination,
     filters
   );
 };
 
 export const listSummaryEducationYear = async (schoolId: string) => {
-  return await getListPaginatedData<BaseIdDataEntity<ListEducationLevelEntity>>(
-    eucationLevelEndpoints.listSummaryEducationYear(schoolId)
+  return await getListSummaryData<BaseIdDataEntity<ListEducationLevelEntity>>(
+    EducationLevelEndpoints.listSummaryEducationYear(schoolId)
   );
 };

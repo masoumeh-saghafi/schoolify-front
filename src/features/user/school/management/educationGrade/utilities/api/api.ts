@@ -10,39 +10,39 @@ import {
   postData,
 } from "@schoolify/core/utilities/api/api";
 import type ListSummaryEducationLevelEntity from "../../types/api/ListSummaryEducationLevelEntity";
-import type ListEducationGradeEntity from "../../types/api/ListEucationGradeEntity";
-import eucationGradeEndpoints from "./endpoints";
-export const addEucationGrade = async (data: any) => {
+import type ListEducationGradeEntity from "../../types/api/ListEducationGradeEntity";
+import EducationGradeEndpoints from "./endpoints";
+export const addEducationGrade = async (data: any) => {
   return await postData<BaseAddResponseEntity>(
-    eucationGradeEndpoints.addEucationGrade,
+    EducationGradeEndpoints.addEducationGrade,
     data
   );
 };
 
-export const updateEucationGrade = async (
+export const updateEducationGrade = async (
   data: any,
   educationGradeId: string
 ) => {
   return await patchData<void>(
-    eucationGradeEndpoints.updateEucationGrade(educationGradeId),
+    EducationGradeEndpoints.updateEducationGrade(educationGradeId),
     data
   );
 };
 
 export const deleteEducationGrade = async (educationGradeId: string) => {
   return await deleteData<void>(
-    eucationGradeEndpoints.deleteEucationGrade,
+    EducationGradeEndpoints.deleteEducationGrade,
     educationGradeId
   );
 };
 
-export const listEucationGrade = async (
+export const listEducationGrade = async (
   educationYearId: string,
   pagination: BaseRequestPaginationParams,
   filters: Record<string, string>
 ) => {
   return await getListPaginatedData<BaseIdDataEntity<ListEducationGradeEntity>>(
-    eucationGradeEndpoints.listEucationGrade(educationYearId),
+    EducationGradeEndpoints.listEducationGrade(educationYearId),
     pagination,
     filters
   );
@@ -51,5 +51,5 @@ export const listEucationGrade = async (
 export const listSummaryEducationLevel = async (schoolId: string) => {
   return await getListPaginatedData<
     BaseIdDataEntity<ListSummaryEducationLevelEntity>[]
-  >(eucationGradeEndpoints.listSummaryEducationLevel(schoolId));
+  >(EducationGradeEndpoints.listSummaryEducationLevel(schoolId));
 };

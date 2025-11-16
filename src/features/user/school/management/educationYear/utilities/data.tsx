@@ -1,12 +1,12 @@
 import type { TabBoxDataProps } from "@schoolify/core/components/common/TabBox";
-import AddEucationYear from "../components/AddEducationYear";
+import AddEducationYear from "../components/AddEducationYear";
 import ListEducationYear from "../components/ListEducationYear";
 
-export const tabEucationYearEndpointsData: TabBoxDataProps[] = [
+export const tabEducationYearEndpointsData: TabBoxDataProps[] = [
   {
     label: " افزودن ",
-      key: "create",
-    children: <AddEucationYear />,
+    key: "create",
+    children: <AddEducationYear />,
   },
   {
     label: " لیست  ",

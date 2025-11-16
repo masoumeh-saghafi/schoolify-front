@@ -1,34 +1,38 @@
-import type { GridColDef } from '@mui/x-data-grid/models/colDef'
-import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
-import FormattedDate from '@schoolify/core/components/common/FormattedDate'
-import type ListEducationLevelEntity from '../types/api/ListEucationLevelEntity'
-export const listEucationLevelData: GridColDef<
+import type { GridColDef } from "@mui/x-data-grid/models/colDef";
+import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
+import FormattedDate from "@schoolify/core/components/common/FormattedDate";
+import type ListEducationLevelEntity from "../types/api/ListEducationLevelEntity";
+export const listEducationLevelData: GridColDef<
   BaseIdDataEntity<ListEducationLevelEntity>
 >[] = [
   {
-    field: 'title',
+    field: "title",
     resizable: false,
-    headerName: 'مقطع تحصیلی',
+    headerName: "مقطع تحصیلی",
     width: 150,
     editable: true,
-    valueGetter: (_, row) => row.data?.title
+    valueGetter: (_, row) => row.data?.title,
   },
   {
-    field: 'createDate',
+    field: "createDate",
     resizable: false,
-    headerName: 'ثبت  ',
+    headerName: "ثبت  ",
     width: 150,
     editable: false,
     filterable: false,
-    renderCell: params => <FormattedDate date={params.row.data?.createDate} />
+    renderCell: (params) => (
+      <FormattedDate date={params.row.data?.createDate} />
+    ),
   },
   {
-    field: 'updateDate',
+    field: "updateDate",
     resizable: false,
-    headerName: '  بروزرسانی',
+    headerName: "  بروزرسانی",
     width: 150,
     editable: false,
     filterable: false,
-    renderCell: params => <FormattedDate date={params.row.data?.updateDate} />
-  }
-]
+    renderCell: (params) => (
+      <FormattedDate date={params.row.data?.updateDate} />
+    ),
+  },
+];

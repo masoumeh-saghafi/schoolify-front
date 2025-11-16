@@ -2,7 +2,7 @@ import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api
 
 import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
-import { listEucationGrade } from "../utilities/api/api";
+import { listEducationGrade } from "../utilities/api/api";
 
 interface useListEducationGradeProps {
   educationLevelId: string;
@@ -11,15 +11,18 @@ interface useListEducationGradeProps {
 }
 
 export const listEducationGradeQueryKey = (props: useListEducationGradeProps) =>
-  ["listEducationGrade", props.educationLevelId, props.pagination, props.filters].filter(
-    (item) => !!item
-  );
+  [
+    "listEducationGrade",
+    props.educationLevelId,
+    props.pagination,
+    props.filters,
+  ].filter((item) => !!item);
 
 const useListEducationGrade = (props: useListEducationGradeProps) => {
   return useQuery({
     queryKey: listEducationGradeQueryKey(props),
     queryFn: ({ queryKey }) =>
-      listEucationGrade(
+      listEducationGrade(
         queryKey[1] as string,
         queryKey[2] as BaseRequestPaginationParams,
         queryKey[3] as Record<string, string>

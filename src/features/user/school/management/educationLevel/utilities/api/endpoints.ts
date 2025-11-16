@@ -1,12 +1,12 @@
-const eucationLevelEndpoints = {
-  addEucationLevel: '/education-levels',
-  updateEucationLevel: (educationLevelId: string) =>
+const EducationLevelEndpoints = {
+  addEducationLevel: "/education-levels",
+  updateEducationLevel: (educationLevelId: string) =>
     `/education-levels/${educationLevelId}`,
-  deleteEucationLevel: '/education-levels',
-  listEucationLevel: (educationYearId: string) =>
+  deleteEducationLevel: "/education-levels",
+  listEducationLevel: (educationYearId: string) =>
     `/education-years/${educationYearId}/education-levels`,
   listSummaryEducationYear: (schoolId: string) =>
-    `/schools/${schoolId}/education-years/summary`
-}
+    `/schools/${schoolId}/education-years/summary`,
+};
 
-export default eucationLevelEndpoints
+export default EducationLevelEndpoints;
