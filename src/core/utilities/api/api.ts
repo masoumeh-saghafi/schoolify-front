@@ -135,6 +135,18 @@ export async function getListPaginatedData<T>(
   );
 }
 
+export async function getListSummaryData<T>(
+  endpoint: string,
+  filters?: Record<string, string>
+): Promise<BaseResponseEntity<T[]>> {
+  const filterParams = new URLSearchParams(filters).toString();
+
+  return request<T[]>(`${BASE_URL}${endpoint}?${filterParams}`, {
+    method: "GET",
+    headers: getHeaders(),
+  });
+}
+
 export async function getData<T>(
   endpoint: string
 ): Promise<BaseResponseEntity<T>> {
