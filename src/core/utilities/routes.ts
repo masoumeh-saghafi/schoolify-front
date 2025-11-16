@@ -28,6 +28,34 @@ const routes = {
           routes.school.management.baseUrl.replace(':schoolId', schoolId) +
           '/' +
           routes.school.management.educationYear.url
+      },
+      educationLevel: {
+        url: 'education-levels',
+        index: (schoolId: string) =>
+          routes.school.management.baseUrl.replace(':schoolId', schoolId) +
+          '/' +
+          routes.school.management.educationLevel.url
+      },
+      educationGrade: {
+        url: 'education-grades',
+        index: (schoolId: string) =>
+          routes.school.management.baseUrl.replace(':schoolId', schoolId) +
+          '/' +
+          routes.school.management.educationGrade.url
+      },
+      classes: {
+        url: 'classes',
+        index: (schoolId: string) =>
+          routes.school.management.baseUrl.replace(':schoolId', schoolId) +
+          '/' +
+          routes.school.management.classes.url
+      },
+      classStudents: {
+        url: 'classes-students',
+        index: (schoolId: string) =>
+          routes.school.management.baseUrl.replace(':schoolId', schoolId) +
+          '/' +
+          routes.school.management.classStudents.url
       }
     }
   }

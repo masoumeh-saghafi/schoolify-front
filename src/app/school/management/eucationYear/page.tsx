@@ -2,7 +2,7 @@
 
 import TabBox from '@schoolify/core/components/common/TabBox'
 import routes from '@schoolify/core/utilities/routes'
-import { tabEucationYearEndpointsData } from '@schoolify/features/user/school/management/educationYears/utilities/data'
+import { tabEucationYearEndpointsData } from '@schoolify/features/user/school/management/educationYear/utilities/data'
 import { useParams } from 'react-router-dom'
 
 const SchoolManagementEucationYearPage = () => {

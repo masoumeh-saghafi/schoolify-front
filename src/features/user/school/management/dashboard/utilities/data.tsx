@@ -24,5 +24,22 @@ export const schoolManagementSidebarData = (
     title: "سال تحصیلی ",
     link: routes.school.management.educationYear.index(schoolId),
     // icon: <SettingIcon />,
+    },
+    {
+    key: 'educationLevel',
+    title: "مقطع تحصیلی ",
+    link: routes.school.management.educationLevel.index(schoolId),
+    // icon: <SettingIcon />,
+    },
+      {
+    key: 'educationGrade',
+    title: "پایه تحصیلی ",
+    link: routes.school.management.educationGrade.index(schoolId),
+    // icon: <SettingIcon />,
+  },  {
+    key: 'classes',
+    title: "کلاس",
+    link: routes.school.management.classes.index(schoolId),
+    // icon: <SettingIcon />,
   },
 ];

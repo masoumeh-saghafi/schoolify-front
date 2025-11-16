@@ -11,6 +11,10 @@ import SchoolManagementLayout from "@schoolify/app/school/management/layout";
 import SchoolManagementInformationPage from "@schoolify/app/school/management/information/page";
 import SchoolManagementStudentPage from "@schoolify/app/school/management/students/page";
 import SchoolManagementEucationYearPage from "@schoolify/app/school/management/eucationYear/page";
+import SchoolManagementEucationLevelPage from "./school/management/eucationLevel/page";
+import SchoolManagementEucationGradePage from "./school/management/eucationGrade/page";
+import SchoolManagementClassPage from "./school/management/class/page";
+import SchoolManagementClassStudentsPage from "./school/management/classStudents/page";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +69,21 @@ const router = createBrowserRouter([
         path: routes.school.management.educationYear.url,
         element: <SchoolManagementEucationYearPage />,
       },
+         {
+        path: routes.school.management.educationLevel.url,
+        element: <SchoolManagementEucationLevelPage />
+      },  {
+        path: routes.school.management.educationGrade.url,
+        element: <SchoolManagementEucationGradePage />
+      },
+          {
+        path: routes.school.management.classes.url,
+        element: <SchoolManagementClassPage />
+      },
+            {
+        path: routes.school.management.classStudents.url,
+        element: <SchoolManagementClassStudentsPage />
+      }
     ],
   },
 ]);
