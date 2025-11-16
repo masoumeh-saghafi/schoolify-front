@@ -10,11 +10,11 @@ import PaymentGatewayPage from "@schoolify/app/gateway/page";
 import SchoolManagementLayout from "@schoolify/app/school/management/layout";
 import SchoolManagementInformationPage from "@schoolify/app/school/management/information/page";
 import SchoolManagementStudentPage from "@schoolify/app/school/management/students/page";
-import SchoolManagementEducationYearPage from "@schoolify/app/school/management/EducationYear/page";
-import SchoolManagementEducationLevelPage from "./school/management/EducationLevel/page";
-import SchoolManagementEducationGradePage from "./school/management/EducationGrade/page";
 import SchoolManagementClassPage from "./school/management/class/page";
 import SchoolManagementClassStudentsPage from "./school/management/classStudents/page";
+import SchoolManagementEducationYearPage from "./school/management/eucationYear/page";
+import SchoolManagementEducationLevelPage from "./school/management/eucationLevel/page";
+import SchoolManagementEducationGradePage from "./school/management/eucationGrade/page";
 
 const router = createBrowserRouter([
   {

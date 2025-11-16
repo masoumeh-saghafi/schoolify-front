@@ -13,6 +13,11 @@ import useDeleteEducationLevel from "../hooks/useDeleteEducationLevel";
 import useUpdateEducationLevel from "../hooks/useUpdateEducationLevel";
 import { useState } from "react";
 import { listEducationLevelData } from "../utilities/listEducationLevelData";
+import ControlledAutocomplete from "@schoolify/core/components/common/ControlledAutocomplete";
+import Autocomplete from "@schoolify/core/components/base/inputs/Autocomplete";
+import TextField from "@schoolify/core/components/base/inputs/TextField";
+import useListSummaryEducationYear from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationYears";
+import { useParams } from "react-router-dom";
 
 // Custom Types
 // interface ListStudentProps {}
@@ -20,10 +25,11 @@ import { listEducationLevelData } from "../utilities/listEducationLevelData";
 const ListEducationLevel = () => {
   // Props
   // const {} = props;
-  const [educationYearId] = useState("");
+  const [educationYearId, setEducationYearId] = useState("");
 
   // Hooks
-  // const { schoolId = '' } = useParams()
+  const { schoolId = "" } = useParams();
+  const { data: educationYearData } = useListSummaryEducationYear(schoolId);
 
   const {
     filters,
@@ -64,6 +70,33 @@ const ListEducationLevel = () => {
   // Render
   return (
     <ContentBox label="لیست مقطع های تحصیلی ">
+      <Autocomplete
+        size="small"
+        options={educationYearData ?? []}
+        getOptionLabel={(option) => option.data?.title ?? ""}
+        loading={isLoading}
+        onChange={(_, value) => setEducationYearId(value?.id ?? "")}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="سال تحصیلی "
+            placeholder=" لطفا یک سال را انتخاب نمایید"
+            slotProps={{
+              inputLabel: {
+                shrink: true,
+              },
+            }}
+          />
+        )}
+        slotProps={{
+          listbox: {
+            sx: {
+              fontSize: "0.75rem",
+            },
+          },
+        }}
+      />
+
       <TableDataGrid
         data={data}
         isLoading={isLoading}
