@@ -5,13 +5,13 @@ import ms from "ms";
 import { listClass } from "../utilities/api/api";
 
 interface useListClassProps {
-  educationYearId: string;
+  educationGradeId: string;
   pagination?: BaseRequestPaginationParams;
   filters?: Record<string, string>;
 }
 
 export const listClassQueryKey = (props: useListClassProps) =>
-  ["listClass", props.educationYearId, props.pagination, props.filters].filter(
+  ["listClass", props.educationGradeId, props.pagination, props.filters].filter(
     (item) => !!item
   );
 
@@ -31,6 +31,7 @@ const useListClass = (props: useListClassProps) => {
     retry: 2,
     retryDelay: 1000,
     select: (data) => data.data,
+    enabled: !!props.educationGradeId,
   });
 };
 

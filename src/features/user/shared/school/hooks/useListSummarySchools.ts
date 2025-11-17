@@ -8,14 +8,14 @@ const useListSummarySchools = (ignoreFetchData: boolean = false) => {
   return useQuery({
     queryKey: listSummarySchoolsQueryKey,
 
-    queryFn: () =>
-      !ignoreFetchData ? listSummarySchools() : Promise.resolve(null),
+    queryFn: () => listSummarySchools(),
 
     staleTime: ms("1h"),
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,
     retryDelay: 1000,
     select: (data) => data?.data,
+    enabled: !ignoreFetchData,
   });
 };
 

@@ -31,6 +31,7 @@ const useListEducationYear = (props: useListEducationYearProps) => {
     retry: 2,
     retryDelay: 1000,
     select: (data) => data.data,
+    enabled: !!props.schoolId,
   });
 };
 

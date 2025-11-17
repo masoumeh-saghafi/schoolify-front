@@ -34,6 +34,7 @@ const useListEducationLevel = (props: useListEducationLevelProps) => {
     retry: 2,
     retryDelay: 1000,
     select: (data) => data.data,
+    enabled: !!props.educationYearId,
   });
 };
 
