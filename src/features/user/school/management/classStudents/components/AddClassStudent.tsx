@@ -22,7 +22,7 @@ import SubmitButton from "@schoolify/core/components/common/SubmitButton";
 import { validationSchema } from "../validation/classValid";
 import useListSummaryEducationYear from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationYears";
 import useListSummaryEducationLevel from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationLevel";
-import useListSummaryEducationGrade from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationLevel copy";
+import useListSummaryEducationGrade from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationGrade";
 import useAddClass from "../hooks/useAddClassStudent";
 
 type SchemaProps = z.infer<typeof validationSchema>;

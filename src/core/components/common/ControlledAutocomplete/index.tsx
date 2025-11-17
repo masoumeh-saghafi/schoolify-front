@@ -31,7 +31,6 @@ interface ControlledAutocompleteProps<T extends FieldValues> {
 const ControlledAutocomplete = <T extends FieldValues>(
   props: ControlledAutocompleteProps<T>
 ) => {
-
   // Props
   const {
     control,
@@ -66,6 +65,11 @@ const ControlledAutocomplete = <T extends FieldValues>(
                 placeholder={placeholder}
                 error={!!fieldState.error}
                 helperText={fieldState.error?.message ?? ''}
+                slotProps={{
+                  inputLabel: {
+                    shrink: true
+                  }
+                }}
               />
             )}
             slotProps={{

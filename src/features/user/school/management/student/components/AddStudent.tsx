@@ -18,11 +18,12 @@ import useAddStudent from '@schoolify/features/user/school/management/student/ho
 
 // React Type
 import { useParams } from 'react-router-dom'
-import { Controller, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 //Type Definitions
 import { zodResolver } from '@hookform/resolvers/zod'
 import type z from 'zod'
+import ControlledHiddenInput from '@schoolify/core/components/common/ControlledHiddenInput'
 
 type SchemaProps = z.infer<typeof validationSchema>
 
@@ -40,7 +41,16 @@ const AddStudent = (props: AddStudentProps) => {
     formState: { isValid, isDirty }
   } = useForm<SchemaProps>({
     resolver: zodResolver(validationSchema),
-    mode: 'onChange'
+    mode: 'onChange',
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      fatherName: '',
+      parentPhoneNumber: '',
+      identityCode: '',
+       identityType: '',
+      schoolId: schoolId ?? ''
+    }
   })
 
   const { mutateAsync: addStudent } = useAddStudent()
@@ -59,7 +69,7 @@ const AddStudent = (props: AddStudentProps) => {
         onSubmit={handleSubmit(handleAddStudent)}
         component='form'
       >
-        <Grid container spacing={2}>
+        <Grid container spacing={2.5}>
           {addStudentData.map(field => (
             <ControlledGridTextField
               key={field.name}
@@ -75,16 +85,12 @@ const AddStudent = (props: AddStudentProps) => {
             label='ملیت'
             placeholder='لطفا یک مورد را انتخاب نمایید'
             options={identityTypeOptions}
-            size='small'
+            
+          
           />
 
-          {/* Hidden input for schoolId */}
-          <Controller
-            name='schoolId'
-            control={control}
-            defaultValue={schoolId}
-            render={({ field }) => <input type='hidden' {...field} />}
-          />
+               {/* Hidden input for schoolId */}
+          <ControlledHiddenInput control={control} name='schoolId' />
 
           <Grid size={{ xs: 12, sm: 6 }}>
             <SubmitButton isValid={isValid} isDirty={isDirty}>

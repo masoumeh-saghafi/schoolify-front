@@ -1,18 +1,19 @@
 // Core Components
-import ContentBox from "@schoolify/core/components/common/ContentBox";
-import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
-import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
-import { useState } from "react";
-import useListEducationGrade from "../hooks/useListEducationGrade";
-import useUpdateEducationGrade from "../hooks/useUpdateEducationGrade";
-import useDeleteEducationGrade from "../hooks/useDeleteEducationGrade";
-import { listEducationGradeData } from "../utilities/listEducationLGradeData";
-import useListSummaryEducationYears from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationYears";
-import useListSummaryEducationLevel from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationLevel";
-import { useParams } from "react-router-dom";
-import useListSummaryEducationYear from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationYears";
-import Autocomplete from "@schoolify/core/components/base/inputs/Autocomplete";
-import TextField from "@schoolify/core/components/base/inputs/TextField";
+import ContentBox from '@schoolify/core/components/common/ContentBox'
+import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
+import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGridState'
+import { useState } from 'react'
+import useListEducationGrade from '../hooks/useListEducationGrade'
+import useUpdateEducationGrade from '../hooks/useUpdateEducationGrade'
+import useDeleteEducationGrade from '../hooks/useDeleteEducationGrade'
+import { listEducationGradeData } from '../utilities/listEducationLGradeData'
+import useListSummaryEducationLevel from '@schoolify/features/user/shared/school/hooks/useListSummaryEducationLevel'
+import { useParams } from 'react-router-dom'
+import useListSummaryEducationYear from '@schoolify/features/user/shared/school/hooks/useListSummaryEducationYears'
+import AutocompleteSelect from '@schoolify/core/components/common/AutocompleteSelect'
+import useMapToOptions from '@schoolify/core/hooks/common/useMapToOptions'
+import Grid from '@schoolify/core/components/base/inputs/Grid'
+import { addEducationLGradeData } from '../utilities/addEducationLGradeData'
 
 // Feature Components
 
@@ -26,107 +27,87 @@ import TextField from "@schoolify/core/components/base/inputs/TextField";
 const ListEducationGrade = () => {
   // Props
   // const {} = props;
-  const [educationYearId, setEducationYearId] = useState("");
-  const [educationLevelId, setEducationLevelId] = useState("");
+  const [educationYearId, setEducationYearId] = useState('')
+  const [educationLevelId, setEducationLevelId] = useState('')
 
   // Hooks
-  const { schoolId = "" } = useParams();
-  const { data: educationYearData } = useListSummaryEducationYear(schoolId);
+  const { schoolId = '' } = useParams()
+  const { data: educationYearData } = useListSummaryEducationYear(schoolId)
   const { data: educationLevelData } =
-    useListSummaryEducationLevel(educationYearId);
+    useListSummaryEducationLevel(educationYearId)
 
   const {
     filters,
     paginationData: pagination,
     handleFilterChange,
     handlePaginationModelChange,
-    handleSortModelChange,
-  } = useTableDataGridState();
+    handleSortModelChange
+  } = useTableDataGridState()
 
   const { data, isLoading } = useListEducationGrade({
     educationLevelId,
     pagination,
-    filters,
-  });
+    filters
+  })
 
-  const { mutateAsync: updateEducationGrade } = useUpdateEducationGrade();
-  const { mutateAsync: deleteEducationGrade } = useDeleteEducationGrade();
+  const { mutateAsync: updateEducationGrade } = useUpdateEducationGrade()
+  const { mutateAsync: deleteEducationGrade } = useDeleteEducationGrade()
+
+  const educationYearOptions = useMapToOptions(educationYearData)
+  const educationLevelOptions = useMapToOptions(educationLevelData)
+
+  const fieldStateMap = {
+    educationYearId: {
+      value: educationYearId,
+      set: setEducationYearId,
+      options: educationYearOptions
+    },
+    educationLevelId: {
+      value: educationLevelId,
+      set: setEducationLevelId,
+      options: educationLevelOptions
+    }
+  } as const
 
   // Helpers
-  const columns = listEducationGradeData;
+  const columns = listEducationGradeData
 
   // Handlers
   const handleUpdateEducationGrade = async (id: string, updatedFields: any) => {
     await updateEducationGrade({
       data: updatedFields,
       educationGradeId: id,
-      educationLevelId: educationLevelId,
-    });
-  };
+      educationLevelId: educationLevelId
+    })
+  }
 
   const handleDeleteEducationGrade = async (id: string, row: any) => {
     await deleteEducationGrade({
       educationGradeId: id,
-      educationLevelId: educationLevelId,
-    });
-  };
+      educationLevelId: educationLevelId
+    })
+  }
 
   // Render
   return (
-    <ContentBox label="لیست مقطع های تحصیلی ">
-      <Autocomplete
-        size="small"
-        options={educationYearData ?? []}
-        getOptionLabel={(option) => option.data?.title ?? ""}
-        loading={isLoading}
-        onChange={(_, value) => setEducationYearId(value?.id ?? "")}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="سال تحصیلی "
-            placeholder=" لطفا یک سال را انتخاب نمایید"
-            slotProps={{
-              inputLabel: {
-                shrink: true,
-              },
-            }}
-          />
-        )}
-        slotProps={{
-          listbox: {
-            sx: {
-              fontSize: "0.75rem",
-            },
-          },
-        }}
-      />
-
-      <Autocomplete
-        size="small"
-        options={educationLevelData ?? []}
-        getOptionLabel={(option) => option.data?.title ?? ""}
-        loading={isLoading}
-        onChange={(_, value) => setEducationLevelId(value?.id ?? "")}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="سال تحصیلی "
-            placeholder=" لطفا یک سال را انتخاب نمایید"
-            slotProps={{
-              inputLabel: {
-                shrink: true,
-              },
-            }}
-          />
-        )}
-        slotProps={{
-          listbox: {
-            sx: {
-              fontSize: "0.75rem",
-            },
-          },
-        }}
-      />
+    <ContentBox label='لیست مقطع های تحصیلی '>
+      <Grid container spacing={2} sx={{ mb: 2 }}>
+        {addEducationLGradeData.map(field => {
+          const { value, set, options } =
+            fieldStateMap[field.name as keyof typeof fieldStateMap]
+          return (
+            <AutocompleteSelect
+              key={field.name}
+              label={field.label}
+              placeholder={`لطفا ${field.label.toLowerCase()} را انتخاب نمایید`}
+              value={value}
+              onChange={set}
+              options={options}
+              loading={isLoading}
+            />
+          )
+        })}
+      </Grid>
 
       <TableDataGrid
         data={data}
@@ -137,11 +118,9 @@ const ListEducationGrade = () => {
         onFilterChange={handleFilterChange}
         onUpdateRow={handleUpdateEducationGrade}
         onDeleteRow={handleDeleteEducationGrade}
-        onDeleteRowGetTitle={(row) =>
-          `${row.data.firstName} ${row.data.lastName}`
-        }
+        onDeleteRowGetTitle={row => `${row.data.title}`}
       />
     </ContentBox>
-  );
-};
-export default ListEducationGrade;
+  )
+}
+export default ListEducationGrade

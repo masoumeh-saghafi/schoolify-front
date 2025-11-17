@@ -25,7 +25,12 @@ export const validationSchema = z
       .regex(phoneValidation, {
         message: 'شماره تلفن وارد شده صحیح نمی باشد'
       }),
-    identityType: z.enum(['iranian', 'foreigner']),
+    identityType: z
+      .string()
+      .min(1, 'لطفا ملیت را انتخاب کنید')
+      .refine(val => ['iranian', 'foreigner'].includes(val), {
+        message: 'ملیت انتخاب شده معتبر نیست'
+      }),
     identityCode: z.string()
   })
   .refine(
