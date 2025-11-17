@@ -17,7 +17,7 @@ const useAddClass = () => {
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
         queryKey: listClassQueryKey({
-          educationYearId: variables.educationGradeId,
+          educationGradeId: variables.educationGradeId,
         }),
       });
     },
