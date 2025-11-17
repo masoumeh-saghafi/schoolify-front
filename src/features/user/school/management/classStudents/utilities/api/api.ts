@@ -11,9 +11,9 @@ import type ListSummaryEducationGradeEntity from "../../types/api/listSummaryCla
 import classStudentsEndpoints from "./endpoints";
 import type listSummaryClassesEntity from "../../types/api/listSummaryClassesEntity";
 
-export const addClassStudent = async (data: any, classeId: string) => {
+export const addClassStudent = async (data: any, classId: string) => {
   return await postData<BaseAddResponseEntity>(
-    classStudentsEndpoints.addClasseStudent(classeId),
+    classStudentsEndpoints.addClasseStudent(classId),
     data
   );
 };

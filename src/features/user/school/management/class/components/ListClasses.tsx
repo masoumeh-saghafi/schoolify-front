@@ -85,7 +85,7 @@ const ListClasses = () => {
   const handleUpdateClass = async (id: string, updatedFields: any) => {
     await updateClass({
       data: updatedFields,
-      classeId: id,
+      classId: id,
       educationGradeId: educationGradeId,
     });
   };

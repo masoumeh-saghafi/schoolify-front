@@ -24,6 +24,8 @@ import useListSummaryEducationYear from "@schoolify/features/user/shared/school/
 import useListSummaryEducationLevel from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationLevel";
 import useListSummaryEducationGrade from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationGrade";
 import useAddClass from "../hooks/useAddClassStudent";
+import useListSummaryClass from "@schoolify/features/user/shared/school/hooks/useListSummaryClass";
+import { addClassStudent } from "../utilities/api/api";
 
 type SchemaProps = z.infer<typeof validationSchema>;
 
@@ -46,6 +48,7 @@ const AddClassStudent = (props: AddClassStudentProps) => {
       educationYearId: "",
       educationLevelId: "",
       educationGradeId: "",
+      classId: "",
       title: "",
     },
   });
@@ -57,15 +60,19 @@ const AddClassStudent = (props: AddClassStudentProps) => {
     control,
     name: "educationLevelId",
   });
+  const selectedEducationGradeId = useWatch({
+    control,
+    name: "educationGradeId",
+  });
 
   const { data: educationYearData } = useListSummaryEducationYear(schoolId);
   const { data: educationLevelsData } = useListSummaryEducationLevel(
     selectedEducationYearId
   );
-
   const { data: educationGradesData } = useListSummaryEducationGrade(
     selectedEducationLevelId
   );
+  const { data: classesData } = useListSummaryClass(selectedEducationGradeId);
 
   const { mutateAsync: addClass } = useAddClass();
   // const options = (educationYearData ??
@@ -79,12 +86,12 @@ const AddClassStudent = (props: AddClassStudentProps) => {
 
   // Handlers
   const handleAddClass = async (data: SchemaProps) => {
-    const result = await addClass({
-      data: data,
-      educationYearId: data.educationYearId,
-      // eeducationLevelId:data.educationLevelId,
-      // educationGradeId: data.educationGradeId
-    });
+    const result = await addClassStudent(
+      //{
+      data,
+      data.classId
+      //}
+    );
     if (result.isSuccess)
       reset(
         { title: "" },

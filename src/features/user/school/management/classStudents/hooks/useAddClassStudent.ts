@@ -1,30 +1,25 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { listClassQueryKey } from './useListClass'
-import { addClass, addClassStudent } from '../utilities/api/api'
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { listClassQueryKey } from "./useListClass";
+import { addClassStudent } from "../utilities/api/api";
 
-const useAddClass = () => {
-  const queryClient = useQueryClient()
+const useAddStudentClass = () => {
+  const queryClient = useQueryClient();
 
   return useMutation({
-      mutationFn: ({
-      classId,
-      educationGradeId
-    }: {
-      classId: string
-      educationGradeId: string
-    }) => addClassStudent(classId),
+    mutationFn: ({ data, classId }: { data: any; classId: string }) =>
+      addClassStudent(data,classId),
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
         queryKey: listClassQueryKey({
-          educationYearId: variables.educationGradeId
-        })
-      })
+          : variables.educationGradeId,
+        }),
+      });
     },
-    onError: error => {
+    onError: (error) => {
       //logError(`Error Updating Student: ${error}`);
-    }
-  })
-}
+    },
+  });
+};
 
-export default useAddClass
+export default useAddClass;

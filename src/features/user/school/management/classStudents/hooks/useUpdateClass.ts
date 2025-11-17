@@ -1,34 +1,32 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { updateClass } from '../utilities/api/api'
-import { listClassQueryKey } from './useListClass'
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { updateClass } from "../utilities/api/api";
+import { listClassQueryKey } from "./useListClass";
 
 const useUpdateClass = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({
       data,
-     classeId,
-      educationGradeId
-
-
+      classId,
+      educationGradeId,
     }: {
-      data: any
-     classeId: string
-      educationGradeId: string
-    }) => updateClass(data,classeId),
+      data: any;
+      classId: string;
+      educationGradeId: string;
+    }) => updateClass(data, classId),
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
         queryKey: listClassQueryKey({
-       educationYearId:variables.educationGradeId
-        })
-      })
+          educationYearId: variables.educationGradeId,
+        }),
+      });
     },
-    onError: error => {
+    onError: (error) => {
       //logError(`Error Updating Student: ${error}`);
-    }
-  })
-}
+    },
+  });
+};
 
-export default useUpdateClass
+export default useUpdateClass;
