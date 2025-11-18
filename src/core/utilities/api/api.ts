@@ -183,10 +183,17 @@ export async function deleteData<T>(
   return res;
 }
 
-export async function deleteWithoutParams<T>(
-  endpoint: string
+export async function deleteWithQueryParams<T>(
+  endpoint: string,
+  queryParamKey: string,
+  queryParamValues: string[]
 ): Promise<BaseResponseEntity<T>> {
-  const res = await request<T>(`${BASE_URL}${endpoint}`, {
+  var queryParam = "";
+  for (const value of queryParamValues) {
+    queryParam += `${queryParamKey}=${value}&`;
+  }
+
+  const res = await request<T>(`${BASE_URL}${endpoint}?${queryParam}`, {
     method: "DELETE",
     headers: getHeaders(),
   });

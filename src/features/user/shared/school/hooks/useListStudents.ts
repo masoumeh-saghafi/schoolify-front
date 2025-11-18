@@ -7,6 +7,7 @@ interface useListStudentsProps {
   schoolId: string;
   pagination?: BaseRequestPaginationParams;
   filters?: Record<string, string>;
+  disabled?: boolean;
 }
 
 export const listStudentsQueryKey = (props: useListStudentsProps) =>
@@ -30,6 +31,7 @@ const useListStudents = (props: useListStudentsProps) => {
     retry: 2,
     retryDelay: 1000,
     select: (data) => data.data,
+    enabled: !props.disabled,
   });
 };
 

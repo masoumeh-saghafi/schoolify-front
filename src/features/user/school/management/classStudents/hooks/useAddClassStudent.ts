@@ -1,19 +1,24 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { listClassQueryKey } from "./useListClass";
 import { addClassStudent } from "../utilities/api/api";
+import { listStudentsQueryKey } from "@schoolify/features/user/shared/school/hooks/useListStudents";
 
-const useAddStudentClass = () => {
+const useAddClassStudent = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ data, classId }: { data: any; classId: string }) =>
-      addClassStudent(data,classId),
+    mutationFn: async ({
+      studentId,
+      classId,
+      schoolId,
+    }: {
+      studentId: any;
+      classId: string;
+      schoolId: string;
+    }) => await addClassStudent(studentId, classId),
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
-        queryKey: listClassQueryKey({
-          : variables.educationGradeId,
-        }),
+        queryKey: listStudentsQueryKey({ schoolId: variables.schoolId }),
       });
     },
     onError: (error) => {
@@ -22,4 +27,4 @@ const useAddStudentClass = () => {
   });
 };
 
-export default useAddClass;
+export default useAddClassStudent;

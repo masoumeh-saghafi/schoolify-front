@@ -8,41 +8,49 @@ export const schoolManagementSidebarData = (
   schoolId: string
 ): DashboardSidebarDataProps[] => [
   {
-    key: 'schoolManagement',
+    key: "schoolManagement",
     title: "مدیریت مدرسه",
     link: routes.school.management.index(schoolId),
     icon: <SettingIcon />,
   },
   {
-    key: 'students',
+    key: "students",
     title: "دانش‌آموزان",
     link: routes.school.management.student.index(schoolId),
     // icon: <SettingIcon />,
-    },
-   {
-    key: 'educationYear',
+  },
+  {
+    key: "educationYear",
     title: "سال تحصیلی ",
     link: routes.school.management.educationYear.index(schoolId),
     // icon: <SettingIcon />,
-    },
-    {
-    key: 'educationLevel',
+  },
+  {
+    key: "educationLevel",
     title: "مقطع تحصیلی ",
     link: routes.school.management.educationLevel.index(schoolId),
     // icon: <SettingIcon />,
-    },
-      {
-    key: 'educationGrade',
+  },
+  {
+    key: "educationGrade",
     title: "پایه تحصیلی ",
     link: routes.school.management.educationGrade.index(schoolId),
     // icon: <SettingIcon />,
-  },  {
-    key: 'classes',
+  },
+  {
+    key: "classes",
     title: "کلاس",
     link: routes.school.management.classes.index(schoolId),
     // icon: <SettingIcon />,
-  }, {
-    key: 'costType',
+  },
+  {
+    key: "classStudents",
+    title: "دانش‌آموزان کلاس",
+    link: routes.school.management.classStudents.index(schoolId),
+    // icon: <SettingIcon />,
+  },
+  {
+    key: "costType",
     title: "عنوان هزینه",
     link: routes.school.management.costType.index(schoolId),
     // icon: <SettingIcon />,

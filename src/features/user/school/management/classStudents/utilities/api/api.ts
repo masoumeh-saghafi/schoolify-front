@@ -3,27 +3,36 @@ import type {
   BaseIdDataEntity,
 } from "@schoolify/core/types/core/api/response";
 import {
+  deleteWithQueryParams,
   getListPaginatedData,
+  getListSummaryData,
   postData,
 } from "@schoolify/core/utilities/api/api";
-// import classStudentEndpoints from './endpoints'
-import type ListSummaryEducationGradeEntity from "../../types/api/listSummaryClassesEntity";
 import classStudentsEndpoints from "./endpoints";
 import type listSummaryClassesEntity from "../../types/api/listSummaryClassesEntity";
 
-export const addClassStudent = async (data: any, classId: string) => {
+export const addClassStudent = async (studentId: string, classId: string) => {
   return await postData<BaseAddResponseEntity>(
     classStudentsEndpoints.addClasseStudent(classId),
-    data
+    {
+      studentIds: [studentId],
+    }
   );
 };
 
-// export const deleteClassStudent = async (classStudentId: string) => {
-//   return await deleteData<void>(classStudentEndpoints.deleteClassStudent, classStudentId)
-// }
+export const deleteClassStudent = async (
+  classId: string,
+  studentId: string
+) => {
+  return await deleteWithQueryParams<void>(
+    classStudentsEndpoints.deleteClassStudent(classId),
+    "studentIds",
+    [studentId]
+  );
+};
 
 export const listSummaryClasses = async (educationGradeId: string) => {
-  return await getListPaginatedData<
-    BaseIdDataEntity<listSummaryClassesEntity>[]
-  >(classStudentsEndpoints.listSummaryClasses(educationGradeId));
+  return await getListSummaryData<BaseIdDataEntity<listSummaryClassesEntity>[]>(
+    classStudentsEndpoints.listSummaryClasses(educationGradeId)
+  );
 };

@@ -1,7 +1,6 @@
 const classStudentsEndpoints = {
   addClasseStudent: (classId: string) => `/classes/${classId}/students`,
-
-  // deleteClassStudent: '/classes',
+  deleteClassStudent: (classId: string) => `/classes/${classId}/students`,
 
   listSummaryClasses: (educationGradeId: string) =>
     `/education-grades/${educationGradeId}/classes/summary`,

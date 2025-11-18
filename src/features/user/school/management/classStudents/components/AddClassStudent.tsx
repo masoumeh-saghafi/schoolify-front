@@ -25,7 +25,10 @@ import useListSummaryEducationLevel from "@schoolify/features/user/shared/school
 import useListSummaryEducationGrade from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationGrade";
 import useAddClass from "../hooks/useAddClassStudent";
 import useListSummaryClass from "@schoolify/features/user/shared/school/hooks/useListSummaryClass";
-import { addClassStudent } from "../utilities/api/api";
+import useListStudents from "@schoolify/features/user/shared/school/hooks/useListStudents";
+import { addClassStudentData } from "../utilities/addClassStudentData";
+import ControlledAutocomplete from "@schoolify/core/components/common/ControlledAutocomplete";
+import { useCallback, useState } from "react";
 
 type SchemaProps = z.infer<typeof validationSchema>;
 
@@ -49,9 +52,10 @@ const AddClassStudent = (props: AddClassStudentProps) => {
       educationLevelId: "",
       educationGradeId: "",
       classId: "",
-      title: "",
     },
   });
+  const [studentSearchText, setStudentSearchText] = useState("");
+
   const selectedEducationYearId = useWatch({
     control,
     name: "educationYearId",
@@ -64,6 +68,10 @@ const AddClassStudent = (props: AddClassStudentProps) => {
     control,
     name: "educationGradeId",
   });
+  const selectedClassId = useWatch({
+    control,
+    name: "classId",
+  });
 
   const { data: educationYearData } = useListSummaryEducationYear(schoolId);
   const { data: educationLevelsData } = useListSummaryEducationLevel(
@@ -73,8 +81,18 @@ const AddClassStudent = (props: AddClassStudentProps) => {
     selectedEducationLevelId
   );
   const { data: classesData } = useListSummaryClass(selectedEducationGradeId);
+  const { data: studentsData } = useListStudents({
+    schoolId: schoolId,
+    filters: {
+      classRoomId: selectedClassId,
+      identityCode: `%${studentSearchText}%`,
+    },
+    disabled: !selectedClassId,
+  });
 
-  const { mutateAsync: addClass } = useAddClass();
+  //
+  //
+  const { mutateAsync: addClassStudent } = useAddClass();
   // const options = (educationYearData ??
   //   []) as BaseIdDataEntity<ListSummaryEducationYearEntity>[]
 
@@ -84,24 +102,34 @@ const AddClassStudent = (props: AddClassStudentProps) => {
   //     value: item.data.title
   //   })) ?? []
 
+  const dataMap: Record<string, any[]> = {
+    educationYearId: educationYearData ?? [],
+    educationLevelId: educationLevelsData ?? [],
+    educationGradeId: educationGradesData ?? [],
+    classId: classesData ?? [],
+    studentId: studentsData?.docs ?? [],
+  };
+
   // Handlers
   const handleAddClass = async (data: SchemaProps) => {
-    const result = await addClassStudent(
-      //{
-      data,
-      data.classId
-      //}
-    );
-    if (result.isSuccess)
-      reset(
-        { title: "" },
-        {
-          keepValues: true,
-          keepDirty: false,
-          keepErrors: true,
-        }
-      );
+    const result = await addClassStudent({
+      studentId: data.studentId,
+      classId: selectedClassId,
+      schoolId: schoolId,
+    });
+    // if (result.isSuccess)
+    // reset(
+    //   { title: "" },
+    //   {
+    //     keepValues: true,
+    //     keepDirty: false,
+    //     keepErrors: true,
+    //   }
+    // );
   };
+  const handleStudentInput = useCallback((val: string) => {
+    setStudentSearchText(val);
+  }, []);
 
   // Render
   return (
@@ -112,20 +140,22 @@ const AddClassStudent = (props: AddClassStudentProps) => {
         component="form"
       >
         <Grid container spacing={2}>
-          <ControlledGridTextField
-            key="EducationGrade"
-            control={control}
-            name="title"
-            label="نام کلاس "
-          />
-          {/* <ControlledAutocomplete
-            control={control}
-            name='educationYearId'
-            label='سال تحصیلی'
-            placeholder='لطفا یک سال را انتخاب نمایید'
-            options={educationYearData?.data.data?.map()}
-            
-          /> */}
+          {addClassStudentData.map((field) => (
+            <ControlledAutocomplete
+              key={field.name}
+              control={control}
+              name={field.name}
+              label={field.label}
+              placeholder={`لطفا ${field.label.toLowerCase()} را انتخاب نمایید`}
+              options={field.optionsMapper(dataMap[field.name])}
+              inputValue={
+                field.name === "studentId" ? studentSearchText : undefined
+              }
+              onInputChange={
+                field.name === "studentId" ? handleStudentInput : undefined
+              }
+            />
+          ))}
 
           <Grid size={{ xs: 12, sm: 6 }}>
             <SubmitButton isValid={isValid} isDirty={isDirty}>

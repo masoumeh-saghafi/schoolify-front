@@ -8,9 +8,7 @@ import useListSummaryEducationYears from "@schoolify/features/user/shared/school
 import useListSummaryEducationLevel from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationLevel";
 import { useParams } from "react-router-dom";
 import useListSummaryEducationGrade from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationGrade";
-import useListClass from "../hooks/useListClass";
 import useDeleteClass from "../hooks/useDeleteClassStudent";
-import useUpdateClass from "../hooks/useUpdateClass";
 
 // Feature Components
 
