@@ -15,6 +15,7 @@ import SchoolManagementClassStudentsPage from "./school/management/classStudents
 import SchoolManagementEducationYearPage from "./school/management/eucationYear/page";
 import SchoolManagementEducationLevelPage from "./school/management/eucationLevel/page";
 import SchoolManagementEducationGradePage from "./school/management/eucationGrade/page";
+import SchoolManagementCostTypePage from "./school/management/costType/page";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +86,9 @@ const router = createBrowserRouter([
       {
         path: routes.school.management.classStudents.url,
         element: <SchoolManagementClassStudentsPage />,
+      },{
+        path: routes.school.management.costType.url,
+        element: <SchoolManagementCostTypePage />,
       },
     ],
   },

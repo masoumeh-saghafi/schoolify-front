@@ -56,6 +56,12 @@ const routes = {
           routes.school.management.baseUrl.replace(':schoolId', schoolId) +
           '/' +
           routes.school.management.classStudents.url
+      },costType: {
+        url: 'cost-type',
+        index: (schoolId: string) =>
+          routes.school.management.baseUrl.replace(':schoolId', schoolId) +
+          '/' +
+          routes.school.management.costType.url
       }
     }
   }

@@ -41,5 +41,10 @@ export const schoolManagementSidebarData = (
     title: "کلاس",
     link: routes.school.management.classes.index(schoolId),
     // icon: <SettingIcon />,
+  }, {
+    key: 'costType',
+    title: "عنوان هزینه",
+    link: routes.school.management.costType.index(schoolId),
+    // icon: <SettingIcon />,
   },
 ];
