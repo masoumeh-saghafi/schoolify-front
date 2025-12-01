@@ -1,30 +1,30 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { deleteCost } from '../utilities/api/api'
-import { listCostQueryKey } from './useListCost'
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteCost } from "../utilities/api/api";
+import { listCostQueryKey } from "./useListCost";
 
 const useDeleteCost = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({
       costId,
-      educationYearId
+      educationYearId,
     }: {
-      costId: string
-      educationYearId: string
+      costId: string;
+      educationYearId: string;
     }) => deleteCost(costId),
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
         queryKey: listCostQueryKey({
-          educationYearId: variables.educationYearId
-        })
-      })
+          educationYearId: variables.educationYearId,
+        }),
+      });
     },
-    onError: error => {
+    onError: (error) => {
       //logError(`Error Updating Student: ${error}`);
-    }
-  })
-}
+    },
+  });
+};
 
-export default useDeleteCost
+export default useDeleteCost;

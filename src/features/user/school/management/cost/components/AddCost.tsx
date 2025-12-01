@@ -8,7 +8,7 @@
 
 // React Type
 import { useParams } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch, type Resolver } from "react-hook-form";
 
 //Type Definitions
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -26,7 +26,10 @@ import { useCallback, useState } from "react";
 import { validationSchema } from "../validation/costValid";
 import useListSummaryCostTypes from "@schoolify/features/user/shared/school/hooks/useListSummaryCostTypes";
 import useAddCost from "../hooks/useAddCost";
-
+import { addCostData } from "../utilities/addCostData";
+import AutocompleteSelect from "@schoolify/core/components/common/AutocompleteSelect";
+import useMapToOptions from "@schoolify/core/hooks/common/useMapToOptions";
+import ControlledHiddenInput from "@schoolify/core/components/common/ControlledHiddenInput";
 
 type SchemaProps = z.infer<typeof validationSchema>;
 
@@ -43,64 +46,74 @@ const AddCost = (props: AddCostProps) => {
     reset,
     formState: { isValid, isDirty },
   } = useForm<SchemaProps>({
-    resolver: zodResolver(validationSchema),
+    resolver: zodResolver(validationSchema) as unknown as Resolver<SchemaProps>,
     mode: "onChange",
     defaultValues: {
-       description: "",
+      description: "",
       amount: 0,
       referenceRecordId: "",
       costTypeId: "",
     },
   });
 
-const [selectedEducationYearId, setSelectedEducationYearId] = useState('')
-const [studentSearchText, setStudentSearchText] = useState('')
+  const [referenceRecordId, setReferenceRecordId] = useState("");
+  const [selectedEducationYearId, setSelectedEducationYearId] = useState("");
 
   const { data: educationYearData } = useListSummaryEducationYear(schoolId);
-const { data: costTypesData} =
-  useListSummaryCostTypes(selectedEducationYearId)
+  const { data: costTypesData } = useListSummaryCostTypes(
+    selectedEducationYearId
+  );
 
-
+  const selectedCostTypeId = useWatch({
+    control,
+    name: "costTypeId",
+  });
+  const costType = costTypesData
+    ?.filter((c) => c.id === selectedCostTypeId)
+    ?.at(0);
   //
   //
   const { mutateAsync: addCost } = useAddCost();
 
-
   const dataMap: Record<string, any[]> = {
+    costTypeId: costTypesData ?? [],
     educationYearId: educationYearData ?? [],
-
   };
 
   // Handlers
-const handleAddCost = async (data: SchemaProps) => {
-  const result = await addCost({
-    data: data,
-  educationYearId: data.costTypeId // i thing is it false???
-  })
-  if (result.isSuccess)
-    reset(
-     {description:''},
-      {
-        keepValues: true,
-        keepDirty: false,
-        keepErrors: true
-      }
-    )
-}
-
-  const handleStudentInput = useCallback((val: string) => {
-    setStudentSearchText(val);
-  }, []);
+  const handleAddCost = async (data: SchemaProps) => {
+    const result = await addCost({
+      data: data,
+      educationYearId: selectedEducationYearId,
+    });
+    if (result.isSuccess)
+      reset(
+        { description: "" },
+        {
+          keepValues: true,
+          keepDirty: false,
+          keepErrors: true,
+        }
+      );
+  };
 
   // Render
   return (
     <Box>
       <ContentBox
-        label="افزودن  کلاس"
+        label="افزودن هزینه"
         onSubmit={handleSubmit(handleAddCost)}
         component="form"
       >
         <Grid container spacing={2}>
+          <AutocompleteSelect
+            label="سال تحصیلی"
+            placeholder="لطفا یک سال را انتخاب نمایید"
+            options={useMapToOptions(educationYearData)}
+            value={selectedEducationYearId}
+            onChange={setSelectedEducationYearId}
+          />
+
           {addCostData.map((field) => (
             <ControlledAutocomplete
               key={field.name}
@@ -109,14 +122,25 @@ const handleAddCost = async (data: SchemaProps) => {
               label={field.label}
               placeholder={`لطفا ${field.label.toLowerCase()} را انتخاب نمایید`}
               options={field.optionsMapper(dataMap[field.name])}
-              inputValue={
-                field.name === "studentId" ? studentSearchText : undefined
-              }
-              onInputChange={
-                field.name === "studentId" ? handleStudentInput : undefined
-              }
             />
           ))}
+
+          <ControlledHiddenInput
+            control={control}
+            name="referenceRecordId"
+            defaultValue={referenceRecordId}
+          />
+
+          {costType?.data?.referenceType === "educationLevel" &&
+            ""
+            // <AutocompleteSelect
+            //   label="سال تحصیلی"
+            //   placeholder="لطفا یک سال را انتخاب نمایید"
+            //   options={useMapToOptions(educationYearData)}
+            //   value={selectedEducationYearId}
+            //   onChange={setReferenceRecordId}
+            // />
+          }
 
           <Grid size={{ xs: 12, sm: 6 }}>
             <SubmitButton isValid={isValid} isDirty={isDirty}>
