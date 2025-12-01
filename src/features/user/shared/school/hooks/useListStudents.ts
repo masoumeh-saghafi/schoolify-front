@@ -18,12 +18,15 @@ export const listStudentsQueryKey = (props: useListStudentsProps) =>
 const useListStudents = (props: useListStudentsProps) => {
   return useQuery({
     queryKey: listStudentsQueryKey(props),
-    queryFn: ({ queryKey }) =>
-      listStudent(
+    queryFn: ({ queryKey }) => {
+      console.log("FFFFFFFFFFFFFFFFFFFFFFFFFFFF     -   ", queryKey);
+
+      return listStudent(
         queryKey[1] as string,
         queryKey[2] as BaseRequestPaginationParams,
         queryKey[3] as Record<string, string>
-      ),
+      );
+    },
     staleTime: ms("1h"),
     gcTime: ms("24h"),
     refetchOnWindowFocus: false,
