@@ -44,7 +44,7 @@ const VerifyCode = (props: VerifyCodeProps) => {
       onSubmit={handleSubmit(onSubmit)}
       sx={{ width: "100%", maxWidth: 400 }}
     >
-      <Typography sx={{ direction: "rtl", fontSize: "0.75rem", mb: 1 }}>
+      <Typography sx={{ direction: "ltr", fontSize: "0.75rem", mb: 1 }}>
         لطفا کد دریافتی را وارد نمایید.
       </Typography>
       <FormField

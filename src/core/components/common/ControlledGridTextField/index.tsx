@@ -15,7 +15,7 @@ interface FormGridTextFieldProps<T extends FieldValues> {
   control: Control<T>
   name: Path<T>
   label?: string
-   helperText?: string;
+  helperText?: string
   xs?: number
   sm?: number
 }
@@ -23,9 +23,8 @@ interface FormGridTextFieldProps<T extends FieldValues> {
 const ControlledGridTextField = <T extends FieldValues>(
   Props: FormGridTextFieldProps<T>
 ) => {
-
   // Props
-  const { control, name, label,helperText, xs = 12, sm = 6, ...props } = Props
+  const { control, name, label, helperText, xs = 12, sm = 6, ...props } = Props
   // Render
   return (
     <Grid size={{ xs, sm }}>
@@ -41,7 +40,7 @@ const ControlledGridTextField = <T extends FieldValues>(
               fullWidth
               size='small'
               error={!!fieldState.error}
-             helperText={helperText ?? fieldState.error?.message ?? ""}
+              helperText={helperText ?? fieldState.error?.message ?? ''}
               slotProps={{
                 inputLabel: {
                   shrink: true

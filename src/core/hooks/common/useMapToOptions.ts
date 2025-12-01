@@ -17,7 +17,7 @@ interface BaseEntityWithNullableData {
     title?: string;
     firstName?: string;
     lastName?: string;
-    identityCode: string;
+    identityCode?: string;
   } | null; // data می‌تواند null باشد
 }
 

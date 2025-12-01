@@ -13,6 +13,7 @@ import {
 import type ListSummaryEducationLevelEntity from "../../types/api/ListSummaryEducationLevelEntity";
 import type ListEducationGradeEntity from "../../types/api/ListEducationGradeEntity";
 import EducationGradeEndpoints from "./endpoints";
+
 export const addEducationGrade = async (data: any) => {
   return await postData<BaseAddResponseEntity>(
     EducationGradeEndpoints.addEducationGrade,

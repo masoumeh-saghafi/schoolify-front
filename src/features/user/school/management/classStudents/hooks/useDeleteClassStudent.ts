@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addClassStudent, deleteClassStudent } from "../utilities/api/api";
+import { deleteClassStudent } from "../utilities/api/api";
 import { listStudentsQueryKey } from "@schoolify/features/user/shared/school/hooks/useListStudents";
 
 const useDeleteClassStudent = () => {
@@ -26,5 +26,5 @@ const useDeleteClassStudent = () => {
     },
   });
 };
-``;
+
 export default useDeleteClassStudent;

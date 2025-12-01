@@ -9,11 +9,15 @@ export const validationSchema = z.object({
     z.number().refine(value => !isNaN(value), { message: 'هزینه باید عددی باشد' })
   ),
   referenceType: z.string().min(1, 'انتخاب نوع اجرا الزامی است'),
-  isActive: z
-    .boolean()
-    .optional()
-    .refine(val => typeof val === 'boolean', {
-      message: 'وضعیت فعال بودن الزامی است'
-    }),
+isActive: z.enum(['true', 'false'] as const).refine(
+  val => val === 'true' || val === 'false',
+  {
+    message: 'انتخاب وضعیت الزامی است'
+  }
+)
+
+
+
+,
   educationYearId: z.string().min(1, 'انتخاب سال تحصیلی الزامی است')
 })

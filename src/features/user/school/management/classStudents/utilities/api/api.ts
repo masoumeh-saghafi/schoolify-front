@@ -32,7 +32,7 @@ export const deleteClassStudent = async (
 };
 
 export const listSummaryClasses = async (educationGradeId: string) => {
-  return await getListSummaryData<BaseIdDataEntity<listSummaryClassesEntity>[]>(
+  return await getListSummaryData<BaseIdDataEntity<listSummaryClassesEntity>>(
     classStudentsEndpoints.listSummaryClasses(educationGradeId)
   );
 };

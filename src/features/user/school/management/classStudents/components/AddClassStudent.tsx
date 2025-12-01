@@ -17,7 +17,6 @@ import type z from "zod";
 import Box from "@schoolify/core/components/base/inputs/Box";
 import ContentBox from "@schoolify/core/components/common/ContentBox";
 import Grid from "@schoolify/core/components/base/inputs/Grid";
-import ControlledGridTextField from "@schoolify/core/components/common/ControlledGridTextField";
 import SubmitButton from "@schoolify/core/components/common/SubmitButton";
 import { validationSchema } from "../validation/classValid";
 import useListSummaryEducationYear from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationYears";
@@ -93,14 +92,7 @@ const AddClassStudent = (props: AddClassStudentProps) => {
   //
   //
   const { mutateAsync: addClassStudent } = useAddClass();
-  // const options = (educationYearData ??
-  //   []) as BaseIdDataEntity<ListSummaryEducationYearEntity>[]
 
-  // const options =
-  //   data?.data?.data?.map(item => ({
-  //     key: item.id,
-  //     value: item.data.title
-  //   })) ?? []
 
   const dataMap: Record<string, any[]> = {
     educationYearId: educationYearData ?? [],
