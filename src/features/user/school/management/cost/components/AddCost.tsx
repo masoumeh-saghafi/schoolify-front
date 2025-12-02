@@ -22,7 +22,7 @@ import SubmitButton from "@schoolify/core/components/common/SubmitButton";
 import useListSummaryEducationYear from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationYears";
 
 import ControlledAutocomplete from "@schoolify/core/components/common/ControlledAutocomplete";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { validationSchema } from "../validation/costValid";
 import useListSummaryCostTypes from "@schoolify/features/user/shared/school/hooks/useListSummaryCostTypes";
 import useAddCost from "../hooks/useAddCost";
@@ -30,6 +30,12 @@ import { addCostData } from "../utilities/addCostData";
 import AutocompleteSelect from "@schoolify/core/components/common/AutocompleteSelect";
 import useMapToOptions from "@schoolify/core/hooks/common/useMapToOptions";
 import ControlledHiddenInput from "@schoolify/core/components/common/ControlledHiddenInput";
+import useListSummaryEducationLevel from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationLevel";
+import useListSummaryEducationGrade from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationGrade";
+import useListSummaryClass from "@schoolify/features/user/shared/school/hooks/useListSummaryClass";
+import useListStudents from "@schoolify/features/user/shared/school/hooks/useListStudents";
+import ControlledTextField from "@schoolify/core/components/common/ControlledTextField";
+import ControlledGridTextField from "@schoolify/core/components/common/ControlledGridTextField";
 
 type SchemaProps = z.infer<typeof validationSchema>;
 
@@ -44,6 +50,7 @@ const AddCost = (props: AddCostProps) => {
     handleSubmit,
     control,
     reset,
+    setValue,
     formState: { isValid, isDirty },
   } = useForm<SchemaProps>({
     resolver: zodResolver(validationSchema) as unknown as Resolver<SchemaProps>,
@@ -56,10 +63,43 @@ const AddCost = (props: AddCostProps) => {
     },
   });
 
-  const [referenceRecordId, setReferenceRecordId] = useState("");
+  const [studentSearchText, setStudentSearchText] = useState("");
+
   const [selectedEducationYearId, setSelectedEducationYearId] = useState("");
+  const [selectedEducationLevelId, setSelectedEducationLevelId] = useState("");
+  const [selectedEducationGradeId, setSelectedEducationGradeId] = useState("");
+  const [selectedClassId, setSelectedClassId] = useState("");
+  const [selectedStudentId, setSelectedStudentId] = useState("");
 
   const { data: educationYearData } = useListSummaryEducationYear(schoolId);
+  const { data: educationLevelsData } = useListSummaryEducationLevel(
+    selectedEducationYearId
+  );
+  const { data: educationGradesData } = useListSummaryEducationGrade(
+    selectedEducationLevelId
+  );
+  const { data: classesData } = useListSummaryClass(selectedEducationGradeId);
+  const { data: studentsData } = useListStudents({
+    schoolId: schoolId,
+    pagination: { size: -1 },
+    filters: {
+      educationYearId: selectedEducationYearId,
+      educationLevelId: selectedEducationLevelId,
+      educationGradeId: selectedEducationGradeId,
+      classRoomId: selectedClassId,
+      identityCode: `%${studentSearchText}%`,
+    },
+    disabled: !selectedEducationYearId,
+  });
+
+  const [referenceRecordId, setReferenceRecordId] = useState("");
+
+  useEffect(() => {
+    setValue("referenceRecordId", referenceRecordId);
+  }, [referenceRecordId]);
+  // const [selectedEducationYearId, setSelectedEducationYearId] = useState("");
+  // const { data: educationYearData } = useListSummaryEducationYear(schoolId);
+
   const { data: costTypesData } = useListSummaryCostTypes(
     selectedEducationYearId
   );
@@ -80,6 +120,13 @@ const AddCost = (props: AddCostProps) => {
     educationYearId: educationYearData ?? [],
   };
 
+  const educationYearDataOptions = useMapToOptions(educationYearData);
+  const educationLevelDataOptions = useMapToOptions(educationLevelsData);
+  const educationGradeDataOptions = useMapToOptions(educationGradesData);
+  const classDataOptions = useMapToOptions(classesData);
+
+  const studentsDataAny: any[] = studentsData?.docs ?? [];
+  const studentDataOptions = useMapToOptions(studentsDataAny);
   // Handlers
   const handleAddCost = async (data: SchemaProps) => {
     const result = await addCost({
@@ -109,7 +156,7 @@ const AddCost = (props: AddCostProps) => {
           <AutocompleteSelect
             label="سال تحصیلی"
             placeholder="لطفا یک سال را انتخاب نمایید"
-            options={useMapToOptions(educationYearData)}
+            options={educationYearDataOptions}
             value={selectedEducationYearId}
             onChange={setSelectedEducationYearId}
           />
@@ -125,22 +172,123 @@ const AddCost = (props: AddCostProps) => {
             />
           ))}
 
-          <ControlledHiddenInput
+          <ControlledGridTextField
             control={control}
-            name="referenceRecordId"
-            defaultValue={referenceRecordId}
+            name="description"
+            label="توضیحات"
           />
 
-          {costType?.data?.referenceType === "educationLevel" &&
-            ""
-            // <AutocompleteSelect
-            //   label="سال تحصیلی"
-            //   placeholder="لطفا یک سال را انتخاب نمایید"
-            //   options={useMapToOptions(educationYearData)}
-            //   value={selectedEducationYearId}
-            //   onChange={setReferenceRecordId}
-            // />
-          }
+          <ControlledGridTextField
+            control={control}
+            name="amount"
+            label="مبلغ پرداختی"
+            // type="number"
+          />
+
+          <ControlledHiddenInput control={control} name="referenceRecordId" />
+
+          {/* {costType?.} */}
+
+          {costType?.data?.referenceType === "educationYear" && (
+            <>
+              {selectedEducationYearId !== referenceRecordId &&
+                setReferenceRecordId(selectedEducationYearId)}
+              {/* <AutocompleteSelect
+                label="سال تحصیلی"
+                placeholder="لطفا یک سال را انتخاب نمایید"
+                options={educationYearDataOptions}
+                value={selectedEducationYearId}
+                onChange={setReferenceRecordId}
+                disabled={true}
+              /> */}
+            </>
+          )}
+          {costType?.data?.referenceType === "educationLevel" && (
+            <>
+              <AutocompleteSelect
+                label="مقطع تحصیلی"
+                placeholder="لطفا یک مقطع را انتخاب نمایید"
+                options={educationLevelDataOptions}
+                value={referenceRecordId}
+                onChange={setReferenceRecordId}
+              />
+            </>
+          )}
+          {costType?.data?.referenceType === "educationGrade" && (
+            <>
+              <AutocompleteSelect
+                label="مقطع تحصیلی"
+                placeholder="لطفا یک مقطع را انتخاب نمایید"
+                options={educationLevelDataOptions}
+                value={selectedEducationLevelId}
+                onChange={setSelectedEducationLevelId}
+              />
+              <AutocompleteSelect
+                label="پایه تحصیلی"
+                placeholder="لطفا یک پایه را انتخاب نمایید"
+                options={educationGradeDataOptions}
+                value={referenceRecordId}
+                onChange={setReferenceRecordId}
+              />
+            </>
+          )}
+          {costType?.data?.referenceType === "class" && (
+            <>
+              <AutocompleteSelect
+                label="مقطع تحصیلی"
+                placeholder="لطفا یک مقطع را انتخاب نمایید"
+                options={educationLevelDataOptions}
+                value={selectedEducationLevelId}
+                onChange={setSelectedEducationLevelId}
+              />
+              <AutocompleteSelect
+                label="پایه تحصیلی"
+                placeholder="لطفا یک پایه را انتخاب نمایید"
+                options={educationGradeDataOptions}
+                value={selectedEducationGradeId}
+                onChange={setSelectedEducationGradeId}
+              />
+              <AutocompleteSelect
+                label="کلاس"
+                placeholder="لطفا یک کلاس را انتخاب نمایید"
+                options={classDataOptions}
+                value={referenceRecordId}
+                onChange={setReferenceRecordId}
+              />
+            </>
+          )}
+          {costType?.data?.referenceType === "student" && (
+            <>
+              <AutocompleteSelect
+                label="مقطع تحصیلی"
+                placeholder="لطفا یک مقطع را انتخاب نمایید"
+                options={educationLevelDataOptions}
+                value={selectedEducationLevelId}
+                onChange={setSelectedEducationLevelId}
+              />
+              <AutocompleteSelect
+                label="پایه تحصیلی"
+                placeholder="لطفا یک پایه را انتخاب نمایید"
+                options={educationGradeDataOptions}
+                value={selectedEducationGradeId}
+                onChange={setSelectedEducationGradeId}
+              />
+              <AutocompleteSelect
+                label="کلاس"
+                placeholder="لطفا یک کلاس را انتخاب نمایید"
+                options={classDataOptions}
+                value={selectedClassId}
+                onChange={setSelectedClassId}
+              />
+              <AutocompleteSelect
+                label="دانش‌آموز"
+                placeholder="لطفا یک دانش‌آموز را انتخاب نمایید"
+                options={studentDataOptions}
+                value={referenceRecordId}
+                onChange={setReferenceRecordId}
+              />
+            </>
+          )}
 
           <Grid size={{ xs: 12, sm: 6 }}>
             <SubmitButton isValid={isValid} isDirty={isDirty}>

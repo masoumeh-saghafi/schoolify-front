@@ -118,6 +118,8 @@ export async function getListPaginatedData<T>(
     ...(pagination && {
       page: (pagination.page ?? 0).toString(),
       size: (pagination.size ?? 10).toString(),
+    }),
+    ...(pagination?.order && {
       order: pagination.order,
     }),
   };

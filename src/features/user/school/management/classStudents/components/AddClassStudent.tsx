@@ -82,6 +82,7 @@ const AddClassStudent = (props: AddClassStudentProps) => {
   const { data: classesData } = useListSummaryClass(selectedEducationGradeId);
   const { data: studentsData } = useListStudents({
     schoolId: schoolId,
+    pagination: { size: -1 },
     filters: {
       classRoomId: selectedClassId,
       identityCode: `%${studentSearchText}%`,
@@ -92,7 +93,6 @@ const AddClassStudent = (props: AddClassStudentProps) => {
   //
   //
   const { mutateAsync: addClassStudent } = useAddClass();
-
 
   const dataMap: Record<string, any[]> = {
     educationYearId: educationYearData ?? [],
