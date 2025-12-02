@@ -74,15 +74,7 @@ const AddCostType = (props: AddCostTypeProps) => {
     }
   };
 
-  // helper to normalize static options shapes to OptionType[]
-  // const normalizeStaticOptions = (opts: any[] | undefined): OptionType[] => {
-  //   if (!opts) return []
-  //   return opts.map(o => {
-  //     const key = o.key ?? o.value ?? o.label ?? String(o)
-  //     const value = o.value ?? o.label ?? String(o)
-  //     return { key: String(key), value: String(value) }
-  //   })
-  // }
+
 
   const normalizeStaticOptions = (opts: any[] | undefined): OptionType[] => {
     if (!opts) return [];
@@ -110,19 +102,9 @@ const AddCostType = (props: AddCostTypeProps) => {
       }
 
       case "select": {
-        // const staticOptions = normalizeStaticOptions(field.options)
+       
         return (
-          // <ControlledAutocomplete
-          //   key={field.name}
-          //   control={control as any}
-          //   name={field.name}
-          //   label={field.label}
-          //   placeholder={
-          //     field.placeholder ??
-          //     `لطفا ${field.label.toLowerCase()} را انتخاب نمایید`
-          //   }
-          //   options={staticOptions}
-          // />
+         
           <ControlledAutocomplete
             key={field.name}
             control={control as any}
@@ -135,20 +117,8 @@ const AddCostType = (props: AddCostTypeProps) => {
       }
 
       case "select-api": {
-        // apiData key comes from field.optionsKey
-        // const opts: OptionType[] = apiData[field.optionsKey] ?? []
         return (
-          // <ControlledAutocomplete
-          //   key={field.name}
-          //   control={control as any}
-          //   name={field.name}
-          //   label={field.label}
-          //   placeholder={
-          //     field.placeholder ??
-          //     `لطفا ${field.label.toLowerCase()} را انتخاب نمایید`
-          //   }
-          //   options={opts}
-          // />
+          
           <ControlledAutocomplete
             key={field.name}
             control={control as any}

@@ -69,6 +69,13 @@ const routes = {
           '/' +
           routes.school.management.cost.url
       }
+      ,studentPayment: {
+        url: 'students-payment',
+        index: (schoolId: string) =>
+          routes.school.management.baseUrl.replace(':schoolId', schoolId) +
+          '/' +
+          routes.school.management.studentPayment.url
+      }
     }
   }
 }
