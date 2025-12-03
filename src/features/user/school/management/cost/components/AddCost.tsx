@@ -144,6 +144,11 @@ const AddCost = (props: AddCostProps) => {
       );
   };
 
+  const handleStudentInput = useCallback((val: string) => {
+    if (studentSearchText === val) return;
+    setStudentSearchText(val);
+  }, []);
+
   // Render
   return (
     <Box>
@@ -286,6 +291,8 @@ const AddCost = (props: AddCostProps) => {
                 options={studentDataOptions}
                 value={referenceRecordId}
                 onChange={setReferenceRecordId}
+                inputValue={studentSearchText}
+                onInputChange={handleStudentInput}
               />
             </>
           )}

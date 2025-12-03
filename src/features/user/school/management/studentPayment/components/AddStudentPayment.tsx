@@ -113,6 +113,7 @@ const AddStudentPayment = (props: AddStudentPaymentProps) => {
     // );
   };
   const handleStudentInput = useCallback((val: string) => {
+    if (studentSearchText === val) return;
     setStudentSearchText(val);
   }, []);
 
