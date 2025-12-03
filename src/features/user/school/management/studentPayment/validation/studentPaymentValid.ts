@@ -5,13 +5,16 @@ const DateValidation = new RegExp(
 );
 
 export const validationSchema = z.object({
-  description: z.string().min(2).max(64),
+  description: z
+    .string()
+    .min(2, "باید حداقل 2 کاراکتر وارد کنید")
+    .max(64, "باید حداکثر 64 کاراکتر وارد کنید"),
   amount: z.preprocess(
     (val) => {
       const num = Number(val);
       return isNaN(num) ? undefined : num;
     },
-    z.number().refine((val) => val !== undefined, {
+    z.number("مقدار باید عددی باشد").refine((val) => val !== undefined, {
       message: "مقدار باید عددی باشد",
     })
   ),
