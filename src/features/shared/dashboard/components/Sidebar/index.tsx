@@ -2,7 +2,9 @@
 import Box from "@schoolify/core/components/base/inputs/Box";
 
 // Feature Components
-import SidebarListItem from "@schoolify/features/shared/dashboard/components/Sidebar/SidebarListItem";
+import SidebarListItem, {
+  type SidebarItemType,
+} from "@schoolify/features/shared/dashboard/components/Sidebar/SidebarListItem";
 import HeaderMobileDrawer from "@schoolify/features/shared/layout/header/MobileDrawer";
 
 // Custom Hooks
@@ -13,24 +15,23 @@ import useClientDeviceType from "@schoolify/core/hooks/common/useClientDeviceTyp
 import type { JSX } from "@emotion/react/jsx-runtime";
 
 // Custom Types
-export interface DashboardSidebarDataProps {
+// Base shared interface
+interface DashboardSidebarBaseItem {
   key: string;
   title: string;
   link?: string;
-  type?: "text" | "listItem";
+  type?: SidebarItemType;
   icon?: JSX.Element | null;
   disabled?: boolean;
+}
+
+// Parent item (supports children)
+export interface DashboardSidebarDataProps extends DashboardSidebarBaseItem {
   children?: DashboardSidebarDataChildrenProps[];
 }
 
-export interface DashboardSidebarDataChildrenProps {
-  key: string;
-  title: string;
-  link?: string;
-  type?: "text" | "listItem";
-  icon?: JSX.Element | null;
-  disabled?: boolean;
-}
+// Child item (same structure, but no children)
+export type DashboardSidebarDataChildrenProps = DashboardSidebarBaseItem;
 
 interface DashboardSidebarProps {
   open: boolean;

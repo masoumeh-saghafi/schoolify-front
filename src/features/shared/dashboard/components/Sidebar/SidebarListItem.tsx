@@ -12,31 +12,28 @@ import { useState } from "react";
 import { ArrowDownIcon } from "@schoolify/core/components/icon/ArrowDownIcon";
 import { ArrowUpIcon } from "@schoolify/core/components/icon/ArrowUpIcon";
 import Typography from "@schoolify/core/components/base/inputs/Typography";
+import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
-// Custom Types
-interface SidebarListItemProps {
+export type SidebarItemType = "text" | "listItem" | "contentBox";
+
+// Base shared interface
+interface SidebarBaseItem {
   title: string;
   link?: string;
   icon?: JSX.Element | null;
-  type?: "text" | "listItem";
+  type?: SidebarItemType;
   onClick?: () => void;
   isActive?: boolean;
   enableBorder?: boolean;
   disabled?: boolean;
   nested?: boolean;
-  children?: SidebarListItemChildrenProps[];
 }
-interface SidebarListItemChildrenProps {
-  title: string;
-  link?: string;
-  icorn?: JSX.Element | null;
-  type?: "text" | "listItem";
-  onClick?: () => void;
-  isActive?: boolean;
-  enableBorde?: boolean;
-  disabled?: boolean;
-  nested?: boolean;
+
+export interface SidebarListItemProps extends SidebarBaseItem {
+  children?: SidebarListItemChildrenProps[]; // recursive type
 }
+
+export type SidebarListItemChildrenProps = SidebarBaseItem;
 
 const SidebarListItem = (props: SidebarListItemProps) => {
   // Props
@@ -57,6 +54,7 @@ const SidebarListItem = (props: SidebarListItemProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
   // Hooks
+  const theme = useAppTheme();
   // const navigate = useNavigate();
 
   // Handlers
@@ -69,14 +67,15 @@ const SidebarListItem = (props: SidebarListItemProps) => {
     <>
       {type === "text" && (
         <Typography
-          variant="caption"
+          // variant="caption"
           sx={{
             // textAlign: "center",
             // direction: "rtl",
-            mx: 1,
-            mt: 2,
+            mx: 3,
+            my: 2,
             display: "block",
             textWrap: "nowrap",
+            fontSize: "0.85rem",
           }}
         >
           {title}
@@ -117,6 +116,40 @@ const SidebarListItem = (props: SidebarListItemProps) => {
           {open &&
             children &&
             children.map((item) => <SidebarListItem {...item} nested={true} />)}
+        </>
+      )}
+
+      {type === "contentBox" && (
+        <>
+          <List sx={{ px: 1 }}>
+            <ListItem
+              sx={{
+                mx: 1,
+                px: nested ? 3 : 0,
+                backgroundColor: theme.palette.background.card,
+              }}
+            >
+              <SidebarButton
+                onClick={onClick}
+                href={link}
+                isActive={isActive}
+                enableBorder={enableBorder}
+                disabled={disabled}
+              >
+                {icon}
+                <ListItemText
+                  sx={{
+                    display: "block",
+                    textWrap: "nowrap",
+                    textAlign: "center",
+                    ml: 1,
+                  }}
+                >
+                  {title}
+                </ListItemText>
+              </SidebarButton>
+            </ListItem>
+          </List>
         </>
       )}
     </>

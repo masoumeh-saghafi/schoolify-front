@@ -3,10 +3,26 @@ import type { DashboardSidebarDataProps } from "@schoolify/features/shared/dashb
 import { SettingIcon } from "@schoolify/core/components/icon/settingIcon";
 
 import routes from "@schoolify/core/utilities/routes";
+import type { UserSchoolRoles } from "../../shared/types/api/ListSummarySchoolsEntity";
+import { translateUserSchoolRoleToPersian } from "../../shared/utilities/translator";
 
 export const schoolManagementSidebarData = (
-  schoolId: string
+  schoolId: string,
+  schoolTitle?: string,
+  role?: UserSchoolRoles
 ): DashboardSidebarDataProps[] => [
+  {
+    key: "schoolTitle",
+    title: schoolTitle ?? "schoolTitle",
+    link: routes.school.management.index(schoolId),
+    type: "contentBox",
+  },
+  {
+    key: "role",
+    title: `نقش کاربر: ${translateUserSchoolRoleToPersian(role)}`,
+    link: routes.school.management.index(schoolId),
+    type: "text",
+  },
   {
     key: "schoolManagement",
     title: "مدیریت مدرسه",
@@ -54,15 +70,24 @@ export const schoolManagementSidebarData = (
     title: "عنوان هزینه",
     link: routes.school.management.costType.index(schoolId),
     // icon: <SettingIcon />,
-  }, {
+  },
+  {
     key: "cost",
     title: " هزینه",
     link: routes.school.management.cost.index(schoolId),
     // icon: <SettingIcon />,
-  }, {
+  },
+  {
     key: "studentPayment",
     title: "پرداخت",
     link: routes.school.management.studentPayment.index(schoolId),
+    // icon: <SettingIcon />,
+  },
+  {
+    key: "userRoles",
+    title: "دسترسی کاربران",
+    link: routes.school.management.studentPayment.index(schoolId),
+    disabled: role !== "owner",
     // icon: <SettingIcon />,
   },
 ];
