@@ -4,7 +4,7 @@ import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
 import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import useListSummaryEducationYear from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationYears";
+import useListSummaryEducationYear from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears";
 import AutocompleteSelect from "@schoolify/core/components/common/AutocompleteSelect";
 import useMapToOptions from "@schoolify/core/hooks/common/useMapToOptions";
 import Grid from "@schoolify/core/components/base/inputs/Grid";

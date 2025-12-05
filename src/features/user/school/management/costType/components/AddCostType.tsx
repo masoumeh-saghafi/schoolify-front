@@ -11,7 +11,7 @@ import ControlledGridTextField from "@schoolify/core/components/common/Controlle
 import SubmitButton from "@schoolify/core/components/common/SubmitButton";
 import ControlledAutocomplete from "@schoolify/core/components/common/ControlledAutocomplete";
 
-import useListSummaryEducationYear from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationYears";
+import useListSummaryEducationYear from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears";
 import useMapToOptions, {
   type OptionType,
 } from "@schoolify/core/hooks/common/useMapToOptions";
@@ -74,8 +74,6 @@ const AddCostType = (props: AddCostTypeProps) => {
     }
   };
 
-
-
   const normalizeStaticOptions = (opts: any[] | undefined): OptionType[] => {
     if (!opts) return [];
     return opts.map((o) => ({
@@ -102,9 +100,7 @@ const AddCostType = (props: AddCostTypeProps) => {
       }
 
       case "select": {
-       
         return (
-         
           <ControlledAutocomplete
             key={field.name}
             control={control as any}
@@ -118,7 +114,6 @@ const AddCostType = (props: AddCostTypeProps) => {
 
       case "select-api": {
         return (
-          
           <ControlledAutocomplete
             key={field.name}
             control={control as any}

@@ -19,21 +19,21 @@ import ContentBox from "@schoolify/core/components/common/ContentBox";
 import Grid from "@schoolify/core/components/base/inputs/Grid";
 import SubmitButton from "@schoolify/core/components/common/SubmitButton";
 
-import useListSummaryEducationYear from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationYears";
+import useListSummaryEducationYear from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears";
 
 import ControlledAutocomplete from "@schoolify/core/components/common/ControlledAutocomplete";
 import { useCallback, useEffect, useState } from "react";
 import { validationSchema } from "../validation/costValid";
-import useListSummaryCostTypes from "@schoolify/features/user/shared/school/hooks/useListSummaryCostTypes";
+import useListSummaryCostTypes from "@schoolify/features/user/school/management/shared/hooks/useListSummaryCostTypes";
 import useAddCost from "../hooks/useAddCost";
 import { addCostData } from "../utilities/addCostData";
 import AutocompleteSelect from "@schoolify/core/components/common/AutocompleteSelect";
 import useMapToOptions from "@schoolify/core/hooks/common/useMapToOptions";
 import ControlledHiddenInput from "@schoolify/core/components/common/ControlledHiddenInput";
-import useListSummaryEducationLevel from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationLevel";
-import useListSummaryEducationGrade from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationGrade";
-import useListSummaryClass from "@schoolify/features/user/shared/school/hooks/useListSummaryClass";
-import useListStudents from "@schoolify/features/user/shared/school/hooks/useListStudents";
+import useListSummaryEducationLevel from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationLevel";
+import useListSummaryEducationGrade from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationGrade";
+import useListSummaryClass from "@schoolify/features/user/school/management/shared/hooks/useListSummaryClass";
+import useListStudents from "@schoolify/features/user/school/management/shared/hooks/useListStudents";
 import ControlledTextField from "@schoolify/core/components/common/ControlledTextField";
 import ControlledGridTextField from "@schoolify/core/components/common/ControlledGridTextField";
 

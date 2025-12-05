@@ -9,7 +9,7 @@ import useUpdateStudent from "@schoolify/features/user/school/management/student
 import useDeleteStudent from "@schoolify/features/user/school/management/student/hooks/useDeleteStudent";
 
 // Custom Hooks
-import useListStudents from "@schoolify/features/user/shared/school/hooks/useListStudents";
+import useListStudents from "@schoolify/features/user/school/management/shared/hooks/useListStudents";
 
 // React Type
 import { useParams } from "react-router-dom";

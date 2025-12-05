@@ -4,26 +4,18 @@ import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
 import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
 import { useCallback, useState } from "react";
 import { listStudentPaymentData } from "../utilities/listStudentPaymentData";
-import useListSummaryEducationYears from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationYears";
-import useListSummaryEducationLevel from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationLevel";
 import { useParams } from "react-router-dom";
-import useListSummaryEducationGrade from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationGrade";
-import useListClass from "../hooks/useListStudentPayment";
-import useDeleteClass from "../hooks/useDeleteStudentPayment";
-import useUpdateClass from "../hooks/useUpdateStudentPayment";
 import useMapToOptions, {
   type OptionType,
 } from "@schoolify/core/hooks/common/useMapToOptions";
 import { addStudentPaymentData } from "../utilities/addStudentPaymentData";
 import Grid from "@schoolify/core/components/base/inputs/Grid";
 import AutocompleteSelect from "@schoolify/core/components/common/AutocompleteSelect";
-import useListStudents from "@schoolify/features/user/shared/school/hooks/useListStudents";
-import useListSummaryEducationYear from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationYears";
-import useListPayment from "@schoolify/features/user/profile/accountManagement/payment/hooks/useListPayment";
 import useListStudentPayment from "../hooks/useListStudentPayment";
-import { updateStudentPayment } from "../utilities/api/api";
 import useDeleteStudentPayment from "../hooks/useDeleteStudentPayment";
 import useUpdateStudentPayment from "../hooks/useUpdateStudentPayment";
+import useListStudents from "@schoolify/features/user/school/management/shared/hooks/useListStudents";
+import useListSummaryEducationYear from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears";
 
 // Feature Components
 

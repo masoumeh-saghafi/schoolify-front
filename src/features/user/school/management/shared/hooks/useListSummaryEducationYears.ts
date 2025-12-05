@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { listSummaryEducationYear } from "../../../school/management/educationLevel/utilities/api/api";
 import ms from "ms";
+import { listSummaryEducationYear } from "@schoolify/features/user/school/management/educationLevel/utilities/api/api";
 
 const useListSummaryEducationYear = (schoolId: string) =>
   useQuery({

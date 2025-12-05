@@ -19,9 +19,9 @@ import ContentBox from "@schoolify/core/components/common/ContentBox";
 import Grid from "@schoolify/core/components/base/inputs/Grid";
 import SubmitButton from "@schoolify/core/components/common/SubmitButton";
 
-import useListSummaryEducationYear from "@schoolify/features/user/shared/school/hooks/useListSummaryEducationYears";
+import useListSummaryEducationYear from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears";
 
-import useListStudents from "@schoolify/features/user/shared/school/hooks/useListStudents";
+import useListStudents from "@schoolify/features/user/school/management/shared/hooks/useListStudents";
 
 import ControlledAutocomplete from "@schoolify/core/components/common/ControlledAutocomplete";
 import { useCallback, useState } from "react";
