@@ -2,6 +2,7 @@ const routes = {
   index: "/",
   aboutUs: "/about-us",
   login: "/login",
+  logout: "/logout",
   profile: "/profile",
   ticket: "/ticket",
 

@@ -1,32 +1,34 @@
 // React Types
-import { useState, type ReactNode } from 'react'
+import { useState, type ReactNode } from "react";
 
 // Feature Components
 import DashboardSidebar, {
-  type DashboardSidebarDataProps
-} from '@schoolify/features/shared/dashboard/components/Sidebar'
+  type DashboardSidebarDataProps,
+  type DashboardSidebarExitButtonDataProps,
+} from "@schoolify/features/shared/dashboard/components/Sidebar";
 import DashboardAppBar, {
-  type DashboardAppBarDataProps
-} from '@schoolify/features/shared/dashboard/components/AppBar/index'
-import SmallBox from '@schoolify/features/shared/dashboard/components/core/SmallBox'
+  type DashboardAppBarDataProps,
+} from "@schoolify/features/shared/dashboard/components/AppBar/index";
+import SmallBox from "@schoolify/features/shared/dashboard/components/core/SmallBox";
 
 // Custom Types
 interface DashboardProps {
-  appbarData?: DashboardAppBarDataProps[]
-  sidebarData?: DashboardSidebarDataProps[]
-  children: ReactNode
+  appbarData?: DashboardAppBarDataProps[];
+  sidebarData?: DashboardSidebarDataProps[];
+  sidebarExitButtonData: DashboardSidebarExitButtonDataProps;
+  children: ReactNode;
 }
 
 const Dashboard = (props: DashboardProps) => {
   // Props
-  const { appbarData, sidebarData, children } = props
+  const { appbarData, sidebarData, sidebarExitButtonData, children } = props;
 
   // States
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   // Handlers
-  const handleDrawerOpen = () => setOpen(true)
-  const handleDrawerClose = () => setOpen(false)
+  const handleDrawerOpen = () => setOpen(true);
+  const handleDrawerClose = () => setOpen(false);
 
   // Render
   return (
@@ -42,12 +44,13 @@ const Dashboard = (props: DashboardProps) => {
 
       <DashboardSidebar
         data={sidebarData}
+        exitButtonData={sidebarExitButtonData}
         open={open}
         handleDrawerClose={handleDrawerClose}
       />
 
       <SmallBox>{children}</SmallBox>
     </>
-  )
-}
-export default Dashboard
+  );
+};
+export default Dashboard;

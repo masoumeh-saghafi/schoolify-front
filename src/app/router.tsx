@@ -18,6 +18,7 @@ import SchoolManagementEducationGradePage from "./school/management/eucationGrad
 import SchoolManagementCostTypePage from "./school/management/costType/page";
 import SchoolManagementCostPage from "./school/management/cost/page";
 import SchoolManagementStudentPaymentPage from "./school/management/studentPayment/page";
+import LogoutPage from "./authentication/logout/page";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
   {
     path: routes.login,
     element: <LoginPage />,
+    // errorElement: <ErrorPage />,
+  },
+  {
+    path: routes.logout,
+    element: <LogoutPage />,
     // errorElement: <ErrorPage />,
   },
   {
@@ -88,13 +94,16 @@ const router = createBrowserRouter([
       {
         path: routes.school.management.classStudents.url,
         element: <SchoolManagementClassStudentsPage />,
-      },{
+      },
+      {
         path: routes.school.management.costType.url,
         element: <SchoolManagementCostTypePage />,
-      },{
+      },
+      {
         path: routes.school.management.cost.url,
         element: <SchoolManagementCostPage />,
-      },{
+      },
+      {
         path: routes.school.management.studentPayment.url,
         element: <SchoolManagementStudentPaymentPage />,
       },

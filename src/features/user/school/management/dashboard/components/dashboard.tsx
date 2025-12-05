@@ -6,8 +6,10 @@ import { schoolManagementSidebarData } from "@schoolify/features/user/school/man
 
 // React Types
 import type { ReactNode } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useListSummarySchools from "@schoolify/features/user/shared/school/hooks/useListSummarySchools";
+import type { DashboardSidebarExitButtonDataProps } from "@schoolify/features/shared/dashboard/components/Sidebar";
+import routes from "@schoolify/core/utilities/routes";
 
 // Custom Types
 interface SchoolManagementDashboardProps {
@@ -28,12 +30,25 @@ const SchoolManagementDashboard = (props: SchoolManagementDashboardProps) => {
     school?.data?.role
   );
 
+  // Hooks
+  const navigate = useNavigate();
+
+  const exitButtonData: DashboardSidebarExitButtonDataProps = {
+    title: "خروج از داشبورد",
+    onClick: () => navigate(routes.profile),
+  };
+
   const { children } = props;
 
   // Render
   return (
     <>
-      <Dashboard sidebarData={sidebarData}>{children}</Dashboard>
+      <Dashboard
+        sidebarData={sidebarData}
+        sidebarExitButtonData={exitButtonData}
+      >
+        {children}
+      </Dashboard>
     </>
   );
 };
