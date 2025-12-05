@@ -22,6 +22,8 @@ import {
   sendCode,
   verifyCode,
 } from "@schoolify/features/shared/authentication/utilities/api/api";
+import { getUserProfile } from "@schoolify/features/user/profile/accountManagement/personalInfo/utilities/api/api";
+import useUserProfile from "@schoolify/features/user/profile/accountManagement/personalInfo/hooks/useUserProfile";
 
 // Custom Types
 interface LoginProps {}
@@ -35,6 +37,21 @@ const Login = (props: LoginProps) => {
   // Hooks
   const navigate = useNavigate();
 
+  const handleAutoNavigation = async () => {
+    const profile = await getUserProfile();
+    if (profile?.isSuccess && profile?.data) {
+      if (profile.data.data?.role === "user") {
+        navigate(routes.profile);
+      } else {
+        navigate(routes.profile);
+      }
+    }
+  };
+
+  useEffect(() => {
+    handleAutoNavigation();
+  }, []);
+
   useEffect(() => {
     if (step === "verifyCode" && countdown > 0) {
       const timer = setTimeout(() => setCountdown((prev) => prev - 1), 1000);
@@ -43,6 +60,7 @@ const Login = (props: LoginProps) => {
   }, [countdown, step]);
 
   // Handlers
+
   const handleSendCode = async (data: SendCodeFormProps) => {
     const response = await sendCode(data.phoneNumber);
     if (response.isSuccess) {
