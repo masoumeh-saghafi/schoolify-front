@@ -73,15 +73,7 @@ const AddEducationGrade = (props: AddEducationGradeProps) => {
       data: data,
       educationLevelId: data.educationLevelId,
     });
-    if (result.isSuccess)
-      reset(
-        { title: "" },
-        {
-          keepValues: true,
-          keepDirty: false,
-          keepErrors: true,
-        }
-      );
+    if (result.isSuccess) reset(data);
   };
 
   // Render

@@ -13,6 +13,7 @@ import useListStudents from "@schoolify/features/user/school/management/shared/h
 
 // React Type
 import { useParams } from "react-router-dom";
+import UpdateStudent from "./UpdateStudent";
 
 // Custom Types
 // interface ListStudentProps {}
@@ -45,7 +46,7 @@ const ListStudent = () => {
   const columns = listStudentData;
 
   // Handlers
-  const handleChangeStudentInfo = async (id: string, updatedFields: any) => {
+  const handleUpdateStudentInfo = async (id: string, updatedFields: any) => {
     await updateStudent({
       data: updatedFields,
       studentId: id,
@@ -70,7 +71,8 @@ const ListStudent = () => {
         onSortChange={handleSortModelChange}
         columns={columns}
         onFilterChange={handleFilterChange}
-        onUpdateRow={handleChangeStudentInfo}
+        onUpdateRow={handleUpdateStudentInfo}
+        onUpdateForm={UpdateStudent}
         onDeleteRow={handleDelete}
         onDeleteRowGetTitle={(row) =>
           `${row.data.firstName} ${row.data.lastName}`

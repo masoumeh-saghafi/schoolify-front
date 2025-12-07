@@ -9,68 +9,52 @@ import ControlledAutocomplete from "@schoolify/core/components/common/Controlled
 import SubmitButton from "@schoolify/core/components/common/SubmitButton";
 
 // Feature Components
-import { addStudentValidationSchema } from "@schoolify/features/user/school/management/student/validation/addStudentValidationSchema";
-import { addStudentData } from "@schoolify/features/user/school/management/student/utilities/addStudentData";
 import { identityTypeOptions } from "@schoolify/features/user/school/management/student/validation/baseTypes";
 
 // Custom Hooks
-import useAddStudent from "@schoolify/features/user/school/management/student/hooks/useAddStudent";
 
 // React Type
-import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 //Type Definitions
 import { zodResolver } from "@hookform/resolvers/zod";
 import type z from "zod";
-import ControlledHiddenInput from "@schoolify/core/components/common/ControlledHiddenInput";
+import { updateStudentValidationSchema } from "../validation/updateStudentValidationSchema";
+import { updateStudentData } from "../utilities/updateStudentData";
 
-type SchemaProps = z.infer<typeof addStudentValidationSchema>;
+type SchemaProps = z.infer<typeof updateStudentValidationSchema>;
 
-interface AddStudentProps {}
+interface UpdateStudentProps {
+  recordId: string;
+  defaultValues: SchemaProps;
+  onSubmit?: (id: string, updatedFields: any, row: any) => void;
+}
 
-const AddStudent = (props: AddStudentProps) => {
-  // const {} = props;
-  const { schoolId = "" } = useParams();
-
-  // Hooks
+const UpdateStudent = (props: UpdateStudentProps) => {
+  const { defaultValues, onSubmit, recordId } = props;
   const {
-    handleSubmit,
     control,
+    handleSubmit,
     reset,
     formState: { isValid, isDirty },
-  } = useForm<SchemaProps>({
-    resolver: zodResolver(addStudentValidationSchema),
+  } = useForm({
+    defaultValues,
+    resolver: zodResolver(updateStudentValidationSchema),
     mode: "onChange",
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      fatherName: "",
-      parentPhoneNumber: "",
-      identityCode: "",
-      identityType: "",
-      schoolId: schoolId ?? "",
-    },
   });
 
-  const { mutateAsync: addStudent } = useAddStudent();
-
   // Handlers
-  const handleAddStudent = async (data: SchemaProps) => {
-    const result = await addStudent({ data: data, schoolId: schoolId });
-    if (result.isSuccess) reset();
+  const handleUpdateRecord = async (data: SchemaProps) => {
+    onSubmit?.(recordId, data, data);
+    reset(data);
   };
 
   // Render
   return (
     <Box>
-      <ContentBox
-        label="افزودن دانش آموز"
-        onSubmit={handleSubmit(handleAddStudent)}
-        component="form"
-      >
+      <ContentBox onSubmit={handleSubmit(handleUpdateRecord)} component="form">
         <Grid container spacing={2.5}>
-          {addStudentData.map((field) => (
+          {updateStudentData.map((field) => (
             <ControlledGridTextField
               key={field.name}
               control={control}
@@ -87,12 +71,9 @@ const AddStudent = (props: AddStudentProps) => {
             options={identityTypeOptions}
           />
 
-          {/* Hidden input for schoolId */}
-          <ControlledHiddenInput control={control} name="schoolId" />
-
           <Grid size={{ xs: 12, sm: 6 }}>
             <SubmitButton isValid={isValid} isDirty={isDirty}>
-              ایجاد
+              ویرایش
             </SubmitButton>
           </Grid>
         </Grid>
@@ -101,4 +82,4 @@ const AddStudent = (props: AddStudentProps) => {
   );
 };
 
-export default AddStudent;
+export default UpdateStudent;

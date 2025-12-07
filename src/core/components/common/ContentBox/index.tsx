@@ -11,7 +11,7 @@ import type { ElementType, FormEventHandler, ReactNode } from "react";
 // Custom Types
 
 interface ContentBoxProps {
-  label: string;
+  label?: string;
   children: ReactNode;
   component?: ElementType;
   onSubmit?: FormEventHandler<HTMLDivElement | HTMLFormElement>;

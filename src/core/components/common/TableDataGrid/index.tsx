@@ -22,6 +22,7 @@ import {
   DataGrid,
   getGridStringOperators,
 } from "@mui/x-data-grid";
+import EditStudentForm from "@schoolify/features/user/school/management/student/components/UpdateStudent";
 
 const allowedOperatorTypes = ["equals", "contains", "startsWith", "endsWith"];
 const customStringOperators = getGridStringOperators().filter((op) =>
@@ -44,6 +45,11 @@ interface TableDataGridProps {
   onFilterChange: (filter: Record<string, string>) => void;
   disableUpdateRowButton?: boolean;
   onUpdateRow?: (id: string, updatedFields: any, row: any) => Promise<void>;
+  onUpdateForm?: React.ComponentType<{
+    recordId: string;
+    defaultValues: any;
+    onSubmit?: (id: string, data: any, row?: any) => void;
+  }>;
   onDeleteRowGetTitle?: (row: any) => string;
   disableDeleteRowButton?: boolean;
   onDeleteRow?: (id: string, row: any) => Promise<void>;
@@ -58,7 +64,6 @@ interface TableDataGridProps {
     | "secondary"
     | "info"
     | "warning";
-
   disableActions?: boolean;
 }
 
@@ -71,6 +76,7 @@ const TableDataGrid = (params: TableDataGridProps) => {
     onFilterChange,
     disableUpdateRowButton = false,
     onUpdateRow,
+    onUpdateForm,
     disableAddRowButton = true,
     onAddRow,
     addRowTitle = "افزودن",
@@ -81,7 +87,7 @@ const TableDataGrid = (params: TableDataGridProps) => {
     disableActions = false,
   } = params;
 
-  var columns = params.columns
+  var columns = params.columns;
 
   const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
     page: 0,
@@ -112,6 +118,14 @@ const TableDataGrid = (params: TableDataGridProps) => {
     onSortChange(newOrder);
   }, [sortModel]);
 
+  const [editRow, setEditRow] = useState<any | null>(null);
+  const [openEditDialog, setOpenEditDialog] = useState(false);
+
+  const handleEditClick = (row: any) => {
+    setEditRow(row);
+    setOpenEditDialog(true);
+  };
+
   const handleFilterChange = (filterModel: any) => {
     const filterParams: Record<string, string> = {};
     filterModel.items.forEach((filter: any) => {
@@ -141,17 +155,6 @@ const TableDataGrid = (params: TableDataGridProps) => {
     onFilterChange(filterParams);
   };
 
-  const handleUpdateRow = (row: any) => {
-    const updatedFields = { ...row };
-
-    delete updatedFields.id;
-    delete updatedFields.data;
-
-    onUpdateRow?.(row.id, updatedFields, row).then((_) => {
-      setEditRows((prev) => ({ ...prev, [row.id]: false }));
-    });
-  };
-
   const handleDeleteClick = (row: any) => {
     const title = onDeleteRowGetTitle?.(row) ?? "";
     setSelectedRecord({ id: row.id, title: title });
@@ -178,33 +181,17 @@ const TableDataGrid = (params: TableDataGridProps) => {
         editable: false,
         resizable: false,
 
-        renderCell: (params: any) => {
-          const isEditing = editRows[params.row.id];
-
-          return isEditing ? (
-            <Button
-              variant="contained"
-              sx={{ backgroundColor: theme.palette.warning.light }}
-              size="small"
-              onClick={() => handleUpdateRow(params.row)}
-              disabled={disableActions}
-            >
-              اتمام
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              sx={{ backgroundColor: theme.palette.warning.main }}
-              size="small"
-              onClick={() =>
-                setEditRows((prev) => ({ ...prev, [params.row.id]: true }))
-              }
-              disabled={disableActions}
-            >
-              <EditIcon fontSize="small" />
-            </Button>
-          );
-        },
+        renderCell: (params) => (
+          <Button
+            variant="contained"
+            color="warning"
+            size="small"
+            onClick={() => handleEditClick(params.row)}
+            disabled={disableActions}
+          >
+            <EditIcon fontSize="small" />
+          </Button>
+        ),
       },
     ];
   }
@@ -352,6 +339,49 @@ const TableDataGrid = (params: TableDataGridProps) => {
           }}
         />
       </Box>
+      <Dialog
+        open={openEditDialog}
+        onClose={() => setOpenEditDialog(false)}
+        maxWidth="sm"
+        fullWidth
+      >
+        <DialogTitle
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Typography sx={{ flexGrow: 1, fontSize: "1.1rem" }}>
+            ویرایش جزئیات
+          </Typography>
+
+          <Button
+            variant="text"
+            color="error"
+            onClick={() => setOpenEditDialog(false)}
+            sx={{ minWidth: 0, paddingX: "15px", paddingY: "5px" }}
+          >
+            ✕
+          </Button>
+        </DialogTitle>
+
+        <DialogContent>
+          {editRow &&
+            onUpdateForm &&
+            (() => {
+              const FormComponent = onUpdateForm;
+              return (
+                <FormComponent
+                  recordId={editRow.id}
+                  defaultValues={editRow.data}
+                  onSubmit={onUpdateRow}
+                />
+              );
+            })()}
+        </DialogContent>
+      </Dialog>
+
       <Dialog
         open={openDeleteDialog}
         onClose={() => setOpenDeleteDialog(false)}
