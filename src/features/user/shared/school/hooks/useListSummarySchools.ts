@@ -9,7 +9,6 @@ const useListSummarySchools = (ignoreFetchData: boolean = false) => {
     queryKey: listSummarySchoolsQueryKey,
 
     queryFn: () => listSummarySchools(),
-
     staleTime: ms("1h"),
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,

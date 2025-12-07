@@ -13,13 +13,15 @@ export const schoolManagementSidebarData = (
 ): DashboardSidebarDataProps[] => [
   {
     key: "schoolTitle",
-    title: schoolTitle ?? "schoolTitle",
+    title: schoolTitle ? schoolTitle : "درحال دریافت اطلاعات",
     link: routes.school.management.index(schoolId),
     type: "contentBox",
   },
   {
     key: "role",
-    title: `نقش کاربر: ${translateUserSchoolRoleToPersian(role)}`,
+    title: role
+      ? `نقش کاربر: ${translateUserSchoolRoleToPersian(role)}`
+      : "درحال دریافت اطلاعات",
     link: routes.school.management.index(schoolId),
     type: "text",
   },
