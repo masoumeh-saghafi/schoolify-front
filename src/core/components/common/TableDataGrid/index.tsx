@@ -301,6 +301,10 @@ const TableDataGrid = (params: TableDataGridProps) => {
             "& .MuiDataGrid-columnHeaderTitle": {
               color: theme.palette.text.header,
             },
+
+            "& .MuiTablePagination-actions": {
+              direction: "rtl",
+            },
           }}
           isCellEditable={(params: any) => !!editRows[params.row.id]}
           localeText={{
