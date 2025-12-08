@@ -14,7 +14,7 @@ export const schoolManagementSidebarData = (
   {
     key: "schoolTitle",
     title: schoolTitle ? schoolTitle : "درحال دریافت اطلاعات",
-    link: routes.school.management.index(schoolId),
+    // link: routes.school.management.index(schoolId),
     type: "contentBox",
   },
   {
@@ -22,7 +22,7 @@ export const schoolManagementSidebarData = (
     title: role
       ? `نقش کاربر: ${translateUserSchoolRoleToPersian(role)}`
       : "درحال دریافت اطلاعات",
-    link: routes.school.management.index(schoolId),
+    // link: routes.school.management.index(schoolId),
     type: "text",
   },
   {
