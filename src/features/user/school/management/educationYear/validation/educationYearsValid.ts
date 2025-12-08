@@ -1,7 +1,7 @@
-import z from 'zod'
+import z from "zod";
+import { EducationYearYearTitleSchema } from "./baseTypes";
+
 export const validationSchema = z.object({
-  title: z.string().length(4, {
-    message: 'سال وارد شده درست نیست'
-  }),
-  schoolId: z.string()
-})
+  title: EducationYearYearTitleSchema,
+  schoolId: z.string(),
+});
