@@ -32,6 +32,7 @@ import useMapToOptions, {
 } from "@schoolify/core/hooks/common/useMapToOptions";
 import ControlledJalaliDatePicker from "@schoolify/core/components/common/ControlledJalaliDatePicker";
 import ControlledTextField from "@schoolify/core/components/common/ControlledTextField";
+import ControlledPriceField from "@schoolify/core/components/common/ControlledPriceField";
 
 type SchemaProps = z.infer<typeof validationSchema>;
 
@@ -138,11 +139,10 @@ const AddStudentPayment = (props: AddStudentPaymentProps) => {
             name="description"
             label="توضیحات"
           />
-          <ControlledTextField
+          <ControlledPriceField
             control={control}
             name="amount"
             label="مبلغ پرداختی"
-            // type='number'
           />
           <ControlledTextField
             control={control}
@@ -150,14 +150,12 @@ const AddStudentPayment = (props: AddStudentPaymentProps) => {
             label="شماره پرداخت"
             // type='number'
           />
-
           <ControlledJalaliDatePicker
             control={control}
             name="paymentDate"
             label="تاریخ پرداخت"
             placeholder="تاریخ را انتخاب کنید"
           />
-
           <ControlledAutocomplete
             control={control}
             name="studentId"
@@ -167,7 +165,6 @@ const AddStudentPayment = (props: AddStudentPaymentProps) => {
             inputValue={studentSearchText}
             onInputChange={handleStudentInput}
           />
-
           <Grid />
           <Grid size={{ xs: 12, sm: 6 }}>
             <SubmitButton isValid={isValid} isDirty={isDirty}>
