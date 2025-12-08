@@ -57,8 +57,22 @@ const DashboardSidebar = (props: DashboardSidebarProps) => {
 
   // Render Helpers
   const renderItems = () => (
-    <>
-      <Box sx={{ height: "94%", overflowY: "auto" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+        position: "relative",
+      }}
+    >
+      {/* Scrollable List */}
+      <Box
+        sx={{
+          flexGrow: 1,
+          overflowY: "auto",
+          pr: 1, // to avoid scrollbar over content
+        }}
+      >
         {data?.map((item) => (
           <SidebarListItem
             key={item.key}
@@ -71,25 +85,24 @@ const DashboardSidebar = (props: DashboardSidebarProps) => {
           />
         ))}
       </Box>
+
+      {/* Exit Button */}
       <Button
         variant="outlined"
         sx={{
           backgroundColor: theme.palette.background.paper,
           color: theme.palette.secondary.main,
           borderColor: theme.palette.secondary.main,
+          flexShrink: 0,
           mb: 1,
+          mt: 6,
           mx: 2,
-          position: "absolute",
-          bottom: 2,
-          left: 0,
-          right: 0,
-          // width: "95%",
         }}
-        onClick={() => exitButtonData?.onClick()}
+        onClick={exitButtonData.onClick}
       >
         {exitButtonData.title}
       </Button>
-    </>
+    </Box>
   );
 
   // Render
