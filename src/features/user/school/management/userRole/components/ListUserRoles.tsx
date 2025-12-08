@@ -52,24 +52,21 @@ const ListUserRoles = () => {
   const handleUpdateUserRoles = async (id: string, updatedFields: any) => {
     await updateUserRoles({
       data: updatedFields,
-      phoneNumber:id,
+      phoneNumber: id,
       schoolId: schoolId,
-      
-
     });
   };
 
   const handleDeleteUserRoles = async (id: string, row: any) => {
     await deleteUserRoles({
-      userRolesId: id,
-      phoneNumber:id,
+      phoneNumber: id,
       schoolId: schoolId,
     });
   };
 
   // Render
   return (
-  <ContentBox label="لیست دسترسی ها">
+    <ContentBox label="لیست دسترسی ها">
       <TableDataGrid
         data={data}
         isLoading={isLoading}

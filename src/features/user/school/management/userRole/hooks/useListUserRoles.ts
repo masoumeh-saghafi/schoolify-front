@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
 import { listUserRoles } from "../utilities/api/api";
 
-
 interface useListUserRolesProps {
   schoolId: string;
   pagination?: BaseRequestPaginationParams;
@@ -31,7 +30,12 @@ const useListUserRoles = (props: useListUserRolesProps) => {
     refetchOnReconnect: true,
     retry: 2,
     retryDelay: 1000,
-    select: (data) => data.data,
+    select: (data) => {
+      data.data?.docs.map((x) => {
+        x.id = x.data?.user.phoneNumber ?? "";
+      });
+      return data.data;
+    },
     enabled: !!props.schoolId,
   });
 };

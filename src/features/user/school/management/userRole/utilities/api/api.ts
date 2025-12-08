@@ -12,11 +12,10 @@ import {
 import UserRoleEndpoints from "./endpoints";
 import type ListUserRolesEntity from "../../types/api/ListUserRolesEntity";
 
-
-export const addUserRole = async (data: any,schoolId:string) => {
+export const addUserRole = async (data: any, schoolId: string) => {
   return await postData<BaseAddResponseEntity>(
     UserRoleEndpoints.addUserRole(schoolId),
-    data,
+    data
   );
 };
 
@@ -26,15 +25,14 @@ export const updateUserRole = async (
   phoneNumber: string
 ) => {
   return await patchData<void>(
-    UserRoleEndpoints.updateUserRole(schoolId,phoneNumber),
+    UserRoleEndpoints.updateUserRole(schoolId, phoneNumber),
     data
   );
 };
 
-export const deleteUserRole = async (userRoleId: string,schoolId: string, phoneNumber: string) => {
+export const deleteUserRole = async (schoolId: string, phoneNumber: string) => {
   return await deleteData<void>(
-    UserRoleEndpoints.deleteUserRole(schoolId,phoneNumber),
-    userRoleId
+    UserRoleEndpoints.deleteUserRole(schoolId, phoneNumber)
   );
 };
 

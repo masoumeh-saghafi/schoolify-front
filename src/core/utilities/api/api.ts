@@ -174,9 +174,14 @@ export async function patchData<T>(
 
 export async function deleteData<T>(
   endpoint: string,
-  id: string
+  id?: string
 ): Promise<BaseResponseEntity<T>> {
-  const res = await request<T>(`${BASE_URL}${endpoint}/${id}`, {
+  let url = `${BASE_URL}${endpoint}`;
+  if (id) {
+    url = `${url}/${id}`;
+  }
+
+  const res = await request<T>(url, {
     method: "DELETE",
     headers: getHeaders(),
   });
@@ -190,8 +195,7 @@ export async function deleteWithQueryParams<T>(
   queryParamKey: string,
   queryParamValues: string[]
 ): Promise<BaseResponseEntity<T>> {
-  // var queryParam = "";
-  let queryParam = ''
+  let queryParam = "";
 
   for (const value of queryParamValues) {
     queryParam += `${queryParamKey}=${value}&`;

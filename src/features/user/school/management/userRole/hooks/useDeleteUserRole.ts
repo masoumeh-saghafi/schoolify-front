@@ -1,30 +1,28 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { deleteUserRole } from '../utilities/api/api'
-import { listUserRolesQueryKey } from './useListUserRoles'
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { deleteUserRole } from "../utilities/api/api";
+import { listUserRolesQueryKey } from "./useListUserRoles";
 
 const useDeleteUserRole = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({
-      userRoleId,
       schoolId,
-      phoneNumber
+      phoneNumber,
     }: {
-      userRoleId: string
-      schoolId: string
-      phoneNumber: string
-    }) => deleteUserRole(userRoleId, schoolId, phoneNumber),
+      schoolId: string;
+      phoneNumber: string;
+    }) => deleteUserRole(schoolId, phoneNumber),
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
-        queryKey: listUserRolesQueryKey({ schoolId: variables.schoolId })
-      })
+        queryKey: listUserRolesQueryKey({ schoolId: variables.schoolId }),
+      });
     },
-    onError: error => {
+    onError: (error) => {
       //logError(`Error Updating Student: ${error}`);
-    }
-  })
-}
+    },
+  });
+};
 
-export default useDeleteUserRole
+export default useDeleteUserRole;
