@@ -88,7 +88,7 @@ export const schoolManagementSidebarData = (
   {
     key: "userRoles",
     title: "دسترسی کاربران",
-    link: routes.school.management.studentPayment.index(schoolId),
+    link: routes.school.management.userRoles.index(schoolId),
     disabled: role !== "owner",
     // icon: <SettingIcon />,
   },

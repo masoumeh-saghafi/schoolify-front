@@ -1,54 +1,54 @@
-import z from "zod";
-import { phoneValidation } from "./baseTypes";
+import z from 'zod'
+import { phoneValidation } from '@schoolify/features/user/school/management/shared/validation/phoneValidation'
 
 export const updateStudentValidationSchema = z
   .object({
     firstName: z
       .string()
-      .min(2, "نام باید حداقل ۲ حرف باشد")
-      .max(32, "نام نباید بیشتر از ۳۲ حرف باشد"),
+      .min(2, 'نام باید حداقل ۲ حرف باشد')
+      .max(32, 'نام نباید بیشتر از ۳۲ حرف باشد'),
     lastName: z
       .string()
-      .min(2, "نام خانوادگی باید حداقل ۲ حرف باشد")
-      .max(32, "نام خانوادگی نباید بیشتر از ۳۲ حرف باشد"),
+      .min(2, 'نام خانوادگی باید حداقل ۲ حرف باشد')
+      .max(32, 'نام خانوادگی نباید بیشتر از ۳۲ حرف باشد'),
     fatherName: z
       .string()
-      .min(2, "نام پدر باید حداقل ۲ حرف باشد")
-      .max(32, "نام پدر نباید بیشتر از ۳۲ حرف باشد"),
+      .min(2, 'نام پدر باید حداقل ۲ حرف باشد')
+      .max(32, 'نام پدر نباید بیشتر از ۳۲ حرف باشد'),
     parentPhoneNumber: z
       .string()
       .length(11, {
-        message: "لطفا شماره تلفن خود را صحیح وارد فرمایید",
+        message: 'لطفا شماره تلفن خود را صحیح وارد فرمایید'
       })
       .regex(phoneValidation, {
-        message: "شماره تلفن وارد شده صحیح نمی باشد",
+        message: 'شماره تلفن وارد شده صحیح نمی باشد'
       }),
     identityType: z
       .string()
-      .min(1, "لطفا ملیت را انتخاب کنید")
-      .refine((val) => ["iranian", "foreigner"].includes(val), {
-        message: "ملیت انتخاب شده معتبر نیست",
+      .min(1, 'لطفا ملیت را انتخاب کنید')
+      .refine(val => ['iranian', 'foreigner'].includes(val), {
+        message: 'ملیت انتخاب شده معتبر نیست'
       }),
-    identityCode: z.string(),
+    identityCode: z.string()
   })
   .refine(
-    (data) => {
+    data => {
       if (
-        data.identityType === "iranian" &&
+        data.identityType === 'iranian' &&
         !/^\d{10}$/.test(data.identityCode)
       ) {
-        return false;
+        return false
       }
       if (
-        data.identityType === "foreigner" &&
+        data.identityType === 'foreigner' &&
         !/^\d{8,15}$/.test(data.identityCode)
       ) {
-        return false;
+        return false
       }
-      return true;
+      return true
     },
     {
-      message: "کد ملی صحیح نیست",
-      path: ["identityCode"],
+      message: 'کد ملی صحیح نیست',
+      path: ['identityCode']
     }
-  );
+  )

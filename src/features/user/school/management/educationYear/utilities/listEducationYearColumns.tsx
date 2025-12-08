@@ -1,14 +1,15 @@
 import type { GridColDef } from "@mui/x-data-grid/models/colDef";
 import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
+import type ListEducationYearEntity from "@schoolify/features/user/school/management/educationYear/types/api/ListEducationYearEntity";
 import FormattedDate from "@schoolify/core/components/common/FormattedDate";
-import type ListEducationLevelEntity from "../types/api/ListEducationLevelEntity";
-export const listEducationLevelData: GridColDef<
-  BaseIdDataEntity<ListEducationLevelEntity>
+
+export const listEducationYearColumns: GridColDef<
+  BaseIdDataEntity<ListEducationYearEntity>
 >[] = [
   {
     field: "title",
     resizable: false,
-    headerName: "مقطع تحصیلی",
+    headerName: "سال تحصیلی",
     width: 150,
     editable: true,
     valueGetter: (_, row) => row.data?.title,
@@ -20,6 +21,7 @@ export const listEducationLevelData: GridColDef<
     width: 150,
     editable: false,
     filterable: false,
+
     renderCell: (params) => (
       <FormattedDate date={params.row.data?.createDate} />
     ),
@@ -27,7 +29,7 @@ export const listEducationLevelData: GridColDef<
   {
     field: "updateDate",
     resizable: false,
-    headerName: "  بروزرسانی",
+    headerName: " بروزرسانی",
     width: 150,
     editable: false,
     filterable: false,

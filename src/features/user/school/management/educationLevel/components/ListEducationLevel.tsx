@@ -1,24 +1,26 @@
+// React Type
+import { useState } from 'react'
+import { useParams } from 'react-router-dom'
+
+// MUI Components
+import Grid from '@schoolify/core/components/base/inputs/Grid'
+
 // Core Components
 import ContentBox from "@schoolify/core/components/common/ContentBox";
 import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
 import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
+import AutocompleteSelect from '@schoolify/core/components/common/AutocompleteSelect'
 
 // Feature Components
+import UpdateEducationLevel from "@schoolify/features/user/school/management/educationLevel/components/UpdateEducationLevel";
+import { listEducationLevelColumns } from "@schoolify/features/user/school/management/educationLevel/utilities/listEducationLevelColumns";
 
 // Custom Hooks
-
-// React Type
-import useListEducationLevel from "../hooks/useListEducationLevel";
-import useDeleteEducationLevel from "../hooks/useDeleteEducationLevel";
-import useUpdateEducationLevel from "../hooks/useUpdateEducationLevel";
-import { useState } from "react";
-import { listEducationLevelData } from "../utilities/listEducationLevelData";
-import Autocomplete from "@schoolify/core/components/base/inputs/Autocomplete";
-import TextField from "@schoolify/core/components/base/inputs/TextField";
+import useListEducationLevel from "@schoolify/features/user/school/management/educationLevel/hooks/useListEducationLevel";
+import useDeleteEducationLevel from "@schoolify/features/user/school/management/educationLevel/hooks/useDeleteEducationLevel";
+import useUpdateEducationLevel from "@schoolify/features/user/school/management/educationLevel/hooks/useUpdateEducationLevel";
 import useListSummaryEducationYear from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears";
-import { useParams } from "react-router-dom";
-import Grid from "@schoolify/core/components/base/inputs/Grid";
-import AutocompleteSelect from "@schoolify/core/components/common/AutocompleteSelect";
+
 
 // Custom Types
 // interface ListStudentProps {}
@@ -26,11 +28,15 @@ import AutocompleteSelect from "@schoolify/core/components/common/AutocompleteSe
 const ListEducationLevel = () => {
   // Props
   // const {} = props;
+
+  // States
   const [educationYearId, setEducationYearId] = useState("");
 
   // Hooks
   const { schoolId = "" } = useParams();
   const { data: educationYearData } = useListSummaryEducationYear(schoolId);
+  const { mutateAsync: updateEducationLevel } = useUpdateEducationLevel();
+  const { mutateAsync: deleteEducationLevel } = useDeleteEducationLevel();
 
   const {
     filters,
@@ -46,11 +52,9 @@ const ListEducationLevel = () => {
     filters,
   });
 
-  const { mutateAsync: updateEducationLevel } = useUpdateEducationLevel();
-  const { mutateAsync: deleteEducationLevel } = useDeleteEducationLevel();
 
   // Helpers
-  const columns = listEducationLevelData;
+  const columns = listEducationLevelColumns;
 
   // Handlers
   const handleUpdateEducationLevel = async (id: string, updatedFields: any) => {
@@ -74,7 +78,6 @@ const ListEducationLevel = () => {
       <Grid container spacing={2} mb={2}>
         <AutocompleteSelect
           label="سال تحصیلی"
-          placeholder="لطفا یک سال را انتخاب نمایید"
           options={
             educationYearData?.map((item) => ({
               key: item.id,
@@ -84,6 +87,7 @@ const ListEducationLevel = () => {
           value={educationYearId}
           onChange={setEducationYearId}
           loading={isLoading}
+          placeholder="لطفا یک سال را انتخاب نمایید"
         />
       </Grid>
 
@@ -95,6 +99,7 @@ const ListEducationLevel = () => {
         columns={columns}
         onFilterChange={handleFilterChange}
         onUpdateRow={handleUpdateEducationLevel}
+        onUpdateForm={UpdateEducationLevel}
         onDeleteRow={handleDeleteEducationLevel}
         onDeleteRowGetTitle={(row) =>
           `${row.data.firstName} ${row.data.lastName}`

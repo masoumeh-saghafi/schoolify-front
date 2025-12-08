@@ -19,6 +19,7 @@ import SchoolManagementCostTypePage from "./school/management/costType/page";
 import SchoolManagementCostPage from "./school/management/cost/page";
 import SchoolManagementStudentPaymentPage from "./school/management/studentPayment/page";
 import LogoutPage from "./authentication/logout/page";
+import SchoolManagementUserRolePage from "./school/management/userRole/page";
 
 const router = createBrowserRouter([
   {
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
       {
         path: routes.school.management.studentPayment.url,
         element: <SchoolManagementStudentPaymentPage />,
+      },
+       {
+        path: routes.school.management.userRoles.url,
+        element: <SchoolManagementUserRolePage />,
       },
     ],
   },

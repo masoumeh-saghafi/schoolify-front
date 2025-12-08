@@ -1,3 +1,6 @@
+// React Type
+import { useParams } from 'react-router-dom'
+
 // Core Components
 import ContentBox from "@schoolify/core/components/common/ContentBox";
 import DataTable from "@schoolify/core/components/common/DataTable";
@@ -5,11 +8,11 @@ import AsyncStateHandler from "@schoolify/core/components/common/AsyncStateHandl
 import FormattedDate from "@schoolify/core/components/common/FormattedDate";
 
 // Feature Components
-import { SchoolSubscriptionData } from "@schoolify/features/user/school/management/information/utilities/SchoolSubscriptionData";
+import { SchoolSubscriptionColumns } from "@schoolify/features/user/school/management/information/utilities/SchoolSubscriptionColumns";
 
 // Custom Hooks
 import useSchoolInfo from "@schoolify/features/user/school/management/information/hooks/useInfoSchool";
-import { useParams } from "react-router-dom";
+
 
 const SchoolSubscriptionDetails = () => {
   // Hooks
@@ -18,7 +21,7 @@ const SchoolSubscriptionDetails = () => {
 
   // Helpers
   const subscription = data?.data?.subscription?.data;
-  const columns = SchoolSubscriptionData();
+  const columns = SchoolSubscriptionColumns();
 
   // Render
   return (

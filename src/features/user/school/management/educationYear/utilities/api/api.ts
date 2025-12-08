@@ -3,6 +3,7 @@ import type {
   BaseAddResponseEntity,
   BaseIdDataEntity,
 } from "@schoolify/core/types/core/api/response";
+
 import {
   deleteData,
   getListPaginatedData,

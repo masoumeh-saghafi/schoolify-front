@@ -190,7 +190,9 @@ export async function deleteWithQueryParams<T>(
   queryParamKey: string,
   queryParamValues: string[]
 ): Promise<BaseResponseEntity<T>> {
-  var queryParam = "";
+  // var queryParam = "";
+  let queryParam = ''
+
   for (const value of queryParamValues) {
     queryParam += `${queryParamKey}=${value}&`;
   }

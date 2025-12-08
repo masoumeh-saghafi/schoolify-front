@@ -1,4 +1,5 @@
 import type { TabBoxDataProps } from "@schoolify/core/components/common/TabBox";
+
 import AddStudent from "@schoolify/features/user/school/management/student/components/AddStudent";
 import ListStudent from "@schoolify/features/user/school/management/student/components/ListStudent";
 

@@ -1,4 +1,4 @@
-interface StudentEditFormValues {
+interface StudentUpdateFormValues {
   firstName: string;
   lastName: string;
   fatherName: string;
@@ -8,7 +8,7 @@ interface StudentEditFormValues {
 }
 
 export const updateStudentData: {
-  name: keyof StudentEditFormValues;
+  name: keyof StudentUpdateFormValues;
   label: string;
 }[] = [
   { name: "firstName", label: "نام" },

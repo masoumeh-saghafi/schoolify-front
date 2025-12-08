@@ -3,6 +3,7 @@ import type {
   BaseAddResponseEntity,
   BaseIdDataEntity,
 } from "@schoolify/core/types/core/api/response";
+
 import {
   deleteData,
   getListPaginatedData,
@@ -10,8 +11,9 @@ import {
   patchData,
   postData,
 } from "@schoolify/core/utilities/api/api";
-import EducationLevelEndpoints from "./endpoints";
-import type ListEducationLevelEntity from "../../types/api/ListEducationLevelEntity";
+
+import EducationLevelEndpoints from "@schoolify/features/user/school/management/educationLevel/utilities/api/endpoints";
+import type ListEducationLevelEntity from "@schoolify/features/user/school/management/educationLevel/types/api/ListEducationLevelEntity";
 
 export const addEducationLevel = async (data: any) => {
   return await postData<BaseAddResponseEntity>(

@@ -4,4 +4,3 @@ const schoolInformationEndpoints = {
 }
 
 export default schoolInformationEndpoints
-

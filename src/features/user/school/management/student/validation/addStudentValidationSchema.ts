@@ -1,5 +1,6 @@
 import z from "zod";
-import { phoneValidation } from "./baseTypes";
+import { phoneValidation } from "@schoolify/features/user/school/management/shared/validation/phoneValidation";
+
 
 export const addStudentValidationSchema = z
   .object({

@@ -1,5 +1,3 @@
-
-
 export default interface ListStudentsEntity {
   firstName: string
   lastName: string

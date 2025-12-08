@@ -2,7 +2,7 @@ import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api
 
 import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
-import { listEducationYear } from "../utilities/api/api";
+import { listEducationYear } from "@schoolify/features/user/school/management/educationYear/utilities/api/api";
 
 interface useListEducationYearProps {
   schoolId: string;

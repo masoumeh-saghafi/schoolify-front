@@ -1,4 +1,4 @@
-import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response"
+import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 
 export default interface SchoolInfoEntity {
   title: string
@@ -11,4 +11,3 @@ export interface SchoolSubscriptionEntity {
   createDate: number
   updateDate: number
 }
-

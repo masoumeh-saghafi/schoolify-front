@@ -1,3 +1,11 @@
+// React Type
+import { useForm } from 'react-hook-form'
+import { useParams } from 'react-router-dom'
+
+//Type Definitions
+import type z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
 // MUI Components
 import Grid from '@schoolify/core/components/base/inputs/Grid'
 
@@ -12,32 +20,28 @@ import useSchoolInfo from '@schoolify/features/user/school/management/informatio
 import useUpdateSchoolName from '@schoolify/features/user/school/management/information/hooks/useUpdateUserProfile'
 
 // Feature Components
-import { titleValidationSchema } from '@schoolify/features/user/school/management/information/validation/titleValidation'
+import { validationSchema } from '@schoolify/features/user/school/management/information/validation/titleValidation'
 
-// React Type
-import { useForm } from 'react-hook-form'
-import { useParams } from 'react-router-dom'
-
-//Type Definitions
-import type z from 'zod'
-import { zodResolver } from '@hookform/resolvers/zod'
-
-type SchemaProps = z.infer<typeof titleValidationSchema>
+// Form schema
+type SchemaProps = z.infer<typeof validationSchema>
 
 const ChangeSchoolName = () => {
-  const {
-    control,
-    handleSubmit,
-    formState: { isValid, isDirty }
-  } = useForm<SchemaProps>({
-    resolver: zodResolver(titleValidationSchema),
-    mode: 'onChange'
-  })
 
   // Hooks
   const { schoolId = '' } = useParams()
   const { data, isLoading, error } = useSchoolInfo(schoolId)
   const { mutateAsync: updateSchoolName } = useUpdateSchoolName()
+
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid, isDirty }
+  } = useForm<SchemaProps>({
+    resolver: zodResolver(validationSchema),
+    mode: 'onChange'
+  })
+
+
 
   // Handlers
   const handleChangeSchoolName = async (data: SchemaProps) => {

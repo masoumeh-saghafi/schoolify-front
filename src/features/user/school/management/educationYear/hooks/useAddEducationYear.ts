@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addEducationYear } from "../utilities/api/api";
-import { listEducationYearQueryKey } from "./useListEducationYear";
+import { addEducationYear } from "@schoolify/features/user/school/management/educationYear/utilities/api/api";
+import { listEducationYearQueryKey } from "@schoolify/features/user/school/management/educationYear/hooks/useListEducationYear";
 
 const useAddEducationYear = () => {
   const queryClient = useQueryClient();

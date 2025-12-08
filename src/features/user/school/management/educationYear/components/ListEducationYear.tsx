@@ -1,20 +1,23 @@
+// React Type
+import { useParams } from 'react-router-dom'
+
 // Core Components
-import ContentBox from "@schoolify/core/components/common/ContentBox";
-import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
-import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
+import ContentBox from '@schoolify/core/components/common/ContentBox'
+import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
+import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGridState'
+import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 
 // Feature Components
+import UpdateEducationYear from '@schoolify/features/user/school/management/educationYear/components/UpdateEducationYear'
+import type ListEducationYearEntity from '@schoolify/features/user/school/management/educationYear/types/api/ListEducationYearEntity'
 
 // Custom Hooks
+import useUpdateEducationYear from '@schoolify/features/user/school/management/educationYear/hooks/useUpdateEducationYear'
+import useDeleteEducationYear from '@schoolify/features/user/school/management/educationYear/hooks/useDeleteEducationYear'
+import useListEducationYear from '@schoolify/features/user/school/management/educationYear/hooks/useListEducationYear'
 
-// React Type
-import { useParams } from "react-router-dom";
-import useUpdateEducationYear from "@schoolify/features/user/school/management/educationYear/hooks/useUpdateEducationYear";
-import useDeleteEducationYear from "@schoolify/features/user/school/management/educationYear/hooks/useDeleteEducationYear";
-import useListEducationYear from "../hooks/useListEducationYear";
-import { listEducationYearData } from "../utilities/listEducationYearData";
-import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
-import type ListEducationYearEntity from "../types/api/ListEducationYearEntity";
+// Custom Utilities
+import { listEducationYearColumns } from '@schoolify/features/user/school/management/educationYear/utilities/listEducationYearColumns'
 
 // Custom Types
 // interface ListStudentProps {}
@@ -24,47 +27,46 @@ const ListEducationYear = () => {
   // const {} = props;
 
   // Hooks
-  const { schoolId = "" } = useParams();
+  const { schoolId = '' } = useParams()
+  const { mutateAsync: updateEducationYear } = useUpdateEducationYear()
+  const { mutateAsync: deleteEducationYear } = useDeleteEducationYear()
 
   const {
     filters,
     paginationData: pagination,
     handleFilterChange,
     handlePaginationModelChange,
-    handleSortModelChange,
-  } = useTableDataGridState();
+    handleSortModelChange
+  } = useTableDataGridState()
 
   const { data, isLoading } = useListEducationYear({
     schoolId,
     pagination,
-    filters,
-  });
-
-  const { mutateAsync: updateEducationYear } = useUpdateEducationYear();
-  const { mutateAsync: deleteEducationYear } = useDeleteEducationYear();
+    filters
+  })
 
   // Helpers
-  const columns = listEducationYearData;
+  const columns = listEducationYearColumns
 
   // Handlers
   const handleUpdateEducationYear = async (id: string, updatedFields: any) => {
     await updateEducationYear({
       data: updatedFields,
       educationYearId: id,
-      schoolId: schoolId,
-    });
-  };
+      schoolId: schoolId
+    })
+  }
 
   const handleDeleteEducationYear = async (id: string, row: any) => {
     await deleteEducationYear({
       educationYearId: id,
-      schoolId: schoolId,
-    });
-  };
+      schoolId: schoolId
+    })
+  }
 
   // Render
   return (
-    <ContentBox label="لیست سال های تحصیلی ">
+    <ContentBox label='لیست سال های تحصیلی '>
       <TableDataGrid
         data={data}
         isLoading={isLoading}
@@ -74,11 +76,12 @@ const ListEducationYear = () => {
         onFilterChange={handleFilterChange}
         onUpdateRow={handleUpdateEducationYear}
         onDeleteRow={handleDeleteEducationYear}
+        onUpdateForm={UpdateEducationYear}
         onDeleteRowGetTitle={(row: BaseIdDataEntity<ListEducationYearEntity>) =>
           `${row.data?.title}`
         }
       />
     </ContentBox>
-  );
-};
-export default ListEducationYear;
+  )
+}
+export default ListEducationYear

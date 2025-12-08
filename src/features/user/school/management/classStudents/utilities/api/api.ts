@@ -4,7 +4,6 @@ import type {
 } from "@schoolify/core/types/core/api/response";
 import {
   deleteWithQueryParams,
-  getListPaginatedData,
   getListSummaryData,
   postData,
 } from "@schoolify/core/utilities/api/api";

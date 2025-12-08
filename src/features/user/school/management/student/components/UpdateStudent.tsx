@@ -1,3 +1,11 @@
+// React Type
+import { useForm } from 'react-hook-form'
+
+//Type Definitions
+import { zodResolver } from '@hookform/resolvers/zod'
+import type z from 'zod'
+
+
 // MUI Components
 import Box from "@schoolify/core/components/base/inputs/Box";
 import Grid from "@schoolify/core/components/base/inputs/Grid";
@@ -8,22 +16,18 @@ import ControlledGridTextField from "@schoolify/core/components/common/Controlle
 import ControlledAutocomplete from "@schoolify/core/components/common/ControlledAutocomplete";
 import SubmitButton from "@schoolify/core/components/common/SubmitButton";
 
-// Feature Components
+// Custom Utilities
+import { updateStudentData } from "@schoolify/features/user/school/management/student/utilities/updateStudentData";
+
+// Validation Schema
 import { identityTypeOptions } from "@schoolify/features/user/school/management/student/validation/baseTypes";
+import { updateStudentValidationSchema } from "@schoolify/features/user/school/management/student/validation/updateStudentValidationSchema";
 
-// Custom Hooks
 
-// React Type
-import { useForm } from "react-hook-form";
-
-//Type Definitions
-import { zodResolver } from "@hookform/resolvers/zod";
-import type z from "zod";
-import { updateStudentValidationSchema } from "../validation/updateStudentValidationSchema";
-import { updateStudentData } from "../utilities/updateStudentData";
-
+// Form schema
 type SchemaProps = z.infer<typeof updateStudentValidationSchema>;
 
+// Custom Types
 interface UpdateStudentProps {
   recordId: string;
   defaultValues: SchemaProps;
@@ -31,7 +35,11 @@ interface UpdateStudentProps {
 }
 
 const UpdateStudent = (props: UpdateStudentProps) => {
+  
+  // Props
   const { defaultValues, onSubmit, recordId } = props;
+
+  // Hooks
   const {
     control,
     handleSubmit,
@@ -43,11 +51,13 @@ const UpdateStudent = (props: UpdateStudentProps) => {
     mode: "onChange",
   });
 
+
   // Handlers
   const handleUpdateRecord = async (data: SchemaProps) => {
     onSubmit?.(recordId, data, data);
     reset(data);
   };
+
 
   // Render
   return (

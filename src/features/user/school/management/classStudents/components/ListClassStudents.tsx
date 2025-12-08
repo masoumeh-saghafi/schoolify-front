@@ -11,11 +11,12 @@ import useDeleteClass from "../hooks/useDeleteClassStudent";
 import useListClass from "../../class/hooks/useListClass";
 import useListSummaryClass from "@schoolify/features/user/school/management/shared/hooks/useListSummaryClass";
 import useMapToOptions from "@schoolify/core/hooks/common/useMapToOptions";
-import { listStudentData } from "../../student/utilities/listStudentData";
+
 import Grid from "@schoolify/core/components/base/inputs/Grid";
 import AutocompleteSelect from "@schoolify/core/components/common/AutocompleteSelect";
 import { listClassStudentData } from "../utilities/listClassStudentData";
 import useListStudents from "@schoolify/features/user/school/management/shared/hooks/useListStudents";
+import { listStudentColumns } from "../../student/utilities/listStudentColumns";
 
 // Feature Components
 
@@ -101,7 +102,7 @@ const ListClassStudents = () => {
   } as const;
 
   // Helpers
-  const columns = listStudentData;
+  const columns = listStudentColumns;
 
   // Handlers
 

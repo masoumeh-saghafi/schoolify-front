@@ -1,40 +1,45 @@
-// MUI Components
-
-// Core Components
-
-// Feature Components
-
-// Custom Hooks
-
 // React Type
-import { useParams } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useParams } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 
 //Type Definitions
-import { zodResolver } from "@hookform/resolvers/zod";
-import type z from "zod";
+import { zodResolver } from '@hookform/resolvers/zod'
+import type z from 'zod'
 
-import Box from "@schoolify/core/components/base/inputs/Box";
-import ContentBox from "@schoolify/core/components/common/ContentBox";
-import Grid from "@schoolify/core/components/base/inputs/Grid";
+// MUI Components
+import Box from '@schoolify/core/components/base/inputs/Box'
+import ContentBox from '@schoolify/core/components/common/ContentBox'
+import Grid from '@schoolify/core/components/base/inputs/Grid'
+
+// Core Components
 import ControlledGridTextField from "@schoolify/core/components/common/ControlledGridTextField";
 import SubmitButton from "@schoolify/core/components/common/SubmitButton";
+import ControlledAutocomplete from '@schoolify/core/components/common/ControlledAutocomplete'
 
-import useAddEducationLevel from "../hooks/useAddEducationLevel";
-import { validationSchema } from "../validation/educationLevelValid";
+
+// Custom Hooks
+import useMapToOptions from '@schoolify/core/hooks/common/useMapToOptions'
+import useAddEducationLevel from "@schoolify/features/user/school/management/educationLevel/hooks/useAddEducationLevel";
 import useListSummaryEducationYear from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears";
-import ControlledAutocomplete from "@schoolify/core/components/common/ControlledAutocomplete";
-import useMapToOptions from "@schoolify/core/hooks/common/useMapToOptions";
 
+// Validation Schema
+import { validationSchema } from "@schoolify/features/user/school/management/educationLevel/validation/educationLevelValidation";
+
+// Form schema
 type SchemaProps = z.infer<typeof validationSchema>;
 
+// Custom Types
 interface AddEducationLevelProps {}
 
 const AddEducationLevel = (props: AddEducationLevelProps) => {
   // const {} = props;
-  const { schoolId = "" } = useParams();
-
+ 
   // Hooks
+  const { schoolId = "" } = useParams();
+  const { data: educationYearData } = useListSummaryEducationYear(schoolId);
+  const { mutateAsync: addEducationLevel } = useAddEducationLevel();
+  const options = useMapToOptions(educationYearData);
+
   const {
     handleSubmit,
     control,
@@ -49,9 +54,6 @@ const AddEducationLevel = (props: AddEducationLevelProps) => {
     },
   });
 
-  const { data: educationYearData } = useListSummaryEducationYear(schoolId);
-  const { mutateAsync: addEducationLevel } = useAddEducationLevel();
-  const options = useMapToOptions(educationYearData);
 
   // Handlers
   const handleAddEducationLevel = async (data: SchemaProps) => {
@@ -72,18 +74,18 @@ const AddEducationLevel = (props: AddEducationLevelProps) => {
       >
         <Grid container spacing={2}>
           <ControlledAutocomplete
-            control={control}
-            name="educationYearId"
             label="سال تحصیلی"
-            placeholder="لطفا یک سال را انتخاب نمایید"
+            name="educationYearId"
+            control={control}
             options={options}
+            placeholder="لطفا یک سال را انتخاب نمایید"
           />
 
           <ControlledGridTextField
+            label="مقطع تحصیلی "
+            name="title"
             key="EducationLevel"
             control={control}
-            name="title"
-            label="مقطع تحصیلی "
           />
 
           <Grid size={{ xs: 12, sm: 6 }}>

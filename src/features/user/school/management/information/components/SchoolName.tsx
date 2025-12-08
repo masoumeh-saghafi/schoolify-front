@@ -1,3 +1,6 @@
+// React Type
+import { useParams } from 'react-router-dom'
+
 // MUI Components
 import Box from '@schoolify/core/components/base/inputs/Box'
 import Grid from '@schoolify/core/components/base/inputs/Grid'
@@ -9,7 +12,6 @@ import AsyncStateHandler from '@schoolify/core/components/common/AsyncStateHandl
 
 // Custom Hooks
 import useSchoolInfo from '@schoolify/features/user/school/management/information/hooks/useInfoSchool'
-import { useParams } from 'react-router-dom'
 
 const SchoolName = () => {
 

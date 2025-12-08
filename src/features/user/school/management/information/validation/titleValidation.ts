@@ -1,6 +1,6 @@
 import z from 'zod'
 
-export const titleValidationSchema = z.object({
+export const validationSchema = z.object({
   title: z
     .string()
     .min(2, {
