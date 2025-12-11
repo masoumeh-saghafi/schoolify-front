@@ -3,7 +3,7 @@ import TabBox from "@schoolify/core/components/common/TabBox";
 import routes from "@schoolify/core/utilities/routes";
 
 // Custom Utilities
-import { tabData } from "@schoolify/features/user/profile/accountManagement/utilities/data";
+import { tabData } from "@schoolify/features/user/profile/accountManagement/shared/utilities/data";
 
 // Custom Types
 // interface AccountManagementTabBoxProps {}

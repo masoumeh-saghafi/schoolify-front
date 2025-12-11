@@ -1,6 +1,6 @@
 import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
 import { getData, postData } from "@schoolify/core/utilities/api";
-import profileAccountManagementEndpoints from "@schoolify/features/user/profile/accountManagement/utilities/api/endpoints";
+import profileAccountManagementEndpoints from "@schoolify/features/user/profile/accountManagement/shared/utilities/api/endpoints";
 import type ListPaymentEntity from "@schoolify/features/user/profile/accountManagement/payment/types/api/ListPaymentEntity";
 
 export const updatePaymentStatus = async (data: any, paymentId: string) => {

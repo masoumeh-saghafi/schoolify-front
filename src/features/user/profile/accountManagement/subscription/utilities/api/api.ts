@@ -1,6 +1,6 @@
 import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 import { getData, postData } from '@schoolify/core/utilities/api'
-import profileAccountManagementEndpoints from '@schoolify/features/user/profile/accountManagement/utilities/api/endpoints'
+import profileAccountManagementEndpoints from '@schoolify/features/user/profile/accountManagement/shared/utilities/api/endpoints'
 import type ListSubscriptionsEntity from '@schoolify/features/user/profile/accountManagement/subscription/types/api/ListSubscriptionsEntity'
 import type BuySubscriptionsEntitiy from '@schoolify/features/user/profile/accountManagement/subscription/types/api/BuySubscriptionsEntitiy'
 import type RenewalSubscriptionEntity from '@schoolify/features/user/profile/accountManagement/subscription/types/api/RenewalSubscriptionEntity'

@@ -1,7 +1,7 @@
 import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
 import { getListPaginatedData, getData } from "@schoolify/core/utilities/api";
 import type UserProfileEntity from "@schoolify/features/user/profile/accountManagement/personalInfo/types/api/UserProfileEntity";
-import profileAccountManagementEndpoints from "@schoolify/features/user/profile/accountManagement/utilities/api/endpoints";
+import profileAccountManagementEndpoints from "@schoolify/features/user/profile/accountManagement/shared/utilities/api/endpoints";
 import type ListNotificationsEntity from "@schoolify/features/user/profile/accountManagement/personalInfo/types/api/ListNotificationsEntity";
 import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
 
