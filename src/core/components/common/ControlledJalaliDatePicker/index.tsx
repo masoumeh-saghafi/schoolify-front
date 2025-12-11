@@ -1,72 +1,87 @@
+import { useState } from "react";
 import {
   Controller,
   type Control,
   type FieldValues,
-  type Path
-} from 'react-hook-form'
-import { useState } from 'react'
+  type Path,
+} from "react-hook-form";
 import {
   format,
   eachDayOfInterval,
   startOfMonth,
   endOfMonth,
   addMonths,
-  isSameDay
-} from 'date-fns-jalali'
+  isSameDay,
+  setDate,
+  setMonth,
+  setYear,
+} from "date-fns-jalali";
 
 // MUI
-import TextField from '@schoolify/core/components/base/inputs/TextField'
-import Paper from '@mui/material/Paper'
-import Box from '@mui/material/Box'
-import ClickAwayListener from '@mui/material/ClickAwayListener'
-import IconButton from '@mui/material/IconButton'
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import Grid from '../../base/inputs/Grid'
+import TextField from "@schoolify/core/components/base/inputs/TextField";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import IconButton from "@mui/material/IconButton";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import Grid from "../../base/inputs/Grid";
 
-// Props
 interface ControlledJalaliDatePickerProps<T extends FieldValues> {
-  name: Path<T>
-  control: Control<T>
-  label?: string
-  disabled?: boolean
-  placeholder?: string
-  xs?: number
-  sm?: number
+  name: Path<T>;
+  control: Control<T>;
+  label?: string;
+  disabled?: boolean;
+  placeholder?: string;
+  xs?: number;
+  sm?: number;
 }
 
 const ControlledJalaliDatePicker = <T extends FieldValues>({
   name,
   control,
   placeholder,
-  label = 'تاریخ',
+  label = "تاریخ",
   xs = 12,
   sm = 6,
-  disabled = false
+  disabled = false,
 }: ControlledJalaliDatePickerProps<T>) => {
-  const [open, setOpen] = useState(false)
-  const [currentMonth, setCurrentMonth] = useState(new Date())
-  const today = new Date()
+  const [open, setOpen] = useState(false);
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const today = new Date();
 
-  const toString = (date: Date | null) => {
-    if (!date) return ''
-    return format(date, 'yyyy/MM/dd')
-  }
+  const toString = (date: Date | null) =>
+    date ? format(date, "yyyy/MM/dd") : "";
+
+  // تابع parse برای ورودی دستی شمسی
+  const parseJalaliInput = (val: string) => {
+    const [y, m, d] = val.split("/").map(Number);
+    if (!y || !m || !d) return null;
+    try {
+      let date = new Date();
+      date = setYear(date, y);
+      date = setMonth(date, m - 1);
+      date = setDate(date, d);
+      return date;
+    } catch {
+      return null;
+    }
+  };
 
   const daysInMonth = eachDayOfInterval({
     start: startOfMonth(currentMonth),
-    end: endOfMonth(currentMonth)
-  })
+    end: endOfMonth(currentMonth),
+  });
 
   const weekDays = [
-    'شنبه',
-    'یکشنبه',
-    'دوشنبه',
-    'سشنبه',
-    'چهارشنبه',
-    'پنج شنبه',
-    'جمعه'
-  ]
+    "شنبه",
+    "یکشنبه",
+    "دوشنبه",
+    "سشنبه",
+    "چهارشنبه",
+    "پنج شنبه",
+    "جمعه",
+  ];
 
   return (
     <Grid size={{ xs, sm }}>
@@ -74,79 +89,86 @@ const ControlledJalaliDatePicker = <T extends FieldValues>({
         name={name}
         control={control}
         render={({ field, fieldState }) => (
-          <Box sx={{ position: 'relative' }}>
+          <Box sx={{ position: "relative" }}>
+            {/* TextField قابل تایپ */}
             <TextField
-              size='small'
+              size="small"
               fullWidth
-              value={field.value || ''}
+              value={field.value || ""}
               onClick={() => !disabled && setOpen(true)}
+              onChange={(e) => {
+                const val = e.target.value;
+                field.onChange(val);
+
+                const parsed = parseJalaliInput(val);
+                if (parsed) setCurrentMonth(parsed);
+              }}
               label={label}
               disabled={disabled}
               error={!!fieldState.error}
               helperText={fieldState.error?.message}
               placeholder={placeholder}
               slotProps={{
-                inputLabel: { shrink: true }
+                inputLabel: { shrink: true },
               }}
             />
 
+            {/* تقویم */}
             {open && !disabled && (
               <ClickAwayListener onClickAway={() => setOpen(false)}>
                 <Paper
                   sx={{
-                    position: 'absolute',
-                    top: '48px',
+                    position: "absolute",
+                    top: "48px",
                     right: 0,
                     zIndex: 20,
                     p: 2,
                     width: 280,
-                    boxShadow: 1
+                    boxShadow: 1,
                   }}
                 >
                   {/* Header */}
                   <Box
                     sx={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      mb: 1
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      mb: 1,
                     }}
                   >
                     <IconButton
-                      size='small'
+                      size="small"
                       onClick={() =>
                         setCurrentMonth(addMonths(currentMonth, -1))
                       }
                     >
-                      <ArrowForwardIosIcon fontSize='small' />
+                      <ArrowForwardIosIcon fontSize="small" />
                     </IconButton>
-
                     <Box sx={{ fontWeight: 600 }}>
-                      {format(currentMonth, 'MMMM yyyy')}
+                      {format(currentMonth, "MMMM yyyy")}
                     </Box>
-
                     <IconButton
-                      size='small'
+                      size="small"
                       onClick={() =>
                         setCurrentMonth(addMonths(currentMonth, 1))
                       }
                     >
-                      <ArrowBackIosNewIcon fontSize='small' />
+                      <ArrowBackIosNewIcon fontSize="small" />
                     </IconButton>
                   </Box>
 
                   {/* Weekdays */}
                   <Box
                     sx={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(7, 1fr)',
-                      mb: 1
+                      display: "grid",
+                      gridTemplateColumns: "repeat(7, 1fr)",
+                      mb: 1,
                     }}
                   >
-                    {weekDays.map(d => (
+                    {weekDays.map((d) => (
                       <Box
                         key={d}
-                        sx={{ textAlign: 'center', fontSize: '0.55rem' }}
+                        sx={{ textAlign: "center", fontSize: "0.55rem" }}
                       >
                         {d}
                       </Box>
@@ -156,44 +178,47 @@ const ControlledJalaliDatePicker = <T extends FieldValues>({
                   {/* Days */}
                   <Box
                     sx={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(7, 1fr)',
-                      gap: 1
+                      display: "grid",
+                      gridTemplateColumns: "repeat(7, 1fr)",
+                      gap: 1,
                     }}
                   >
-                    {daysInMonth.map(day => {
-                      const isToday = isSameDay(day, today)
-                      const isSelected = field.value === toString(day)
+                    {daysInMonth.map((day) => {
+                      const isToday = isSameDay(day, today);
+                      const isSelected = field.value === toString(day);
+
                       return (
                         <Box
                           key={day.toString()}
                           sx={{
-                            textAlign: 'center',
-                            cursor: 'pointer',
+                            textAlign: "center",
+                            cursor: "pointer",
                             p: 0.5,
                             borderRadius: 1,
                             bgcolor: isSelected
-                              ? 'primary.main'
+                              ? "primary.main"
                               : isToday
-                              ? 'secondary.light'
-                              : 'transparent',
+                              ? "secondary.light"
+                              : "transparent",
                             color: isSelected
-                              ? 'primary.contrastText'
-                              : 'text.primary',
+                              ? "primary.contrastText"
+                              : "text.primary",
                             fontWeight: isToday ? 700 : 400,
-                            '&:hover': {
-                              bgcolor: 'primary.light',
-                              color: 'primary.contrastText'
-                            }
+                            "&:hover": {
+                              bgcolor: "primary.light",
+                              color: "primary.contrastText",
+                            },
                           }}
                           onClick={() => {
-                            field.onChange(toString(day))
-                            setOpen(false)
+                            const val = toString(day);
+                            field.onChange(val);
+                            setCurrentMonth(day);
+                            setOpen(false);
                           }}
                         >
-                          {format(day, 'd')}
+                          {format(day, "d")}
                         </Box>
-                      )
+                      );
                     })}
                   </Box>
                 </Paper>
@@ -201,9 +226,9 @@ const ControlledJalaliDatePicker = <T extends FieldValues>({
             )}
           </Box>
         )}
-        />
-        </Grid>
-  )
-}
+      />
+    </Grid>
+  );
+};
 
-export default ControlledJalaliDatePicker
+export default ControlledJalaliDatePicker;
