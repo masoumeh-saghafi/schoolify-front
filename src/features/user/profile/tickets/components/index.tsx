@@ -15,7 +15,10 @@ const TicketTabBox = () => {
   // Render
   return (
     <>
-      <TabBox baseUrlPath={routes.ticket} data={tabTicketData} />
+      <TabBox
+        baseUrlPath={routes.profile.tickets.index()}
+        data={tabTicketData}
+      />
     </>
   );
 };

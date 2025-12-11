@@ -17,6 +17,7 @@ export interface TabBoxDataProps {
   label: string;
   key: string;
   children: ReactNode;
+  hidden?: boolean;
   minWidth?: number;
 }
 
@@ -24,6 +25,12 @@ interface TabBoxProps {
   data: TabBoxDataProps[];
   baseUrlPath: string;
 }
+
+export const tabBoxGenerateFullUrlPath = (
+  baseUrl: string,
+  key: string
+  // queryParams: Record<string, any>
+) => `${baseUrl}#${key}`;
 
 const TabBox = (props: TabBoxProps) => {
   // Props
@@ -35,11 +42,13 @@ const TabBox = (props: TabBoxProps) => {
   const theme = useAppTheme();
 
   // Helpers
-  const generateFullUrlPath = (key: string) => `${baseUrlPath}#${key}`;
+  const generateFullUrlPath = (key: string) =>
+    tabBoxGenerateFullUrlPath(baseUrlPath, key);
 
   const foundCurrentTab = data.filter(
     (item) =>
-      location.pathname + location.hash === generateFullUrlPath(item.key)
+      location.pathname + location.hash.split("?")[0] ===
+      generateFullUrlPath(item.key)
   );
   const currentTab =
     foundCurrentTab.length === 1 ? foundCurrentTab[0].key : data[0].key;
@@ -80,7 +89,10 @@ const TabBox = (props: TabBoxProps) => {
               <Tab
                 label={item.label}
                 value={item.key}
-                sx={{ minWidth: item.minWidth || 120 }}
+                sx={{
+                  minWidth: item.minWidth || 120,
+                  ...(item.hidden ? { display: "none" } : {}),
+                }}
               />
             ))}
           </TabList>

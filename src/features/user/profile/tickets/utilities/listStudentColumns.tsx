@@ -1,91 +1,63 @@
 import type { GridColDef } from "@mui/x-data-grid/models/colDef";
-import FormattedDate from "@schoolify/core/components/common/FormattedDate";
 
 import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
 
-import type ListStudentsEntity from "@schoolify/features/user/school/management/student/types/api/ListStudentsEntity";
+import type ListTicketEntity from "../types/api/ListTicketEntity";
+import FormattedDate from "@schoolify/core/components/common/FormattedDate";
+import { statusOptions, typeOptions } from "../validation/baseTypes";
 
-import { identityTypeOptions } from "@schoolify/features/user/school/management/student/validation/baseTypes";
-
-export const listStudentColumns: GridColDef<
-  BaseIdDataEntity<ListStudentsEntity>
+export const listTicketColumns: GridColDef<
+  BaseIdDataEntity<ListTicketEntity>
 >[] = [
   {
-    field: "firstName",
+    field: "title",
     resizable: false,
-    headerName: "نام",
-    width: 150,
-    editable: true,
-    sortable: true,
-    valueGetter: (_, row) => row.data?.firstName,
+    headerName: "عنوان",
+    width: 200,
+    valueGetter: (_, row) => row.data?.title,
   },
   {
-    field: "lastName",
+    field: "school",
     resizable: false,
-    headerName: "نام خانوادگی",
+    headerName: "نام مدرسه",
     width: 150,
-    editable: true,
-    sortable: true,
-    valueGetter: (_, row) => row.data?.lastName,
+    valueGetter: (_, row) => row.data?.school?.data?.title || "---",
   },
   {
-    field: "fatherName",
+    field: "status",
     resizable: false,
-    headerName: "نام پدر",
-    width: 150,
-    sortable: false,
-    editable: true,
-    valueGetter: (_, row) => row.data?.fatherName,
-  },
-  {
-    field: "parentPhoneNumber",
-    resizable: false,
-    headerName: "شماره موبایل والدین",
-    width: 150,
-    sortable: false,
-    editable: true,
-    valueGetter: (_, row) => row.data?.parentPhoneNumber,
-  },
-  {
-    field: "identityCode",
-    resizable: false,
-    headerName: "شناسه هویتی",
-    width: 150,
-    sortable: false,
-    editable: true,
-    valueGetter: (_, row) => row.data?.identityCode,
-  },
-  {
-    field: "identityType",
-    resizable: false,
-    headerName: "هویت",
-    width: 100,
-    sortable: false,
+    headerName: "وضعیت",
+    width: 160,
     valueGetter: (_, row) =>
-      identityTypeOptions.find(
-        (option) => option.key === row.data?.identityType
-      )?.value,
+      statusOptions.find((option) => option.id === row.data?.status)?.title ||
+      "---",
+  },
+
+  {
+    field: "type",
+    resizable: false,
+    headerName: "واحد",
+    width: 150,
+    valueGetter: (_, row) =>
+      typeOptions.find((option) => option.id === row.data?.type)?.title ||
+      "---",
   },
   {
     field: "createDate",
     resizable: false,
-    headerName: " ثبت",
+    headerName: "ثبت  ",
     width: 150,
-    filterable: false,
     editable: false,
-    sortable: true,
     renderCell: (params) => (
       <FormattedDate date={params.row.data?.createDate} />
     ),
   },
   {
     field: "updateDate",
-    filterable: false,
     resizable: false,
-    headerName: " بروزرسانی",
-    editable: false,
+    headerName: "  بروزرسانی",
     width: 150,
-    sortable: true,
+    editable: false,
     renderCell: (params) => (
       <FormattedDate date={params.row.data?.updateDate} />
     ),

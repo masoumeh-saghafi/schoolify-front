@@ -1,5 +1,5 @@
 // React Type
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 //Type Definitions
@@ -33,6 +33,7 @@ import useAddTicket from "../hooks/useAddTicket";
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 import Button from "@schoolify/core/components/base/inputs/Button";
 import type { OptionType } from "@schoolify/core/hooks/common/useMapToOptions";
+import routes from "@schoolify/core/utilities/routes";
 
 // Form schema
 type SchemaProps = z.infer<typeof addTicketValidationSchema>;
@@ -78,8 +79,10 @@ const AddTicket = (props: AddTicketProps) => {
     if (result.isSuccess) reset(data);
   };
 
-  const handleReset = () => {
-    reset();
+  const navigate = useNavigate();
+
+  const handleReturnToProfile = () => {
+    navigate(routes.profile.baseUrl);
   };
 
   // Render
@@ -136,7 +139,7 @@ const AddTicket = (props: AddTicketProps) => {
             >
               <Button
                 type="button"
-                onClick={handleReset}
+                onClick={handleReturnToProfile}
                 color="secondary"
                 variant="outlined"
                 sx={{
@@ -144,7 +147,7 @@ const AddTicket = (props: AddTicketProps) => {
                   maxWidth: "100px",
                 }}
               >
-                لغو
+                بازگشت
               </Button>
 
               <SubmitButton isDirty={isDirty} isValid={isValid}>
