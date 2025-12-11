@@ -17,14 +17,14 @@ export const useDashboardSidebarData = (): DashboardSidebarDataProps[] => {
     {
       key: genUUID(),
       title: "پشتیبانی",
-      link: routes.ticket,
+      link: routes.profile.tickets.index(),
       icon: <SupportAgentIcon />,
       type: "listItem",
     },
     {
       key: genUUID(),
       title: "مدیریت حساب کاربری",
-      link: routes.profile,
+      link: routes.profile.baseUrl,
       icon: <SettingIcon />,
       type: "listItem",
     },

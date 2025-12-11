@@ -3,8 +3,13 @@ const routes = {
   aboutUs: "/about-us",
   login: "/login",
   logout: "/logout",
-  profile: "/profile",
-  ticket: "/ticket",
+  profile: {
+    baseUrl: "/profile",
+    tickets: {
+      url: "tickets",
+      index: () => routes.profile.baseUrl + "/" + routes.profile.tickets.url,
+    },
+  },
 
   paymentGatewayBase: "/payment",
   paymentGateway: (paymentId: string) =>

@@ -8,19 +8,11 @@ const useAddTicket = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({
-      data,
-      // educationYearId,
-    }: {
-      data: any;
-      // educationYearId: string;
-    }) => addTicket(data),
+    mutationFn: ({ data }: { data: any }) => addTicket(data),
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
-        queryKey: listTicketQueryKey({
-          // educationYearId: variables.educationYearId,
-        }),
+        queryKey: listTicketQueryKey({}),
       });
     },
     onError: (error) => {},

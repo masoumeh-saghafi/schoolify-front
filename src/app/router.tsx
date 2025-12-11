@@ -20,6 +20,7 @@ import SchoolManagementCostPage from "./school/management/cost/page";
 import SchoolManagementStudentPaymentPage from "./school/management/studentPayment/page";
 import LogoutPage from "./authentication/logout/page";
 import SchoolManagementUserRolePage from "./school/management/userRole/page";
+import TicketPage from "./profile/ticket/page";
 
 const router = createBrowserRouter([
   {
@@ -53,13 +54,17 @@ const router = createBrowserRouter([
     // errorElement: <ErrorPage />,
   },
   {
-    path: routes.profile,
+    path: routes.profile.baseUrl,
     element: <ProfileLayout />,
     // errorElement: <ErrorPage />,
     children: [
       {
         index: true,
         element: <ProfilePage />,
+      },
+      {
+        path: routes.profile.tickets.url,
+        element: <TicketPage />,
       },
     ],
   },
@@ -108,7 +113,7 @@ const router = createBrowserRouter([
         path: routes.school.management.studentPayment.url,
         element: <SchoolManagementStudentPaymentPage />,
       },
-       {
+      {
         path: routes.school.management.userRoles.url,
         element: <SchoolManagementUserRolePage />,
       },
