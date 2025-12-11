@@ -1,24 +1,23 @@
-import z from 'zod'
+import type { OptionType } from "@schoolify/core/hooks/common/useMapToOptions";
+import z from "zod";
+
+export const isActiveTypes: OptionType[] = [
+  { key: true, value: "فعال" },
+  { key: false, value: "غیرفعال" },
+];
 
 export const baseCostTypeFieldsSchema = z.object({
   title: z
     .string()
-    .min(2, 'نام باید حداقل ۲ حرف باشد')
-    .max(32, 'نام نباید بیشتر از ۳۲ حرف باشد'),
+    .min(2, "نام باید حداقل ۲ حرف باشد")
+    .max(32, "نام نباید بیشتر از ۳۲ حرف باشد"),
   baseAmount: z.preprocess(
-    val => Number(val),
+    (val) => Number(val),
     z
       .number({
-        message: 'هزینه باید عددی باشد'
+        message: "هزینه باید عددی باشد",
       })
-      .refine(value => !isNaN(value), { message: 'هزینه باید عددی باشد' })
+      .refine((value) => !isNaN(value), { message: "هزینه باید عددی باشد" })
   ),
-
-  isActive: z
-    .enum(['true', 'false'] as const, {
-      message: 'انتخاب وضعیت الزامی است'
-    })
-    .refine(val => val === 'true' || val === 'false', {
-      message: 'انتخاب وضعیت الزامی است'
-    })
-})
+  isActive: z.boolean("انتخاب وضعیت الزامی است"),
+});

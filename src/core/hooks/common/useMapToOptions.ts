@@ -2,10 +2,9 @@ import { useMemo } from "react";
 
 // نوع خروجی استاندارد
 export interface OptionType {
-  key: string;
+  key: string | boolean;
   value: string;
 }
-
 
 type NullableData<T> = T[] | null | undefined;
 
@@ -18,7 +17,6 @@ interface BaseEntityWithNullableData {
     identityCode?: string;
   } | null;
 }
-
 
 const useMapToOptions = <T extends BaseEntityWithNullableData>(
   data: NullableData<T>

@@ -1,10 +1,9 @@
 // React Type
-import { useForm } from 'react-hook-form'
+import { useForm } from "react-hook-form";
 
 //Type Definitions
-import { zodResolver } from '@hookform/resolvers/zod'
-import type z from 'zod'
-
+import { zodResolver } from "@hookform/resolvers/zod";
+import type z from "zod";
 
 // MUI Components
 import Box from "@schoolify/core/components/base/inputs/Box";
@@ -15,13 +14,12 @@ import ContentBox from "@schoolify/core/components/common/ContentBox";
 import ControlledGridTextField from "@schoolify/core/components/common/ControlledGridTextField";
 import ControlledAutocomplete from "@schoolify/core/components/common/ControlledAutocomplete";
 import SubmitButton from "@schoolify/core/components/common/SubmitButton";
-import ControlledPriceField from '@schoolify/core/components/common/ControlledPriceField';
-import type { OptionType } from '@schoolify/core/hooks/common/useMapToOptions';
-
+import ControlledPriceField from "@schoolify/core/components/common/ControlledPriceField";
+import type { OptionType } from "@schoolify/core/hooks/common/useMapToOptions";
 
 // Validation Schema
-import { updateCostTypeValidationSchema } from '@schoolify/features/user/school/management/costType/validation/updateStudentValidationSchema';
-
+import { updateCostTypeValidationSchema } from "@schoolify/features/user/school/management/costType/validation/updateStudentValidationSchema";
+import { isActiveTypes } from "../validation/baseTypes";
 
 // Form schema
 type SchemaProps = z.infer<typeof updateCostTypeValidationSchema>;
@@ -34,14 +32,8 @@ interface UpdateCostTypeProps {
 }
 
 const UpdateCostType = (props: UpdateCostTypeProps) => {
-  
   // Props
   const { defaultValues, onSubmit, recordId } = props;
-
-  const statusOptions: OptionType[] = [
-  { key: 'true', value: 'فعال' },
-  { key: 'false', value: 'غیرفعال' }
-]
 
   // Hooks
   const {
@@ -53,9 +45,7 @@ const UpdateCostType = (props: UpdateCostTypeProps) => {
     defaultValues,
     resolver: zodResolver(updateCostTypeValidationSchema),
     mode: "onChange",
-    
   });
-
 
   // Handlers
   const handleUpdateRecord = async (data: SchemaProps) => {
@@ -63,29 +53,28 @@ const UpdateCostType = (props: UpdateCostTypeProps) => {
     reset(data);
   };
 
-
   // Render
   return (
     <Box>
       <ContentBox onSubmit={handleSubmit(handleUpdateRecord)} component="form">
         <Grid container spacing={2.5}>
-           <ControlledGridTextField
-            key='CostType'
+          <ControlledGridTextField
+            key="CostType"
             control={control}
-            name='title'
-            label='عنوان هزینه'
+            name="title"
+            label="عنوان هزینه"
           />
           <ControlledPriceField
             control={control}
-            name='baseAmount'
-            label='هزینه ثابت'
+            name="baseAmount"
+            label="هزینه ثابت"
           />
           <ControlledAutocomplete
             control={control}
             name="isActive"
             label="وضعیت"
             placeholder="لطفا یک مورد را انتخاب نمایید"
-            options={statusOptions}
+            options={isActiveTypes}
           />
 
           <Grid size={{ xs: 12, sm: 6 }}>
