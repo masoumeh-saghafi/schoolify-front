@@ -10,12 +10,7 @@ export const addCostData: {
   optionsMapper: (data: any[]) => OptionType[];
   loading: boolean;
 }[] = [
-  // {
-  //   name: "educationYearId",
-  //   label: "سال تحصیلی",
-  //   optionsMapper: useMapToOptions,
-  //   loading: false,
-  // },
+
   {
     name: "costTypeId",
     label: "عنوان هزینه",

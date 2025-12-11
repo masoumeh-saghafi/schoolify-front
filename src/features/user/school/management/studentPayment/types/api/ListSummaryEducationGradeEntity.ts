@@ -1,4 +1,3 @@
-export default interface ListSummaryEducationGradeEntity
- {
+export default interface ListSummaryEducationGradeEntity {
   title: string
 }

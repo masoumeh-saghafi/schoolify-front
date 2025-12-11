@@ -1,6 +1,6 @@
 import type { TabBoxDataProps } from "@schoolify/core/components/common/TabBox";
-import AddClassStudent from "../components/AddClassStudent";
-import ListClassStudents from "../components/ListClassStudents";
+import AddClassStudent from "@schoolify/features/user/school/management/classStudents/components/AddClassStudent";
+import ListClassStudents from "@schoolify/features/user/school/management/classStudents/components/ListClassStudents";
 
 export const tabClassStudentsEndpointsData: TabBoxDataProps[] = [
   {

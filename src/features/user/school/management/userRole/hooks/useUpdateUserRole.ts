@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { updateUserRole } from '../utilities/api/api'
-import { listUserRolesQueryKey } from './useListUserRoles'
+import { updateUserRole } from '@schoolify/features/user/school/management/userRole/utilities/api/api'
+import { listUserRolesQueryKey } from '@schoolify/features/user/school/management/userRole/hooks/useListUserRoles'
 
 const useUpdateUserRole = () => {
   const queryClient = useQueryClient()

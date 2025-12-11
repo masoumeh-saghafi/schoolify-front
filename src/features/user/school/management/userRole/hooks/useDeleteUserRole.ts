@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteUserRole } from "../utilities/api/api";
-import { listUserRolesQueryKey } from "./useListUserRoles";
+import { deleteUserRole } from "@schoolify/features/user/school/management/userRole/utilities/api/api";
+import { listUserRolesQueryKey } from "@schoolify/features/user/school/management/userRole/hooks/useListUserRoles";
 
 const useDeleteUserRole = () => {
   const queryClient = useQueryClient();

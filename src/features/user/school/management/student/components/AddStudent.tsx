@@ -65,7 +65,7 @@ const AddStudent = (props: AddStudentProps) => {
   // Handlers
   const handleAddStudent = async (data: SchemaProps) => {
     const result = await addStudent({ data: data, schoolId: schoolId })
-    if (result.isSuccess) reset()
+    if (result.isSuccess) reset(data)
   }
 
   // Render

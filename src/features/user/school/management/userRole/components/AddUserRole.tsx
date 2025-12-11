@@ -1,11 +1,3 @@
-// MUI Components
-
-// Core Components
-
-// Feature Components
-
-// Custom Hooks
-
 // React Type
 import { useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
@@ -14,24 +6,36 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import type z from 'zod'
 
+// MUI Components
 import Box from '@schoolify/core/components/base/inputs/Box'
 import ContentBox from '@schoolify/core/components/common/ContentBox'
 import Grid from '@schoolify/core/components/base/inputs/Grid'
+
+// Core Components
 import ControlledGridTextField from '@schoolify/core/components/common/ControlledGridTextField'
 import SubmitButton from '@schoolify/core/components/common/SubmitButton'
-
-import { validationSchema } from '../validation/userRoleValidation'
-import useAddUserRole from '../hooks/useAddUserRole'
 import ControlledAutocomplete from '@schoolify/core/components/common/ControlledAutocomplete'
-import { roleTypeOptions } from '../validation/baseTypes'
+
+// Custom Hooks
+import useAddUserRole from '@schoolify/features/user/school/management/userRole/hooks/useAddUserRole'
+
+// Custom Utilities
+import { roleTypeOptions } from '@schoolify/features/user/school/management/userRole/validation/baseTypes'
+
+// Validation Schema
+import { validationSchema } from '@schoolify/features/user/school/management/userRole/validation/userRoleValidation'
+
+
+// Form schema
 type SchemaProps = z.infer<typeof validationSchema>
 
+// Custom Types
 interface AddUserRoleProps {}
 
 const AddUserRole = (props: AddUserRoleProps) => {
   // const {} = props;
-  const { schoolId = '' } = useParams()
 
+  
   // Hooks
   const {
     handleSubmit,
@@ -42,6 +46,7 @@ const AddUserRole = (props: AddUserRoleProps) => {
     resolver: zodResolver(validationSchema),
     mode: 'onChange'
   })
+  const { schoolId = '' } = useParams()
 
   const { mutateAsync: addUserRole } = useAddUserRole()
 

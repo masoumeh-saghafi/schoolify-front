@@ -2,7 +2,7 @@ import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api
 
 import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
-import { listCostType } from "../utilities/api/api";
+import { listCostType } from "@schoolify/features/user/school/management/costType/utilities/api/api";
 
 interface useListCostTypeProps {
   educationYearId: string;
@@ -34,7 +34,7 @@ const useListCostType = (props: useListCostTypeProps) => {
     retry: 2,
     retryDelay: 1000,
     select: (data) => data.data,
-    // enabled: !!props.educationYearId,
+
   });
 };
 

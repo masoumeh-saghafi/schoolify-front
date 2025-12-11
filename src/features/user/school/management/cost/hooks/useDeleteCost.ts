@@ -1,30 +1,28 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteCost } from "../utilities/api/api";
-import { listCostQueryKey } from "./useListCost";
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { deleteCost } from '@schoolify/features/user/school/management/cost/utilities/api/api'
+import { listCostQueryKey } from '@schoolify/features/user/school/management/cost/hooks/useListCost'
 
 const useDeleteCost = () => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: ({
       costId,
-      educationYearId,
+      educationYearId
     }: {
-      costId: string;
-      educationYearId: string;
+      costId: string
+      educationYearId: string
     }) => deleteCost(costId),
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
         queryKey: listCostQueryKey({
-          educationYearId: variables.educationYearId,
-        }),
-      });
+          educationYearId: variables.educationYearId
+        })
+      })
     },
-    onError: (error) => {
-      //logError(`Error Updating Student: ${error}`);
-    },
-  });
-};
+    onError: error => {}
+  })
+}
 
-export default useDeleteCost;
+export default useDeleteCost

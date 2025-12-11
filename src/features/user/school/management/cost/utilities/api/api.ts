@@ -2,6 +2,7 @@ import type {
   BaseAddResponseEntity,
   BaseIdDataEntity
 } from '@schoolify/core/types/core/api/response'
+
 import {
   deleteData,
   getListPaginatedData,
@@ -9,10 +10,11 @@ import {
   patchData,
   postData
 } from '@schoolify/core/utilities/api/api'
-import costEndpoints from './endpoints'
+
+import costEndpoints from '@schoolify/features/user/school/management/cost/utilities/api/endpoints'
 import type { BaseRequestPaginationParams } from '@schoolify/core/types/core/api/request'
-import type ListCostEntity from '../../types/api/ListCostEntity'
-import type ListSummaryCostTypesEntity from '../../../costType/types/api/ListSummaryCostTypesEntity'
+import type ListCostEntity from '@schoolify/features/user/school/management/cost/types/api/ListCostEntity'
+import type ListSummaryCostTypesEntity from '@schoolify/features/user/school/management/costType/types/api/ListSummaryCostTypesEntity'
 
 export const addCost = async (data: any) => {
   return await postData<BaseAddResponseEntity>(costEndpoints.addCost, data)

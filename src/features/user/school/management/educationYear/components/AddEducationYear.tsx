@@ -52,7 +52,7 @@ const AddEducationYear = (props: AddEducationYearProps) => {
   // Handlers
   const handleAddEducationYear = async (data: SchemaProps) => {
     const result = await addEducationYear({ data: data, schoolId: schoolId });
-    if (result.isSuccess) reset();
+    if (result.isSuccess) reset(data);
   };
 
   // Render

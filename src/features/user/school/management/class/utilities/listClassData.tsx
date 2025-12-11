@@ -1,14 +1,15 @@
 import type { GridColDef } from '@mui/x-data-grid/models/colDef'
 import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 import FormattedDate from '@schoolify/core/components/common/FormattedDate'
-import type ListEducationGradeEntity from '../types/api/ListClassEntity'
-export const listClassData: GridColDef<
+import type ListEducationGradeEntity from '@schoolify/features/user/school/management/class/types/api/ListClassEntity'
+
+export const listClassColumns: GridColDef<
   BaseIdDataEntity<ListEducationGradeEntity>
 >[] = [
   {
     field: 'title',
     resizable: false,
-    headerName: "کلاس",
+    headerName: 'کلاس',
     width: 150,
     editable: true,
     valueGetter: (_, row) => row.data?.title

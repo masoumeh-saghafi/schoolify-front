@@ -1,32 +1,30 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { listCostTypeQueryKey } from "./useListCostType";
-import { updateCostType } from "../utilities/api/api";
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { listCostTypeQueryKey } from '@schoolify/features/user/school/management/costType/hooks/useListCostType'
+import { updateCostType } from '@schoolify/features/user/school/management/costType/utilities/api/api'
 
 const useUpdateCostType = () => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: ({
       data,
       costTypeId,
-      educationYearId,
+      educationYearId
     }: {
-      data: any;
-      costTypeId: string;
-      educationYearId: string;
+      data: any
+      costTypeId: string
+      educationYearId: string
     }) => updateCostType(data, costTypeId),
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
         queryKey: listCostTypeQueryKey({
-          educationYearId: variables.educationYearId,
-        }),
-      });
+          educationYearId: variables.educationYearId
+        })
+      })
     },
-    onError: (error) => {
-      //logError(`Error Updating Student: ${error}`);
-    },
-  });
-};
+    onError: error => {}
+  })
+}
 
-export default useUpdateCostType;
+export default useUpdateCostType

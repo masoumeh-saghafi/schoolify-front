@@ -8,7 +8,7 @@ import {
   postData,
 } from "@schoolify/core/utilities/api/api";
 import classStudentsEndpoints from "./endpoints";
-import type listSummaryClassesEntity from "../../types/api/listSummaryClassesEntity";
+import type listSummaryClassesEntity from "@schoolify/features/user/school/management/classStudents/types/api/listSummaryClassesEntity";
 
 export const addClassStudent = async (studentId: string, classId: string) => {
   return await postData<BaseAddResponseEntity>(

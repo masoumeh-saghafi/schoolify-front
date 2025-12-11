@@ -1,6 +1,6 @@
 import type { TabBoxDataProps } from "@schoolify/core/components/common/TabBox";
-import AddUserRole from "../components/AddUserRole";
-import ListUserRole from "../components/ListUserRoles";
+import AddUserRole from "@schoolify/features/user/school/management/userRole/components/AddUserRole";
+import ListUserRole from "@schoolify/features/user/school/management/userRole/components/ListUserRoles";
 
 export const tabUserRoleEndpointsData: TabBoxDataProps[] = [
   {

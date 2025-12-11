@@ -1,5 +1,3 @@
-export default interface listSummaryClassesEntity
-
- {
+export default interface listSummaryClassesEntity {
   title: string
 }

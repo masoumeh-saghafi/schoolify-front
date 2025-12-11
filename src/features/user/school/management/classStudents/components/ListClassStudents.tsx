@@ -1,28 +1,29 @@
+// React Type
+import { useState } from 'react'
+import { useParams } from 'react-router-dom'
+
+// MUI Components
+import Grid from '@schoolify/core/components/base/inputs/Grid'
+import AutocompleteSelect from '@schoolify/core/components/common/AutocompleteSelect'
+
 // Core Components
-import ContentBox from "@schoolify/core/components/common/ContentBox";
-import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
-import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
-import { useState } from "react";
-import useListSummaryEducationYears from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears";
-import useListSummaryEducationLevel from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationLevel";
-import { useParams } from "react-router-dom";
-import useListSummaryEducationGrade from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationGrade";
-import useDeleteClass from "../hooks/useDeleteClassStudent";
-import useListClass from "../../class/hooks/useListClass";
-import useListSummaryClass from "@schoolify/features/user/school/management/shared/hooks/useListSummaryClass";
-import useMapToOptions from "@schoolify/core/hooks/common/useMapToOptions";
-
-import Grid from "@schoolify/core/components/base/inputs/Grid";
-import AutocompleteSelect from "@schoolify/core/components/common/AutocompleteSelect";
-import { listClassStudentData } from "../utilities/listClassStudentData";
-import useListStudents from "@schoolify/features/user/school/management/shared/hooks/useListStudents";
-import { listStudentColumns } from "../../student/utilities/listStudentColumns";
-
-// Feature Components
+import ContentBox from '@schoolify/core/components/common/ContentBox'
+import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
+import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGridState'
 
 // Custom Hooks
+import useListSummaryEducationYears from '@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears'
+import useListSummaryEducationLevel from '@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationLevel'
+import useListSummaryEducationGrade from '@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationGrade'
+import useDeleteClass from '@schoolify/features/user/school/management/classStudents/hooks/useDeleteClassStudent'
+import useListClass from '@schoolify/features/user/school/management/class/hooks/useListClass'
+import useListSummaryClass from '@schoolify/features/user/school/management/shared/hooks/useListSummaryClass'
+import useListStudents from '@schoolify/features/user/school/management/shared/hooks/useListStudents'
+import useMapToOptions from '@schoolify/core/hooks/common/useMapToOptions'
 
-// React Type
+// Custom Utilities
+import { listClassStudentData } from '@schoolify/features/user/school/management/classStudents/utilities/listClassStudentData'
+import { listStudentColumns } from '@schoolify/features/user/school/management/student/utilities/listStudentColumns'
 
 // Custom Types
 // interface ListStudentProps {}
@@ -30,97 +31,96 @@ import { listStudentColumns } from "../../student/utilities/listStudentColumns";
 const ListClassStudents = () => {
   // Props
   // const {} = props;
-  const [educationYearId, setEducationYearId] = useState("");
-  const [educationLevelId, setEducationLevelId] = useState("");
-  const [educationGradeId, setEducationGradeId] = useState("");
-  const [classId, setClassId] = useState("");
+
+  // States
+  const [educationYearId, setEducationYearId] = useState('')
+  const [educationLevelId, setEducationLevelId] = useState('')
+  const [educationGradeId, setEducationGradeId] = useState('')
+  const [classId, setClassId] = useState('')
 
   // Hooks
-  const { schoolId = "" } = useParams();
-
   const {
     filters,
     paginationData: pagination,
     handleFilterChange,
     handlePaginationModelChange,
-    handleSortModelChange,
-  } = useTableDataGridState();
+    handleSortModelChange
+  } = useTableDataGridState()
 
   const { data, isLoading } = useListClass({
     educationGradeId,
     pagination,
-    filters,
-  });
+    filters
+  })
 
-  const { data: educationYearData } = useListSummaryEducationYears(schoolId);
+  const { schoolId = '' } = useParams()
+  const { data: educationYearData } = useListSummaryEducationYears(schoolId)
 
   const { data: educationLevelData } =
-    useListSummaryEducationLevel(educationYearId);
+    useListSummaryEducationLevel(educationYearId)
 
   const { data: educationGradeData } =
-    useListSummaryEducationGrade(educationLevelId);
+    useListSummaryEducationGrade(educationLevelId)
 
-  const { data: classData } = useListSummaryClass(educationGradeId);
+  const { data: classData } = useListSummaryClass(educationGradeId)
   const { data: studentsData } = useListStudents({
     schoolId: schoolId,
     pagination: pagination,
     filters: {
-      classRoomId: classId,
+      classRoomId: classId
     },
-    disabled: !classId,
-  });
+    disabled: !classId
+  })
 
-  // const { mutateAsync: updateClass } = useUpdateClass();
-  const { mutateAsync: deleteClass } = useDeleteClass();
+  const { mutateAsync: deleteClass } = useDeleteClass()
 
-  const educationYearOptions = useMapToOptions(educationYearData);
-  const educationLevelOptions = useMapToOptions(educationLevelData);
-  const educationGradeOptions = useMapToOptions(educationGradeData);
-  const classOptions = useMapToOptions(classData);
+  const educationYearOptions = useMapToOptions(educationYearData)
+  const educationLevelOptions = useMapToOptions(educationLevelData)
+  const educationGradeOptions = useMapToOptions(educationGradeData)
+  const classOptions = useMapToOptions(classData)
 
+  // Helpers
   const fieldStateMap = {
     educationYearId: {
       value: educationYearId,
       set: setEducationYearId,
-      options: educationYearOptions,
+      options: educationYearOptions
     },
     educationLevelId: {
       value: educationLevelId,
       set: setEducationLevelId,
-      options: educationLevelOptions,
+      options: educationLevelOptions
     },
     educationGradeId: {
       value: educationGradeId,
       set: setEducationGradeId,
-      options: educationGradeOptions,
+      options: educationGradeOptions
     },
     classId: {
       value: classId,
       set: setClassId,
-      options: classOptions,
-    },
-  } as const;
+      options: classOptions
+    }
+  } as const
 
-  // Helpers
-  const columns = listStudentColumns;
+  const columns = listStudentColumns
 
   // Handlers
-
   const handleDeleteClass = async (id: string, row: any) => {
     await deleteClass({
       classId: classId,
       studentId: id,
-      schoolId: schoolId,
-    });
-  };
+      schoolId: schoolId
+    })
+  }
 
   // Render
   return (
-    <ContentBox label="لیست دانش آموزان کلاس  ">
+    <ContentBox label='لیست دانش آموزان کلاس  '>
       <Grid container spacing={2} sx={{ mb: 2 }}>
-        {listClassStudentData.map((field) => {
+        {listClassStudentData.map(field => {
           const { value, set, options } =
-            fieldStateMap[field.name as keyof typeof fieldStateMap];
+            fieldStateMap[field.name as keyof typeof fieldStateMap]
           return (
             <AutocompleteSelect
               key={field.name}
@@ -131,7 +131,7 @@ const ListClassStudents = () => {
               options={options}
               loading={isLoading}
             />
-          );
+          )
         })}
       </Grid>
 
@@ -142,14 +142,13 @@ const ListClassStudents = () => {
         onSortChange={handleSortModelChange}
         columns={columns}
         onFilterChange={handleFilterChange}
-        // onUpdateRow={handleUpdateClass}
         disableUpdateRowButton={true}
         onDeleteRow={handleDeleteClass}
-        onDeleteRowGetTitle={(row) =>
+        onDeleteRowGetTitle={row =>
           `${row.data.firstName} ${row.data.lastName}`
         }
       />
     </ContentBox>
-  );
-};
-export default ListClassStudents;
+  )
+}
+export default ListClassStudents

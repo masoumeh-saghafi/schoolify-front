@@ -1,7 +1,7 @@
 import type { GridColDef } from '@mui/x-data-grid/models/colDef'
 import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 import FormattedDate from '@schoolify/core/components/common/FormattedDate'
-import type ListEducationGradeEntity from '../types/api/ListCostTypeEntity'
+import type ListEducationGradeEntity from '@schoolify/features/user/school/management/costType/types/api/ListCostTypeEntity'
 
 const referenceTypeLabels: Record<string, string> = {
   educationYear: 'سال تحصیلی',

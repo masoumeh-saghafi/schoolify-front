@@ -1,11 +1,15 @@
 const classEndpoints = {
-  addClass: "/classes",
+  addClass: '/classes',
+
   updateClass: (classId: string) => `/classes/${classId}`,
-  deleteClass: "/classes",
+
+  deleteClass: '/classes',
+
   listClasses: (educationGradeId: string) =>
     `/education-grades/${educationGradeId}/classes`,
-  listSummaryEducationGrade: (educationLevelId: string) =>
-    `/education-levels/${educationLevelId}/education-grades/summary`,
-};
 
-export default classEndpoints;
+  listSummaryEducationGrade: (educationLevelId: string) =>
+    `/education-levels/${educationLevelId}/education-grades/summary`
+}
+
+export default classEndpoints

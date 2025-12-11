@@ -3,14 +3,16 @@ import type {
   BaseAddResponseEntity,
   BaseIdDataEntity,
 } from "@schoolify/core/types/core/api/response";
+
 import {
   deleteData,
   getListPaginatedData,
   patchData,
   postData,
 } from "@schoolify/core/utilities/api/api";
-import UserRoleEndpoints from "./endpoints";
-import type ListUserRolesEntity from "../../types/api/ListUserRolesEntity";
+
+import UserRoleEndpoints from "@schoolify/features/user/school/management/userRole/utilities/api/endpoints";
+import type ListUserRolesEntity from "@schoolify/features/user/school/management/userRole/types/api/ListUserRolesEntity";
 
 export const addUserRole = async (data: any, schoolId: string) => {
   return await postData<BaseAddResponseEntity>(

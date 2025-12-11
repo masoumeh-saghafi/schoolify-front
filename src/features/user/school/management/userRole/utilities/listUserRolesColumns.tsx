@@ -1,7 +1,7 @@
-import FormattedDate from '@schoolify/core/components/common/FormattedDate'
-import type ListUserRolesEntity from '../types/api/ListUserRolesEntity'
 import type { GridColDef } from '@mui/x-data-grid/models/colDef'
+import FormattedDate from '@schoolify/core/components/common/FormattedDate'
 import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
+import type ListUserRolesEntity from '@schoolify/features/user/school/management/userRole/types/api/ListUserRolesEntity'
 const roleLabels: Record<string, string> = {
   manager: 'معاون',
   reporter: 'ناظر',

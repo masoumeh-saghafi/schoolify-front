@@ -1,3 +1,10 @@
+// React Type
+import { useForm } from 'react-hook-form'
+
+//Type Definitions
+import { zodResolver } from '@hookform/resolvers/zod'
+import type z from 'zod'
+
 // MUI Components
 import Box from '@schoolify/core/components/base/inputs/Box'
 import Grid from '@schoolify/core/components/base/inputs/Grid'
@@ -7,21 +14,17 @@ import ContentBox from '@schoolify/core/components/common/ContentBox'
 import ControlledAutocomplete from '@schoolify/core/components/common/ControlledAutocomplete'
 import SubmitButton from '@schoolify/core/components/common/SubmitButton'
 
-// Feature Components
+// Custom Utilities
+import { updateUserRoleValidationSchema } from '@schoolify/features/user/school/management/userRole/validation/updateUserRoleValid'
 
-// Custom Hooks
+// Validation Schema
+import { roleTypeOptions } from '@schoolify/features/user/school/management/userRole/validation/baseTypes'
 
-// React Type
-import { useForm } from 'react-hook-form'
-
-//Type Definitions
-import { zodResolver } from '@hookform/resolvers/zod'
-import type z from 'zod'
-import { updateUserRoleValidationSchema } from '../validation/updateUserRoleValid'
-import { roleTypeOptions } from '../validation/baseTypes'
-
+// Form schema
 type SchemaProps = z.infer<typeof updateUserRoleValidationSchema>
 
+
+// Custom Types
 interface UpdateUserRoleProps {
   recordId: string
   defaultValues: SchemaProps
@@ -29,7 +32,10 @@ interface UpdateUserRoleProps {
 }
 
 const UpdateUserRole = (props: UpdateUserRoleProps) => {
+  // Props
   const { defaultValues, onSubmit, recordId } = props
+
+  // Hooks
   const {
     control,
     handleSubmit,

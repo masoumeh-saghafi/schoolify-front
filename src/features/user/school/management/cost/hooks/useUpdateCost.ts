@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateCost } from "../utilities/api/api";
-import { listCostQueryKey } from "./useListCost";
+import { updateCost } from "@schoolify/features/user/school/management/cost/utilities/api/api";
+import { listCostQueryKey } from "@schoolify/features/user/school/management/cost/hooks/useListCost";
 
 const useUpdateCost = () => {
   const queryClient = useQueryClient();

@@ -2,7 +2,11 @@ import useMapToOptions, {
   type OptionType
 } from '@schoolify/core/hooks/common/useMapToOptions'
 
-type EducationGradeFields = 'title' | 'educationYearId' | 'educationLevelId'|'educationGradeId'
+type EducationGradeFields =
+  | 'title'
+  | 'educationYearId'
+  | 'educationLevelId'
+  | 'educationGradeId'
 
 export const addClassData: {
   name: EducationGradeFields
@@ -21,8 +25,8 @@ export const addClassData: {
     label: 'مقطع تحصیلی',
     optionsMapper: useMapToOptions,
     loading: false
-    },
-   {
+  },
+  {
     name: 'educationGradeId',
     label: 'پایه تحصیلی',
     optionsMapper: useMapToOptions,

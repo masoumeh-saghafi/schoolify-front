@@ -1,30 +1,28 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { listClassQueryKey } from "./useListClass";
-import { deleteClass } from "../utilities/api/api";
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { listClassQueryKey } from '@schoolify/features/user/school/management/class/hooks/useListClass'
+import { deleteClass } from '@schoolify/features/user/school/management/class/utilities/api/api'
 
 const useDeleteClass = () => {
-  const queryClient = useQueryClient();
+  const queryClient = useQueryClient()
 
   return useMutation({
     mutationFn: ({
       classId,
-      educationGradeId,
+      educationGradeId
     }: {
-      classId: string;
-      educationGradeId: string;
+      classId: string
+      educationGradeId: string
     }) => deleteClass(classId),
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
         queryKey: listClassQueryKey({
-          educationGradeId: variables.educationGradeId,
-        }),
-      });
+          educationGradeId: variables.educationGradeId
+        })
+      })
     },
-    onError: (error) => {
-      //logError(`Error Updating Student: ${error}`);
-    },
-  });
-};
+    onError: error => {}
+  })
+}
 
-export default useDeleteClass;
+export default useDeleteClass

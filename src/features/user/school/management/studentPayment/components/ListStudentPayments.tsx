@@ -1,27 +1,32 @@
-// Core Components
-import ContentBox from "@schoolify/core/components/common/ContentBox";
-import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
-import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
-import { useCallback, useState } from "react";
-import { listStudentPaymentData } from "../utilities/listStudentPaymentData";
-import { useParams } from "react-router-dom";
-import useMapToOptions, {
-  type OptionType,
-} from "@schoolify/core/hooks/common/useMapToOptions";
-import { addStudentPaymentData } from "../utilities/addStudentPaymentData";
-import Grid from "@schoolify/core/components/base/inputs/Grid";
-import AutocompleteSelect from "@schoolify/core/components/common/AutocompleteSelect";
-import useListStudentPayment from "../hooks/useListStudentPayment";
-import useDeleteStudentPayment from "../hooks/useDeleteStudentPayment";
-import useUpdateStudentPayment from "../hooks/useUpdateStudentPayment";
-import useListStudents from "@schoolify/features/user/school/management/shared/hooks/useListStudents";
-import useListSummaryEducationYear from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears";
+// React Type
+import { useCallback, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
-// Feature Components
+// MUI Components
+import Grid from '@schoolify/core/components/base/inputs/Grid'
+
+// Core Components
+import ContentBox from '@schoolify/core/components/common/ContentBox'
+import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
+import AutocompleteSelect from '@schoolify/core/components/common/AutocompleteSelect'
 
 // Custom Hooks
+import useMapToOptions, {
+  type OptionType
+} from '@schoolify/core/hooks/common/useMapToOptions'
+import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGridState'
+import useListStudentPayment from '@schoolify/features/user/school/management/studentPayment/hooks/useListStudentPayment'
+import useDeleteStudentPayment from '@schoolify/features/user/school/management/studentPayment/hooks/useDeleteStudentPayment'
+import useUpdateStudentPayment from '@schoolify/features/user/school/management/studentPayment/hooks/useUpdateStudentPayment'
+import useListStudents from '@schoolify/features/user/school/management/shared/hooks/useListStudents'
+import useListSummaryEducationYear from '@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears'
 
-// React Type
+// Feature Components
+import UpdateStudentPayment from '@schoolify/features/user/school/management/studentPayment/components/UpdateStudentPayment'
+
+// Custom Utilities
+import { listStudentPaymentColumns } from '@schoolify/features/user/school/management/studentPayment/utilities/listStudentPaymentData'
+import { addStudentPaymentData } from '@schoolify/features/user/school/management/studentPayment/utilities/addStudentPaymentData'
 
 // Custom Types
 // interface ListStudentProps {}
@@ -29,95 +34,98 @@ import useListSummaryEducationYear from "@schoolify/features/user/school/managem
 const ListStudentPayments = () => {
   // Props
   // const {} = props;
-  const [educationYearId, setEducationYearId] = useState("");
-  const [studentId, setStudentId] = useState("");
+
+  // States
+  const [educationYearId, setEducationYearId] = useState('')
+  const [studentId, setStudentId] = useState('')
+  const [studentSearchText, setStudentSearchText] = useState('')
 
   // Hooks
-  const { schoolId = "" } = useParams();
 
   const {
     filters,
     paginationData: pagination,
     handleFilterChange,
     handlePaginationModelChange,
-    handleSortModelChange,
-  } = useTableDataGridState();
+    handleSortModelChange
+  } = useTableDataGridState()
+
+  const { schoolId = '' } = useParams()
+  const { data: educationYearData } = useListSummaryEducationYear(schoolId)
 
   const { data, isLoading } = useListStudentPayment({
     studentId,
     pagination,
-    filters,
-  });
-  const [studentSearchText, setStudentSearchText] = useState("");
-
-  const { data: educationYearData } = useListSummaryEducationYear(schoolId);
+    filters
+  })
 
   const { data: studentsData } = useListStudents({
     schoolId: schoolId,
     pagination: { size: -1 },
     filters: {
       educationYearId: educationYearId,
-      identityCode: `%${studentSearchText}%`,
+      identityCode: `%${studentSearchText}%`
     },
-    disabled: !educationYearId,
-  });
+    disabled: !educationYearId
+  })
 
-  const studentsDataAny: any[] = studentsData?.docs ?? [];
-  const studentOptions: OptionType[] = useMapToOptions(studentsDataAny);
+  const studentsDataAny: any[] = studentsData?.docs ?? []
+  const studentOptions: OptionType[] = useMapToOptions(studentsDataAny)
 
-  const { mutateAsync: updateStudentPayment } = useUpdateStudentPayment();
-  const { mutateAsync: deleteStudentPayment } = useDeleteStudentPayment();
+  const { mutateAsync: updateStudentPayment } = useUpdateStudentPayment()
+  const { mutateAsync: deleteStudentPayment } = useDeleteStudentPayment()
 
-  const educationYearOptions = useMapToOptions(educationYearData);
+  const educationYearOptions = useMapToOptions(educationYearData)
   const handleStudentInput = useCallback((val: string) => {
-    const newVal = val.split("-")[0].trim();
-    if (studentSearchText === newVal) return;
-    setStudentSearchText(newVal);
-  }, []);
+    const newVal = val.split('-')[0].trim()
+    if (studentSearchText === newVal) return
+    setStudentSearchText(newVal)
+  }, [])
 
+  // Helpers
   const fieldStateMap = {
     educationYearId: {
       value: educationYearId,
       set: setEducationYearId,
       options: educationYearOptions,
       inputValue: undefined,
-      onInputChange: undefined,
+      onInputChange: undefined
     },
     studentId: {
       value: studentId,
       set: setStudentId,
       options: studentOptions,
       inputValue: studentSearchText,
-      onInputChange: handleStudentInput,
-    },
-  } as const;
+      onInputChange: handleStudentInput
+    }
+  } as const
 
-  // Helpers
-  const columns = listStudentPaymentData;
+ 
+  const columns = listStudentPaymentColumns
 
   // Handlers
   const handleUpdateStudentPayment = async (id: string, updatedFields: any) => {
     await updateStudentPayment({
       data: updatedFields,
       studentPaymentId: id,
-      studentId: studentId,
-    });
-  };
+      studentId: studentId
+    })
+  }
 
   const handleDeleteStudentPayment = async (id: string, row: any) => {
     await deleteStudentPayment({
       studentPaymentsId: id,
-      studentId: studentId,
-    });
-  };
+      studentId: studentId
+    })
+  }
 
   // Render
   return (
-    <ContentBox label="لیست پرداخت ها ">
+    <ContentBox label='لیست پرداخت ها '>
       <Grid container spacing={2} sx={{ mb: 2 }}>
-        {addStudentPaymentData.map((field) => {
+        {addStudentPaymentData.map(field => {
           const { value, set, options, inputValue, onInputChange } =
-            fieldStateMap[field.name as keyof typeof fieldStateMap];
+            fieldStateMap[field.name as keyof typeof fieldStateMap]
           return (
             <AutocompleteSelect
               key={field.name}
@@ -130,7 +138,7 @@ const ListStudentPayments = () => {
               inputValue={inputValue}
               onInputChange={onInputChange}
             />
-          );
+          )
         })}
       </Grid>
 
@@ -142,10 +150,11 @@ const ListStudentPayments = () => {
         columns={columns}
         onFilterChange={handleFilterChange}
         onUpdateRow={handleUpdateStudentPayment}
+        onUpdateForm={UpdateStudentPayment}
         onDeleteRow={handleDeleteStudentPayment}
-        onDeleteRowGetTitle={(row) => `${row.data.amount}`}
+        onDeleteRowGetTitle={row => `${row.data.amount}`}
       />
     </ContentBox>
-  );
-};
-export default ListStudentPayments;
+  )
+}
+export default ListStudentPayments

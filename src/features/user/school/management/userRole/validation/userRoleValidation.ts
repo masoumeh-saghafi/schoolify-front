@@ -1,5 +1,5 @@
 import z from 'zod'
-import { phoneValidation } from '../../shared/validation/phoneValidation'
+import { phoneValidation } from '@schoolify/features/user/school/management/shared/validation/phoneValidation'
 
  export const validationSchema = z.object({
    role: z.enum(['manager', 'reporter'], {

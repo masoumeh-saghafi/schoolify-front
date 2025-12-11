@@ -1,7 +1,7 @@
 import z from "zod";
-import { EducationYearYearTitleSchema } from "./baseTypes";
+import { educationYearTitleSchema } from "@schoolify/features/user/school/management/educationYear/validation/baseTypes";
 
 export const validationSchema = z.object({
-  title: EducationYearYearTitleSchema,
+  title: educationYearTitleSchema,
   schoolId: z.string(),
 });

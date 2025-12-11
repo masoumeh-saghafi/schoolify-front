@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { deleteEducationGrade } from '../utilities/api/api'
-import { listEducationGradeQueryKey } from './useListEducationGrade'
+import { deleteEducationGrade } from '@schoolify/features/user/school/management/educationGrade/utilities/api/api'
+import { listEducationGradeQueryKey } from '@schoolify/features/user/school/management/educationGrade/hooks/useListEducationGrade'
 
 const useDeleteEducationGrade = () => {
   const queryClient = useQueryClient()

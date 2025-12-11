@@ -3,6 +3,7 @@ import type {
   BaseAddResponseEntity,
   BaseIdDataEntity
 } from '@schoolify/core/types/core/api/response'
+
 import {
   deleteData,
   getListPaginatedData,
@@ -10,9 +11,12 @@ import {
   patchData,
   postData
 } from '@schoolify/core/utilities/api/api'
-import classEndpoints from './endpoints'
-import type ListClassEntity from '../../types/api/ListClassEntity'
-import type ListSummaryEducationGradeEntity from '../../types/api/ListSummaryEducationGradeEntity'
+
+import classEndpoints from '@schoolify/features/user/school/management/class/utilities/api/endpoints'
+
+import type ListClassEntity from '@schoolify/features/user/school/management/class/types/api/ListClassEntity'
+import type ListSummaryEducationGradeEntity from '@schoolify/features/user/school/management/class/types/api/ListSummaryEducationGradeEntity'
+
 
 export const addClass = async (data: any) => {
   return await postData<BaseAddResponseEntity>(classEndpoints.addClass, data)

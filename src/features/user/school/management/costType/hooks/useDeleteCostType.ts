@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { listCostTypeQueryKey } from './useListCostType'
-import { deleteCostType } from '../utilities/api/api'
+import { listCostTypeQueryKey } from '@schoolify/features/user/school/management/costType/hooks/useListCostType'
+import { deleteCostType } from '@schoolify/features/user/school/management/costType/utilities/api/api'
 
 const useDeleteCostType = () => {
   const queryClient = useQueryClient()
@@ -9,7 +9,6 @@ const useDeleteCostType = () => {
     mutationFn: ({
       costTypeId,
       educationYearId
-
     }: {
       costTypeId: string
       educationYearId: string
@@ -22,9 +21,7 @@ const useDeleteCostType = () => {
         })
       })
     },
-    onError: error => {
-      //logError(`Error Updating Student: ${error}`);
-    }
+    onError: error => {}
   })
 }
 

@@ -3,6 +3,7 @@ import type {
   BaseAddResponseEntity,
   BaseIdDataEntity,
 } from "@schoolify/core/types/core/api/response";
+
 import {
   deleteData,
   getListPaginatedData,
@@ -11,9 +12,9 @@ import {
   postData,
 } from "@schoolify/core/utilities/api/api";
 
-import CostTypeEndpoints from "./endpoints";
-import type ListCostTypeEntity from "../../types/api/ListCostTypeEntity";
-import type ListSummaryCostTypesEntity from "../../types/api/ListSummaryCostTypesEntity";
+import CostTypeEndpoints from "@schoolify/features/user/school/management/costType/utilities/api/endpoints";
+import type ListCostTypeEntity from "@schoolify/features/user/school/management/costType/types/api/ListCostTypeEntity";
+import type ListSummaryCostTypesEntity from "@schoolify/features/user/school/management/costType/types/api/ListSummaryCostTypesEntity";
 
 
 

@@ -1,97 +1,102 @@
-// MUI Components
-
-// Core Components
-
-// Feature Components
-
-// Custom Hooks
-
 // React Type
-import { useParams } from "react-router-dom";
-import { useForm, useWatch } from "react-hook-form";
+import { useParams } from 'react-router-dom'
+import { useForm, useWatch } from 'react-hook-form'
 
 //Type Definitions
-import { zodResolver } from "@hookform/resolvers/zod";
-import type z from "zod";
+import type z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 
-import Box from "@schoolify/core/components/base/inputs/Box";
-import ContentBox from "@schoolify/core/components/common/ContentBox";
-import Grid from "@schoolify/core/components/base/inputs/Grid";
-import ControlledGridTextField from "@schoolify/core/components/common/ControlledGridTextField";
-import SubmitButton from "@schoolify/core/components/common/SubmitButton";
-import { validationSchema } from "../validation/educationGradeValid";
-import useListSummaryEducationYear from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears";
-import useListSummaryEducationLevel from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationLevel";
+// MUI Components
+import Box from '@schoolify/core/components/base/inputs/Box'
+import ContentBox from '@schoolify/core/components/common/ContentBox'
+import Grid from '@schoolify/core/components/base/inputs/Grid'
 
-import { addEducationLGradeData } from "../utilities/addEducationLGradeData";
-import ControlledAutocomplete from "@schoolify/core/components/common/ControlledAutocomplete";
-import useAddEducationGrade from "../hooks/useAddEducationGrade";
+// Core Components
+import ControlledGridTextField from '@schoolify/core/components/common/ControlledGridTextField'
+import SubmitButton from '@schoolify/core/components/common/SubmitButton'
+import ControlledAutocomplete from '@schoolify/core/components/common/ControlledAutocomplete'
 
-type SchemaProps = z.infer<typeof validationSchema>;
+// Custom Hooks
+import useListSummaryEducationYear from '@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears'
+import useListSummaryEducationLevel from '@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationLevel'
+import useAddEducationGrade from '@schoolify/features/user/school/management/educationGrade/hooks/useAddEducationGrade'
 
+// Custom Utilities
+import { addEducationLGradeData } from '@schoolify/features/user/school/management/educationGrade/utilities/addEducationLGradeData'
+
+// Validation Schema
+import { validationSchema } from '@schoolify/features/user/school/management/educationGrade/validation/educationGradeValid'
+
+// Form schema
+type SchemaProps = z.infer<typeof validationSchema>
+
+// Custom Types
 interface AddEducationGradeProps {}
 
 const AddEducationGrade = (props: AddEducationGradeProps) => {
   // const {} = props;
-  const { schoolId = "" } = useParams();
 
   // Hooks
   const {
     handleSubmit,
     control,
     reset,
-    formState: { isValid, isDirty },
+    formState: { isValid, isDirty }
   } = useForm<SchemaProps>({
     resolver: zodResolver(validationSchema),
-    mode: "onChange",
+    mode: 'onChange',
     defaultValues: {
-      educationYearId: "",
-      educationLevelId: "",
-      title: "",
-    },
-  });
+      educationYearId: '',
+      educationLevelId: '',
+      title: ''
+    }
+  })
+
+  const { schoolId = '' } = useParams()
+  const { data: educationYearData } = useListSummaryEducationYear(schoolId)
+
   const selectedEducationYearId = useWatch({
     control,
-    name: "educationYearId",
-  });
+    name: 'educationYearId'
+  })
 
-  const { data: educationYearData } = useListSummaryEducationYear(schoolId);
   const { data: educationLevelsData } = useListSummaryEducationLevel(
     selectedEducationYearId
-  );
+  )
 
-  const { mutateAsync: addEducationGrade } = useAddEducationGrade();
+  const { mutateAsync: addEducationGrade } = useAddEducationGrade()
 
+  // Helpers
   const dataMap: Record<string, any[]> = {
     educationYearId: educationYearData ?? [],
-    educationLevelId: educationLevelsData ?? [],
-  };
+    educationLevelId: educationLevelsData ?? []
+  }
 
   // Handlers
   const handleAddEducationGrade = async (data: SchemaProps) => {
     const result = await addEducationGrade({
       data: data,
-      educationLevelId: data.educationLevelId,
-    });
-    if (result.isSuccess) reset(data);
-  };
+      educationLevelId: data.educationLevelId
+    })
+    if (result.isSuccess) reset(data)
+  }
 
   // Render
   return (
     <Box>
       <ContentBox
-        label="افزودن پایه تحصیلی"
+        label='افزودن پایه تحصیلی'
         onSubmit={handleSubmit(handleAddEducationGrade)}
-        component="form"
+        component='form'
       >
         <Grid container spacing={2}>
           <ControlledGridTextField
-            key="EducationGrade"
+            key='EducationGrade'
             control={control}
-            name="title"
-            label="نام پایه "
+            name='title'
+            label='نام پایه '
           />
-          {addEducationLGradeData.map((field) => (
+          {addEducationLGradeData.map(field => (
             <ControlledAutocomplete
               key={field.name}
               control={control}
@@ -110,7 +115,7 @@ const AddEducationGrade = (props: AddEducationGradeProps) => {
         </Grid>
       </ContentBox>
     </Box>
-  );
-};
+  )
+}
 
-export default AddEducationGrade;
+export default AddEducationGrade

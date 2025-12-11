@@ -1,25 +1,27 @@
-import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
+import type { BaseRequestPaginationParams } from '@schoolify/core/types/core/api/request'
 import type {
   BaseAddResponseEntity,
-  BaseIdDataEntity,
-} from "@schoolify/core/types/core/api/response";
+  BaseIdDataEntity
+} from '@schoolify/core/types/core/api/response'
+
 import {
   deleteData,
   getListPaginatedData,
   getListSummaryData,
   patchData,
-  postData,
-} from "@schoolify/core/utilities/api/api";
-import type ListSummaryEducationLevelEntity from "../../types/api/ListSummaryEducationLevelEntity";
-import type ListEducationGradeEntity from "../../types/api/ListEducationGradeEntity";
-import EducationGradeEndpoints from "./endpoints";
+  postData
+} from '@schoolify/core/utilities/api/api'
+
+import type ListSummaryEducationLevelEntity from '@schoolify/features/user/school/management/educationGrade/types/api/ListSummaryEducationLevelEntity'
+import type ListEducationGradeEntity from '@schoolify/features/user/school/management/educationGrade/types/api/ListEducationGradeEntity'
+import EducationGradeEndpoints from '@schoolify/features/user/school/management/educationGrade/utilities/api/endpoints'
 
 export const addEducationGrade = async (data: any) => {
   return await postData<BaseAddResponseEntity>(
     EducationGradeEndpoints.addEducationGrade,
     data
-  );
-};
+  )
+}
 
 export const updateEducationGrade = async (
   data: any,
@@ -28,15 +30,15 @@ export const updateEducationGrade = async (
   return await patchData<void>(
     EducationGradeEndpoints.updateEducationGrade(educationGradeId),
     data
-  );
-};
+  )
+}
 
 export const deleteEducationGrade = async (educationGradeId: string) => {
   return await deleteData<void>(
     EducationGradeEndpoints.deleteEducationGrade,
     educationGradeId
-  );
-};
+  )
+}
 
 export const listEducationGrade = async (
   educationYearId: string,
@@ -47,11 +49,11 @@ export const listEducationGrade = async (
     EducationGradeEndpoints.listEducationGrade(educationYearId),
     pagination,
     filters
-  );
-};
+  )
+}
 
 export const listSummaryEducationLevel = async (educationYearId: string) => {
   return await getListSummaryData<
     BaseIdDataEntity<ListSummaryEducationLevelEntity>
-  >(EducationGradeEndpoints.listSummaryEducationLevel(educationYearId));
-};
+  >(EducationGradeEndpoints.listSummaryEducationLevel(educationYearId))
+}

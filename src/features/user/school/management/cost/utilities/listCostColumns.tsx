@@ -1,7 +1,7 @@
 import type { GridColDef } from '@mui/x-data-grid/models/colDef'
 import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 import FormattedDate from '@schoolify/core/components/common/FormattedDate'
-import type ListCostEntity from '../types/api/ListCostEntity'
+import type ListCostEntity from '@schoolify/features/user/school/management/cost/types/api/ListCostEntity'
 
 const referenceTypeLabels: Record<string, string> = {
   educationYear: 'سال تحصیلی',
@@ -11,9 +11,7 @@ const referenceTypeLabels: Record<string, string> = {
   student: 'دانش‌آموز'
 }
 
-export const listCostColumns: GridColDef<
-  BaseIdDataEntity<ListCostEntity>
->[] = [
+export const listCostColumns: GridColDef<BaseIdDataEntity<ListCostEntity>>[] = [
   {
     field: 'title',
     resizable: false,

@@ -1,22 +1,25 @@
-// Core Components
-import ContentBox from "@schoolify/core/components/common/ContentBox";
-import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
-import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
+// React Type
+import { useParams } from 'react-router-dom'
 
-// Feature Components
+// Core Components
+import ContentBox from '@schoolify/core/components/common/ContentBox'
+import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
+import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGridState'
+import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 
 // Custom Hooks
+import useListUserRoles from '@schoolify/features/user/school/management/userRole/hooks/useListUserRoles'
+import useUpdateUserRole from '@schoolify/features/user/school/management/userRole/hooks/useUpdateUserRole'
+import useDeleteUserRole from '@schoolify/features/user/school/management/userRole/hooks/useDeleteUserRole'
 
-// React Type
-import { useParams } from "react-router-dom";
+// Feature Components
+import UpdateUserRole from '@schoolify/features/user/school/management/userRole/components/UpdateUserRole'
 
-import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
-import type ListUserRolesEntity from "../types/api/ListUserRolesEntity";
-import useListUserRoles from "../hooks/useListUserRoles";
-import useUpdateUserRole from "../hooks/useUpdateUserRole";
-import useDeleteUserRole from "../hooks/useDeleteUserRole";
-import { listUserRolesColumns } from "../utilities/listUserRolesColumns";
-import UpdateUserRole from "./UpdateUserRole";
+// Custom Utilities
+import { listUserRolesColumns } from '@schoolify/features/user/school/management/userRole/utilities/listUserRolesColumns'
+
+// Custom Types
+import type ListUserRolesEntity from '@schoolify/features/user/school/management/userRole/types/api/ListUserRolesEntity'
 
 // Custom Types
 // interface ListStudentProps {}
@@ -26,47 +29,46 @@ const ListUserRoles = () => {
   // const {} = props;
 
   // Hooks
-  const { schoolId = "" } = useParams();
+  const { schoolId = '' } = useParams()
+  const { mutateAsync: updateUserRoles } = useUpdateUserRole()
+  const { mutateAsync: deleteUserRoles } = useDeleteUserRole()
 
   const {
     filters,
     paginationData: pagination,
     handleFilterChange,
     handlePaginationModelChange,
-    handleSortModelChange,
-  } = useTableDataGridState();
+    handleSortModelChange
+  } = useTableDataGridState()
 
   const { data, isLoading } = useListUserRoles({
     schoolId,
     pagination,
-    filters,
-  });
-
-  const { mutateAsync: updateUserRoles } = useUpdateUserRole();
-  const { mutateAsync: deleteUserRoles } = useDeleteUserRole();
+    filters
+  })
 
   // Helpers
-  const columns = listUserRolesColumns;
+  const columns = listUserRolesColumns
 
   // Handlers
   const handleUpdateUserRoles = async (id: string, updatedFields: any) => {
     await updateUserRoles({
       data: updatedFields,
       phoneNumber: id,
-      schoolId: schoolId,
-    });
-  };
+      schoolId: schoolId
+    })
+  }
 
   const handleDeleteUserRoles = async (id: string, row: any) => {
     await deleteUserRoles({
       phoneNumber: id,
-      schoolId: schoolId,
-    });
-  };
+      schoolId: schoolId
+    })
+  }
 
   // Render
   return (
-    <ContentBox label="لیست دسترسی ها">
+    <ContentBox label='لیست دسترسی ها'>
       <TableDataGrid
         data={data}
         isLoading={isLoading}
@@ -82,6 +84,6 @@ const ListUserRoles = () => {
         }
       />
     </ContentBox>
-  );
-};
-export default ListUserRoles;
+  )
+}
+export default ListUserRoles
