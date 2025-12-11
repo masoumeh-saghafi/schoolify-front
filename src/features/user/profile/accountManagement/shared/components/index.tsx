@@ -15,7 +15,7 @@ const AccountManagementTabBox = () => {
   // Render
   return (
     <>
-      <TabBox baseUrlPath={routes.profile} data={tabData} />
+      <TabBox baseUrlPath={routes.profile.baseUrl} data={tabData} />
     </>
   );
 };

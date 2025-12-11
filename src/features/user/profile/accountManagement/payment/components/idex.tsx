@@ -1,5 +1,6 @@
 // Feature Components
-import RecentPayments from '@schoolify/features/user/profile/accountManagement/payment/components/PaymentGateway'
+
+import RecentPayments from "./RecentPayments";
 
 // Custom Types
 // interface RecentPaymentTabProps {}
@@ -13,7 +14,7 @@ const RecentPaymentTab = () => {
     <>
       <RecentPayments />
     </>
-  )
-}
+  );
+};
 
-export default RecentPaymentTab
+export default RecentPaymentTab;
