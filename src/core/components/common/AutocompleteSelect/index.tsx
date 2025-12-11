@@ -3,7 +3,7 @@ import TextField from "@schoolify/core/components/base/inputs/TextField";
 import Grid from "@schoolify/core/components/base/inputs/Grid";
 
 interface OptionType {
-  key: string | number;
+  key: string | number | boolean;
   value: string;
 }
 
