@@ -55,7 +55,7 @@ export const useDashboardSidebarData = (): DashboardSidebarDataProps[] => {
         {
           key: genUUID(),
           title: "داشبورد نظارت",
-          link: "", //routes.schoolReport(school.id),
+          link: routes.school.report.index(school.id),
           icon: <SettingIcon />,
           type: "listItem",
         },

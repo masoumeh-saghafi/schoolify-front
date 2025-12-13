@@ -21,6 +21,9 @@ import SchoolManagementStudentPaymentPage from "./school/management/studentPayme
 import LogoutPage from "./authentication/logout/page";
 import SchoolManagementUserRolePage from "./school/management/userRole/page";
 import TicketPage from "./profile/ticket/page";
+import SchoolReportLayout from "./school/report/layout";
+import SchoolReportStudentFullPage from "./school/report/students/full/page";
+import SchoolReportStudentSummaryPage from "./school/report/students/summary/page";
 
 const router = createBrowserRouter([
   {
@@ -116,6 +119,25 @@ const router = createBrowserRouter([
       {
         path: routes.school.management.userRoles.url,
         element: <SchoolManagementUserRolePage />,
+      },
+    ],
+  },
+  {
+    path: routes.school.report.baseUrl,
+    element: <SchoolReportLayout />,
+    // errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <SchoolReportStudentFullPage />,
+      },
+      {
+        path: routes.school.report.student.full.url,
+        element: <SchoolReportStudentFullPage />,
+      },
+      {
+        path: routes.school.report.student.summary.url,
+        element: <SchoolReportStudentSummaryPage />,
       },
     ],
   },

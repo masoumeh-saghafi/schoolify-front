@@ -2,7 +2,7 @@
 import Dashboard from "@schoolify/features/shared/dashboard/components";
 
 // Custom Utilities
-import { schoolManagementSidebarData } from "@schoolify/features/user/school/management/dashboard/utilities/data";
+import { schoolReportSidebarData } from "@schoolify/features/user/school/report/dashboard/utilities/data";
 
 // React Types
 import type { ReactNode } from "react";
@@ -12,11 +12,11 @@ import type { DashboardSidebarExitButtonDataProps } from "@schoolify/features/sh
 import routes from "@schoolify/core/utilities/routes";
 
 // Custom Types
-interface SchoolManagementDashboardProps {
+interface SchoolReportDashboardProps {
   children: ReactNode;
 }
 
-const SchoolManagementDashboard = (props: SchoolManagementDashboardProps) => {
+const SchoolReportDashboard = (props: SchoolReportDashboardProps) => {
   const { schoolId = "" } = useParams();
 
   // Props
@@ -24,7 +24,7 @@ const SchoolManagementDashboard = (props: SchoolManagementDashboardProps) => {
 
   const school = schoolData?.filter((x) => x.id == schoolId)[0];
 
-  const sidebarData = schoolManagementSidebarData(
+  const sidebarData = schoolReportSidebarData(
     schoolId,
     school?.data?.title,
     school?.data?.role
@@ -53,4 +53,4 @@ const SchoolManagementDashboard = (props: SchoolManagementDashboardProps) => {
   );
 };
 
-export default SchoolManagementDashboard;
+export default SchoolReportDashboard;

@@ -92,6 +92,27 @@ const routes = {
           routes.school.management.userRoles.url,
       },
     },
+    report: {
+      baseUrl: "/school/:schoolId/report",
+      index: (schoolId: string) =>
+        routes.school.report.baseUrl.replace(":schoolId", schoolId),
+      student: {
+        full: {
+          url: "students/full",
+          index: (schoolId: string) =>
+            routes.school.report.baseUrl.replace(":schoolId", schoolId) +
+            "/" +
+            routes.school.report.student.full.url,
+        },
+        summary: {
+          url: "students/summary",
+          index: (schoolId: string) =>
+            routes.school.report.baseUrl.replace(":schoolId", schoolId) +
+            "/" +
+            routes.school.report.student.summary.url,
+        },
+      },
+    },
   },
 };
 
