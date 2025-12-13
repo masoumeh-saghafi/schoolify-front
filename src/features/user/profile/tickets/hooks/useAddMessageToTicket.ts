@@ -1,28 +1,21 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { addMessageToTicket } from '../utilities/api/api'
-import type { BaseRequestPaginationParams } from '@schoolify/core/types/core/api/request'
-
-interface useAddMessageToTicketProps {
-  pagination?: BaseRequestPaginationParams
-  filters?: Record<string, string>
-}
-export const addMessageToTicketQueryKey = (props: useAddMessageToTicketProps) =>
-  ['addMessageToTicket', props.pagination, props.filters].filter(item => !!item)
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { addMessageToTicket } from "../utilities/api/api";
+import { userTicketQueryKey } from "./useGetUserTicket";
 
 const useAddMessageToTicket = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ data }: { data: any; ticketId: string }) =>
+    mutationFn: ({ data, ticketId }: { data: any; ticketId: string }) =>
       addMessageToTicket(data, ticketId),
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
-        queryKey: addMessageToTicketQueryKey({})
-      })
+        queryKey: userTicketQueryKey(variables.ticketId),
+      });
     },
-    onError: error => {}
-  })
-}
+    onError: (error) => {},
+  });
+};
 
-export default useAddMessageToTicket
+export default useAddMessageToTicket;

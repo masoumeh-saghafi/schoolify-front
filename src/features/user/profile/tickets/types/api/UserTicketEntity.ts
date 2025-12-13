@@ -1,30 +1,35 @@
-import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response"
+import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
 
 export default interface UserTicketEntity {
-  title: string
-  user: BaseIdDataEntity<UserInfo>
-  school: null
-  createDate: number
-  updateDate: number
-  status: string
-  type: string
-  messages: MessageInfo[]
+  title: string;
+  user: BaseIdDataEntity<TicketUserInfo>;
+  school: BaseIdDataEntity<TicketSchoolInfo>;
+  createDate: number;
+  updateDate: number;
+  status: string;
+  type: string;
+  messages: MessageInfo[];
 }
 
-export interface UserInfo {
-  fullName: string
-  role: 'support' | 'user'
+export interface TicketUserInfo {
+  firstName: string;
+  lastName: string;
+  fullName: string;
+  phoneNumber: string;
+}
+
+export interface TicketSchoolInfo {
+  title: string;
 }
 
 export interface MessageInfo {
-  content: string
-  user: AdminIfo
-  createDate: number
-  updateDate: number
+  content: string;
+  user: MessageUserInfo;
+  createDate: number;
+  updateDate: number;
 }
 
-export interface AdminIfo {
-  firstName: string
-  lastName: string
-  fullName: string
+export interface MessageUserInfo {
+  fullName: string;
+  role: "support" | "user";
 }

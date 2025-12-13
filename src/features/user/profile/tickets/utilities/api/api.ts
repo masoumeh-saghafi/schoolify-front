@@ -13,7 +13,6 @@ import {
 } from "@schoolify/core/utilities/api/api";
 
 import schoolStudentEndpoints from "@schoolify/features/user/school/management/student/utilities/api/endpoints";
-import type ListStudentsEntity from "@schoolify/features/user/school/management/student/types/api/ListStudentsEntity";
 import ticketEndpoints from "./endpoints";
 import type ListTicketEntity from "../../types/api/ListTicketEntity";
 import type UserTicketEntity from "../../types/api/UserTicketEntity";
@@ -50,21 +49,19 @@ export const listTicket = async (
 export const getUserTicket = async (ticketId: string) => {
   return await getData<BaseIdDataEntity<UserTicketEntity>>(
     ticketEndpoints.getUserTicket(ticketId)
-  )
-}
+  );
+};
 
-export const addMessageToTicket = async (data: any,ticketId: string
-) => {
+export const addMessageToTicket = async (data: any, ticketId: string) => {
   return await postData<BaseAddResponseEntity>(
-    ticketEndpoints.addMessageToTicket,
-    data,ticketId)
-}
+    ticketEndpoints.addMessageToTicket(ticketId),
+    data
+  );
+};
 
-
-export const closeTicket = async (data: any, ticketId: string) => {
+export const closeTicket = async (ticketId: string) => {
   return await postData<BaseAddResponseEntity>(
-    ticketEndpoints.closeTicket,
-    data,
-    ticketId
-  )
-}
+    ticketEndpoints.closeTicket(ticketId),
+    {}
+  );
+};
