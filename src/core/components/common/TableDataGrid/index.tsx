@@ -260,10 +260,13 @@ const TableDataGrid = (params: TableDataGridProps) => {
   });
 
   const isAllData = paginationModel.pageSize === -1;
-
+  const calculatedMinWidth = newColumns.reduce(
+    (sum, col) => sum + (col.width ?? 150),
+    0
+  );
   return (
     <Box sx={{ overflowX: "auto" }}>
-      <Box sx={{ width: "auto" }}>
+      <Box>
         <DataGrid
           loading={isLoading}
           rows={data?.docs || []}
@@ -295,6 +298,8 @@ const TableDataGrid = (params: TableDataGridProps) => {
           hideFooter={isAllData}
           filterDebounceMs={1500}
           sx={{
+            minWidth: calculatedMinWidth + 10,
+            // overflowX: "auto",
             backgroundColor: theme.palette.background.paper,
             color: theme.palette.text.black,
 
