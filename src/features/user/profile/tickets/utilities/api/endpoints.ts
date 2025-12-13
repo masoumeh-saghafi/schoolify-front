@@ -1,8 +1,11 @@
 const ticketEndpoints = {
-  addTicket: "/tickets",
-  changeTicketInfo: (TicketId: string) => `/Tickets/${TicketId}`,
-  deleteTicket: "/Tickets",
-  listTicket: "/tickets",
-};
+  addTicket: '/tickets',
+  changeTicketInfo: (ticketId: string) => `/tickets/${ticketId}`,
 
-export default ticketEndpoints;
+  listTicket: '/tickets',
+  getUserTicket: (ticketId: string) => `/tickets/${ticketId}`,
+  addMessageToTicket: (ticketId: string) => `/tickets/${ticketId}/messages`,
+  closeTicket: (ticketId: string) => `/tickets/${ticketId}/close`
+}
+
+export default ticketEndpoints

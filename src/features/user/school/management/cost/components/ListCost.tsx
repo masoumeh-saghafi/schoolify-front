@@ -19,6 +19,7 @@ import useDeleteCost from '@schoolify/features/user/school/management/cost/hooks
 
 // Custom Utilities
 import { listCostColumns } from '@schoolify/features/user/school/management/cost/utilities/listCostColumns'
+import UpdateCost from './UpdateCost'
 
 
 
@@ -100,6 +101,7 @@ const ListCost = () => {
         columns={columns}
         onFilterChange={handleFilterChange}
         onUpdateRow={handleUpdateCost}
+        onUpdateForm={UpdateCost}
         onDeleteRow={handleDeleteCost}
         onDeleteRowGetTitle={row =>
           `${row.data.costType.data.title} - ${row.data.referenceTitle}`

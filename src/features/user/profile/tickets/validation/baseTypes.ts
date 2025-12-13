@@ -11,3 +11,11 @@ const statusEnum = [
 ];
 
 export const statusOptions = Object.values(statusEnum);
+
+
+const typeUnit=[
+  { id: 'support', title: 'پشتیبانی' },
+  { id: 'sell', title: 'فروش' }
+]
+
+export const UnitOptions = Object.values(typeUnit)

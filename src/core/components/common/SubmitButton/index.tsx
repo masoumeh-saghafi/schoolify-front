@@ -21,7 +21,7 @@ const SubmitButton = (props: SubmitButtonProps) => {
   // Helpers
   const isDisabled = !isValid || !isDirty
 
-  const bgColor = isDisabled
+ const bgColor = isDisabled
     ? theme.palette.secondary.main
     : theme.palette.primary.main
 

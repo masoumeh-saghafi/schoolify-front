@@ -4,15 +4,15 @@ import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
 import { listTicket } from "../utilities/api/api";
 
-interface useListticketProps {
+interface useListTicketProps {
   pagination?: BaseRequestPaginationParams;
   filters?: Record<string, string>;
 }
 
-export const listTicketQueryKey = (props: useListticketProps) =>
-  ["listticket", props.pagination, props.filters].filter((item) => !!item);
+export const listTicketQueryKey = (props: useListTicketProps) =>
+  ["listTicket", props.pagination, props.filters].filter((item) => !!item);
 
-const useListticket = (props: useListticketProps) => {
+const useListticket = (props: useListTicketProps) => {
   return useQuery({
     queryKey: listTicketQueryKey(props),
     queryFn: ({ queryKey }) =>
