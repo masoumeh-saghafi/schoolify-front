@@ -1,6 +1,6 @@
 // React Type
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 // MUI Components
 import Grid from '@schoolify/core/components/base/inputs/Grid'
@@ -22,13 +22,19 @@ import useListStudents from '@schoolify/features/user/school/management/shared/h
 import useMapToOptions from '@schoolify/core/hooks/common/useMapToOptions'
 
 // Custom Utilities
-import { listClassStudentData } from '@schoolify/features/user/school/management/classStudents/utilities/listClassStudentData'
 import { listStudentColumns } from '@schoolify/features/user/school/management/student/utilities/listStudentColumns'
+import useListStudentReport from '../hooks/useListStudentReport'
+import { listStudentReportColumns } from '../utilities/listStudentColumns'
+import { listStudentReportData } from '../utilities/listStudentReportData'
+import { tabBoxGenerateFullUrlPath } from '@schoolify/core/components/common/TabBox'
+import Box from '@schoolify/core/components/base/inputs/Box'
+import Button from '@schoolify/core/components/base/inputs/Button'
+import { exportListStudentReportToExcel } from './ExportListStudentReportToExcel'
 
 // Custom Types
-// interface ListStudentProps {}
+// interface ListStudentReportProps {}
 
-const ListClassStudents = () => {
+const ListStudentReport = () => {
   // Props
   // const {} = props;
 
@@ -37,6 +43,7 @@ const ListClassStudents = () => {
   const [educationLevelId, setEducationLevelId] = useState('')
   const [educationGradeId, setEducationGradeId] = useState('')
   const [classId, setClassId] = useState('')
+  const navigate = useNavigate()
 
   // Hooks
   const {
@@ -47,10 +54,21 @@ const ListClassStudents = () => {
     handleSortModelChange
   } = useTableDataGridState()
 
-  const { data, isLoading } = useListClass({
-    educationGradeId,
+  const { data, isLoading } = useListStudentReport({
+    educationYearId,
     pagination,
-    filters
+    filters:
+      //   :
+      // {
+      //   classRoomId: classId
+      // }
+
+      {
+        // ...filters,
+        educationLevelId: educationLevelId,
+        educationGradeId: educationGradeId,
+        classRoomId: classId
+      }
   })
 
   const { schoolId = '' } = useParams()
@@ -63,16 +81,16 @@ const ListClassStudents = () => {
     useListSummaryEducationGrade(educationLevelId)
 
   const { data: classData } = useListSummaryClass(educationGradeId)
-  const { data: studentsData } = useListStudents({
-    schoolId: schoolId,
-    pagination: pagination,
-    filters: {
-      classRoomId: classId
-    },
-    disabled: !classId
-  })
+  // const { data: studentsData } = useListStudents({
+  //   schoolId: schoolId,
+  //   pagination: pagination,
+  //   filters: {
+  //     classRoomId: classId
+  //   },
+  //   disabled: !classId
+  // })
 
-  const { mutateAsync: deleteClass } = useDeleteClass()
+  // const { mutateAsync: deleteClass } = useDeleteClass()
 
   const educationYearOptions = useMapToOptions(educationYearData)
   const educationLevelOptions = useMapToOptions(educationLevelData)
@@ -103,22 +121,25 @@ const ListClassStudents = () => {
     }
   } as const
 
-  const columns = listStudentColumns
+  const columns = listStudentReportColumns
 
   // Handlers
-  const handleDeleteClass = async (id: string, row: any) => {
-    await deleteClass({
-      classId: classId,
-      studentId: id,
-      schoolId: schoolId
-    })
+  const handleOpenStudentDetails = async (id: string, row: any) => {
+    const changeTabUrl = tabBoxGenerateFullUrlPath(
+      location.pathname,
+      `school?id=${id}`
+    )
+    navigate(changeTabUrl)
+  }
+  const handleExportToExcel = () => {
+    exportListStudentReportToExcel({ data })
   }
 
   // Render
   return (
-    <ContentBox label='لیست دانش آموزان کلاس  '>
+    <ContentBox label=' گزارش دانش آموزان'>
       <Grid container spacing={2} sx={{ mb: 2 }}>
-        {listClassStudentData.map(field => {
+        {listStudentReportData.map(field => {
           const { value, set, options } =
             fieldStateMap[field.name as keyof typeof fieldStateMap]
           return (
@@ -136,19 +157,27 @@ const ListClassStudents = () => {
       </Grid>
 
       <TableDataGrid
-        data={studentsData}
+        data={data}
         isLoading={isLoading}
         onPageChange={handlePaginationModelChange}
         onSortChange={handleSortModelChange}
         columns={columns}
         onFilterChange={handleFilterChange}
         disableUpdateRowButton={true}
-        onDeleteRow={handleDeleteClass}
-        onDeleteRowGetTitle={row =>
-          `${row.data.firstName} ${row.data.lastName}`
-        }
+        disableDeleteRowButton={true}
+        addRowTitle='جزئیات'
+        onAddRow={handleOpenStudentDetails}
       />
+      <Box display='flex' justifyContent='flex-start' mt={2}>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={handleExportToExcel}
+        >
+          چاپ گزارش
+        </Button>
+      </Box>
     </ContentBox>
   )
 }
-export default ListClassStudents
+export default ListStudentReport

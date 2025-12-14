@@ -17,7 +17,7 @@ const SchoolReportStudentSummaryPage = () => {
         baseUrlPath={routes.school.report.student.summary.index(schoolId)}
         data={tabEducationYearEndpointsData}
       /> */}
-      <Box>Summary</Box>
+      <Box >Summary</Box>
     </>
   );
 };

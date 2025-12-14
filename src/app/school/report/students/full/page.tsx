@@ -2,6 +2,7 @@
 
 import TabBox from "@schoolify/core/components/common/TabBox";
 import routes from "@schoolify/core/utilities/routes";
+import { tabStudentReportFullEndpointsData } from "@schoolify/features/user/school/report/classStudents/utilities/data";
 import { tabEducationYearEndpointsData } from "@schoolify/features/user/school/report/educationYear/utilities/data";
 import { useParams } from "react-router-dom";
 
@@ -14,7 +15,7 @@ const SchoolReportStudentFullPage = () => {
     <>
       <TabBox
         baseUrlPath={routes.school.report.student.full.index(schoolId)}
-        data={tabEducationYearEndpointsData}
+        data={tabStudentReportFullEndpointsData}
       />
     </>
   );

@@ -2,21 +2,21 @@ import useMapToOptions, {
   type OptionType
 } from '@schoolify/core/hooks/common/useMapToOptions'
 
-export type ClassStudentFields =
+export type StudentReportFields =
   | 'educationYearId'
   | 'educationLevelId'
   | 'educationGradeId'
   | 'studentId'
   | 'classId'
 
-export interface listClassStudentDataInterface {
-  name: ClassStudentFields
+export interface listStudentReportDataInterface {
+  name: StudentReportFields
   label: string
   optionsMapper: (data: any[]) => OptionType[]
   loading: boolean
 }
 
-export const listClassStudentData: listClassStudentDataInterface[] = [
+export const listStudentReportData: listStudentReportDataInterface[] = [
   {
     name: 'educationYearId',
     label: 'سال تحصیلی',

@@ -87,7 +87,7 @@ const TableDataGrid = (params: TableDataGridProps) => {
     disableActions = false,
   } = params;
 
-  var columns = params.columns;
+  let columns = params.columns;
 
   const [paginationModel, setPaginationModel] = useState<GridPaginationModel>({
     page: 0,
