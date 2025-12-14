@@ -28,7 +28,7 @@ export const StudentCostData = (
   );
 };
 
-export const columns = [
+export const studentCostColumns = [
   { id: "title", label: "عنوان هزینه" },
   { id: "baseAmount", label: "مبلغ ثابت" },
   { id: "referenceType", label: "نوع" },
