@@ -114,6 +114,26 @@ const routes = {
       },
     },
   },
+
+  admin: {
+    baseUrl: "/admin",
+    tickets: {
+      url: "tickets",
+      index: () => routes.admin.baseUrl + "/" + routes.admin.tickets.url,
+    },
+    payments: {
+      url: "payments",
+      index: () => routes.admin.baseUrl + "/" + routes.admin.payments.url,
+    },
+    customers: {
+      url: "customers",
+      index: () => routes.admin.baseUrl + "/" + routes.admin.customers.url,
+    },
+    managers: {
+      url: "managers",
+      index: () => routes.admin.baseUrl + "/" + routes.admin.managers.url,
+    },
+  },
 };
 
 export default routes;

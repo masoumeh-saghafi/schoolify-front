@@ -24,6 +24,9 @@ import TicketPage from "./profile/ticket/page";
 import SchoolReportLayout from "./school/report/layout";
 import SchoolReportStudentFullPage from "./school/report/students/full/page";
 import SchoolReportStudentSummaryPage from "./school/report/students/summary/page";
+import AdminLayout from "./admin/layout";
+import AdminDashboardPage from "./admin/page";
+import AdminTicketPage from "./admin/tickets/page";
 
 const router = createBrowserRouter([
   {
@@ -139,6 +142,25 @@ const router = createBrowserRouter([
         path: routes.school.report.student.summary.url,
         element: <SchoolReportStudentSummaryPage />,
       },
+    ],
+  },
+  {
+    path: routes.admin.baseUrl,
+    element: <AdminLayout />,
+    // errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <AdminDashboardPage />,
+      },
+      {
+        path: routes.admin.tickets.url,
+        element: <AdminTicketPage />,
+      },
+      // {
+      //   path: routes.admin.tickets.url,
+      //   element: <AdminTicketPage />,
+      // },
     ],
   },
 ]);
