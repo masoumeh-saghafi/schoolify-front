@@ -1,67 +1,73 @@
-import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
+import type { BaseRequestPaginationParams } from '@schoolify/core/types/core/api/request'
 import type {
   BaseAddResponseEntity,
-  BaseIdDataEntity,
-} from "@schoolify/core/types/core/api/response";
+  BaseIdDataEntity
+} from '@schoolify/core/types/core/api/response'
 
 import {
   deleteData,
   getData,
   getListPaginatedData,
   patchData,
-  postData,
-} from "@schoolify/core/utilities/api/api";
+  postData
+} from '@schoolify/core/utilities/api/api'
 
-import schoolStudentEndpoints from "@schoolify/features/user/school/management/student/utilities/api/endpoints";
-import ticketEndpoints from "./endpoints";
-import type ListTicketEntity from "../../types/api/ListTicketEntity";
-import type UserTicketEntity from "../../types/api/UserTicketEntity";
+import schoolStudentEndpoints from '@schoolify/features/user/school/management/student/utilities/api/endpoints'
+import ticketEndpoints from './endpoints'
+import type ListTicketEntity from '../../types/api/ListAdminTicketEntity'
+import type UserTicketEntity from '../../types/api/getAdminTicketEntity'
+import type ListAdminTicketsEntity from '../../types/api/ListAdminTicketEntity'
+import adminTicketEndpoints from './endpoints'
+import type getAdminTicketEntity from '../../types/api/getAdminTicketEntity'
 
-export const addTicket = async (data: any) => {
-  return await postData<BaseAddResponseEntity>(ticketEndpoints.addTicket, data);
-};
+export const addAdminTicketResponse = async (data: any, ticketId: string) => {
+  return await postData<BaseAddResponseEntity>(
+    adminTicketEndpoints.addAdminTicketResponse(ticketId),
+    data
+  )
+}
 
-export const updateStudent = async (data: any, studentId: string) => {
+export const updateAdminTicket = async (data: any, studentId: string) => {
   return await patchData<void>(
     schoolStudentEndpoints.changeStudentInfo(studentId),
     data
-  );
-};
+  )
+}
 
-export const deleteStudent = async (studentId: string) => {
-  return await deleteData<void>(
-    schoolStudentEndpoints.deleteStudent,
-    studentId
-  );
-};
+// export const deleteStudent = async (studentId: string) => {
+//   return await deleteData<void>(
+//     schoolStudentEndpoints.deleteStudent,
+//     studentId
+//   );
+// };
 
-export const listTicket = async (
+export const listAdminTicketEndpoints = async (
   pagination: BaseRequestPaginationParams,
   filters: Record<string, string>
 ) => {
-  return await getListPaginatedData<BaseIdDataEntity<ListTicketEntity>>(
-    ticketEndpoints.listTicket,
+  return await getListPaginatedData<BaseIdDataEntity<ListAdminTicketsEntity>>(
+    adminTicketEndpoints.listAdminTicket,
     pagination,
     filters
-  );
-};
+  )
+}
 
-export const getUserTicket = async (ticketId: string) => {
-  return await getData<BaseIdDataEntity<UserTicketEntity>>(
-    ticketEndpoints.getUserTicket(ticketId)
-  );
-};
+export const getAdminTicket = async (ticketId: string) => {
+  return await getData<BaseIdDataEntity<getAdminTicketEntity>>(
+    adminTicketEndpoints.getAdminTicket(ticketId)
+  )
+}
 
-export const addMessageToTicket = async (data: any, ticketId: string) => {
-  return await postData<BaseAddResponseEntity>(
-    ticketEndpoints.addMessageToTicket(ticketId),
-    data
-  );
-};
+// export const addMessageToTicket = async (data: any, ticketId: string) => {
+//   return await postData<BaseAddResponseEntity>(
+//     ticketEndpoints.addMessageToTicket(ticketId),
+//     data
+//   );
+// };
 
-export const closeTicket = async (ticketId: string) => {
-  return await postData<BaseAddResponseEntity>(
-    ticketEndpoints.closeTicket(ticketId),
-    {}
-  );
-};
+// export const closeTicket = async (ticketId: string) => {
+//   return await postData<BaseAddResponseEntity>(
+//     ticketEndpoints.closeTicket(ticketId),
+//     {}
+//   );
+// };

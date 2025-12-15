@@ -1,13 +1,17 @@
 // MUI Components
-import Box from "@schoolify/core/components/base/inputs/Box";
-import TicketTabBox from "@schoolify/features/user/profile/tickets/components";
+import TabBox from "@schoolify/core/components/common/TabBox";
+import routes from "@schoolify/core/utilities/routes";
+import { tabAdminTicketData } from "@schoolify/features/admin/tickets/utilities/data";
 
 const AdminTicketPage = () => {
   // Render
   return (
     <>
-      {/* <TicketTabBox /> */}
-      <Box>Ticket Page</Box>
+  <TabBox
+  baseUrlPath={routes.admin.tickets.index()}
+  data={tabAdminTicketData}
+/>
+
     </>
   );
 };

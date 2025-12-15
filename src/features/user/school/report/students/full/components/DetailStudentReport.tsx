@@ -12,11 +12,9 @@ import {
 } from '../utilities/studentCostData'
 import DataTable from '@schoolify/core/components/common/DataTable'
 import { StudentInfoData } from '../utilities/studentInfoData'
-import {
-  studentPaymentColumns,
-  StudentPaymentData
-} from '../utilities/StudentPaymentData'
+
 import FormattedDate from '@schoolify/core/components/common/FormattedDate'
+import { studentPaymentColumns, StudentPaymentData } from '../utilities/studentPaymentData'
 
 interface DetailStudentReportProps {}
 

@@ -27,6 +27,7 @@ import SchoolReportStudentSummaryPage from "./school/report/students/summary/pag
 import AdminLayout from "./admin/layout";
 import AdminDashboardPage from "./admin/page";
 import AdminTicketPage from "./admin/tickets/page";
+import AdminPaymentsPage from "./admin/payments/page";
 
 const router = createBrowserRouter([
   {
@@ -156,6 +157,10 @@ const router = createBrowserRouter([
       {
         path: routes.admin.tickets.url,
         element: <AdminTicketPage />,
+      },
+        {
+        path: routes.admin.payments.url,
+        element: <AdminPaymentsPage />,
       },
       // {
       //   path: routes.admin.tickets.url,

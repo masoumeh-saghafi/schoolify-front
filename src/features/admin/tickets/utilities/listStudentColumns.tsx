@@ -1,65 +1,67 @@
-import type { GridColDef } from "@mui/x-data-grid/models/colDef";
+import type { GridColDef } from '@mui/x-data-grid/models/colDef'
 
-import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
+import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 
-import type ListTicketEntity from "../types/api/ListTicketEntity";
-import FormattedDate from "@schoolify/core/components/common/FormattedDate";
-import { statusOptions, typeOptions } from "../validation/baseTypes";
+import FormattedDate from '@schoolify/core/components/common/FormattedDate'
+import { statusOptions, typeOptions } from '../validation/baseTypes'
+import type ListAdminTicketsEntity from '../types/api/ListAdminTicketEntity'
 
-export const listTicketColumns: GridColDef<
-  BaseIdDataEntity<ListTicketEntity>
+export const listAdminTicketColumns: GridColDef<
+  BaseIdDataEntity<ListAdminTicketsEntity>
 >[] = [
   {
-    field: "title",
+    field: 'title',
     resizable: false,
-    headerName: "عنوان",
+    headerName: 'عنوان',
     width: 200,
-    valueGetter: (_, row) => row.data?.title,
+    valueGetter: (_, row) => row.data?.title
   },
   {
-    field: "school",
+    field: 'user',
     resizable: false,
-    headerName: "نام مدرسه",
+    headerName: 'کاربر ',
     width: 150,
-    valueGetter: (_, row) => row.data?.school?.data?.title || "---",
+    valueGetter: (_, row) => row.data?.user?.data?.fullName || '---'
   },
   {
-    field: "status",
+    field: 'school',
     resizable: false,
-    headerName: "وضعیت",
+    headerName: 'نام مدرسه',
+    width: 150,
+    valueGetter: (_, row) => row.data?.school?.data?.title || '---'
+  },
+  {
+    field: 'status',
+    resizable: false,
+    headerName: 'وضعیت',
     width: 160,
     valueGetter: (_, row) =>
-      statusOptions.find((option) => option.id === row.data?.status)?.title ||
-      "---",
+      statusOptions.find(option => option.id === row.data?.status)?.title ||
+      '---'
   },
 
   {
-    field: "type",
+    field: 'type',
     resizable: false,
-    headerName: "واحد",
+    headerName: 'واحد',
     width: 150,
     valueGetter: (_, row) =>
-      typeOptions.find((option) => option.id === row.data?.type)?.title ||
-      "---",
+      typeOptions.find(option => option.id === row.data?.type)?.title || '---'
   },
   {
-    field: "createDate",
+    field: 'createDate',
     resizable: false,
-    headerName: "ثبت  ",
+    headerName: 'ثبت  ',
     width: 150,
     editable: false,
-    renderCell: (params) => (
-      <FormattedDate date={params.row.data?.createDate} />
-    ),
+    renderCell: params => <FormattedDate date={params.row.data?.createDate} />
   },
   {
-    field: "updateDate",
+    field: 'updateDate',
     resizable: false,
-    headerName: "  بروزرسانی",
+    headerName: '  بروزرسانی',
     width: 150,
     editable: false,
-    renderCell: (params) => (
-      <FormattedDate date={params.row.data?.updateDate} />
-    ),
-  },
-];
+    renderCell: params => <FormattedDate date={params.row.data?.updateDate} />
+  }
+]

@@ -1,11 +1,14 @@
-const ticketEndpoints = {
-  addTicket: '/tickets',
-  changeTicketInfo: (ticketId: string) => `/tickets/${ticketId}`,
+const adminTicketEndpoints = {
+  getAdminTicket: (ticketId: string) => `/admin/tickets/${ticketId}`,
 
-  listTicket: '/tickets',
-  getUserTicket: (ticketId: string) => `/tickets/${ticketId}`,
-  addMessageToTicket: (ticketId: string) => `/tickets/${ticketId}/messages`,
+  UpdateAdminTicket: (ticketId: string) => `/admin/tickets/${ticketId}`,
+
+  listAdminTicket: '/admin/tickets',
+
+  addAdminTicketResponse: (ticketId: string) =>
+    `/admin/tickets/${ticketId}/messages`,
+
   closeTicket: (ticketId: string) => `/tickets/${ticketId}/close`
 }
 
-export default ticketEndpoints
+export default adminTicketEndpoints
