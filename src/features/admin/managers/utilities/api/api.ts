@@ -1,51 +1,53 @@
-import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
+import type { BaseRequestPaginationParams } from '@schoolify/core/types/core/api/request'
 import type {
   BaseAddResponseEntity,
-  BaseIdDataEntity,
-} from "@schoolify/core/types/core/api/response";
+  BaseIdDataEntity
+} from '@schoolify/core/types/core/api/response'
 
 import {
   deleteData,
   getListPaginatedData,
-  patchData,
-  postData,
-} from "@schoolify/core/utilities/api/api";
+  postData
+} from '@schoolify/core/utilities/api/api'
 
-import UserRoleEndpoints from "@schoolify/features/user/school/management/userRole/utilities/api/endpoints";
-import type ListUserRolesEntity from "@schoolify/features/user/school/management/userRole/types/api/ListUserRolesEntity";
+import adminRoleEndpoints from './endpoints'
+import type ListAdminRolesEntity from '../../types/api/ListAdminRolesEntity'
 
-export const addUserRole = async (data: any, schoolId: string) => {
+export const addAdminRole = async (data: any) => {
   return await postData<BaseAddResponseEntity>(
-    UserRoleEndpoints.addUserRole(schoolId),
+    adminRoleEndpoints.addAdminRole,
     data
-  );
-};
+  )
+}
 
-export const updateUserRole = async (
-  data: any,
+// export const updateAdminRole = async (
+//   data: any,
+//   schoolId: string,
+//   phoneNumber: string
+// ) => {
+//   return await patchData<void>(
+//     AdminRoleEndpoints.updateAdminRole(schoolId, phoneNumber),
+//     data
+//   )
+// }
+
+export const deleteAdminRole = async (
   schoolId: string,
-  phoneNumber: string
+
 ) => {
-  return await patchData<void>(
-    UserRoleEndpoints.updateUserRole(schoolId, phoneNumber),
-    data
-  );
-};
-
-export const deleteUserRole = async (schoolId: string, phoneNumber: string) => {
   return await deleteData<void>(
-    UserRoleEndpoints.deleteUserRole(schoolId, phoneNumber)
-  );
-};
+    adminRoleEndpoints.deleteAdminRole(schoolId)
+  )
+}
 
-export const listUserRoles = async (
-  schoolId: string,
+export const listAdminRoles = async (
+
   pagination: BaseRequestPaginationParams,
   filters: Record<string, string>
 ) => {
-  return await getListPaginatedData<BaseIdDataEntity<ListUserRolesEntity>>(
-    UserRoleEndpoints.listUserRoles(schoolId),
+  return await getListPaginatedData<BaseIdDataEntity<ListAdminRolesEntity>>(
+    adminRoleEndpoints.listAdminRoles,
     pagination,
     filters
-  );
-};
+  )
+}

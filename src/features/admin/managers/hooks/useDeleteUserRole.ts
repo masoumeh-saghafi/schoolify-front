@@ -1,22 +1,22 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteUserRole } from "@schoolify/features/user/school/management/userRole/utilities/api/api";
-import { listUserRolesQueryKey } from "@schoolify/features/user/school/management/userRole/hooks/useListUserRoles";
+import { deleteAdminRole } from "../utilities/api/api";
+import { listAdminRolesQueryKey } from "./useListAdminRoles";
 
-const useDeleteUserRole = () => {
+const useDeleteAdminRole = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({
-      schoolId,
-      phoneNumber,
+      userId,
+ 
     }: {
-      schoolId: string;
-      phoneNumber: string;
-    }) => deleteUserRole(schoolId, phoneNumber),
+      userId: string;
+    
+    }) => deleteAdminRole(userId),
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
-        queryKey: listUserRolesQueryKey({ schoolId: variables.schoolId }),
+        queryKey: listAdminRolesQueryKey({ }),
       });
     },
     onError: (error) => {
@@ -25,4 +25,4 @@ const useDeleteUserRole = () => {
   });
 };
 
-export default useDeleteUserRole;
+export default useDeleteAdminRole;

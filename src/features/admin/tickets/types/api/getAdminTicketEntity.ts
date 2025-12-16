@@ -7,8 +7,9 @@ export default interface getAdminTicketEntity {
   school: BaseIdDataEntity<schoolInfo>
   createDate: number
   updateDate: number
-  status: string
-  type: string
+ status: 'open' | 'close'
+type: 'support' | 'sell'
+
   messages: MessageInfo[]
  
 }

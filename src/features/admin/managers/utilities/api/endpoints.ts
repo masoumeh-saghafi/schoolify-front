@@ -1,13 +1,13 @@
-const UserRoleEndpoints = {
-  addUserRole: (schoolId: string) => `/schools/${schoolId}/users`,
+const adminRoleEndpoints = {
+  addAdminRole:'/admin/managers',
 
-  updateUserRole: (schoolId: string, phoneNumber: string) =>
-    `/schools/${schoolId}/users/${phoneNumber}`,
+  // updateAdminRole: (userId: string, phoneNumber: string) =>
+  //   `/schools/${userId}/Admins/${phoneNumber}`,
 
-  deleteUserRole: (schoolId: string, phoneNumber: string) =>
-    `/schools/${schoolId}/users/${phoneNumber}`,
+  deleteAdminRole: (userId: string) =>
+    `/admin/managers/${userId}/remove`,
 
-  listUserRoles: (schoolId: string) => `/schools/${schoolId}/users`
+  listAdminRoles: '/admin/managers'
 }
 
-export default UserRoleEndpoints
+export default adminRoleEndpoints

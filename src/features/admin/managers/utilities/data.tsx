@@ -1,16 +1,16 @@
 import type { TabBoxDataProps } from "@schoolify/core/components/common/TabBox";
-import AddUserRole from "@schoolify/features/user/school/management/userRole/components/AddUserRole";
-import ListUserRole from "@schoolify/features/user/school/management/userRole/components/ListUserRoles";
+import AddAdminRole from "../components/AddAdminRole";
+import ListAdminRoles from "../components/ListAdminRoles";
 
-export const tabUserRoleEndpointsData: TabBoxDataProps[] = [
+export const tabAdminRoleEndpointsData: TabBoxDataProps[] = [
   {
     label: " افزودن ",
     key: "create",
-    children: <AddUserRole />,
+    children: <AddAdminRole />,
   },
   {
     label: " لیست  ",
     key: "list",
-    children: <ListUserRole />,
+    children: <ListAdminRoles />,
   },
 ];

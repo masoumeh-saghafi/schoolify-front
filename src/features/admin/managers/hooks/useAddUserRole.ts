@@ -1,22 +1,20 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { listAdminRolesQueryKey } from './useListAdminRoles'
+import { addAdminRole } from '../utilities/api/api'
 
-import { listUserRolesQueryKey } from '@schoolify/features/user/school/management/userRole/hooks/useListUserRoles'
-import { addUserRole } from '@schoolify/features/user/school/management/userRole/utilities/api/api'
-
-const useAddUserRole = () => {
+const useAddAdminRole = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: ({ data, schoolId }: { data: any; schoolId: string }) =>
-      addUserRole(data,schoolId),
+    mutationFn: ({ data }: { data: any }) => addAdminRole(data),
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
-        queryKey: listUserRolesQueryKey({ schoolId: variables.schoolId })
+        queryKey: listAdminRolesQueryKey({})
       })
     },
     onError: error => {}
   })
 }
 
-export default useAddUserRole
+export default useAddAdminRole

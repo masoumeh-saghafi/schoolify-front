@@ -6,8 +6,8 @@ export default interface ListAdminTicketEntity {
   school: BaseIdDataEntity<SchoolInfo>
   createDate: number
   updateDate: number
-  status: string
-  type: string
+  status: 'open' | 'close'
+  type: 'support' | 'sell'
 }
 
 export interface AdminInfo {

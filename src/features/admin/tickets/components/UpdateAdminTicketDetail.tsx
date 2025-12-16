@@ -30,6 +30,7 @@ import useGetAdminTicket from '../hooks/useGetAdminTicket'
 import useUpdateAdminTicket from '../hooks/useUpdateAdminTicket'
 import { updateAdminTicketData } from '../utilities/updateAdminTicketData'
 import SubmitButton from '@schoolify/core/components/common/SubmitButton'
+import { useEffect } from 'react'
 
 // Form schema
 type SchemaProps = z.infer<typeof updateAdminTicketValidationSchema>
@@ -53,7 +54,11 @@ const UpdateAdminTicketDetail = (props: UpdateAdminTicketDetailProps) => {
     formState: { isValid, isDirty }
   } = useForm<SchemaProps>({
     resolver: zodResolver(updateAdminTicketValidationSchema),
-    mode: 'onChange'
+    mode: 'onChange',
+    defaultValues: {
+      status: undefined,
+      type: undefined
+    }
   })
 
   const { data: data } = useGetAdminTicket(ticketId)
@@ -74,6 +79,15 @@ const UpdateAdminTicketDetail = (props: UpdateAdminTicketDetailProps) => {
   //   navigate(routes.profile.baseUrl)
   // }
 
+  // useEffect(() => {
+  //   if (data?.data) {
+  //     reset({
+  //       status: data.data.status,
+  //       type: data.data.type
+  //     })
+  //   }
+  // }, [data, reset])
+
   // Render
   return (
     <Box>
@@ -82,16 +96,14 @@ const UpdateAdminTicketDetail = (props: UpdateAdminTicketDetailProps) => {
           {updateAdminTicketData.map(field => (
             <ControlledAutocomplete
               key={field.name}
-              control={control as any}
-              name={field.name}
+              control={control}
+              name={field.name as 'status' | 'type'}
               label={field.label}
-              placeholder={`لطفا ${field.label.toLowerCase()} را انتخاب نمایید`}
-              options={
-                (field as any).options?.map((option: any) => ({
-                  key: option.key,
-                  value: option.label || option.value || option.key
-                })) || []
-              }
+              placeholder={`لطفا ${field.label} را انتخاب نمایید`}
+              options={field.options.map(option => ({
+                key: option.id,
+                value: option.title
+              }))}
             />
           ))}
           <Grid size={{ xs: 12, sm: 6 }}>

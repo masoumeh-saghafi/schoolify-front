@@ -1,12 +1,17 @@
 // MUI Components
-import TicketTabBox from "@schoolify/features/user/profile/tickets/components";
+import TabBox from "@schoolify/core/components/common/TabBox";
+import routes from "@schoolify/core/utilities/routes";
+import { tabAdminRoleEndpointsData } from "@schoolify/features/admin/managers/utilities/data";
 
 const AdminManagersPage = () => {
   // Render
   return (
     <>
-      {/* <AdminManagersTabBox /> */}
-      Managers Page
+   <TabBox
+  baseUrlPath={routes.admin.managers.index()}
+  data={tabAdminRoleEndpointsData}
+/>
+
     </>
   );
 };

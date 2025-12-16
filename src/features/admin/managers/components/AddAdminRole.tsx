@@ -17,22 +17,22 @@ import SubmitButton from '@schoolify/core/components/common/SubmitButton'
 import ControlledAutocomplete from '@schoolify/core/components/common/ControlledAutocomplete'
 
 // Custom Hooks
-import useAddUserRole from '@schoolify/features/user/school/management/userRole/hooks/useAddUserRole'
 
 // Custom Utilities
-import { roleTypeOptions } from '@schoolify/features/user/school/management/userRole/validation/baseTypes'
 
 // Validation Schema
-import { validationSchema } from '@schoolify/features/user/school/management/userRole/validation/userRoleValidation'
+import { addAdminRoleValidationSchema, roleTypeOptions } from '../validation/addAdminRoleValidation'
+import useAddAdminRole from '../hooks/useAddUserRole'
+import { addAdminInfoData } from '../utilities/addAdminInfoData'
 
 
 // Form schema
-type SchemaProps = z.infer<typeof validationSchema>
+type SchemaProps = z.infer<typeof addAdminRoleValidationSchema>
 
 // Custom Types
-interface AddUserRoleProps {}
+interface AddAdminRoleProps {}
 
-const AddUserRole = (props: AddUserRoleProps) => {
+const AddAdminRole = (props: AddAdminRoleProps) => {
   // const {} = props;
 
   
@@ -43,17 +43,18 @@ const AddUserRole = (props: AddUserRoleProps) => {
     reset,
     formState: { isValid, isDirty }
   } = useForm<SchemaProps>({
-    resolver: zodResolver(validationSchema),
+    resolver: zodResolver(addAdminRoleValidationSchema),
     mode: 'onChange'
+   
   })
-  const { schoolId = '' } = useParams()
 
-  const { mutateAsync: addUserRole } = useAddUserRole()
+
+  const { mutateAsync: addAdminRole } = useAddAdminRole()
 
   // Handlers
-  const handleAddUserRole = async (data: SchemaProps) => {
-    const result = await addUserRole({ data: data, schoolId: schoolId })
-    if (result.isSuccess) reset()
+  const handleAddAdminRole = async (data: SchemaProps) => {
+    const result = await addAdminRole({ data: data})
+    if (result.isSuccess) reset(data)
   }
 
   // Render
@@ -61,16 +62,20 @@ const AddUserRole = (props: AddUserRoleProps) => {
     <Box>
       <ContentBox
         label='افزودن دسترسی '
-        onSubmit={handleSubmit(handleAddUserRole)}
+        onSubmit={handleSubmit(handleAddAdminRole)}
         component='form'
       >
         <Grid container spacing={2}>
-          <ControlledGridTextField
-            label='شماره موبایل'
-            key='UserRole'
-            control={control}
-            name='phoneNumber'
-          />
+      
+
+              {addAdminInfoData.map(field => (
+                      <ControlledGridTextField
+                        key={field.name}
+                        control={control}
+                        name={field.name}
+                        label={field.label}
+                      />
+                    ))}
 
           <ControlledAutocomplete
             label=' نوع دسترسی'
@@ -91,4 +96,4 @@ const AddUserRole = (props: AddUserRoleProps) => {
   )
 }
 
-export default AddUserRole
+export default AddAdminRole

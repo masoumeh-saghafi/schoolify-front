@@ -1,14 +1,17 @@
 import type { GridColDef } from '@mui/x-data-grid/models/colDef'
 import FormattedDate from '@schoolify/core/components/common/FormattedDate'
 import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
-import type ListUserRolesEntity from '@schoolify/features/user/school/management/userRole/types/api/ListUserRolesEntity'
+import type ListAdminRolesEntity from '../types/api/ListAdminRolesEntity'
+
+
 const roleLabels: Record<string, string> = {
-  manager: 'معاون',
-  reporter: 'ناظر',
-  owner: 'مدیر'
+  manager: 'مدیر',
+  support: 'پشتیبان',
+  superManager: 'مدیر کل'
 }
-export const listUserRolesColumns: GridColDef<
-  BaseIdDataEntity<ListUserRolesEntity>
+
+export const listAdminRolesColumns: GridColDef<
+  BaseIdDataEntity<ListAdminRolesEntity>
 >[] = [
   {
     field: 'fullName',
@@ -17,7 +20,7 @@ export const listUserRolesColumns: GridColDef<
     width: 150,
     sortable: false,
     editable: false,
-    valueGetter: (_, row) => row.data?.user.fullName
+    valueGetter: (_, row) => row.data?.fullName
   },
   {
     field: 'phoneNumber',
@@ -26,7 +29,7 @@ export const listUserRolesColumns: GridColDef<
     sortable: false,
     width: 150,
     editable: false,
-    valueGetter: (_, row) => row.data?.user.phoneNumber
+    valueGetter: (_, row) => row.data?.phoneNumber
   },
   {
     field: 'role',
