@@ -4,12 +4,13 @@ import { removeImpersonateTokenCookie } from "@schoolify/core/utilities/imperson
 import routes from "@schoolify/core/utilities/routes";
 import Dashboard from "@schoolify/features/shared/dashboard/components";
 import type { DashboardSidebarExitButtonDataProps } from "@schoolify/features/shared/dashboard/components/Sidebar";
+import useUserProfile from "@schoolify/features/shared/profile/hooks/useUserProfile";
 
 // Custom Utilities
 import { useDashboardSidebarData } from "@schoolify/features/user/profile/dashboard/utilities/data";
 
 // React Types
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Custom Types
@@ -24,6 +25,7 @@ const ProfileDashboard = (props: ProfileDashboardProps) => {
 
   const navigate = useNavigate();
 
+  const { data, isLoading, isError } = useUserProfile();
   const impersonationStore = useImpersonationStore();
 
   let exitButtonData: DashboardSidebarExitButtonDataProps;
@@ -41,6 +43,14 @@ const ProfileDashboard = (props: ProfileDashboardProps) => {
       onClick: () => navigate(routes.logout),
     };
   }
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    if (isError || !data?.id) {
+      navigate(routes.login);
+    }
+  }, [data]);
 
   // Render
   return (

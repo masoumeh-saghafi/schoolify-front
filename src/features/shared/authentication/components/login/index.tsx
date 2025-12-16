@@ -22,8 +22,7 @@ import {
   sendCode,
   verifyCode,
 } from "@schoolify/features/shared/authentication/utilities/api/api";
-import { getUserProfile } from "@schoolify/features/user/profile/accountManagement/personalInfo/utilities/api/api";
-import useUserProfile from "@schoolify/features/user/profile/accountManagement/personalInfo/hooks/useUserProfile";
+import { getUserProfile } from "@schoolify/features/shared/profile/utilities/api/api";
 
 // Custom Types
 interface LoginProps {}

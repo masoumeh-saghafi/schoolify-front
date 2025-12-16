@@ -1,6 +1,6 @@
 import ms from "ms";
 import { useQuery } from "@tanstack/react-query";
-import { getUserProfile } from "@schoolify/features/user/profile/accountManagement/personalInfo/utilities/api/api";
+import { getUserProfile } from "@schoolify/features/shared/profile/utilities/api/api";
 
 export const userProfileQueryKey = ["userProfile"];
 const useUserProfile = () => {

@@ -5,7 +5,7 @@ import IconButton from "@schoolify/core/components/base/inputs/IconButton";
 
 // Icon Components
 import { AccountIcon } from "@schoolify/core/components/icon/AccountIcon";
-import useUserProfile from "../../features/user/profile/accountManagement/personalInfo/hooks/useUserProfile";
+import useUserProfile from "../../features/shared/profile/hooks/useUserProfile";
 import { useImpersonationStore } from "../store";
 import { AdminPanelIcon } from "../components/icon/AdminPanelIcon";
 // import { AdminPanelIcon } from '@schoolify/core/components/icon/AdminPanelIcon'

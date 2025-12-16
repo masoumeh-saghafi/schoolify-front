@@ -81,6 +81,7 @@ const DashboardSidebar = (props: DashboardSidebarProps) => {
             icon={item?.icon}
             type={item.type ?? "listItem"}
             isActive={item.link === location.pathname}
+            disabled={item.disabled}
             children={item.children?.map((child) => ({ ...child }))}
           />
         ))}

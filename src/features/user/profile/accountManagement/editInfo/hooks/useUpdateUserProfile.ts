@@ -1,19 +1,19 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { updateUserProfile } from '@schoolify/features/user/profile/accountManagement/editInfo/utilities/api/api'
-import { userProfileQueryKey } from '@schoolify/features/user/profile/accountManagement/personalInfo/hooks/useUserProfile'
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { updateUserProfile } from "@schoolify/features/user/profile/accountManagement/editInfo/utilities/api/api";
+import { userProfileQueryKey } from "@schoolify/features/shared/profile/hooks/useUserProfile";
 
 const useUpdateUserProfile = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: updateUserProfile,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: userProfileQueryKey })
+      queryClient.invalidateQueries({ queryKey: userProfileQueryKey });
     },
-    onError: error => {
-      console.error('Error updating profile:', error)
-    }
-  })
-}
+    onError: (error) => {
+      console.error("Error updating profile:", error);
+    },
+  });
+};
 
-export default useUpdateUserProfile
+export default useUpdateUserProfile;

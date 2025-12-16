@@ -5,7 +5,7 @@ import Dashboard from "@schoolify/features/shared/dashboard/components";
 import { schoolManagementSidebarData } from "@schoolify/features/user/school/management/dashboard/utilities/data";
 
 // React Types
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useListSummarySchools from "@schoolify/features/user/shared/school/hooks/useListSummarySchools";
 import type { DashboardSidebarExitButtonDataProps } from "@schoolify/features/shared/dashboard/components/Sidebar";
@@ -20,7 +20,7 @@ const SchoolManagementDashboard = (props: SchoolManagementDashboardProps) => {
   const { schoolId = "" } = useParams();
 
   // Props
-  const { data: schoolData } = useListSummarySchools();
+  const { data: schoolData, isLoading } = useListSummarySchools();
 
   const school = schoolData?.filter((x) => x.id == schoolId)[0];
 
@@ -39,6 +39,14 @@ const SchoolManagementDashboard = (props: SchoolManagementDashboardProps) => {
   };
 
   const { children } = props;
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    if (!school?.data?.role || school.data.role === "reporter") {
+      navigate(routes.profile.baseUrl);
+    }
+  }, [schoolData]);
 
   // Render
   return (

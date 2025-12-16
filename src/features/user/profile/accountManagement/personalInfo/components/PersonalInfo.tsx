@@ -1,23 +1,22 @@
 // MUI Components
-import Box from '@schoolify/core/components/base/inputs/Box'
-import Button from '@schoolify/core/components/base/inputs/Button'
-import Grid from '@schoolify/core/components/base/inputs/Grid'
-import ContentBox from '@schoolify/core/components/common/ContentBox'
+import Box from "@schoolify/core/components/base/inputs/Box";
+import Button from "@schoolify/core/components/base/inputs/Button";
+import Grid from "@schoolify/core/components/base/inputs/Grid";
+import ContentBox from "@schoolify/core/components/common/ContentBox";
 
 // Core Components
-import DetailField from '@schoolify/core/components/common/DetailField'
-import AsyncStateHandler from '@schoolify/core/components/common/AsyncStateHandler'
+import DetailField from "@schoolify/core/components/common/DetailField";
+import AsyncStateHandler from "@schoolify/core/components/common/AsyncStateHandler";
 
 // Icon Components
-import { EditIcon } from '@schoolify/core/components/icon/EditIcon'
+import { EditIcon } from "@schoolify/core/components/icon/EditIcon";
 
 // Custom Utilities
-import { PersonalInfoData } from '@schoolify/features/user/profile/accountManagement/personalInfo/utilities/personalInfoData'
+import { PersonalInfoData } from "@schoolify/features/user/profile/accountManagement/personalInfo/utilities/personalInfoData";
 
 // Custom Hooks
-import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
-import useUserProfile from '@schoolify/features/user/profile/accountManagement/personalInfo/hooks/useUserProfile'
-
+import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
+import useUserProfile from "@schoolify/features/shared/profile/hooks/useUserProfile";
 
 // Custom Types
 // interface PersonalInfoProps {}
@@ -27,17 +26,17 @@ const PersonalInfo = () => {
   // const {} = props;
 
   // Hooks
-  const { data, isLoading, error } = useUserProfile()
+  const { data, isLoading, error } = useUserProfile();
 
-  const theme = useAppTheme()
+  const theme = useAppTheme();
 
   // Helpers
-  const user = data?.data
-  const userFields = PersonalInfoData(user)
+  const user = data?.data;
+  const userFields = PersonalInfoData(user);
 
   return (
     <Box>
-      <ContentBox label='مشخصات کاربر'>
+      <ContentBox label="مشخصات کاربر">
         <AsyncStateHandler isLoading={isLoading} error={error}>
           <Grid container sx={{ margin: 2 }} spacing={2}>
             {userFields.map((field, index) => (
@@ -51,15 +50,15 @@ const PersonalInfo = () => {
             <Grid size={{ xs: 12, sm: 6 }}>
               <Button
                 fullWidth
-                size='small'
-                variant='contained'
+                size="small"
+                variant="contained"
                 onClick={() => {}}
                 startIcon={<EditIcon />}
                 sx={{
-                  direction: 'rtl',
+                  direction: "rtl",
                   gap: 1,
                   backgroundColor: theme.palette.primary.main,
-                  color: theme.palette.text.white
+                  color: theme.palette.text.white,
                 }}
               >
                 ویرایش اطلاعات
@@ -69,7 +68,7 @@ const PersonalInfo = () => {
         </AsyncStateHandler>
       </ContentBox>
     </Box>
-  )
-}
+  );
+};
 
-export default PersonalInfo
+export default PersonalInfo;

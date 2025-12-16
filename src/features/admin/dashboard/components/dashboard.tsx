@@ -6,9 +6,10 @@ import type { DashboardSidebarExitButtonDataProps } from "@schoolify/features/sh
 // Custom Utilities
 
 // React Types
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { adminDashboardSidebarData } from "../utilities/data";
+import useUserProfile from "@schoolify/features/shared/profile/hooks/useUserProfile";
 
 // Custom Types
 interface AdminDashboardProps {
@@ -18,14 +19,24 @@ interface AdminDashboardProps {
 const AdminDashboard = (props: AdminDashboardProps) => {
   // Props
   const { children } = props;
-  const sidebarData = adminDashboardSidebarData("owner");
-
   const navigate = useNavigate();
+
+  const { data, isLoading } = useUserProfile();
+
+  const sidebarData = adminDashboardSidebarData(data?.data?.role);
 
   const exitButtonData: DashboardSidebarExitButtonDataProps = {
     title: "خروج از حساب",
     onClick: () => navigate(routes.logout),
   };
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    if (!data?.data?.role || data.data.role === "user") {
+      navigate(routes.profile.baseUrl);
+    }
+  }, [data]);
 
   // Render
   return (
