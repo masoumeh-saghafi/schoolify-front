@@ -1,13 +1,9 @@
-const UserRoleEndpoints = {
-  addUserRole: (schoolId: string) => `/schools/${schoolId}/users`,
+const customerEndpoints = {
+  listcustomer:'/admin/customers'
+ ,
+  getImpersonateToken: (userId: string) =>
+     `/admin/customers/${userId}/impersonate/token`,
 
-  updateUserRole: (schoolId: string, phoneNumber: string) =>
-    `/schools/${schoolId}/users/${phoneNumber}`,
-
-  deleteUserRole: (schoolId: string, phoneNumber: string) =>
-    `/schools/${schoolId}/users/${phoneNumber}`,
-
-  listUserRoles: (schoolId: string) => `/schools/${schoolId}/users`
 }
 
-export default UserRoleEndpoints
+export default customerEndpoints

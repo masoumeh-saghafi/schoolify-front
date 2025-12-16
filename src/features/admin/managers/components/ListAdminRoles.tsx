@@ -7,7 +7,7 @@ import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
 import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGridState'
 import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 import useListAdminRoles from '../hooks/useListAdminRoles'
-import useDeleteAdminRole from '../hooks/useDeleteUserRole'
+import useDeleteAdminRole from '../hooks/useDeleteAdminRole'
 import type ListAdminRolesEntity from '../types/api/ListAdminRolesEntity'
 import { listAdminRolesColumns } from '../utilities/listUserRolesColumns'
 

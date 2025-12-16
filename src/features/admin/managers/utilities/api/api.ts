@@ -20,16 +20,6 @@ export const addAdminRole = async (data: any) => {
   )
 }
 
-// export const updateAdminRole = async (
-//   data: any,
-//   schoolId: string,
-//   phoneNumber: string
-// ) => {
-//   return await patchData<void>(
-//     AdminRoleEndpoints.updateAdminRole(schoolId, phoneNumber),
-//     data
-//   )
-// }
 
 export const deleteAdminRole = async (
   schoolId: string,

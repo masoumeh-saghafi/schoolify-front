@@ -29,6 +29,7 @@ import AdminDashboardPage from "./admin/page";
 import AdminTicketPage from "./admin/tickets/page";
 import AdminPaymentsPage from "./admin/payments/page";
 import AdminManagersPage from "./admin/managers/page";
+import AdminCustomersPage from "./admin/customers/page";
 
 const router = createBrowserRouter([
   {
@@ -166,6 +167,9 @@ const router = createBrowserRouter([
       {
         path: routes.admin.managers.url,
         element: <AdminManagersPage />,
+      }, {
+        path: routes.admin.customers.url,
+        element: <AdminCustomersPage />,
       },
     ],
   },

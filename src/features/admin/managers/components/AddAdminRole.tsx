@@ -22,7 +22,7 @@ import ControlledAutocomplete from '@schoolify/core/components/common/Controlled
 
 // Validation Schema
 import { addAdminRoleValidationSchema, roleTypeOptions } from '../validation/addAdminRoleValidation'
-import useAddAdminRole from '../hooks/useAddUserRole'
+import useAddAdminRole from '../hooks/useAddAdminRole'
 import { addAdminInfoData } from '../utilities/addAdminInfoData'
 
 
