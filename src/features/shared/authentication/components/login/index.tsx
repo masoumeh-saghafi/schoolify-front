@@ -41,9 +41,9 @@ const Login = (props: LoginProps) => {
     const profile = await getUserProfile();
     if (profile?.isSuccess && profile?.data) {
       if (profile.data.data?.role === "user") {
-        navigate(routes.profile);
+        navigate(routes.profile.baseUrl);
       } else {
-        navigate(routes.profile);
+        navigate(routes.profile.baseUrl);
       }
     }
   };
@@ -77,7 +77,7 @@ const Login = (props: LoginProps) => {
     const response = await verifyCode(phoneNumber, data.code);
     if (response.isSuccess) {
       // then
-      navigate(routes.profile);
+      navigate(routes.profile.baseUrl);
     } else {
       // catch
     }

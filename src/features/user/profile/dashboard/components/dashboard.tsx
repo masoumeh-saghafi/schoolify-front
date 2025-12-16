@@ -1,4 +1,6 @@
 // Feature Components
+import { useImpersonationStore } from "@schoolify/core/store";
+import { removeImpersonateTokenCookie } from "@schoolify/core/utilities/impersonate";
 import routes from "@schoolify/core/utilities/routes";
 import Dashboard from "@schoolify/features/shared/dashboard/components";
 import type { DashboardSidebarExitButtonDataProps } from "@schoolify/features/shared/dashboard/components/Sidebar";
@@ -22,10 +24,23 @@ const ProfileDashboard = (props: ProfileDashboardProps) => {
 
   const navigate = useNavigate();
 
-  const exitButtonData: DashboardSidebarExitButtonDataProps = {
-    title: "خروج از حساب",
-    onClick: () => navigate(routes.logout),
-  };
+  const impersonationStore = useImpersonationStore();
+
+  let exitButtonData: DashboardSidebarExitButtonDataProps;
+  if (impersonationStore.isImpersonating) {
+    exitButtonData = {
+      title: "خروج از داشبورد مشتری",
+      onClick: () => {
+        removeImpersonateTokenCookie();
+        navigate(routes.admin.customers.index());
+      },
+    };
+  } else {
+    exitButtonData = {
+      title: "خروج از حساب",
+      onClick: () => navigate(routes.logout),
+    };
+  }
 
   // Render
   return (

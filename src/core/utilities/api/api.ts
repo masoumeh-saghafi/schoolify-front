@@ -1,7 +1,10 @@
 import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
 import type BasePaginationDataEntity from "@schoolify/core/types/core/api/response";
 import type { BaseResponseEntity } from "@schoolify/core/types/core/api/response";
+import { getImpersonateToken } from "@schoolify/features/admin/customers/utilities/api/api";
 import Cookies from "js-cookie";
+import { getImpersonateTokenCookie } from "../impersonate";
+import { useImpersonationStore } from "@schoolify/core/store";
 // import BaseResponseEntity from "../entities/BaseResponseEntity";
 // import useUserImpersonationStore, { useNotificationStore } from "../store";
 
@@ -29,9 +32,9 @@ function getHeaders(): HeadersInit {
 }
 
 function handleImpersonation(isImpersonationHeader?: string | null) {
-  //   useUserImpersonationStore
-  //     .getState()
-  //     .setUserImpersonation(isImpersonationHeader === "true");
+  useImpersonationStore
+    .getState()
+    .setImpersonating(isImpersonationHeader === "true");
 }
 
 function handleSuccessNotification() {
@@ -56,6 +59,14 @@ async function request<T>(
   options: RequestInit
 ): Promise<BaseResponseEntity<T>> {
   try {
+    const cookieImpersonateToken = getImpersonateTokenCookie();
+    if (cookieImpersonateToken) {
+      options.headers = {
+        ...options.headers,
+        "Impersonate-Token": cookieImpersonateToken,
+      };
+    }
+
     const response = await fetch(url, options);
     const isImpersonation = response.headers.get("is-impersonation");
     handleImpersonation(isImpersonation);

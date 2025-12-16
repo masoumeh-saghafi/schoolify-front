@@ -1,20 +1,22 @@
 // React Type
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from "react-router-dom";
 
 // Core Components
-import ContentBox from '@schoolify/core/components/common/ContentBox'
-import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
-import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGridState'
-import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
+import ContentBox from "@schoolify/core/components/common/ContentBox";
+import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
+import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
+import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
 
 // Custom Hooks
 
 // Feature Components
-import UpdateUserRole from '@schoolify/features/user/school/management/userRole/components/UpdateUserRole'
-import useListCustomer from '../hooks/useListCustomer'
-import { listCustomerColumns } from '../utilities/listCustomerColumns'
-import useGetImpersonateToken from '../hooks/useGetImpersonateToken'
-import routes from '@schoolify/core/utilities/routes'
+import UpdateUserRole from "@schoolify/features/user/school/management/userRole/components/UpdateUserRole";
+import useListCustomer from "../hooks/useListCustomer";
+import { listCustomerColumns } from "../utilities/listCustomerColumns";
+import useGetImpersonateToken from "../hooks/useGetImpersonateToken";
+import routes from "@schoolify/core/utilities/routes";
+import { setImpersonateTokenCookie } from "../../../../core/utilities/impersonate";
+import { useQueryClient } from "@tanstack/react-query";
 
 // Custom Utilities
 
@@ -28,25 +30,26 @@ const Listcustomer = () => {
   // const {} = props;
 
   // Hooks
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // const { mutateAsync: updatecustomer } = useUpdateUserRole()
-  const { mutateAsync: getImpersonateToken } = useGetImpersonateToken()
+  const { mutateAsync: getImpersonateToken } = useGetImpersonateToken();
 
   const {
     filters,
     paginationData: pagination,
     handleFilterChange,
     handlePaginationModelChange,
-    handleSortModelChange
-  } = useTableDataGridState()
+    handleSortModelChange,
+  } = useTableDataGridState();
 
   const { data, isLoading } = useListCustomer({
     pagination,
-    filters
-  })
+    filters,
+  });
+  const queryClient = useQueryClient();
 
   // Helpers
-  const columns = listCustomerColumns
+  const columns = listCustomerColumns;
 
   // Handlers
   // const handleUpdatecustomer = async (id: string, updatedFields: any) => {
@@ -59,21 +62,26 @@ const Listcustomer = () => {
 
   const handleGetImpersonateToken = async (id: string, updatedFields: any) => {
     try {
-      await getImpersonateToken({
+      const impersonateData = await getImpersonateToken({
         data: updatedFields,
-        userId: id
+        userId: id,
       });
-    navigate(routes.profile.baseUrl)
-    }
-    catch (error) {
+      setImpersonateTokenCookie(
+        impersonateData.data?.impersonateToken,
+        impersonateData.data?.expireDate
+      );
+
+      queryClient.resetQueries();
+
+      navigate(routes.profile.baseUrl);
+    } catch (error) {
       // console.log(error);
-      
     }
-  }
+  };
 
   // Render
   return (
-    <ContentBox label='لیست دسترسی ها'>
+    <ContentBox label="لیست دسترسی ها">
       <TableDataGrid
         data={data}
         isLoading={isLoading}
@@ -84,11 +92,10 @@ const Listcustomer = () => {
         disableUpdateRowButton={true}
         disableDeleteRowButton={true}
         disableAddRowButton={false}
-        addRowTitle='ورود به داشبورد'
+        addRowTitle="ورود به داشبورد"
         onAddRow={handleGetImpersonateToken}
-        
       />
     </ContentBox>
-  )
-}
-export default Listcustomer
+  );
+};
+export default Listcustomer;
