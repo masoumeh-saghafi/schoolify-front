@@ -4,7 +4,10 @@ import type { BaseResponseEntity } from "@schoolify/core/types/core/api/response
 import { getImpersonateToken } from "@schoolify/features/admin/customers/utilities/api/api";
 import Cookies from "js-cookie";
 import { getImpersonateTokenCookie } from "../impersonate";
-import { useImpersonationStore } from "@schoolify/core/store";
+import {
+  useImpersonationStore,
+  useNotificationStore,
+} from "@schoolify/core/store";
 // import BaseResponseEntity from "../entities/BaseResponseEntity";
 // import useUserImpersonationStore, { useNotificationStore } from "../store";
 
@@ -38,16 +41,15 @@ function handleImpersonation(isImpersonationHeader?: string | null) {
 }
 
 function handleSuccessNotification() {
-  //   useNotificationStore
-  //     .getState()
-  //     .setNotification(["عملیات با موفقیت انجام شد"], "success");
+  useNotificationStore
+    .getState()
+    .setNotification(["عملیات با موفقیت انجام شد"], "success");
 }
 
 function handleError(error: any) {
-  //   const errors = error?.response?.data?.errors ?? [
-  //     "خطای ناشناخته‌ای رخ داده است",
-  //   ];
-  //   useNotificationStore.getState().setNotification(errors, "error");
+  const errors = error?.response?.data?.errors ??
+    error ?? ["خطای ناشناخته‌ای رخ داده است"];
+  useNotificationStore.getState().setNotification(errors, "error");
   return error;
 }
 
@@ -74,10 +76,14 @@ async function request<T>(
 
     const data = (await response.json()) as BaseResponseEntity<T>;
 
-    if (!response.ok) {
-      //   useNotificationStore
-      //     .getState()
-      //     .setNotification(data.errors ?? ["خطا در عملیات"], "error");
+    if (response.ok) {
+      if (options.method?.toLowerCase() !== "get") {
+        handleSuccessNotification();
+      }
+    } else {
+      console.log(data);
+
+      handleError(data.errors);
     }
 
     return data;
@@ -115,7 +121,6 @@ export async function postData<T>(
     body: JSON.stringify(data),
   });
 
-  handleSuccessNotification();
   return res;
 }
 

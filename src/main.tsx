@@ -10,6 +10,7 @@ import { prefixer } from "stylis";
 import createCache from "@emotion/cache";
 import { CacheProvider } from "@emotion/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { NotificationProvider } from "./core/components/common/NotificationProvider";
 
 const cacheRtl = createCache({
   key: "muirtl",
@@ -24,7 +25,9 @@ createRoot(document.getElementById("root")!).render(
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
+          <NotificationProvider>
+            <RouterProvider router={router} />
+          </NotificationProvider>
         </QueryClientProvider>
       </ThemeProvider>
     </CacheProvider>
