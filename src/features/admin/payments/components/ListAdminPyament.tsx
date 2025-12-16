@@ -1,9 +1,9 @@
 // React Type
 
 // Core Components
-import ContentBox from '@schoolify/core/components/common/ContentBox'
-import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
-import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGridState'
+import ContentBox from "@schoolify/core/components/common/ContentBox";
+import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
+import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
 
 // Custom Hooks
 
@@ -12,8 +12,8 @@ import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGrid
 // Custom Utilities
 
 // Custom Types
-import useListAdminPayment from '../hooks/useListAdminPayment'
-import { listAdminPymentColumns } from '../utilities/listAdminPymentColumns'
+import useListAdminPayment from "../hooks/useListAdminPayment";
+import { listAdminPymentColumns } from "../utilities/listAdminPymentColumns";
 
 // Custom Types
 // interface ListStudentProps {}
@@ -29,20 +29,20 @@ const ListAdminPyament = () => {
     paginationData: pagination,
     handleFilterChange,
     handlePaginationModelChange,
-    handleSortModelChange
-  } = useTableDataGridState()
+    handleSortModelChange,
+  } = useTableDataGridState();
 
   const { data, isLoading } = useListAdminPayment({
     pagination,
-    filters
-  })
+    filters,
+  });
 
   // Helpers
-  const columns = listAdminPymentColumns
+  const columns = listAdminPymentColumns;
 
   // Render
   return (
-    <ContentBox label='لیست دسترسی ها'>
+    <ContentBox label="لیست پرداخت ها">
       <TableDataGrid
         data={data}
         isLoading={isLoading}
@@ -55,6 +55,6 @@ const ListAdminPyament = () => {
         disableUpdateRowButton={true}
       />
     </ContentBox>
-  )
-}
-export default ListAdminPyament
+  );
+};
+export default ListAdminPyament;
