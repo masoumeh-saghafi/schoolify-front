@@ -1,18 +1,18 @@
 // React Type
-import { useParams } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
+import { useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 //Type Definitions
-import { zodResolver } from '@hookform/resolvers/zod'
-import type z from 'zod'
+import { zodResolver } from "@hookform/resolvers/zod";
+import type z from "zod";
 
 // MUI Components
-import Box from '@schoolify/core/components/base/inputs/Box'
-import Grid from '@schoolify/core/components/base/inputs/Grid'
+import Box from "@schoolify/core/components/base/inputs/Box";
+import Grid from "@schoolify/core/components/base/inputs/Grid";
 
 // Core Components
-import ContentBox from '@schoolify/core/components/common/ContentBox'
-import ControlledAutocomplete from '@schoolify/core/components/common/ControlledAutocomplete'
+import ContentBox from "@schoolify/core/components/common/ContentBox";
+import ControlledAutocomplete from "@schoolify/core/components/common/ControlledAutocomplete";
 
 // Custom Utilities
 // import { UpdateAdminTicketDetailData } from '@schoolify/features/user/school/management/Ticket/utilities/UpdateAdminTicketDetailData'
@@ -24,85 +24,65 @@ import ControlledAutocomplete from '@schoolify/core/components/common/Controlled
 // Custom Hooks
 // import useUpdateAdminTicketDetail from '@schoolify/features/user/school/management/Ticket/hooks/useUpdateAdminTicketDetail'
 // import useUpdateAdminTicketDetail from '../hooks/useUpdateAdminTicketDetail'
-import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
-import { updateAdminTicketValidationSchema } from '../validation/updateAdminTicketValidation'
-import useGetAdminTicket from '../hooks/useGetAdminTicket'
-import useUpdateAdminTicket from '../hooks/useUpdateAdminTicket'
-import { updateAdminTicketData } from '../utilities/updateAdminTicketData'
-import SubmitButton from '@schoolify/core/components/common/SubmitButton'
-import { useEffect } from 'react'
+import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
+import { updateAdminTicketValidationSchema } from "../validation/updateAdminTicketValidation";
+import useGetAdminTicket from "../hooks/useGetAdminTicket";
+import useUpdateAdminTicket from "../hooks/useUpdateAdminTicket";
+import { updateAdminTicketData } from "../utilities/updateAdminTicketData";
+import SubmitButton from "@schoolify/core/components/common/SubmitButton";
+import { useEffect } from "react";
 
 // Form schema
-type SchemaProps = z.infer<typeof updateAdminTicketValidationSchema>
+type SchemaProps = z.infer<typeof updateAdminTicketValidationSchema>;
 
 // Custom Types
-interface UpdateAdminTicketDetailProps {}
+interface UpdateAdminTicketDetailProps {
+  recordId: string;
+  defaultValues: SchemaProps;
+  onSubmit?: (id: string, updatedFields: any, row: any) => void;
+}
 
 const UpdateAdminTicketDetail = (props: UpdateAdminTicketDetailProps) => {
   // Props
-  // const {} = props;
+  const { defaultValues, onSubmit, recordId } = props;
 
   // Hooks
 
-  const theme = useAppTheme()
-  const { ticketId = '' } = useParams()
+  const theme = useAppTheme();
+  const { ticketId = "" } = useParams();
 
   const {
     handleSubmit,
     control,
     reset,
-    formState: { isValid, isDirty }
+    formState: { isValid, isDirty },
   } = useForm<SchemaProps>({
+    defaultValues,
     resolver: zodResolver(updateAdminTicketValidationSchema),
-    mode: 'onChange',
-    defaultValues: {
-      status: undefined,
-      type: undefined
-    }
-  })
-
-  const { data: data } = useGetAdminTicket(ticketId)
-  const { mutateAsync: updateAdminTicket } = useUpdateAdminTicket()
+    mode: "onChange",
+  });
 
   // Handlers
-  const handleUpdateTicket = async (data: SchemaProps) => {
-    const result = await updateAdminTicket({
-      data: data,
-      ticketId: ticketId
-    })
-    if (result.isSuccess) reset(data)
-  }
-
-  // const navigate = useNavigate()
-
-  // const handleReturnToProfile = () => {
-  //   navigate(routes.profile.baseUrl)
-  // }
-
-  // useEffect(() => {
-  //   if (data?.data) {
-  //     reset({
-  //       status: data.data.status,
-  //       type: data.data.type
-  //     })
-  //   }
-  // }, [data, reset])
+  const handleUpdateRecord = async (data: SchemaProps) => {
+    onSubmit?.(recordId, data, data);
+    reset(data);
+  };
 
   // Render
   return (
     <Box>
-      <ContentBox onSubmit={handleSubmit(handleUpdateTicket)} component='form'>
+      <ContentBox onSubmit={handleSubmit(handleUpdateRecord)} component="form">
         <Grid container sx={{ margin: 2 }} spacing={2}>
-          {updateAdminTicketData.map(field => (
+          {updateAdminTicketData.map((field) => (
             <ControlledAutocomplete
               key={field.name}
               control={control}
-              name={field.name as 'status' | 'type'}
+              name={field.name as "status" | "type"}
               label={field.label}
               placeholder={`لطفا ${field.label} را انتخاب نمایید`}
-              options={field.options.map(option => ({
+              options={field.options.map((option) => ({
                 key: option.id,
-                value: option.title
+                value: option.title,
               }))}
             />
           ))}
@@ -114,7 +94,7 @@ const UpdateAdminTicketDetail = (props: UpdateAdminTicketDetailProps) => {
         </Grid>
       </ContentBox>
     </Box>
-  )
-}
+  );
+};
 
-export default UpdateAdminTicketDetail
+export default UpdateAdminTicketDetail;
