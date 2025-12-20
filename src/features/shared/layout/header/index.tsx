@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // MUI Components
 import Box from "@schoolify/core/components/base/inputs/Box";
@@ -71,7 +71,8 @@ const Header = (props: HeaderProps) => {
               >
                 {headerButtonsData.map((page) => (
                   <Button
-                    href={page.link}
+                    component={Link}
+                    to={page.link}
                     key={page.title}
                     onClick={handleDrawerClose}
                     sx={{
@@ -112,7 +113,8 @@ const Header = (props: HeaderProps) => {
             >
               {headerButtonsData.map((page) => (
                 <Button
-                  href={page.link}
+                  component={Link}
+                  to={page.link}
                   key={page.title}
                   sx={{
                     color: isActive(page.link)
