@@ -47,8 +47,9 @@ function handleSuccessNotification() {
 }
 
 function handleError(error: any) {
-  const errors = error?.response?.data?.errors ??
-    error ?? ["خطای ناشناخته‌ای رخ داده است"];
+  const errors =
+    error?.response?.data?.errors ??
+    (error ? [error] : ["خطای ناشناخته‌ای رخ داده است"]);
   useNotificationStore.getState().setNotification(errors, "error");
   return error;
 }
@@ -70,9 +71,16 @@ async function request<T>(
     }
 
     const response = await fetch(url, options);
+
+    if (response.status == 401) {
+      throw new Error("401");
+    }
+    if (response.status == 403) {
+      throw new Error("شما مجوز استفاده از این قسمت را ندارید");
+    }
+
     const isImpersonation = response.headers.get("is-impersonation");
     handleImpersonation(isImpersonation);
-    // console.log(response);
 
     const data = (await response.json()) as BaseResponseEntity<T>;
 
@@ -88,7 +96,7 @@ async function request<T>(
 
     return data;
   } catch (err: any) {
-    handleError(err);
+    if (err.message !== "401") handleError(err.message);
     const error: BaseResponseEntity<T> = {
       isSuccess: false,
       errors: [err],

@@ -13,11 +13,14 @@ import { ArrowDownIcon } from "@schoolify/core/components/icon/ArrowDownIcon";
 import { ArrowUpIcon } from "@schoolify/core/components/icon/ArrowUpIcon";
 import Typography from "@schoolify/core/components/base/inputs/Typography";
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
+import { uuid } from "zod";
+import { genUUID } from "@schoolify/core/utilities/uuid";
 
 export type SidebarItemType = "text" | "listItem" | "contentBox";
 
 // Base shared interface
 interface SidebarBaseItem {
+  key?: string;
   title: string;
   link?: string;
   icon?: JSX.Element | null;
@@ -86,6 +89,7 @@ const SidebarListItem = (props: SidebarListItemProps) => {
         <>
           <List sx={{ px: 1 }}>
             <ListItem
+              key={genUUID()}
               sx={{ mx: 1, px: nested ? 3 : 0 }}
               onClick={onClickToggleOpenHandler}
             >
@@ -115,7 +119,9 @@ const SidebarListItem = (props: SidebarListItemProps) => {
 
           {open &&
             children &&
-            children.map((item) => <SidebarListItem {...item} nested={true} />)}
+            children.map(({ key, ...item }) => (
+              <SidebarListItem key={key ?? genUUID()} {...item} nested={true} />
+            ))}
         </>
       )}
 
@@ -123,6 +129,7 @@ const SidebarListItem = (props: SidebarListItemProps) => {
         <>
           <List sx={{ px: 1 }}>
             <ListItem
+              key={genUUID()}
               sx={{
                 mx: 1,
                 px: nested ? 3 : 0,
