@@ -90,7 +90,7 @@ const SidebarListItem = (props: SidebarListItemProps) => {
           <List sx={{ px: 1 }}>
             <ListItem
               key={genUUID()}
-              sx={{ mx: 1, px: nested ? 3 : 0 }}
+              sx={{ mx: 1, px: nested ? 2 : 0 }}
               onClick={onClickToggleOpenHandler}
             >
               <SidebarButton

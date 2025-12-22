@@ -42,9 +42,9 @@ const UserProfileButton = (props: UserProfileButtonProps) => {
       }}
     >
       {impersonationStore.isImpersonating ? (
-        <AdminPanelIcon />
+        <AdminPanelIcon width={30} height={30} />
       ) : (
-        <AccountIcon />
+        <AccountIcon width={30} height={30} />
       )}
 
       <Typography
@@ -52,6 +52,7 @@ const UserProfileButton = (props: UserProfileButtonProps) => {
         sx={{
           color: (theme) => theme.palette.text.primary,
           fontWeight: 500,
+          ml: "10px",
         }}
       >
         {data?.data?.fullName ?? "کاربر اسکولیفای "}

@@ -25,7 +25,7 @@ import { useQueryClient } from "@tanstack/react-query";
 // Custom Types
 // interface ListStudentProps {}
 
-const Listcustomer = () => {
+const ListCustomer = () => {
   // Props
   // const {} = props;
 
@@ -98,4 +98,4 @@ const Listcustomer = () => {
     </ContentBox>
   );
 };
-export default Listcustomer;
+export default ListCustomer;

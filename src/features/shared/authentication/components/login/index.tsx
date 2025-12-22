@@ -23,6 +23,7 @@ import {
   verifyCode,
 } from "@schoolify/features/shared/authentication/utilities/api/api";
 import { getUserProfile } from "@schoolify/features/shared/profile/utilities/api/api";
+import { useQueryClient } from "@tanstack/react-query";
 
 // Custom Types
 interface LoginProps {}
@@ -35,16 +36,17 @@ const Login = (props: LoginProps) => {
 
   // Hooks
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const handleAutoNavigation = async () => {
     const profile = await getUserProfile();
-    // if (profile?.isSuccess && profile?.data) {
-    //   if (profile.data.data?.role === "user") {
-    //     navigate(routes.profile.baseUrl);
-    //   } else {
-    //     navigate(routes.profile.baseUrl);
-    //   }
-    // }
+    if (profile?.isSuccess && profile?.data) {
+      if (profile.data.data?.role === "user") {
+        navigate(routes.profile.baseUrl);
+      } else {
+        navigate(routes.profile.baseUrl);
+      }
+    }
   };
 
   useEffect(() => {
@@ -76,6 +78,9 @@ const Login = (props: LoginProps) => {
     const response = await verifyCode(phoneNumber, data.code);
     if (response.isSuccess) {
       // then
+
+      queryClient.resetQueries();
+
       navigate(routes.profile.baseUrl);
     } else {
       // catch
