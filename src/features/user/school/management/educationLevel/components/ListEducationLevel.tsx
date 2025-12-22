@@ -1,15 +1,15 @@
 // React Type
-import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 
 // MUI Components
-import Grid from '@schoolify/core/components/base/inputs/Grid'
+import Grid from "@schoolify/core/components/base/inputs/Grid";
 
 // Core Components
 import ContentBox from "@schoolify/core/components/common/ContentBox";
 import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
 import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
-import AutocompleteSelect from '@schoolify/core/components/common/AutocompleteSelect'
+import AutocompleteSelect from "@schoolify/core/components/common/AutocompleteSelect";
 
 // Feature Components
 import UpdateEducationLevel from "@schoolify/features/user/school/management/educationLevel/components/UpdateEducationLevel";
@@ -20,7 +20,7 @@ import useListEducationLevel from "@schoolify/features/user/school/management/ed
 import useDeleteEducationLevel from "@schoolify/features/user/school/management/educationLevel/hooks/useDeleteEducationLevel";
 import useUpdateEducationLevel from "@schoolify/features/user/school/management/educationLevel/hooks/useUpdateEducationLevel";
 import useListSummaryEducationYear from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears";
-
+import useMapToOptions from "@schoolify/core/hooks/common/useMapToOptions";
 
 // Custom Types
 // interface ListStudentProps {}
@@ -38,6 +38,8 @@ const ListEducationLevel = () => {
   const { mutateAsync: updateEducationLevel } = useUpdateEducationLevel();
   const { mutateAsync: deleteEducationLevel } = useDeleteEducationLevel();
 
+  const educationYearOptions = useMapToOptions(educationYearData);
+
   const {
     filters,
     paginationData: pagination,
@@ -51,7 +53,6 @@ const ListEducationLevel = () => {
     pagination,
     filters,
   });
-
 
   // Helpers
   const columns = listEducationLevelColumns;
@@ -78,12 +79,7 @@ const ListEducationLevel = () => {
       <Grid container spacing={2} mb={2}>
         <AutocompleteSelect
           label="سال تحصیلی"
-          options={
-            educationYearData?.map((item) => ({
-              key: item.id,
-              value: item.data?.title ?? "",
-            })) ?? []
-          }
+          options={educationYearOptions}
           value={educationYearId}
           onChange={setEducationYearId}
           loading={isLoading}

@@ -1,19 +1,16 @@
-
 import React from "react";
-import type { FieldError } from "react-hook-form";
+import type { FieldError, UseFormRegister } from "react-hook-form";
 
-import Box from '@schoolify/core/components/base/inputs/Box'
-import TextField from '@schoolify/core/components/base/inputs/TextField'
-import FormHelperText from '@schoolify/core/components/base/inputs/FormHelperText'
-import InputAdornment from '@schoolify/core/components/base/inputs/InputAdornment'
-
-
+import Box from "@schoolify/core/components/base/inputs/Box";
+import TextField from "@schoolify/core/components/base/inputs/TextField";
+import FormHelperText from "@schoolify/core/components/base/inputs/FormHelperText";
+import InputAdornment from "@schoolify/core/components/base/inputs/InputAdornment";
 
 interface FormFieldProps {
   name: string;
   label?: string;
   type: string;
-  register?: any;
+  register?: UseFormRegister<any>;
   error?: FieldError;
   placeholder?: string;
   endAdornment?: React.ReactNode;
@@ -46,7 +43,7 @@ const FormField = (props: FormFieldProps) => {
         fullWidth
         type={type}
         placeholder={readOnly ? undefined : placeholder}
-        {...register(name)}
+        {...register?.(name)}
         error={!!error}
         label={label}
         value={value}
