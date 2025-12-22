@@ -13,6 +13,6 @@ const useListSummaryCostType = (educationYearId: string) =>
     refetchOnReconnect: true,
     retryDelay: 1000,
     select: (data) => data?.data,
-    // enabled: !!educationYearId,
+    enabled: !!educationYearId,
   });
 export default useListSummaryCostType;

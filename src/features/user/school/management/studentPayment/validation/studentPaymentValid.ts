@@ -6,7 +6,6 @@ const DateValidation = new RegExp(
 );
 
 export const validationSchema = studentPymentTitleSchema.safeExtend({
-
   studentId: z.string().min(1, "شناسه دانش آموز الزامی است"),
   paymentDate: z.string().regex(DateValidation, {
     message: "لطفا تاریخ را صحیح وارد کنید",

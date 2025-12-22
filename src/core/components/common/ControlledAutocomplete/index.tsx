@@ -56,6 +56,10 @@ const ControlledAutocomplete = <T extends FieldValues>(
         control={control}
         render={({ field, fieldState }) => (
           <Autocomplete
+            noOptionsText="مقداری یافت نشد"
+            openText="باز کردن"
+            closeText="بستن"
+            clearText="پاک کردن"
             size={size}
             options={options}
             getOptionLabel={(option) => option.value}
@@ -82,6 +86,11 @@ const ControlledAutocomplete = <T extends FieldValues>(
             slotProps={{
               listbox: {
                 sx: sxListbox ?? { fontSize: "0.75rem" },
+              },
+              paper: {
+                sx: {
+                  fontSize: "0.75rem",
+                },
               },
             }}
           />
