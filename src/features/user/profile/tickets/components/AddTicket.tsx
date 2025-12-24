@@ -9,6 +9,7 @@ import type z from 'zod'
 // MUI Components
 import Box from '@schoolify/core/components/base/inputs/Box'
 import Grid from '@schoolify/core/components/base/inputs/Grid'
+import Button from '@schoolify/core/components/base/inputs/Button'
 
 // Core Components
 import ContentBox from '@schoolify/core/components/common/ContentBox'
@@ -16,21 +17,16 @@ import ControlledGridTextField from '@schoolify/core/components/common/Controlle
 import ControlledAutocomplete from '@schoolify/core/components/common/ControlledAutocomplete'
 
 // Custom Utilities
-// import { addTicketData } from '@schoolify/features/user/school/management/Ticket/utilities/addTicketData'
-
-// Validation Schema
-
-// import { identityTypeOptions } from '@schoolify/features/user/school/management/Ticket/validation/baseTypes'
+import routes from '@schoolify/core/utilities/routes'
 
 // Custom Hooks
-// import useAddTicket from '@schoolify/features/user/school/management/Ticket/hooks/useAddTicket'
-import { addTicketValidationSchema } from '../validation/addTicketValidation'
-import useListSummarySchools from '@schoolify/features/user/shared/school/hooks/useListSummarySchools'
-import useAddTicket from '../hooks/useAddTicket'
-import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
-import Button from '@schoolify/core/components/base/inputs/Button'
 import type { OptionType } from '@schoolify/core/hooks/common/useMapToOptions'
-import routes from '@schoolify/core/utilities/routes'
+import useAddTicket from '@schoolify/features/user/profile/tickets/hooks/useAddTicket'
+import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
+import useListSummarySchools from '@schoolify/features/user/shared/school/hooks/useListSummarySchools'
+
+// Validation Schema
+import { addTicketValidationSchema } from '@schoolify/features/user/profile/tickets/validation/addTicketValidation'
 
 // Form schema
 type SchemaProps = z.infer<typeof addTicketValidationSchema>
@@ -47,7 +43,6 @@ const AddTicket = (props: AddTicketProps) => {
   // const {} = props;
 
   // Hooks
-
   const theme = useAppTheme()
 
   const {
@@ -62,6 +57,7 @@ const AddTicket = (props: AddTicketProps) => {
   const { data: schoolsData = [] } = useListSummarySchools()
 
   const { mutateAsync: addTicket } = useAddTicket()
+  const navigate = useNavigate()
 
   // Handlers
   const handleAddTicket = async (data: SchemaProps) => {
@@ -76,7 +72,6 @@ const AddTicket = (props: AddTicketProps) => {
     if (result.isSuccess) reset(data)
   }
 
-  const navigate = useNavigate()
 
   const handleReturnToProfile = () => {
     navigate(routes.profile.baseUrl)

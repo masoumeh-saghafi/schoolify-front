@@ -1,10 +1,8 @@
 // MUI Components
-import AdminDashboard from "@schoolify/features/admin/dashboard/components/dashboard";
-
-// Feature Components
+import AdminDashboard from '@schoolify/features/admin/dashboard/components/dashboard'
 
 // React Types
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom'
 
 const AdminLayout = () => {
   // Render
@@ -14,7 +12,7 @@ const AdminLayout = () => {
         <Outlet />
       </AdminDashboard>
     </>
-  );
-};
+  )
+}
 
-export default AdminLayout;
+export default AdminLayout

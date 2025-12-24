@@ -2,7 +2,7 @@ import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api
 
 import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
-import { listAdminTicketEndpoints } from "../utilities/api/api";
+import { listAdminTicketEndpoints } from "@schoolify/features/admin/tickets/utilities/api/api";
 
 interface useListAdminTicketProps {
   pagination?: BaseRequestPaginationParams;

@@ -2,6 +2,7 @@ import type { GridColDef } from "@mui/x-data-grid/models/colDef";
 import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
 import FormattedDate from "@schoolify/core/components/common/FormattedDate";
 import type ListEducationLevelEntity from "@schoolify/features/user/school/management/educationLevel/types/api/ListEducationLevelEntity";
+
 export const listEducationLevelColumns: GridColDef<
   BaseIdDataEntity<ListEducationLevelEntity>
 >[] = [

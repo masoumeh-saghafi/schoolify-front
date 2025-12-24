@@ -16,12 +16,11 @@ import useListSummaryEducationYear from '@schoolify/features/user/school/managem
 import useListCost from '@schoolify/features/user/school/management/cost/hooks/useListCost'
 import useUpdateCost from '@schoolify/features/user/school/management/cost/hooks/useUpdateCost'
 import useDeleteCost from '@schoolify/features/user/school/management/cost/hooks/useDeleteCost'
+import useMapToOptions from '@schoolify/core/hooks/common/useMapToOptions'
 
 // Custom Utilities
 import { listCostColumns } from '@schoolify/features/user/school/management/cost/utilities/listCostColumns'
-import UpdateCost from './UpdateCost'
-
-
+import UpdateCost from '@schoolify/features/user/school/management/cost/components/UpdateCost'
 
 // Custom Types
 // interface ListStudentProps {}
@@ -33,10 +32,10 @@ const ListCost = () => {
   // States
   const [educationYearId, setEducationYearId] = useState('')
 
-
   // Hooks
   const { schoolId = '' } = useParams()
   const { data: educationYearData } = useListSummaryEducationYear(schoolId)
+  const educationYearOptions = useMapToOptions(educationYearData)
   const { mutateAsync: updateCost } = useUpdateCost()
   const { mutateAsync: deleteCost } = useDeleteCost()
 
@@ -53,7 +52,6 @@ const ListCost = () => {
     pagination,
     filters
   })
-
 
   // Helpers
   const columns = listCostColumns
@@ -81,12 +79,7 @@ const ListCost = () => {
         <AutocompleteSelect
           label='سال تحصیلی'
           placeholder='لطفا یک سال را انتخاب نمایید'
-          options={
-            educationYearData?.map(item => ({
-              key: item.id,
-              value: item.data?.title ?? ''
-            })) ?? []
-          }
+          options={educationYearOptions}
           value={educationYearId}
           onChange={setEducationYearId}
           loading={isLoading}

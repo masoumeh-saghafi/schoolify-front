@@ -1,12 +1,13 @@
+// React Types
+import type { ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
+
 // MUI Components
 import Button from "@schoolify/core/components/base/inputs/Button";
 
 // Custom Hooks
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
-// React Types
-import type { ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
 
 // Custom Types
 interface SidebarButtonProps {

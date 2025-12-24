@@ -1,6 +1,6 @@
 import type { TabBoxDataProps } from "@schoolify/core/components/common/TabBox";
-import ListStudentReport from "../components/ListStudentReport";
-import DetailStudentReport from "../components/DetailStudentReport";
+import ListStudentReport from "@schoolify/features/user/school/report/students/full/components/ListStudentReport";
+import DetailStudentReport from "@schoolify/features/user/school/report/students/full/components/DetailStudentReport";
 
 export const tabStudentReportFullEndpointsData: TabBoxDataProps[] = [
   {

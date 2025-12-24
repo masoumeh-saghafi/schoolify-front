@@ -1,8 +1,13 @@
+//Type Definitions
 import ExcelJS from 'exceljs'
 import { saveAs } from 'file-saver'
+
+// Core Components
 import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 import type BasePaginationDataEntity from '@schoolify/core/types/core/api/response'
-import type ListSummaryStudentReportEntity from '../types/api/ListSummaryStudentReportEntity'
+
+// Feature Components
+import type ListSummaryStudentReportEntity from '@schoolify/features/user/school/report/students/summary/types/api/ListSummaryStudentReportEntity'
 
 interface ExportStudentListParams {
   data?: BasePaginationDataEntity<
@@ -44,31 +49,19 @@ export const ExportStudentListSummaryToExcel = async ({
 
     return sheet
   }
-  // تنظیمات فونت و استایل مشترک
-  // sheet.properties.defaultRowHeight = 30;
-  // const commonStyle = {
-  //   alignment: { vertical: "middle", horizontal: "center", wrapText: true },
-  //   font: { name: "Tahoma", size: 8 },
-  //   border: {
-  //     top: { style: "thin" },
-  //     bottom: { style: "thin" },
-  //     left: { style: "thin" },
-  //     right: { style: "thin" },
-  //   },
-  // };
 
   const addDefaultSheetStyles = (sheet: ExcelJS.Worksheet) => {
-    // اندازه ستون‌ها طبق قالب قبلی
+    // The size of the columns according to the previous format
     sheet.columns = [
-      { width: 12.12 }, // نام
-      { width: 13.37 }, // نام خانوادگی
-      { width: 9.87 }, // نام پدر
-      { width: 11.12 }, // کلاس
+      { width: 12.12 }, // first name
+      { width: 13.37 }, // last name
+      { width: 9.87 }, // father name
+      { width: 11.12 }, // class
       { width: 4.5 }, // -
-      { width: 11.12 }, // نام
-      { width: 12.09 }, // نام خانوادگی
-      { width: 13.09 }, // نام پدر
-      { width: 11.12 } // کلاس
+      { width: 11.12 }, // first name
+      { width: 12.09 }, // last name
+      { width: 13.09 }, //  father name
+      { width: 11.12 } // class
     ]
 
     const borderedCells = [
@@ -233,7 +226,6 @@ export const ExportStudentListSummaryToExcel = async ({
 
     Object.assign(cell, commonStyle)
     if (options.fontSize) cell.font = { ...cell.font, size: options.fontSize }
-    // در تابع addCell
   }
 
   const addHeaders = (sheet: ExcelJS.Worksheet, r: number) => {
@@ -328,12 +320,6 @@ export const ExportStudentListSummaryToExcel = async ({
     sheet.mergeCells(`H${r}:I${r + 1}`)
   }
 
-  // const toPersianDigits = (str: string) =>
-  //   str.replace(/\d/g, (d) => String.fromCharCode(d.charCodeAt(0) + 1728));
-
-  // const formatNumber = (val: number) =>
-  //   val != null ? toPersianDigits(val.toLocaleString("fa-IR")) : "";
-
   let sheet: ExcelJS.Worksheet
   data.docs.map((student, i) => {
     // The indexes can be
@@ -356,7 +342,8 @@ export const ExportStudentListSummaryToExcel = async ({
     let row = startRow
     let col = startColumn
 
-    // نام و مشخصات هویتی
+    // Name and identity details
+
     addCell(sheet, row, col, student.data?.firstName)
     col++
 
@@ -369,7 +356,7 @@ export const ExportStudentListSummaryToExcel = async ({
     addCell(sheet, row, col, student.data?.class.data?.title)
     col++
 
-    // مشخصات شهریه
+    // Tuition details
     col = startColumn
     row += 3
 
@@ -398,7 +385,7 @@ export const ExportStudentListSummaryToExcel = async ({
     )
     col++
 
-    // سابقه پرداخت
+    // Payment history
     row += 3
     const payments = student.data?.payments ?? []
 
@@ -422,7 +409,7 @@ export const ExportStudentListSummaryToExcel = async ({
       internalRow++
     }
 
-    // وضعیت بدهی
+    // Debt status
     row += 5
     col = startColumn
 
@@ -438,7 +425,7 @@ export const ExportStudentListSummaryToExcel = async ({
     col++
   })
 
-  // ذخیره فایل
+  // Save the file
   const buffer = await workbook.xlsx.writeBuffer()
   const blob = new Blob([buffer], {
     type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'

@@ -4,9 +4,10 @@ import type {
 import {
   getListPaginatedData,
 } from "@schoolify/core/utilities/api/api";
+
 import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
-import type ListSummaryStudentReportEntity from "../../types/api/ListSummaryStudentReportEntity";
-import listSummaryStudentReportEndpoints from "./endpoints";
+import type ListSummaryStudentReportEntity from "@schoolify/features/user/school/report/students/summary/types/api/ListSummaryStudentReportEntity";
+import listSummaryStudentReportEndpoints from "@schoolify/features/user/school/report/students/summary/utilities/api/endpoints";
 
 
 

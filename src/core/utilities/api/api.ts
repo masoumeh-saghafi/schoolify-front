@@ -1,15 +1,15 @@
 import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
 import type BasePaginationDataEntity from "@schoolify/core/types/core/api/response";
 import type { BaseResponseEntity } from "@schoolify/core/types/core/api/response";
-import { getImpersonateToken } from "@schoolify/features/admin/customers/utilities/api/api";
-import Cookies from "js-cookie";
-import { getImpersonateTokenCookie } from "../impersonate";
+import { getImpersonateTokenCookie } from "@schoolify/core/utilities/impersonate";
+
 import {
   useImpersonationStore,
   useNotificationStore,
 } from "@schoolify/core/store";
-// import BaseResponseEntity from "../entities/BaseResponseEntity";
-// import useUserImpersonationStore, { useNotificationStore } from "../store";
+
+import Cookies from "js-cookie";
+
 
 // ---------------------------
 // Base URL

@@ -1,7 +1,10 @@
 import type { GridColDef } from '@mui/x-data-grid/models/colDef'
+
 import FormattedDate from '@schoolify/core/components/common/FormattedDate'
 import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
-import type ListCustomerEntity from '../types/api/ListcustomerEntity'
+
+import type ListCustomerEntity from '@schoolify/features/admin/customers/types/api/ListcustomerEntity'
+
 
 export const listCustomerColumns: GridColDef<
   BaseIdDataEntity<ListCustomerEntity>

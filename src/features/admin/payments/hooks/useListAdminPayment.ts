@@ -1,9 +1,9 @@
-import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
-
-import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
-import { listAdminPayment } from "../utilities/api/api";
-// import { listAdminPaymentEndpoints } from "../utilities/api/api";
+import { useQuery } from "@tanstack/react-query";
+
+import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
+import { listAdminPayment } from "@schoolify/features/admin/payments/utilities/api/api";
+
 
 interface useListAdminPaymentProps {
   pagination?: BaseRequestPaginationParams;

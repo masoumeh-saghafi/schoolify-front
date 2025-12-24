@@ -1,6 +1,6 @@
 // Feature Components
 
-import RecentPayments from "./RecentPayments";
+import RecentPayments from "@schoolify/features/user/profile/accountManagement/payment/components/RecentPayments";
 
 // Custom Types
 // interface RecentPaymentTabProps {}

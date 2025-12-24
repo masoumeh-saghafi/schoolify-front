@@ -1,36 +1,38 @@
-import { useMemo } from "react";
+// React Type
+import { useMemo } from 'react'
 
-// نوع خروجی استاندارد
 export interface OptionType {
-  key: string | boolean;
-  value: string;
+  key: string | boolean
+  value: string
 }
 
-type NullableData<T> = T[] | null | undefined;
-
+type NullableData<T> = T[] | null | undefined
+// Custom Types
 interface BaseEntityWithNullableData {
-  id: string | number;
+  id: string | number
   data: {
-    title?: string;
-    firstName?: string;
-    lastName?: string;
-    identityCode?: string;
-  } | null;
+    title?: string
+    firstName?: string
+    lastName?: string
+    identityCode?: string
+  } | null
 }
 
 const useMapToOptions = <T extends BaseEntityWithNullableData>(
   data: NullableData<T>
 ): OptionType[] => {
+  
+  // Render
   return useMemo(() => {
-    return (data ?? []).map((item) => ({
+    return (data ?? []).map(item => ({
       key: String(item.id),
       value:
         item.data?.title ??
         (item.data?.firstName
           ? `${item.data.identityCode} - ${item.data.firstName} ${item.data.lastName}`
-          : ""),
-    }));
-  }, [data]);
-};
+          : '')
+    }))
+  }, [data])
+}
 
-export default useMapToOptions;
+export default useMapToOptions

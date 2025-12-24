@@ -1,10 +1,8 @@
-// MUI Components
-import SchoolManagementDashboard from "@schoolify/features/user/school/management/dashboard/components/dashboard";
-
-// Feature Components
-
 // React Types
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom'
+
+// MUI Components
+import SchoolManagementDashboard from '@schoolify/features/user/school/management/dashboard/components/dashboard'
 
 const SchoolManagementLayout = () => {
   // Render
@@ -14,7 +12,7 @@ const SchoolManagementLayout = () => {
         <Outlet />
       </SchoolManagementDashboard>
     </>
-  );
-};
+  )
+}
 
-export default SchoolManagementLayout;
+export default SchoolManagementLayout

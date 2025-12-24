@@ -1,5 +1,4 @@
 // React Type
-import { useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
 //Type Definitions
@@ -16,15 +15,13 @@ import ControlledGridTextField from '@schoolify/core/components/common/Controlle
 import SubmitButton from '@schoolify/core/components/common/SubmitButton'
 import ControlledAutocomplete from '@schoolify/core/components/common/ControlledAutocomplete'
 
-// Custom Hooks
-
-// Custom Utilities
-
 // Validation Schema
-import { addAdminRoleValidationSchema, roleTypeOptions } from '../validation/addAdminRoleValidation'
-import useAddAdminRole from '../hooks/useAddAdminRole'
-import { addAdminInfoData } from '../utilities/addAdminInfoData'
-
+import {
+  addAdminRoleValidationSchema,
+  roleTypeOptions
+} from '@schoolify/features/admin/managers/validation/addAdminRoleValidation'
+import useAddAdminRole from '@schoolify/features/admin/managers/hooks/useAddAdminRole'
+import { addAdminInfoData } from '@schoolify/features/admin/managers/utilities/addAdminInfoData'
 
 // Form schema
 type SchemaProps = z.infer<typeof addAdminRoleValidationSchema>
@@ -35,7 +32,6 @@ interface AddAdminRoleProps {}
 const AddAdminRole = (props: AddAdminRoleProps) => {
   // const {} = props;
 
-  
   // Hooks
   const {
     handleSubmit,
@@ -45,15 +41,13 @@ const AddAdminRole = (props: AddAdminRoleProps) => {
   } = useForm<SchemaProps>({
     resolver: zodResolver(addAdminRoleValidationSchema),
     mode: 'onChange'
-   
   })
-
 
   const { mutateAsync: addAdminRole } = useAddAdminRole()
 
   // Handlers
   const handleAddAdminRole = async (data: SchemaProps) => {
-    const result = await addAdminRole({ data: data})
+    const result = await addAdminRole({ data: data })
     if (result.isSuccess) reset(data)
   }
 
@@ -66,16 +60,14 @@ const AddAdminRole = (props: AddAdminRoleProps) => {
         component='form'
       >
         <Grid container spacing={2}>
-      
-
-              {addAdminInfoData.map(field => (
-                      <ControlledGridTextField
-                        key={field.name}
-                        control={control}
-                        name={field.name}
-                        label={field.label}
-                      />
-                    ))}
+          {addAdminInfoData.map(field => (
+            <ControlledGridTextField
+              key={field.name}
+              control={control}
+              name={field.name}
+              label={field.label}
+            />
+          ))}
 
           <ControlledAutocomplete
             label=' نوع دسترسی'

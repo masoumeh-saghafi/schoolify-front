@@ -1,4 +1,5 @@
 const listSummaryStudentReportEndpoints = {
+  
   listSummaryStudentReport: (educationYearId: string) =>
     `/reports/education-years/${educationYearId}/students`,
 

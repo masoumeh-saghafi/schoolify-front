@@ -1,42 +1,50 @@
-// MUI Components
-import ListItem from "@schoolify/core/components/base/inputs/ListItem";
-import ListItemText from "@schoolify/core/components/base/inputs/ListItemText";
-import List from "@schoolify/core/components/base/inputs/List";
-
-// Feature Components
-import SidebarButton from "@schoolify/features/shared/dashboard/components/Sidebar/SidebarButton";
+// React Type
+import { useState } from 'react'
 
 //Type Definitions
-import type { JSX } from "@emotion/react/jsx-runtime";
-import { useState } from "react";
-import { ArrowDownIcon } from "@schoolify/core/components/icon/ArrowDownIcon";
-import { ArrowUpIcon } from "@schoolify/core/components/icon/ArrowUpIcon";
-import Typography from "@schoolify/core/components/base/inputs/Typography";
-import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
-import { uuid } from "zod";
-import { genUUID } from "@schoolify/core/utilities/uuid";
+import type { JSX } from '@emotion/react/jsx-runtime'
 
-export type SidebarItemType = "text" | "listItem" | "contentBox";
+// MUI Components
+import Typography from '@schoolify/core/components/base/inputs/Typography'
+import ListItem from '@schoolify/core/components/base/inputs/ListItem'
+import ListItemText from '@schoolify/core/components/base/inputs/ListItemText'
+import List from '@schoolify/core/components/base/inputs/List'
+
+// Feature Components
+import SidebarButton from '@schoolify/features/shared/dashboard/components/Sidebar/SidebarButton'
+
+// Custom Utilities
+import { genUUID } from '@schoolify/core/utilities/uuid'
+
+// Icon Components
+import { ArrowDownIcon } from '@schoolify/core/components/icon/ArrowDownIcon'
+import { ArrowUpIcon } from '@schoolify/core/components/icon/ArrowUpIcon'
+
+// Custom Hooks
+import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
+
+export type SidebarItemType = 'text' | 'listItem' | 'contentBox'
 
 // Base shared interface
 interface SidebarBaseItem {
-  key?: string;
-  title: string;
-  link?: string;
-  icon?: JSX.Element | null;
-  type?: SidebarItemType;
-  onClick?: () => void;
-  isActive?: boolean;
-  enableBorder?: boolean;
-  disabled?: boolean;
-  nested?: boolean;
+  key?: string
+  title: string
+  link?: string
+  icon?: JSX.Element | null
+  type?: SidebarItemType
+  onClick?: () => void
+  isActive?: boolean
+  enableBorder?: boolean
+  disabled?: boolean
+  nested?: boolean
 }
 
+// Custom Types
 export interface SidebarListItemProps extends SidebarBaseItem {
-  children?: SidebarListItemChildrenProps[]; // recursive type
+  children?: SidebarListItemChildrenProps[] // recursive type
 }
 
-export type SidebarListItemChildrenProps = SidebarBaseItem;
+export type SidebarListItemChildrenProps = SidebarBaseItem
 
 const SidebarListItem = (props: SidebarListItemProps) => {
   // Props
@@ -50,42 +58,38 @@ const SidebarListItem = (props: SidebarListItemProps) => {
     disabled = false,
     nested = false,
     children,
-    type,
-  } = props;
+    type
+  } = props
 
   // States
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false)
 
   // Hooks
-  const theme = useAppTheme();
-  // const navigate = useNavigate();
+  const theme = useAppTheme()
 
   // Handlers
   const onClickToggleOpenHandler = () => {
-    setOpen(!open);
-  };
+    setOpen(!open)
+  }
 
   // Render
   return (
     <>
-      {type === "text" && (
+      {type === 'text' && (
         <Typography
-          // variant="caption"
           sx={{
-            // textAlign: "center",
-            // direction: "rtl",
             mx: 3,
             my: 2,
-            display: "block",
-            textWrap: "nowrap",
-            fontSize: "0.85rem",
+            display: 'block',
+            textWrap: 'nowrap',
+            fontSize: '0.85rem'
           }}
         >
           {title}
         </Typography>
       )}
 
-      {type === "listItem" && (
+      {type === 'listItem' && (
         <>
           <List sx={{ px: 1 }}>
             <ListItem
@@ -103,10 +107,10 @@ const SidebarListItem = (props: SidebarListItemProps) => {
                 {icon}
                 <ListItemText
                   sx={{
-                    display: "block",
-                    textWrap: "nowrap",
-                    textAlign: "left",
-                    ml: 1,
+                    display: 'block',
+                    textWrap: 'nowrap',
+                    textAlign: 'left',
+                    ml: 1
                   }}
                 >
                   {title}
@@ -125,7 +129,7 @@ const SidebarListItem = (props: SidebarListItemProps) => {
         </>
       )}
 
-      {type === "contentBox" && (
+      {type === 'contentBox' && (
         <>
           <List sx={{ px: 1 }}>
             <ListItem
@@ -133,7 +137,7 @@ const SidebarListItem = (props: SidebarListItemProps) => {
               sx={{
                 mx: 1,
                 px: nested ? 3 : 0,
-                backgroundColor: theme.palette.background.card,
+                backgroundColor: theme.palette.background.card
               }}
             >
               <SidebarButton
@@ -146,10 +150,10 @@ const SidebarListItem = (props: SidebarListItemProps) => {
                 {icon}
                 <ListItemText
                   sx={{
-                    display: "block",
-                    textWrap: "nowrap",
-                    textAlign: "center",
-                    ml: 1,
+                    display: 'block',
+                    textWrap: 'nowrap',
+                    textAlign: 'center',
+                    ml: 1
                   }}
                 >
                   {title}
@@ -160,7 +164,7 @@ const SidebarListItem = (props: SidebarListItemProps) => {
         </>
       )}
     </>
-  );
-};
+  )
+}
 
-export default SidebarListItem;
+export default SidebarListItem

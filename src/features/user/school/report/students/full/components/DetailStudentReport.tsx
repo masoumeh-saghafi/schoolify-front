@@ -1,24 +1,35 @@
-import ContentBox from '@schoolify/core/components/common/ContentBox'
+// React Type
 import { useLocation } from 'react-router-dom'
+
+// MUI Components
+import Box from '@schoolify/core/components/base/inputs/Box'
 import Grid from '@schoolify/core/components/base/inputs/Grid'
 
+// Core Components
+import ContentBox from '@schoolify/core/components/common/ContentBox'
 import DetailField from '@schoolify/core/components/common/DetailField'
-import Box from '@schoolify/core/components/base/inputs/Box'
-import useGetStudentReport from '../hooks/useGetStudentReport'
-import { StudentDebtData } from '../utilities/studentDebtData'
+import DataTable from '@schoolify/core/components/common/DataTable'
+import FormattedDate from '@schoolify/core/components/common/FormattedDate'
+
+// Custom Hooks
+import useGetStudentReport from '@schoolify/features/user/school/report/students/full/hooks/useGetStudentReport'
+
+// Custom Utilities
+import { StudentDebtData } from '@schoolify/features/user/school/report/students/full/utilities/studentDebtData'
 import {
   studentCostColumns,
   StudentCostData
-} from '../utilities/studentCostData'
-import DataTable from '@schoolify/core/components/common/DataTable'
-import { StudentInfoData } from '../utilities/studentInfoData'
+} from '@schoolify/features/user/school/report/students/full/utilities/studentCostData'
+import { StudentInfoData } from '@schoolify/features/user/school/report/students/full/utilities/studentInfoData'
+import { studentPaymentColumns, StudentPaymentData } from '@schoolify/features/user/school/report/students/full/utilities/studentPaymentData'
 
-import FormattedDate from '@schoolify/core/components/common/FormattedDate'
-import { studentPaymentColumns, StudentPaymentData } from '../utilities/studentPaymentData'
 
+// Custom Types
 interface DetailStudentReportProps {}
 
 const DetailStudentReport = (props: DetailStudentReportProps) => {
+
+// Hooks
   const location = useLocation()
   const queryParams = location.hash.split('?')[1]
   const params = new URLSearchParams(queryParams)
@@ -27,6 +38,8 @@ const DetailStudentReport = (props: DetailStudentReportProps) => {
 
   const { data } = useGetStudentReport(educationYearId, studentId)
 
+
+  // Helpers
   const StudentInfoFields = StudentInfoData(data?.data)
   const StudentDebtFields = StudentDebtData(data?.data)
   const StudentCostFields = StudentCostData(data?.data)

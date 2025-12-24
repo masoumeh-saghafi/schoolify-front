@@ -1,6 +1,5 @@
-import type ListStudentReportEntity from '../types/api/ListStudentReportEntity'
-import type StudentReportEntity from '../types/api/StudentReportEntity'
-import { identityTypeOptions } from '../validation/baseTypes'
+import type StudentReportEntity from '@schoolify/features/user/school/report/students/full/types/api/StudentReportEntity'
+import { identityTypeOptions } from '@schoolify/features/user/school/report/students/full/validation/baseTypes'
 
 interface StudentInfoField {
   label: string

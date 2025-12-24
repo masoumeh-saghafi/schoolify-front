@@ -2,7 +2,7 @@ import ms from 'ms'
 import { useQuery } from '@tanstack/react-query'
 
 import type { BaseRequestPaginationParams } from '@schoolify/core/types/core/api/request'
-import { listAdminRoles } from '../utilities/api/api'
+import { listAdminRoles } from '@schoolify/features/admin/managers/utilities/api/api'
 
 interface useListAdminRolesProps {
   pagination?: BaseRequestPaginationParams
@@ -26,7 +26,7 @@ const useListAdminRoles = (props: useListAdminRolesProps) => {
     refetchOnReconnect: true,
     retry: 2,
     retryDelay: 1000,
-     select: data => data.data,
+    select: data => data.data
   })
 }
 

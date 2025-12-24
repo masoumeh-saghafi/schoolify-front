@@ -1,4 +1,4 @@
-import { isActiveTypes } from "../validation/baseTypes";
+import { isActiveTypes } from "@schoolify/features/user/school/management/costType/validation/baseTypes";
 
 export const addCostTypeData = [
   {

@@ -1,8 +1,9 @@
-import { useTheme } from "@mui/material";
+import { useTheme } from '@mui/material'
 
 // Contex
-export function useAppTheme() {
-  return useTheme();
+
+export function useAppTheme () {
+  return useTheme()
 }
 
-export default useAppTheme;
+export default useAppTheme

@@ -16,6 +16,7 @@ import type { BaseRequestPaginationParams } from '@schoolify/core/types/core/api
 import type ListCostEntity from '@schoolify/features/user/school/management/cost/types/api/ListCostEntity'
 import type ListSummaryCostTypesEntity from '@schoolify/features/user/school/management/costType/types/api/ListSummaryCostTypesEntity'
 
+
 export const addCost = async (data: any) => {
   return await postData<BaseAddResponseEntity>(costEndpoints.addCost, data)
 }

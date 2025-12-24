@@ -1,13 +1,16 @@
-// MUI Components
+// React Type
+import { useParams } from 'react-router-dom'
 
-import TabBox from "@schoolify/core/components/common/TabBox";
-import routes from "@schoolify/core/utilities/routes";
-import { tabClassStudentsEndpointsData } from "@schoolify/features/user/school/management/classStudents/utilities/data";
-import { useParams } from "react-router-dom";
+// MUI Components
+import TabBox from '@schoolify/core/components/common/TabBox'
+
+// Custom Utilities
+import routes from '@schoolify/core/utilities/routes'
+import { tabClassStudentsEndpointsData } from '@schoolify/features/user/school/management/classStudents/utilities/data'
 
 const SchoolManagementClassStudentsPage = () => {
   // Hooks
-  const { schoolId = "" } = useParams();
+  const { schoolId = '' } = useParams()
 
   // Render
   return (
@@ -17,7 +20,7 @@ const SchoolManagementClassStudentsPage = () => {
         data={tabClassStudentsEndpointsData}
       />
     </>
-  );
-};
+  )
+}
 
-export default SchoolManagementClassStudentsPage;
+export default SchoolManagementClassStudentsPage

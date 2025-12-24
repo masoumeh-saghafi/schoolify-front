@@ -5,20 +5,15 @@ import type {
 } from "@schoolify/core/types/core/api/response";
 
 import {
-  deleteData,
   getData,
   getListPaginatedData,
   patchData,
   postData,
 } from "@schoolify/core/utilities/api/api";
 
-import schoolStudentEndpoints from "@schoolify/features/user/school/management/student/utilities/api/endpoints";
-import ticketEndpoints from "./endpoints";
-import type ListTicketEntity from "../../types/api/ListAdminTicketEntity";
-import type UserTicketEntity from "../../types/api/getAdminTicketEntity";
-import type ListAdminTicketsEntity from "../../types/api/ListAdminTicketEntity";
-import adminTicketEndpoints from "./endpoints";
-import type getAdminTicketEntity from "../../types/api/getAdminTicketEntity";
+import type ListAdminTicketsEntity from "@schoolify/features/admin/tickets/types/api/ListAdminTicketEntity";
+import adminTicketEndpoints from "@schoolify/features/admin/tickets/utilities/api/endpoints";
+import type getAdminTicketEntity from "@schoolify/features/admin/tickets/types/api/getAdminTicketEntity";
 
 export const addAdminTicketResponse = async (data: any, ticketId: string) => {
   return await postData<BaseAddResponseEntity>(
@@ -34,12 +29,6 @@ export const updateAdminTicket = async (data: any, studentId: string) => {
   );
 };
 
-// export const deleteStudent = async (studentId: string) => {
-//   return await deleteData<void>(
-//     schoolStudentEndpoints.deleteStudent,
-//     studentId
-//   );
-// };
 
 export const listAdminTicketEndpoints = async (
   pagination: BaseRequestPaginationParams,
@@ -58,16 +47,3 @@ export const getAdminTicket = async (ticketId: string) => {
   );
 };
 
-// export const addMessageToTicket = async (data: any, ticketId: string) => {
-//   return await postData<BaseAddResponseEntity>(
-//     ticketEndpoints.addMessageToTicket(ticketId),
-//     data
-//   );
-// };
-
-// export const closeTicket = async (ticketId: string) => {
-//   return await postData<BaseAddResponseEntity>(
-//     ticketEndpoints.closeTicket(ticketId),
-//     {}
-//   );
-// };

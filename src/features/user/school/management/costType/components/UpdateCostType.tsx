@@ -15,11 +15,10 @@ import ControlledGridTextField from "@schoolify/core/components/common/Controlle
 import ControlledAutocomplete from "@schoolify/core/components/common/ControlledAutocomplete";
 import SubmitButton from "@schoolify/core/components/common/SubmitButton";
 import ControlledPriceField from "@schoolify/core/components/common/ControlledPriceField";
-import type { OptionType } from "@schoolify/core/hooks/common/useMapToOptions";
 
 // Validation Schema
 import { updateCostTypeValidationSchema } from "@schoolify/features/user/school/management/costType/validation/updateStudentValidationSchema";
-import { isActiveTypes } from "../validation/baseTypes";
+import { isActiveTypes } from "@schoolify/features/user/school/management/costType/validation/baseTypes";
 
 // Form schema
 type SchemaProps = z.infer<typeof updateCostTypeValidationSchema>;

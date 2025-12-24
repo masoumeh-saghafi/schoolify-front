@@ -1,6 +1,6 @@
 import type { TabBoxDataProps } from "@schoolify/core/components/common/TabBox";
-import ListAdminTicket from "../components/ListAdminTicket";
-import DetailAdminTicket from "../components/DetailAdminTicket";
+import ListAdminTicket from "@schoolify/features/admin/tickets/components/ListAdminTicket";
+import DetailAdminTicket from "@schoolify/features/admin/tickets/components/DetailAdminTicket";
 
 export const tabAdminTicketData: TabBoxDataProps[] = [
   

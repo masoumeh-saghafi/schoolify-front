@@ -1,5 +1,4 @@
-import type ListStudentReportEntity from "../types/api/ListStudentReportEntity";
-import type StudentReportEntity from "../types/api/StudentReportEntity";
+import type StudentReportEntity from "@schoolify/features/user/school/report/students/full/types/api/StudentReportEntity";
 interface StudentDebtField {
   label: string;
   value?: string | number | null;

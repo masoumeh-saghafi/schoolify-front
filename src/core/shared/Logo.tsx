@@ -2,11 +2,12 @@
 import type { SxProps } from "@mui/material/styles";
 import type { Theme } from "@mui/material/styles";
 
+// MUI Components
+import Typography from "@mui/material/Typography";
+
 // Custom Hooks
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
-// MUI Components
-import Typography from "@mui/material/Typography";
 
 // Custom Types
 interface LogoProps {

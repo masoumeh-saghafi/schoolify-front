@@ -1,6 +1,6 @@
 import ms from 'ms'
 import { useQuery } from '@tanstack/react-query'
-import { getStudentReport } from '../utilities/api/api'
+import { getStudentReport } from '@schoolify/features/user/school/report/students/full/utilities/api/api'
 
 export const StudentReportQueryKey = (
   educationYearId: string,
@@ -21,8 +21,7 @@ const useGetStudentReport = (
     refetchOnReconnect: true,
     retry: 2,
     retryDelay: 1000,
-    // enabled: !!token,
-    select: data => data.data
+     select: data => data.data
   })
 }
 

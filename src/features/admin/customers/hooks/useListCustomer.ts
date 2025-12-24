@@ -2,7 +2,7 @@ import ms from 'ms'
 import { useQuery } from '@tanstack/react-query'
 
 import type { BaseRequestPaginationParams } from '@schoolify/core/types/core/api/request'
-import { listCustomer } from '../utilities/api/api'
+import { listCustomer } from '@schoolify/features/admin/customers/utilities/api/api'
 
 interface useListCustomerProps {
   pagination?: BaseRequestPaginationParams

@@ -1,7 +1,7 @@
 import type { GridColDef } from '@mui/x-data-grid/models/colDef'
 import FormattedDate from '@schoolify/core/components/common/FormattedDate'
 import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
-import type listAdminPaymentEntity from '../types/api/listAdminPaymentEntity'
+import type listAdminPaymentEntity from '@schoolify/features/admin/payments/types/api/listAdminPaymentEntity'
 
 const translateStatus: Record<string, string> = {
   processing: 'در حال پردازش',

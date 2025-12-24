@@ -1,8 +1,8 @@
 import ExcelJS from 'exceljs'
 import { saveAs } from 'file-saver'
 
-import { identityTypeOptions } from '../validation/baseTypes'
-import type ListStudentReportEntity from '../types/api/ListStudentReportEntity'
+import { identityTypeOptions } from '@schoolify/features/user/school/report/students/full/validation/baseTypes'
+import type ListStudentReportEntity from '@schoolify/features/user/school/report/students/full/types/api/ListStudentReportEntity'
 
 
 const toPersianDigits = (str: string): string =>
@@ -69,7 +69,7 @@ export const exportStudentFinancialReportToExcel = async ({
     r++
   }
 
-  /* -------------------- مشخصات دانش‌آموز -------------------- */
+  /* -------------------- Student Profile -------------------- */
   addMergedHeader('مشخصات دانش‌آموز')
   addRow(
     ['نام', 'نام خانوادگی', 'نام پدر', 'هویت', 'کد ملی', 'شماره تماس', 'کلاس'],
@@ -88,7 +88,7 @@ export const exportStudentFinancialReportToExcel = async ({
 
   r++
 
-  /* -------------------- وضعیت مالی -------------------- */
+  /* -------------------- Financial situation -------------------- */
   addMergedHeader('وضعیت مالی')
   addRow(
     [
@@ -141,7 +141,7 @@ export const exportStudentFinancialReportToExcel = async ({
     sheet.mergeCells(`F${r - 1}:G${r - 1}`)
   })
 
-  /* -------------------- پرداخت‌ها -------------------- */
+  /* -------------------- Payments -------------------- */
   addMergedHeader('پرداخت‌ها')
   addRow(['مبلغ', 'توضیحات', '', '', 'شناسه پرداخت', '', 'تاریخ ثبت'], {
     bold: true

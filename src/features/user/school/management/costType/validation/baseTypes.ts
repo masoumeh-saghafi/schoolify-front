@@ -1,5 +1,5 @@
-import type { OptionType } from "@schoolify/core/hooks/common/useMapToOptions";
 import z from "zod";
+import type { OptionType } from "@schoolify/core/hooks/common/useMapToOptions";
 
 export const isActiveTypes: OptionType[] = [
   { key: true, value: "فعال" },

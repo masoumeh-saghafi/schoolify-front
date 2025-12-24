@@ -1,31 +1,33 @@
 // React Type
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
 // MUI Components
-import Grid from "@schoolify/core/components/base/inputs/Grid";
-import AutocompleteSelect from "@schoolify/core/components/common/AutocompleteSelect";
+import Grid from '@schoolify/core/components/base/inputs/Grid'
+import AutocompleteSelect from '@schoolify/core/components/common/AutocompleteSelect'
+import Box from '@schoolify/core/components/base/inputs/Box'
+import Button from '@schoolify/core/components/base/inputs/Button'
 
 // Core Components
-import ContentBox from "@schoolify/core/components/common/ContentBox";
-import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
-import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
+import ContentBox from '@schoolify/core/components/common/ContentBox'
+import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
+import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGridState'
+import { tabBoxGenerateFullUrlPath } from '@schoolify/core/components/common/tabBoxGenerateFullUrlPath'
 
 // Custom Hooks
-import useListSummaryEducationYears from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears";
-import useListSummaryEducationLevel from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationLevel";
-import useListSummaryEducationGrade from "@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationGrade";
-import useListSummaryClass from "@schoolify/features/user/school/management/shared/hooks/useListSummaryClass";
-import useMapToOptions from "@schoolify/core/hooks/common/useMapToOptions";
+import useListSummaryEducationYears from '@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears'
+import useListSummaryEducationLevel from '@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationLevel'
+import useListSummaryEducationGrade from '@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationGrade'
+import useListSummaryClass from '@schoolify/features/user/school/management/shared/hooks/useListSummaryClass'
+import useMapToOptions from '@schoolify/core/hooks/common/useMapToOptions'
 
 // Custom Utilities
-import useListStudentReport from "../hooks/useListStudentReport";
-import { listStudentReportColumns } from "../utilities/listStudentColumns";
-import { listStudentReportData } from "../utilities/listStudentReportData";
-import { tabBoxGenerateFullUrlPath } from "@schoolify/core/components/common/TabBox";
-import Box from "@schoolify/core/components/base/inputs/Box";
-import Button from "@schoolify/core/components/base/inputs/Button";
-import { exportListStudentReportToExcel } from "./ExportListStudentReportToExcel";
+import useListStudentReport from '@schoolify/features/user/school/report/students/full/hooks/useListStudentReport'
+import { listStudentReportColumns } from '@schoolify/features/user/school/report/students/full/utilities/listStudentColumns'
+import { listStudentReportData } from '@schoolify/features/user/school/report/students/full/utilities/listStudentReportData'
+
+// Feature Components
+import { exportListStudentReportToExcel } from '@schoolify/features/user/school/report/students/full/components/ExportListStudentReportToExcel'
 
 // Custom Types
 // interface ListStudentReportProps {}
@@ -35,11 +37,11 @@ const ListStudentReport = () => {
   // const {} = props;
 
   // States
-  const [educationYearId, setEducationYearId] = useState("");
-  const [educationLevelId, setEducationLevelId] = useState("");
-  const [educationGradeId, setEducationGradeId] = useState("");
-  const [classId, setClassId] = useState("");
-  const navigate = useNavigate();
+  const [educationYearId, setEducationYearId] = useState('')
+  const [educationLevelId, setEducationLevelId] = useState('')
+  const [educationGradeId, setEducationGradeId] = useState('')
+  const [classId, setClassId] = useState('')
+  const navigate = useNavigate()
 
   // Hooks
   const {
@@ -47,97 +49,81 @@ const ListStudentReport = () => {
     paginationData: pagination,
     handleFilterChange,
     handlePaginationModelChange,
-    handleSortModelChange,
-  } = useTableDataGridState();
+    handleSortModelChange
+  } = useTableDataGridState()
 
   const { data, isLoading } = useListStudentReport({
     educationYearId,
     pagination,
-    filters:
-      //   :
-      // {
-      //   classRoomId: classId
-      // }
+    filters: {
+      educationLevelId: educationLevelId,
+      educationGradeId: educationGradeId,
+      classRoomId: classId
+    }
+  })
 
-      {
-        // ...filters,
-        educationLevelId: educationLevelId,
-        educationGradeId: educationGradeId,
-        classRoomId: classId,
-      },
-  });
-
-  const { schoolId = "" } = useParams();
-  const { data: educationYearData } = useListSummaryEducationYears(schoolId);
+  const { schoolId = '' } = useParams()
+  const { data: educationYearData } = useListSummaryEducationYears(schoolId)
 
   const { data: educationLevelData } =
-    useListSummaryEducationLevel(educationYearId);
+    useListSummaryEducationLevel(educationYearId)
 
   const { data: educationGradeData } =
-    useListSummaryEducationGrade(educationLevelId);
+    useListSummaryEducationGrade(educationLevelId)
 
-  const { data: classData } = useListSummaryClass(educationGradeId);
-  // const { data: studentsData } = useListStudents({
-  //   schoolId: schoolId,
-  //   pagination: pagination,
-  //   filters: {
-  //     classRoomId: classId
-  //   },
-  //   disabled: !classId
-  // })
+  const { data: classData } = useListSummaryClass(educationGradeId)
+ 
 
-  // const { mutateAsync: deleteClass } = useDeleteClass()
-
-  const educationYearOptions = useMapToOptions(educationYearData);
-  const educationLevelOptions = useMapToOptions(educationLevelData);
-  const educationGradeOptions = useMapToOptions(educationGradeData);
-  const classOptions = useMapToOptions(classData);
-
+  const educationYearOptions = useMapToOptions(educationYearData)
+  const educationLevelOptions = useMapToOptions(educationLevelData)
+  const educationGradeOptions = useMapToOptions(educationGradeData)
+  const classOptions = useMapToOptions(classData)
+  
   // Helpers
   const fieldStateMap = {
     educationYearId: {
       value: educationYearId,
       set: setEducationYearId,
-      options: educationYearOptions,
+      options: educationYearOptions
     },
     educationLevelId: {
       value: educationLevelId,
       set: setEducationLevelId,
-      options: educationLevelOptions,
+      options: educationLevelOptions
     },
     educationGradeId: {
       value: educationGradeId,
       set: setEducationGradeId,
-      options: educationGradeOptions,
+      options: educationGradeOptions
     },
     classId: {
       value: classId,
       set: setClassId,
-      options: classOptions,
-    },
-  } as const;
+      options: classOptions
+    }
+  } as const
 
-  const columns = listStudentReportColumns;
+  const columns = listStudentReportColumns
 
   // Handlers
   const handleOpenStudentDetails = async (id: string, row: any) => {
     const changeTabUrl = tabBoxGenerateFullUrlPath(
       location.pathname,
       `detail?studentId=${id}&educationYearId=${educationYearId}`
-    );
-    navigate(changeTabUrl);
-  };
+    )
+    navigate(changeTabUrl)
+  }
   const handleExportToExcel = () => {
-    exportListStudentReportToExcel({ data });
-  };
+    exportListStudentReportToExcel({ data })
+  }
 
   // Render
   return (
-    <ContentBox label=" گزارش دانش آموزان">
+    <ContentBox label=' گزارش دانش آموزان'>
       <Grid container spacing={2} sx={{ mb: 2 }}>
-        {listStudentReportData.map((field) => {
+        {listStudentReportData.map(field => {
           const { value, set, options } =
-            fieldStateMap[field.name as keyof typeof fieldStateMap];
+            fieldStateMap[field.name as keyof typeof fieldStateMap]
           return (
             <AutocompleteSelect
               key={field.name}
@@ -148,7 +134,7 @@ const ListStudentReport = () => {
               options={options}
               loading={isLoading}
             />
-          );
+          )
         })}
       </Grid>
 
@@ -162,19 +148,19 @@ const ListStudentReport = () => {
         disableUpdateRowButton={true}
         disableDeleteRowButton={true}
         disableAddRowButton={false}
-        addRowTitle="جزئیات"
+        addRowTitle='جزئیات'
         onAddRow={handleOpenStudentDetails}
       />
-      <Box display="flex" justifyContent="flex-start" mt={2}>
+      <Box display='flex' justifyContent='flex-start' mt={2}>
         <Button
-          variant="contained"
-          color="primary"
+          variant='contained'
+          color='primary'
           onClick={handleExportToExcel}
         >
           چاپ گزارش
         </Button>
       </Box>
     </ContentBox>
-  );
-};
-export default ListStudentReport;
+  )
+}
+export default ListStudentReport

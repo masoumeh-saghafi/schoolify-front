@@ -1,10 +1,13 @@
-// MUI Components
+// React Type
+import { useParams } from "react-router-dom";
 
+// MUI Components
 import TabBox from "@schoolify/core/components/common/TabBox";
+
+// Custom Utilities
 import routes from "@schoolify/core/utilities/routes";
 import { tabStudentPaymentEndpointsData } from "@schoolify/features/user/school/management/studentPayment/utilities/data";
 
-import { useParams } from "react-router-dom";
 
 const SchoolManagementStudentPaymentPage = () => {
   // Hooks

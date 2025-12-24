@@ -1,26 +1,22 @@
 // React Type
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 
 // Core Components
 import ContentBox from "@schoolify/core/components/common/ContentBox";
 import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
 import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
-import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
 
 // Custom Hooks
-
-// Feature Components
-import UpdateUserRole from "@schoolify/features/user/school/management/userRole/components/UpdateUserRole";
-import useListCustomer from "../hooks/useListCustomer";
-import { listCustomerColumns } from "../utilities/listCustomerColumns";
-import useGetImpersonateToken from "../hooks/useGetImpersonateToken";
-import routes from "@schoolify/core/utilities/routes";
-import { setImpersonateTokenCookie } from "../../../../core/utilities/impersonate";
-import { useQueryClient } from "@tanstack/react-query";
+import useListCustomer from "@schoolify/features/admin/customers/hooks/useListCustomer";
+import useGetImpersonateToken from "@schoolify/features/admin/customers/hooks/useGetImpersonateToken";
 
 // Custom Utilities
+import routes from "@schoolify/core/utilities/routes";
+import { setImpersonateTokenCookie } from "@schoolify/core/utilities/impersonate";
+import { listCustomerColumns } from "@schoolify/features/admin/customers/utilities/listCustomerColumns";
 
-// Custom Types
+
 
 // Custom Types
 // interface ListStudentProps {}
@@ -31,7 +27,7 @@ const ListCustomer = () => {
 
   // Hooks
   const navigate = useNavigate();
-  // const { mutateAsync: updatecustomer } = useUpdateUserRole()
+
   const { mutateAsync: getImpersonateToken } = useGetImpersonateToken();
 
   const {
@@ -51,15 +47,7 @@ const ListCustomer = () => {
   // Helpers
   const columns = listCustomerColumns;
 
-  // Handlers
-  // const handleUpdatecustomer = async (id: string, updatedFields: any) => {
-  //   await updatecustomer({
-  //     data: updatedFields,
-  //     phoneNumber: id,
-  //     schoolId: schoolId
-  //   })
-  // }
-
+// Handlers
   const handleGetImpersonateToken = async (id: string, updatedFields: any) => {
     try {
       const impersonateData = await getImpersonateToken({

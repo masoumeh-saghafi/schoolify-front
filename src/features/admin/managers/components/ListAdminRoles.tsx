@@ -1,23 +1,22 @@
-// React Type
-import { useParams } from 'react-router-dom'
-
 // Core Components
 import ContentBox from '@schoolify/core/components/common/ContentBox'
 import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
 import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGridState'
 import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
-import useListAdminRoles from '../hooks/useListAdminRoles'
-import useDeleteAdminRole from '../hooks/useDeleteAdminRole'
-import type ListAdminRolesEntity from '../types/api/ListAdminRolesEntity'
-import { listAdminRolesColumns } from '../utilities/listUserRolesColumns'
 
 // Custom Hooks
-
-// Feature Components
-
-// Custom Utilities
+import useListAdminRoles from '@schoolify/features/admin/managers/hooks/useListAdminRoles'
+import useDeleteAdminRole from '@schoolify/features/admin/managers/hooks/useDeleteAdminRole'
 
 // Custom Types
+import type ListAdminRolesEntity from '@schoolify/features/admin/managers/types/api/ListAdminRolesEntity'
+
+// Custom Utilities
+import { listAdminRolesColumns } from '@schoolify/features/admin/managers/utilities/listUserRolesColumns'
+
+
+
+
 
 // Custom Types
 // interface ListStudentProps {}
@@ -27,8 +26,7 @@ const ListAdminRoles = () => {
   // const {} = props;
 
   // Hooks
-  const { schoolId = '' } = useParams()
-  // const { mutateAsync: updateAdminRoles } = useUpdateAdminRole()
+
   const { mutateAsync: deleteAdminRole } = useDeleteAdminRole()
 
   const {
@@ -48,14 +46,6 @@ const ListAdminRoles = () => {
   const columns = listAdminRolesColumns
 
   // Handlers
-  // const handleUpdateAdminRoles = async (id: string, updatedFields: any) => {
-  //   await updateAdminRoles({
-  //     data: updatedFields,
-  //     phoneNumber: id,
-  //     schoolId: schoolId
-  //   })
-  // }
-
   const handleDeleteAdminRole = async (id: string, row: any) => {
     await deleteAdminRole({
       userId: id

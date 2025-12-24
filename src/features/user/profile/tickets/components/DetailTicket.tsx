@@ -1,32 +1,48 @@
-import ContentBox from '@schoolify/core/components/common/ContentBox'
-import { useLocation } from 'react-router-dom'
-import { ticketDetailValidationSchema } from '../validation/ticketDetailValidation'
-import type z from 'zod'
+// React Type
 import { useForm } from 'react-hook-form'
+import { useLocation } from 'react-router-dom'
+
+//Type Definitions
+import type z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import useAddMessageToTicket from '../hooks/useAddMessageToTicket'
+import { isDirty } from 'zod/v3'
+
+// MUI Components
+import Box from '@schoolify/core/components/base/inputs/Box'
+import Typography from '@schoolify/core/components/base/inputs/Typography'
 import Grid from '@schoolify/core/components/base/inputs/Grid'
-import ControlledGridTextField from '@schoolify/core/components/common/ControlledGridTextField'
-import { ticketInfoData } from '../utilities/ticketInfoData'
-import { UnitOptions } from '../validation/baseTypes'
-import DetailField from '@schoolify/core/components/common/DetailField'
+import ContentBox from '@schoolify/core/components/common/ContentBox'
 import Tooltip from '@schoolify/core/components/base/inputs/Tooltip'
 import Button from '@schoolify/core/components/base/inputs/Button'
-import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
-import useCloseTicket from '../hooks/useCloseTicket'
-import Box from '@schoolify/core/components/base/inputs/Box'
+import Card from '@schoolify/core/components/base/inputs/Card'
+import CardContent from '@schoolify/core/components/base/inputs/CardContent'
+
+// Core Components
+import ControlledGridTextField from '@schoolify/core/components/common/ControlledGridTextField'
+import DetailField from '@schoolify/core/components/common/DetailField'
 import FormattedDate from '@schoolify/core/components/common/FormattedDate'
-import Typography from '@schoolify/core/components/base/inputs/Typography'
-import CardContent from '@mui/material/CardContent'
-import Card from '@mui/material/Card'
-// import useGetUserTicket from "../hooks/useGetUserTicket";
-import { isDirty } from 'zod/v3'
-import useGetUserTicket from '../hooks/useGetUserTicket'
+
+// Custom Hooks
+import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
+import useCloseTicket from '@schoolify/features/user/profile/tickets/hooks/useCloseTicket'
+import useAddMessageToTicket from '@schoolify/features/user/profile/tickets/hooks/useAddMessageToTicket'
+import useGetUserTicket from '@schoolify/features/user/profile/tickets/hooks/useGetUserTicket'
+
+// Custom Utilities
+import { ticketInfoData } from '@schoolify/features/user/profile/tickets/utilities/ticketInfoData'
+
+// Validation Schema
+import { UnitOptions } from '@schoolify/features/user/profile/tickets/validation/baseTypes'
+import { ticketDetailValidationSchema } from '@schoolify/features/user/profile/tickets/validation/ticketDetailValidation'
+
+// Form schema
 type SchemaProps = z.infer<typeof ticketDetailValidationSchema>
 
+// Custom Types
 interface DetailTicketProps {}
 
 const DetailTicket = (props: DetailTicketProps) => {
+  // Hooks
   const location = useLocation()
   const queryParams = location.hash.split('?')[1]
   const params = new URLSearchParams(queryParams)
@@ -49,6 +65,7 @@ const DetailTicket = (props: DetailTicketProps) => {
     }
   })
 
+  // Handlers
   const handleAddTicketMessage = async (data: SchemaProps) => {
     const result = await addTicketMessage({ data: data, ticketId: ticketId })
     if (result.isSuccess) handleReset()
@@ -56,12 +73,12 @@ const DetailTicket = (props: DetailTicketProps) => {
 
   const handleCloseTicket = async () => {
     await closeTicket({ ticketId })
-    // if (result.isSuccess) reset();
   }
   const handleReset = () => {
     reset({ content: '' })
   }
 
+  // Helpers
   const ticketFields = ticketInfoData(ticketData?.data, UnitOptions)
   if (!ticketId) return <>تیکت نامعتبر</>
 
@@ -89,13 +106,6 @@ const DetailTicket = (props: DetailTicketProps) => {
                   fullWidth
                   size='small'
                   disabled={ticketData?.data?.status === 'close'}
-                  // onClick={() => {
-                  //   closeTicket(ticketId)
-                  //     .then(() => refetch())
-                  //     .catch(err =>
-                  //       console.error('خطا در بستن تیکت:', err.message)
-                  //     )
-                  // }}
                   onClick={() => handleCloseTicket()}
                   sx={{
                     backgroundColor:

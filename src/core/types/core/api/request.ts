@@ -1,5 +1,5 @@
 export interface BaseRequestPaginationParams {
-  page?: number;
-  size: number;
-  order?: string;
+  page?: number
+  size: number
+  order?: string
 }

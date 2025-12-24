@@ -1,19 +1,16 @@
-// React Type
-
-// Core Components
+// // MUI Components
 import ContentBox from "@schoolify/core/components/common/ContentBox";
 import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
-import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
+
 
 // Custom Hooks
-
-// Feature Components
+import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
+import useListAdminPayment from "@schoolify/features/admin/payments/hooks/useListAdminPayment";
 
 // Custom Utilities
+import { listAdminPymentColumns } from "@schoolify/features/admin/payments/utilities/listAdminPymentColumns";
 
-// Custom Types
-import useListAdminPayment from "../hooks/useListAdminPayment";
-import { listAdminPymentColumns } from "../utilities/listAdminPymentColumns";
+
 
 // Custom Types
 // interface ListStudentProps {}
@@ -23,7 +20,6 @@ const ListAdminPyament = () => {
   // const {} = props;
 
   // Hooks
-
   const {
     filters,
     paginationData: pagination,

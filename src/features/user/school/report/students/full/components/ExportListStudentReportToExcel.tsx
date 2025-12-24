@@ -1,8 +1,14 @@
+//Type Definitions
 import ExcelJS from 'exceljs'
 import { saveAs } from 'file-saver'
-import type ListStudentReportEntity from '../types/api/ListStudentReportEntity'
+
+// Core Components
 import type BasePaginationDataEntity from '@schoolify/core/types/core/api/response'
 import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
+
+// Custom Hooks
+import type ListStudentReportEntity from '@schoolify/features/user/school/report/students/full/types/api/ListStudentReportEntity'
+
 
 interface ExportListStudentReportParams {
   data?: BasePaginationDataEntity<

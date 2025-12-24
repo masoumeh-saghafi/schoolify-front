@@ -27,7 +27,11 @@ const DataTable = (props: DataTableProps) => {
 
   // Props
   const { columns, rows, renderCell, sx } = props;
+  
+  // Hooks
   const theme = useAppTheme();
+
+// Render
   return (
     <TableContainer
       sx={{

@@ -1,7 +1,8 @@
-import { listSummaryClasses } from "@schoolify/features/user/school/management/classStudents/utilities/api/api";
+import ms from "ms";
 import { useQuery } from "@tanstack/react-query";
 
-import ms from "ms";
+import { listSummaryClasses } from "@schoolify/features/user/school/management/classStudents/utilities/api/api";
+
 
 const useListSummaryClass = (classId: string) =>
   useQuery({

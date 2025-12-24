@@ -1,6 +1,6 @@
 import type { TabBoxDataProps } from "@schoolify/core/components/common/TabBox";
-import AddAdminRole from "../components/AddAdminRole";
-import ListAdminRoles from "../components/ListAdminRoles";
+import AddAdminRole from "@schoolify/features/admin/managers/components/AddAdminRole";
+import ListAdminRoles from "@schoolify/features/admin/managers/components/ListAdminRoles";
 
 export const tabAdminRoleEndpointsData: TabBoxDataProps[] = [
   {

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient,  } from '@tanstack/react-query'
 
-import { getImpersonateToken } from '../utilities/api/api'
-import { listCustomerQueryKey } from './useListCustomer'
+import { getImpersonateToken } from '@schoolify/features/admin/customers/utilities/api/api'
+import { listCustomerQueryKey } from '@schoolify/features/admin/customers/hooks/useListCustomer'
 
 const useGetImpersonateToken = () => {
   const queryClient = useQueryClient()

@@ -1,7 +1,7 @@
 // React Type
 import { useParams } from "react-router-dom";
 import { useForm, useWatch } from "react-hook-form";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 // Type Definitions
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -37,7 +37,7 @@ const AddClassStudent = (props: AddClassStudentProps) => {
   // const {} = props;
 
   // States
-  const [studentSearchText, setStudentSearchText] = useState("");
+  // const [studentSearchText, setStudentSearchText] = useState("");
 
   // Hooks
   const {

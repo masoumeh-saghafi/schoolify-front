@@ -1,7 +1,7 @@
 import type { GridColDef } from '@mui/x-data-grid/models/colDef'
 import FormattedDate from '@schoolify/core/components/common/FormattedDate'
 import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
-import type ListAdminRolesEntity from '../types/api/ListAdminRolesEntity'
+import type ListAdminRolesEntity from '@schoolify/features/admin/managers/types/api/ListAdminRolesEntity'
 
 
 const roleLabels: Record<string, string> = {

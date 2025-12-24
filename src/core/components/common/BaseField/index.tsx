@@ -11,7 +11,6 @@ interface BaseFieldProps {
 
 const BaseField = (props: BaseFieldProps) => {
   // Props
-
   const { label, value, type = 'text', readOnly = true } = props
 
   // Render

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteAdminRole } from "../utilities/api/api";
-import { listAdminRolesQueryKey } from "./useListAdminRoles";
+import { deleteAdminRole } from "@schoolify/features/admin/managers/utilities/api/api";
+import { listAdminRolesQueryKey } from "@schoolify/features/admin/managers/hooks/useListAdminRoles";
 
 const useDeleteAdminRole = () => {
   const queryClient = useQueryClient();

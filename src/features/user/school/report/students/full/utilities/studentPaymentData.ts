@@ -1,4 +1,4 @@
-import type StudentReportEntity from "../types/api/StudentReportEntity";
+import type StudentReportEntity from "@schoolify/features/user/school/report/students/full/types/api/StudentReportEntity";
 
 
 export interface StudentPaymentField {

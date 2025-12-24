@@ -1,42 +1,48 @@
+// React Types
+import { useEffect, type ReactNode } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 // Feature Components
-import routes from "@schoolify/core/utilities/routes";
-import Dashboard from "@schoolify/features/shared/dashboard/components";
-import type { DashboardSidebarExitButtonDataProps } from "@schoolify/features/shared/dashboard/components/Sidebar";
+import Dashboard from '@schoolify/features/shared/dashboard/components'
+import type { DashboardSidebarExitButtonDataProps } from '@schoolify/features/shared/dashboard/components/Sidebar'
 
 // Custom Utilities
+import routes from '@schoolify/core/utilities/routes'
+import { adminDashboardSidebarData } from '@schoolify/features/admin/dashboard/utilities/data'
 
-// React Types
-import { useEffect, type ReactNode } from "react";
-import { useNavigate } from "react-router-dom";
-import { adminDashboardSidebarData } from "../utilities/data";
-import useUserProfile from "@schoolify/features/shared/profile/hooks/useUserProfile";
+// Custom Hooks
+import useUserProfile from '@schoolify/features/shared/profile/hooks/useUserProfile'
 
 // Custom Types
 interface AdminDashboardProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 const AdminDashboard = (props: AdminDashboardProps) => {
   // Props
-  const { children } = props;
-  const navigate = useNavigate();
+  const { children } = props
 
-  const { data, isLoading } = useUserProfile();
+  // Hooks
+  const navigate = useNavigate()
 
-  const sidebarData = adminDashboardSidebarData(data?.data?.role);
+  const { data, isLoading } = useUserProfile()
+
+  // Effect
+  useEffect(() => {
+    if (isLoading) return
+
+    if (!data?.data?.role || data.data.role === 'user') {
+      navigate(routes.profile.baseUrl)
+    }
+  }, [data])
+
+  // Helpers
+  const sidebarData = adminDashboardSidebarData(data?.data?.role)
 
   const exitButtonData: DashboardSidebarExitButtonDataProps = {
-    title: "خروج از حساب",
-    onClick: () => navigate(routes.logout),
-  };
-
-  useEffect(() => {
-    if (isLoading) return;
-
-    if (!data?.data?.role || data.data.role === "user") {
-      navigate(routes.profile.baseUrl);
-    }
-  }, [data]);
+    title: 'خروج از حساب',
+    onClick: () => navigate(routes.logout)
+  }
 
   // Render
   return (
@@ -48,7 +54,7 @@ const AdminDashboard = (props: AdminDashboardProps) => {
         {children}
       </Dashboard>
     </>
-  );
-};
+  )
+}
 
-export default AdminDashboard;
+export default AdminDashboard

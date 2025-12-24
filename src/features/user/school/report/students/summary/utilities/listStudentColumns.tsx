@@ -2,7 +2,7 @@ import type { GridColDef } from '@mui/x-data-grid/models/colDef'
 
 import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 
-import type ListSummaryStudentReportEntity from '../types/api/ListSummaryStudentReportEntity'
+import type ListSummaryStudentReportEntity from '@schoolify/features/user/school/report/students/summary/types/api/ListSummaryStudentReportEntity'
 import FormattedDate from '@schoolify/core/components/common/FormattedDate'
 
 export const listSummaryStudentReportColumns: GridColDef<

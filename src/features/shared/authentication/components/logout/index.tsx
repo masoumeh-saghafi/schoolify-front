@@ -1,17 +1,14 @@
-// MUI Components
-
-// Custom Hooks
+// React Type
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
 // Core Components
 import routes from "@schoolify/core/utilities/routes";
 
-// Feature Components
-
 // Custom Utilities
-import { logout } from "../../utilities/auth";
-import { useQueryClient } from "@tanstack/react-query";
+import { logout } from "@schoolify/features/shared/authentication/utilities/auth";
+
 
 // Custom Types
 interface LogoutProps {}
@@ -22,6 +19,7 @@ const Logout = (props: LogoutProps) => {
 
   const queryClient = useQueryClient();
 
+  // Handlers
   const handleLogout = async () => {
     logout();
 
@@ -30,13 +28,11 @@ const Logout = (props: LogoutProps) => {
     navigate(routes.index);
   };
 
+  // Effect
   useEffect(() => {
     handleLogout();
   }, []);
 
-  // Handlers
-
-  // Helpers
 
   // Render
   return <></>;

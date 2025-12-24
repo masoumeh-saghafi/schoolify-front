@@ -5,7 +5,7 @@ import schoolInformationEndpoints from '@schoolify/features/user/school/manageme
 
 export const getSchoolInfo = async (schoolId: string) => {
   return await getData<BaseIdDataEntity<SchoolInfoEntity>>(
-    schoolInformationEndpoints.SchoolInfo(schoolId)
+    schoolInformationEndpoints.schoolInfo(schoolId)
   )
 }
 

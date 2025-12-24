@@ -1,15 +1,19 @@
+// React Types
+import type { ReactNode } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+// Core Components
+import routes from "@schoolify/core/utilities/routes";
+
 // Feature Components
 import Dashboard from "@schoolify/features/shared/dashboard/components";
+import type { DashboardSidebarExitButtonDataProps } from "@schoolify/features/shared/dashboard/components/Sidebar";
 
 // Custom Utilities
 import { schoolReportSidebarData } from "@schoolify/features/user/school/report/dashboard/utilities/data";
 
-// React Types
-import type { ReactNode } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+// Custom Hooks
 import useListSummarySchools from "@schoolify/features/user/shared/school/hooks/useListSummarySchools";
-import type { DashboardSidebarExitButtonDataProps } from "@schoolify/features/shared/dashboard/components/Sidebar";
-import routes from "@schoolify/core/utilities/routes";
 
 // Custom Types
 interface SchoolReportDashboardProps {

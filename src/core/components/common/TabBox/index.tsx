@@ -1,111 +1,108 @@
+// React Types
+import { useLocation, useNavigate } from 'react-router-dom'
+import type { ReactNode } from 'react'
+
 // MUI Components
-import Box from "@schoolify/core/components/base/inputs/Box";
-import TabContext from "@schoolify/core/components/base/inputs/TabContext";
-import TabList from "@schoolify/core/components/base/inputs/TabList";
-import TabPanel from "@schoolify/core/components/base/inputs/TabPanel";
-import Tab from "@schoolify/core/components/base/inputs/Tab";
+import Box from '@schoolify/core/components/base/inputs/Box'
+import TabContext from '@schoolify/core/components/base/inputs/TabContext'
+import TabList from '@schoolify/core/components/base/inputs/TabList'
+import TabPanel from '@schoolify/core/components/base/inputs/TabPanel'
+import Tab from '@schoolify/core/components/base/inputs/Tab'
+
+// Core Components
+import { tabBoxGenerateFullUrlPath } from '@schoolify/core/components/common/tabBoxGenerateFullUrlPath/index'
 
 // Custom Hooks
-import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
-
-// React Types
-import { useLocation, useNavigate } from "react-router-dom";
-import type { ReactNode } from "react";
+import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
 
 // Custom Types
 export interface TabBoxDataProps {
-  label: string;
-  key: string;
-  children: ReactNode;
-  hidden?: boolean;
-  minWidth?: number;
+  label: string
+  key: string
+  children: ReactNode
+  hidden?: boolean
+  minWidth?: number
 }
 
 interface TabBoxProps {
-  data: TabBoxDataProps[];
-  baseUrlPath: string;
+  data: TabBoxDataProps[]
+  baseUrlPath: string
 }
-
-export const tabBoxGenerateFullUrlPath = (
-  baseUrl: string,
-  key: string
-  // queryParams: Record<string, any>
-) => `${baseUrl}#${key}`;
 
 const TabBox = (props: TabBoxProps) => {
   // Props
-  const { data, baseUrlPath } = props;
+  const { data, baseUrlPath } = props
 
   // Hooks
-  const location = useLocation();
-  const navigate = useNavigate();
-  const theme = useAppTheme();
+  const location = useLocation()
+  const navigate = useNavigate()
+  const theme = useAppTheme()
 
   // Helpers
   const generateFullUrlPath = (key: string) =>
-    tabBoxGenerateFullUrlPath(baseUrlPath, key);
+    tabBoxGenerateFullUrlPath(baseUrlPath, key)
 
   const foundCurrentTab = data.filter(
-    (item) =>
-      location.pathname + location.hash.split("?")[0] ===
+    item =>
+      location.pathname + location.hash.split('?')[0] ===
       generateFullUrlPath(item.key)
-  );
+  )
   const currentTab =
-    foundCurrentTab.length === 1 ? foundCurrentTab[0].key : data[0].key;
+    foundCurrentTab.length === 1 ? foundCurrentTab[0].key : data[0].key
 
   // Handlers
   const handleChange = (_event: React.SyntheticEvent, newKey: string) => {
-    navigate(generateFullUrlPath(newKey));
-  };
+    navigate(generateFullUrlPath(newKey))
+  }
   // Render
   return (
-    <Box sx={{ width: "99%", typography: "body1", direction: "ltr", mt: 3 }}>
+    <Box sx={{ width: '99%', typography: 'body1', direction: 'ltr', mt: 3 }}>
       <TabContext value={currentTab}>
         <Box
           sx={{
             backgroundColor: theme.palette.background.paper,
             borderRadius: 2,
-            overflowX: "auto",
-            whiteSpace: "nowrap",
-            scrollbarWidth: "thin", // for Firefox
-            "&::-webkit-scrollbar": { height: 4 }, // for Chrome
-            "&::-webkit-scrollbar-thumb": {
-              backgroundColor: "#ccc",
-              borderRadius: 2,
-            },
+            overflowX: 'auto',
+            whiteSpace: 'nowrap',
+            scrollbarWidth: 'thin', // for Firefox
+            '&::-webkit-scrollbar': { height: 4 }, // for Chrome
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: '#ccc',
+              borderRadius: 2
+            }
           }}
         >
           <TabList
             onChange={handleChange}
-            slotProps={{ indicator: { style: { display: "none" } } }}
+            slotProps={{ indicator: { style: { display: 'none' } } }}
             sx={{
-              display: "inline-flex", // important to stay in scrollable inline mode
+              display: 'inline-flex', // important to stay in scrollable inline mode
               color: theme.palette.text.title,
-              minWidth: "max-content",
+              minWidth: 'max-content'
             }}
-            textColor="inherit"
+            textColor='inherit'
           >
-            {data.map((item) => (
+            {data.map(item => (
               <Tab
                 label={item.label}
                 value={item.key}
                 sx={{
                   minWidth: item.minWidth || 120,
-                  ...(item.hidden ? { display: "none" } : {}),
+                  ...(item.hidden ? { display: 'none' } : {})
                 }}
               />
             ))}
           </TabList>
         </Box>
 
-        {data.map((item) => (
+        {data.map(item => (
           <TabPanel key={item.key} value={item.key}>
             {item.children}
           </TabPanel>
         ))}
       </TabContext>
     </Box>
-  );
-};
+  )
+}
 
-export default TabBox;
+export default TabBox

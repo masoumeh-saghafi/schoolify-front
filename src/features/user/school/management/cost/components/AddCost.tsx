@@ -1,5 +1,5 @@
 // React Type
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useForm, useWatch, type Resolver } from "react-hook-form";
 
@@ -48,7 +48,6 @@ const AddCost = (props: AddCostProps) => {
   const [selectedEducationLevelId, setSelectedEducationLevelId] = useState("");
   const [selectedEducationGradeId, setSelectedEducationGradeId] = useState("");
   const [selectedClassId, setSelectedClassId] = useState("");
-  const [studentSearchText, setStudentSearchText] = useState("");
   const [referenceRecordId, setReferenceRecordId] = useState("");
 
   // Hooks
@@ -132,10 +131,7 @@ const AddCost = (props: AddCostProps) => {
     if (result.isSuccess) reset(data);
   };
 
-  // const handleStudentInput = useCallback((val: string) => {
-  //   if (studentSearchText === val) return;
-  //   setStudentSearchText(val);
-  // }, []);
+
 
   // Render
   return (
@@ -270,8 +266,7 @@ const AddCost = (props: AddCostProps) => {
                 options={studentDataOptions}
                 value={referenceRecordId}
                 onChange={setReferenceRecordId}
-                // inputValue={studentSearchText}
-                // onInputChange={handleStudentInput}
+             
               />
             </>
           )}

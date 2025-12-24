@@ -5,13 +5,12 @@ import type {
 } from "@schoolify/core/types/core/api/response";
 
 import {
-  deleteData,
   getListPaginatedData,
   postData,
 } from "@schoolify/core/utilities/api/api";
 
-import adminRoleEndpoints from "./endpoints";
-import type ListAdminRolesEntity from "../../types/api/ListAdminRolesEntity";
+import adminRoleEndpoints from "@schoolify/features/admin/managers/utilities/api/endpoints";
+import type ListAdminRolesEntity from "@schoolify/features/admin/managers/types/api/ListAdminRolesEntity";
 
 export const addAdminRole = async (data: any) => {
   return await postData<BaseAddResponseEntity>(

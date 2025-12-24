@@ -1,180 +1,192 @@
-import { createBrowserRouter } from "react-router-dom";
-import LandingLayout from "@schoolify/app/landing/layout";
-import LandingPage from "@schoolify/app/landing/page";
-import LoginPage from "@schoolify/app/authentication/login/page";
-import AboutUsPage from "@schoolify/app/landing/about-us/page";
-import routes from "@schoolify/core/utilities/routes";
-import ProfileLayout from "@schoolify/app/profile/layout";
-import ProfilePage from "@schoolify/app/profile/page";
-import PaymentGatewayPage from "@schoolify/app/gateway/page";
-import SchoolManagementLayout from "@schoolify/app/school/management/layout";
-import SchoolManagementInformationPage from "@schoolify/app/school/management/information/page";
-import SchoolManagementStudentPage from "@schoolify/app/school/management/students/page";
-import SchoolManagementClassPage from "./school/management/class/page";
-import SchoolManagementClassStudentsPage from "./school/management/classStudents/page";
-import SchoolManagementEducationYearPage from "./school/management/eucationYear/page";
-import SchoolManagementEducationLevelPage from "./school/management/eucationLevel/page";
-import SchoolManagementEducationGradePage from "./school/management/eucationGrade/page";
-import SchoolManagementCostTypePage from "./school/management/costType/page";
-import SchoolManagementCostPage from "./school/management/cost/page";
-import SchoolManagementStudentPaymentPage from "./school/management/studentPayment/page";
-import LogoutPage from "./authentication/logout/page";
-import SchoolManagementUserRolePage from "./school/management/userRole/page";
-import TicketPage from "./profile/ticket/page";
-import SchoolReportLayout from "./school/report/layout";
-import SchoolReportStudentFullPage from "./school/report/students/full/page";
-import SchoolReportStudentSummaryPage from "./school/report/students/summary/page";
-import AdminLayout from "./admin/layout";
-import AdminDashboardPage from "./admin/page";
-import AdminTicketPage from "./admin/tickets/page";
-import AdminPaymentsPage from "./admin/payments/page";
-import AdminManagersPage from "./admin/managers/page";
-import AdminCustomersPage from "./admin/customers/page";
-import SchoolReportPage from "./school/report/page";
+// React Type
+import { createBrowserRouter } from 'react-router-dom'
+
+// Custom Utilities
+import routes from '@schoolify/core/utilities/routes'
+
+//App Components
+import PaymentGatewayPage from '@schoolify/app/gateway/page'
+
+// Landing
+import LandingLayout from '@schoolify/app/landing/layout'
+import LandingPage from '@schoolify/app/landing/page'
+import LoginPage from '@schoolify/app/authentication/login/page'
+import AboutUsPage from '@schoolify/app/landing/about-us/page'
+
+// Profile
+import ProfileLayout from '@schoolify/app/profile/layout'
+import ProfilePage from '@schoolify/app/profile/page'
+import TicketPage from '@schoolify/app/profile/ticket/page'
+
+// School
+import SchoolManagementLayout from '@schoolify/app/school/management/layout'
+import SchoolManagementInformationPage from '@schoolify/app/school/management/information/page'
+import SchoolManagementStudentPage from '@schoolify/app/school/management/students/page'
+import SchoolManagementClassPage from '@schoolify/app/school/management/class/page'
+import SchoolManagementClassStudentsPage from '@schoolify/app/school/management/classStudents/page'
+import SchoolManagementEducationYearPage from '@schoolify/app/school/management/eucationYear/page'
+import SchoolManagementEducationLevelPage from '@schoolify/app/school/management/eucationLevel/page'
+import SchoolManagementEducationGradePage from '@schoolify/app/school/management/eucationGrade/page'
+import SchoolManagementCostTypePage from '@schoolify/app/school/management/costType/page'
+import SchoolManagementCostPage from '@schoolify/app/school/management/cost/page'
+import SchoolManagementStudentPaymentPage from '@schoolify/app/school/management/studentPayment/page'
+import SchoolManagementUserRolePage from '@schoolify/app/school/management/userRole/page'
+import SchoolReportLayout from '@schoolify/app/school/report/layout'
+import SchoolReportStudentFullPage from '@schoolify/app/school/report/students/full/page'
+import SchoolReportStudentSummaryPage from '@schoolify/app/school/report/students/summary/page'
+import SchoolReportPage from '@schoolify/app/school/report/page'
+
+//Authentication
+import LogoutPage from '@schoolify/app/authentication/logout/page'
+
+//Admin
+import AdminLayout from '@schoolify/app/admin/layout'
+import AdminDashboardPage from '@schoolify/app/admin/page'
+import AdminTicketPage from '@schoolify/app/admin/tickets/page'
+import AdminPaymentsPage from '@schoolify/app/admin/payments/page'
+import AdminManagersPage from '@schoolify/app/admin/managers/page'
+import AdminCustomersPage from '@schoolify/app/admin/customers/page'
 
 const router = createBrowserRouter([
   {
     path: routes.index,
     element: <LandingLayout />,
-    // errorElement: <ErrorPage />,
+
     children: [
       {
         index: true,
-        element: <LandingPage />,
+        element: <LandingPage />
       },
       {
         path: routes.aboutUs,
-        element: <AboutUsPage />,
-      },
-    ],
+        element: <AboutUsPage />
+      }
+    ]
   },
   {
     path: routes.login,
-    element: <LoginPage />,
-    // errorElement: <ErrorPage />,
+    element: <LoginPage />
   },
   {
     path: routes.logout,
-    element: <LogoutPage />,
-    // errorElement: <ErrorPage />,
+    element: <LogoutPage />
   },
   {
     path: routes.paymentGatewayBase,
-    element: <PaymentGatewayPage />,
-    // errorElement: <ErrorPage />,
+    element: <PaymentGatewayPage />
   },
   {
     path: routes.profile.baseUrl,
     element: <ProfileLayout />,
-    // errorElement: <ErrorPage />,
+
     children: [
       {
         index: true,
-        element: <ProfilePage />,
+        element: <ProfilePage />
       },
       {
         path: routes.profile.tickets.url,
-        element: <TicketPage />,
-      },
-    ],
+        element: <TicketPage />
+      }
+    ]
   },
   {
     path: routes.school.management.baseUrl,
     element: <SchoolManagementLayout />,
-    // errorElement: <ErrorPage />,
+
     children: [
       {
         index: true,
-        element: <SchoolManagementInformationPage />,
+        element: <SchoolManagementInformationPage />
       },
       {
         path: routes.school.management.student.url,
-        element: <SchoolManagementStudentPage />,
+        element: <SchoolManagementStudentPage />
       },
       {
         path: routes.school.management.educationYear.url,
-        element: <SchoolManagementEducationYearPage />,
+        element: <SchoolManagementEducationYearPage />
       },
       {
         path: routes.school.management.educationLevel.url,
-        element: <SchoolManagementEducationLevelPage />,
+        element: <SchoolManagementEducationLevelPage />
       },
       {
         path: routes.school.management.educationGrade.url,
-        element: <SchoolManagementEducationGradePage />,
+        element: <SchoolManagementEducationGradePage />
       },
       {
         path: routes.school.management.classes.url,
-        element: <SchoolManagementClassPage />,
+        element: <SchoolManagementClassPage />
       },
       {
         path: routes.school.management.classStudents.url,
-        element: <SchoolManagementClassStudentsPage />,
+        element: <SchoolManagementClassStudentsPage />
       },
       {
         path: routes.school.management.costType.url,
-        element: <SchoolManagementCostTypePage />,
+        element: <SchoolManagementCostTypePage />
       },
       {
         path: routes.school.management.cost.url,
-        element: <SchoolManagementCostPage />,
+        element: <SchoolManagementCostPage />
       },
       {
         path: routes.school.management.studentPayment.url,
-        element: <SchoolManagementStudentPaymentPage />,
+        element: <SchoolManagementStudentPaymentPage />
       },
       {
         path: routes.school.management.userRoles.url,
-        element: <SchoolManagementUserRolePage />,
-      },
-    ],
+        element: <SchoolManagementUserRolePage />
+      }
+    ]
   },
   {
     path: routes.school.report.baseUrl,
     element: <SchoolReportLayout />,
-    // errorElement: <ErrorPage />,
+
     children: [
       {
         index: true,
-        element: <SchoolReportPage />,
+        element: <SchoolReportPage />
       },
       {
         path: routes.school.report.student.full.url,
-        element: <SchoolReportStudentFullPage />,
+        element: <SchoolReportStudentFullPage />
       },
       {
         path: routes.school.report.student.summary.url,
-        element: <SchoolReportStudentSummaryPage />,
-      },
-    ],
+        element: <SchoolReportStudentSummaryPage />
+      }
+    ]
   },
   {
     path: routes.admin.baseUrl,
     element: <AdminLayout />,
-    // errorElement: <ErrorPage />,
+
     children: [
       {
         index: true,
-        element: <AdminDashboardPage />,
+        element: <AdminDashboardPage />
       },
       {
         path: routes.admin.tickets.url,
-        element: <AdminTicketPage />,
+        element: <AdminTicketPage />
       },
       {
         path: routes.admin.payments.url,
-        element: <AdminPaymentsPage />,
+        element: <AdminPaymentsPage />
       },
       {
         path: routes.admin.managers.url,
-        element: <AdminManagersPage />,
+        element: <AdminManagersPage />
       },
       {
         path: routes.admin.customers.url,
-        element: <AdminCustomersPage />,
-      },
-    ],
-  },
-]);
+        element: <AdminCustomersPage />
+      }
+    ]
+  }
+])
 
-export default router;
+export default router

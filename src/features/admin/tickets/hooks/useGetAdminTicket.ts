@@ -1,6 +1,6 @@
 import ms from "ms";
 import { useQuery } from "@tanstack/react-query";
-import { getAdminTicket } from "../utilities/api/api";
+import { getAdminTicket } from "@schoolify/features/admin/tickets/utilities/api/api";
 
 export const adminTicketQueryKey = (ticketId: string) => [
   "getAdminTicket",

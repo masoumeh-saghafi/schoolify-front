@@ -14,11 +14,9 @@ interface FormattedDateProps {
 }
 
 const FormattedDate = (props: FormattedDateProps) => {
-
   // Props
   const { date, showTime } = props
- 
- 
+
   if (!date || !dayjs(date).isValid()) {
     return (
       <Typography sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
@@ -27,7 +25,6 @@ const FormattedDate = (props: FormattedDateProps) => {
     )
   }
 
-  
   let formatStr = 'YYYY/MM/DD'
   if (showTime) {
     formatStr = 'HH:mm ' + formatStr
@@ -38,7 +35,7 @@ const FormattedDate = (props: FormattedDateProps) => {
     .locale('fa')
     .format(formatStr)
 
-
+  // Render
   return <span>{formatted}</span>
 }
 

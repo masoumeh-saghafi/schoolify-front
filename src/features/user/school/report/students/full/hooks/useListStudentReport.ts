@@ -1,9 +1,8 @@
-import { useQuery } from '@tanstack/react-query'
 import ms from 'ms'
+import { useQuery } from '@tanstack/react-query'
 
 import type { BaseRequestPaginationParams } from '@schoolify/core/types/core/api/request'
-import { listStudentReport } from '../utilities/api/api'
-// import { listuseListStudentReport } from '@schoolify/features/user/school/management/useListStudentReport/utilities/api/api'
+import { listStudentReport } from '@schoolify/features/user/school/report/students/full/utilities/api/api'
 
 interface useListStudentReportProps {
   educationYearId: string

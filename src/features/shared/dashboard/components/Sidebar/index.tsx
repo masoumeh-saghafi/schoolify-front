@@ -1,5 +1,6 @@
 // MUI Components
 import Box from "@schoolify/core/components/base/inputs/Box";
+import Button from "@schoolify/core/components/base/inputs/Button";
 
 // Feature Components
 import SidebarListItem, {
@@ -13,7 +14,6 @@ import useClientDeviceType from "@schoolify/core/hooks/common/useClientDeviceTyp
 
 //Type Definitions
 import type { JSX } from "@emotion/react/jsx-runtime";
-import Button from "@schoolify/core/components/base/inputs/Button";
 
 // Custom Types
 // Base shared interface

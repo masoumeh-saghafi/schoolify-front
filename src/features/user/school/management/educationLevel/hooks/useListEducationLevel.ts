@@ -1,7 +1,7 @@
-import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
-
-import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
+import { useQuery } from "@tanstack/react-query";
+
+import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
 import { listEducationLevel } from "@schoolify/features/user/school/management/educationLevel/utilities/api/api";
 
 interface useListEducationLevelProps {

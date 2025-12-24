@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { listAdminRolesQueryKey } from './useListAdminRoles'
-import { addAdminRole } from '../utilities/api/api'
+import { listAdminRolesQueryKey } from '@schoolify/features/admin/managers/hooks/useListAdminRoles'
+import { addAdminRole } from '@schoolify/features/admin/managers/utilities/api/api'
 
 const useAddAdminRole = () => {
   const queryClient = useQueryClient()

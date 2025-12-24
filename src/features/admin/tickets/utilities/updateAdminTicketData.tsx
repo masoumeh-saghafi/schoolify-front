@@ -1,4 +1,4 @@
-import { statusOptions, typeOptions } from '../validation/baseTypes'
+import { statusOptions, typeOptions } from '@schoolify/features/admin/tickets/validation/baseTypes'
 
 export const updateAdminTicketData = [
   {

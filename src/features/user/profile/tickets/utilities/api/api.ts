@@ -13,9 +13,9 @@ import {
 } from "@schoolify/core/utilities/api/api";
 
 import schoolStudentEndpoints from "@schoolify/features/user/school/management/student/utilities/api/endpoints";
-import ticketEndpoints from "./endpoints";
-import type ListTicketEntity from "../../types/api/ListTicketEntity";
-import type UserTicketEntity from "../../types/api/UserTicketEntity";
+import ticketEndpoints from "@schoolify/features/user/profile/tickets/utilities/api/endpoints";
+import type ListTicketEntity from "@schoolify/features/user/profile/tickets/types/api/ListTicketEntity";
+import type UserTicketEntity from "@schoolify/features/user/profile/tickets/types/api/UserTicketEntity";
 
 export const addTicket = async (data: any) => {
   return await postData<BaseAddResponseEntity>(ticketEndpoints.addTicket, data);

@@ -1,139 +1,162 @@
 const routes = {
-  index: "/",
-  aboutUs: "/about-us",
-  login: "/login",
-  logout: "/logout",
+  index: '/',
+
+  aboutUs: '/about-us',
+
+  login: '/login',
+
+  logout: '/logout',
+
   profile: {
-    baseUrl: "/profile",
+    baseUrl: '/profile',
+
     tickets: {
-      url: "tickets",
-      index: () => routes.profile.baseUrl + "/" + routes.profile.tickets.url,
-    },
+      url: 'tickets',
+      index: () => routes.profile.baseUrl + '/' + routes.profile.tickets.url
+    }
   },
 
-  paymentGatewayBase: "/payment",
+  paymentGatewayBase: '/payment',
   paymentGateway: (paymentId: string) =>
     `${routes.paymentGatewayBase}?paymentId=${paymentId}`,
 
   school: {
-    baseUrl: "/school/:schoolId",
+    baseUrl: '/school/:schoolId',
+
     management: {
-      baseUrl: "/school/:schoolId/management",
+      baseUrl: '/school/:schoolId/management',
       index: (schoolId: string) =>
-        routes.school.management.baseUrl.replace(":schoolId", schoolId),
+        routes.school.management.baseUrl.replace(':schoolId', schoolId),
+
       student: {
-        url: "students",
+        url: 'students',
         index: (schoolId: string) =>
-          routes.school.management.baseUrl.replace(":schoolId", schoolId) +
-          "/" +
-          routes.school.management.student.url,
+          routes.school.management.baseUrl.replace(':schoolId', schoolId) +
+          '/' +
+          routes.school.management.student.url
       },
+
       educationYear: {
-        url: "education-years",
+        url: 'education-years',
         index: (schoolId: string) =>
-          routes.school.management.baseUrl.replace(":schoolId", schoolId) +
-          "/" +
-          routes.school.management.educationYear.url,
+          routes.school.management.baseUrl.replace(':schoolId', schoolId) +
+          '/' +
+          routes.school.management.educationYear.url
       },
+
       educationLevel: {
-        url: "education-levels",
+        url: 'education-levels',
         index: (schoolId: string) =>
-          routes.school.management.baseUrl.replace(":schoolId", schoolId) +
-          "/" +
-          routes.school.management.educationLevel.url,
+          routes.school.management.baseUrl.replace(':schoolId', schoolId) +
+          '/' +
+          routes.school.management.educationLevel.url
       },
+
       educationGrade: {
-        url: "education-grades",
+        url: 'education-grades',
         index: (schoolId: string) =>
-          routes.school.management.baseUrl.replace(":schoolId", schoolId) +
-          "/" +
-          routes.school.management.educationGrade.url,
+          routes.school.management.baseUrl.replace(':schoolId', schoolId) +
+          '/' +
+          routes.school.management.educationGrade.url
       },
+
       classes: {
-        url: "classes",
+        url: 'classes',
         index: (schoolId: string) =>
-          routes.school.management.baseUrl.replace(":schoolId", schoolId) +
-          "/" +
-          routes.school.management.classes.url,
+          routes.school.management.baseUrl.replace(':schoolId', schoolId) +
+          '/' +
+          routes.school.management.classes.url
       },
+
       classStudents: {
-        url: "classes-students",
+        url: 'classes-students',
         index: (schoolId: string) =>
-          routes.school.management.baseUrl.replace(":schoolId", schoolId) +
-          "/" +
-          routes.school.management.classStudents.url,
+          routes.school.management.baseUrl.replace(':schoolId', schoolId) +
+          '/' +
+          routes.school.management.classStudents.url
       },
+
       costType: {
-        url: "cost-type",
+        url: 'cost-type',
         index: (schoolId: string) =>
-          routes.school.management.baseUrl.replace(":schoolId", schoolId) +
-          "/" +
-          routes.school.management.costType.url,
+          routes.school.management.baseUrl.replace(':schoolId', schoolId) +
+          '/' +
+          routes.school.management.costType.url
       },
+
       cost: {
-        url: "costs",
+        url: 'costs',
         index: (schoolId: string) =>
-          routes.school.management.baseUrl.replace(":schoolId", schoolId) +
-          "/" +
-          routes.school.management.cost.url,
+          routes.school.management.baseUrl.replace(':schoolId', schoolId) +
+          '/' +
+          routes.school.management.cost.url
       },
+
       studentPayment: {
-        url: "students-payment",
+        url: 'students-payment',
         index: (schoolId: string) =>
-          routes.school.management.baseUrl.replace(":schoolId", schoolId) +
-          "/" +
-          routes.school.management.studentPayment.url,
+          routes.school.management.baseUrl.replace(':schoolId', schoolId) +
+          '/' +
+          routes.school.management.studentPayment.url
       },
+
       userRoles: {
-        url: "user-roles",
+        url: 'user-roles',
         index: (schoolId: string) =>
-          routes.school.management.baseUrl.replace(":schoolId", schoolId) +
-          "/" +
-          routes.school.management.userRoles.url,
-      },
+          routes.school.management.baseUrl.replace(':schoolId', schoolId) +
+          '/' +
+          routes.school.management.userRoles.url
+      }
     },
+
     report: {
-      baseUrl: "/school/:schoolId/report",
+      baseUrl: '/school/:schoolId/report',
       index: (schoolId: string) =>
-        routes.school.report.baseUrl.replace(":schoolId", schoolId),
+        routes.school.report.baseUrl.replace(':schoolId', schoolId),
+
       student: {
         full: {
-          url: "students/full",
+          url: 'students/full',
           index: (schoolId: string) =>
-            routes.school.report.baseUrl.replace(":schoolId", schoolId) +
-            "/" +
-            routes.school.report.student.full.url,
+            routes.school.report.baseUrl.replace(':schoolId', schoolId) +
+            '/' +
+            routes.school.report.student.full.url
         },
+
         summary: {
-          url: "students/summary",
+          url: 'students/summary',
           index: (schoolId: string) =>
-            routes.school.report.baseUrl.replace(":schoolId", schoolId) +
-            "/" +
-            routes.school.report.student.summary.url,
-        },
-      },
-    },
+            routes.school.report.baseUrl.replace(':schoolId', schoolId) +
+            '/' +
+            routes.school.report.student.summary.url
+        }
+      }
+    }
   },
 
   admin: {
-    baseUrl: "/admin",
-    tickets: {
-      url: "tickets",
-      index: () => routes.admin.baseUrl + "/" + routes.admin.tickets.url,
-    },
-    payments: {
-      url: "payments",
-      index: () => routes.admin.baseUrl + "/" + routes.admin.payments.url,
-    },
-    customers: {
-      url: "customers",
-      index: () => routes.admin.baseUrl + "/" + routes.admin.customers.url,
-    },
-    managers: {
-      url: "managers",
-      index: () => routes.admin.baseUrl + "/" + routes.admin.managers.url,
-    },
-  },
-};
+    baseUrl: '/admin',
 
-export default routes;
+    tickets: {
+      url: 'tickets',
+      index: () => routes.admin.baseUrl + '/' + routes.admin.tickets.url
+    },
+
+    payments: {
+      url: 'payments',
+      index: () => routes.admin.baseUrl + '/' + routes.admin.payments.url
+    },
+
+    customers: {
+      url: 'customers',
+      index: () => routes.admin.baseUrl + '/' + routes.admin.customers.url
+    },
+
+    managers: {
+      url: 'managers',
+      index: () => routes.admin.baseUrl + '/' + routes.admin.managers.url
+    }
+  }
+}
+
+export default routes

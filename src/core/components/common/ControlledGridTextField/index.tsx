@@ -19,16 +19,26 @@ interface FormGridTextFieldProps<T extends FieldValues> {
   xs?: number
   sm?: number
   placeholder?: string
-  rows?: number 
-  multiline?:boolean
-
+  rows?: number
+  multiline?: boolean
 }
 
 const ControlledGridTextField = <T extends FieldValues>(
   Props: FormGridTextFieldProps<T>
 ) => {
   // Props
-  const { control, name, label,rows,multiline, helperText,placeholder, xs = 12, sm = 6, ...props } = Props
+  const {
+    control,
+    name,
+    label,
+    rows,
+    multiline,
+    helperText,
+    placeholder,
+    xs = 12,
+    sm = 6,
+    ...props
+  } = Props
   // Render
   return (
     <Grid size={{ xs, sm }}>

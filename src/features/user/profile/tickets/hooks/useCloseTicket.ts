@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { closeTicket } from "../utilities/api/api";
-import { userTicketQueryKey } from "./useGetUserTicket";
+import { closeTicket } from "@schoolify/features/user/profile/tickets/utilities/api/api";
+import { userTicketQueryKey } from "@schoolify/features/user/profile/tickets/hooks/useGetUserTicket";
 
 const useCloseTicket = () => {
   const queryClient = useQueryClient();

@@ -1,7 +1,8 @@
-import { listSummaryEducationLevel } from "@schoolify/features/user/school/management/educationGrade/utilities/api/api";
+import ms from "ms";
 import { useQuery } from "@tanstack/react-query";
 
-import ms from "ms";
+import { listSummaryEducationLevel } from "@schoolify/features/user/school/management/educationGrade/utilities/api/api";
+
 
 const useListSummaryEducationLevel = (educationYearId: string) =>
   useQuery({

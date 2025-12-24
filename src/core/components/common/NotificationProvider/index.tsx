@@ -1,27 +1,39 @@
-import React, { useEffect, useState, type ReactNode } from "react";
-import { Alert, Snackbar } from "@mui/material";
-import { useNotificationStore } from "@schoolify/core/store";
+// React Type
+import { useEffect, useState, type ReactNode } from 'react'
+
+// MUI Components
+import Alert from '@schoolify/core/components/base/inputs/Alert'
+import Snackbar from '@schoolify/core/components/base/inputs/Snackbar'
+
+// Core Components
+import { useNotificationStore } from '@schoolify/core/store'
 
 export const NotificationProvider = ({ children }: { children: ReactNode }) => {
-  const notification = useNotificationStore();
+  // Hooks
+  const notification = useNotificationStore()
 
-  const [messages, setMessages] = useState<string[]>([]);
+  // States
+  const [messages, setMessages] = useState<string[]>([])
+
+  // Effect
 
   useEffect(() => {
     if (notification.messages) {
       const newMessages = Array.isArray(notification.messages)
         ? notification.messages
-        : [notification.messages];
+        : [notification.messages]
 
-      setMessages(newMessages);
+      setMessages(newMessages)
     }
-  }, [notification.messages]);
+  }, [notification.messages])
 
+  // Handlers
   const handleClose = (indexToClose: number) => {
-    setMessages((prev) => prev.filter((_, i) => i !== indexToClose));
-    notification.setNotification(messages, notification.type);
-  };
+    setMessages(prev => prev.filter((_, i) => i !== indexToClose))
+    notification.setNotification(messages, notification.type)
+  }
 
+  // Render
   return (
     <>
       {children}
@@ -32,14 +44,14 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
           autoHideDuration={5000}
           onClose={() => handleClose(index)}
           anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "center",
+            vertical: 'bottom',
+            horizontal: 'center'
           }}
           style={{ bottom: `${20 + index * 70}px` }} // Stacking vertically
         >
           <Alert
             severity={notification.type}
-            variant="filled"
+            variant='filled'
             onClose={() => handleClose(index)}
           >
             {msg}
@@ -47,5 +59,5 @@ export const NotificationProvider = ({ children }: { children: ReactNode }) => {
         </Snackbar>
       ))}
     </>
-  );
-};
+  )
+}

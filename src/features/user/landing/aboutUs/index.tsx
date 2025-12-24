@@ -1,5 +1,4 @@
 // MUI Components
-
 import Typography from "@schoolify/core/components/base/inputs/Typography"
 
 

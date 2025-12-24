@@ -17,6 +17,7 @@ import useDeleteCostType from '@schoolify/features/user/school/management/costTy
 import UpdateCostType from '@schoolify/features/user/school/management/costType/components/UpdateCostType'
 import useListSummaryEducationYear from '@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears'
 import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGridState'
+import useMapToOptions from '@schoolify/core/hooks/common/useMapToOptions'
 
 // Custom Utilities
 import { listCostTypeColumns } from '@schoolify/features/user/school/management/costType/utilities/listCostTypeColumns'
@@ -34,6 +35,7 @@ const ListCostType = () => {
   // Hooks
   const { schoolId = '' } = useParams()
   const { data: educationYearData } = useListSummaryEducationYear(schoolId)
+  const educationYearOptions = useMapToOptions(educationYearData)
   const { mutateAsync: updateCostType } = useUpdateCostType()
   const { mutateAsync: deleteCostType } = useDeleteCostType()
 
@@ -77,12 +79,7 @@ const ListCostType = () => {
         <AutocompleteSelect
           label='سال تحصیلی'
           placeholder='لطفا یک سال را انتخاب نمایید'
-          options={
-            educationYearData?.map(item => ({
-              key: item.id,
-              value: item.data?.title ?? ''
-            })) ?? []
-          }
+          options={educationYearOptions}
           value={educationYearId}
           onChange={setEducationYearId}
           loading={isLoading}

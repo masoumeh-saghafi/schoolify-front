@@ -2,9 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import ms from 'ms'
 
 import type { BaseRequestPaginationParams } from '@schoolify/core/types/core/api/request'
-import { listSummaryStudentReport } from '../utilities/api/api'
-// import { listSummaryStudentReport } from '../utilities/api/api'
-// import { listuseListSummaryStudentReport } from '@schoolify/features/user/school/management/useListSummaryStudentReport/utilities/api/api'
+import { listSummaryStudentReport } from '@schoolify/features/user/school/report/students/summary/utilities/api/api'
 
 interface useListSummaryStudentReportProps {
   educationYearId: string

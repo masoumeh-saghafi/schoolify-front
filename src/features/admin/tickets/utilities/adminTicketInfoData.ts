@@ -1,4 +1,4 @@
-import type getAdminTicketEntity from '../types/api/getAdminTicketEntity';
+import type getAdminTicketEntity from '@schoolify/features/admin/tickets/types/api/getAdminTicketEntity';
 interface AdminTicketInfoField {
   label: string
   value?: string | number | null

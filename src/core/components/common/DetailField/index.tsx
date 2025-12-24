@@ -4,6 +4,7 @@ import Grid from '@schoolify/core/components/base/inputs/Grid'
 // Core Components
 import BaseField from '@schoolify/core/components/common/BaseField/index'
 
+// Custom Types
 interface DetailFieldProps {
   label: string
   value?: string | number | null

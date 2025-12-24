@@ -1,6 +1,6 @@
 // React Type
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 // MUI Components
 import Grid from "@schoolify/core/components/base/inputs/Grid";
@@ -19,12 +19,12 @@ import useListSummaryClass from "@schoolify/features/user/school/management/shar
 import useMapToOptions from "@schoolify/core/hooks/common/useMapToOptions";
 
 // Custom Utilities
-import { listSummaryStudentReportColumns } from "../utilities/listStudentColumns";
-import { listSummaryStudentReportData } from "../utilities/listStudentReportData";
+import { listSummaryStudentReportColumns } from "@schoolify/features/user/school/report/students/summary/utilities/listStudentColumns";
+import { listSummaryStudentReportData } from "@schoolify/features/user/school/report/students/summary/utilities/listStudentReportData";
 import Box from "@schoolify/core/components/base/inputs/Box";
 import Button from "@schoolify/core/components/base/inputs/Button";
-import useListSummaryStudentReport from "../hooks/useListSummaryStudentReport";
-import { ExportStudentListSummaryToExcel } from "./ExportStudentListSummaryToExcel";
+import useListSummaryStudentReport from "@schoolify/features/user/school/report/students/summary/hooks/useListSummaryStudentReport";
+import { ExportStudentListSummaryToExcel } from "@schoolify/features/user/school/report/students/summary/components/ExportStudentListSummaryToExcel";
 
 // Custom Types
 // interface ListStudentReportProps {}

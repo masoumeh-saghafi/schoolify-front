@@ -1,51 +1,50 @@
+// React Type
+import type { ElementType, FormEventHandler, ReactNode } from 'react'
+
 // MUI Components
-import Typography from "@schoolify/core/components/base/inputs/Typography";
-import Paper from "@schoolify/core/components/base/inputs/Paper";
+import Typography from '@schoolify/core/components/base/inputs/Typography'
+import Paper from '@schoolify/core/components/base/inputs/Paper'
 
 // Custom Hooks
-import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
-
-// React Type
-import type { ElementType, FormEventHandler, ReactNode } from "react";
+import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
 
 // Custom Types
-
 interface ContentBoxProps {
-  label?: string;
-  children: ReactNode;
-  component?: ElementType;
-  onSubmit?: FormEventHandler<HTMLDivElement | HTMLFormElement>;
+  label?: string
+  children: ReactNode
+  component?: ElementType
+  onSubmit?: FormEventHandler<HTMLDivElement | HTMLFormElement>
 }
 
 const ContentBox = (props: ContentBoxProps) => {
   // Props
-  const { label, children, component = "div", onSubmit } = props;
+  const { label, children, component = 'div', onSubmit } = props
 
   // Hooks
-  const theme = useAppTheme();
+  const theme = useAppTheme()
 
   // Render
   return (
     <Paper
       sx={{
-        width: "100%",
+        width: '100%',
         border: 1,
         borderRadius: 2,
-        borderColor: "grey.300",
+        borderColor: 'grey.300',
         mb: 2,
         p: 2,
-        alignItems: "center",
+        alignItems: 'center'
       }}
       component={component}
-      {...(component === "form" && onSubmit ? { onSubmit } : {})}
+      {...(component === 'form' && onSubmit ? { onSubmit } : {})}
     >
       <Typography
-        variant="body1"
+        variant='body1'
         sx={{
           margin: 1,
           mb: 3,
           color: theme.palette.text.cardTitle,
-          fontSize: " 0.95rem ",
+          fontSize: ' 0.95rem '
         }}
       >
         {label}
@@ -53,7 +52,7 @@ const ContentBox = (props: ContentBoxProps) => {
 
       {children}
     </Paper>
-  );
-};
+  )
+}
 
-export default ContentBox;
+export default ContentBox

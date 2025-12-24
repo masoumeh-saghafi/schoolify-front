@@ -1,7 +1,10 @@
-import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response"
-import type { ListStudentReportEntityClass, ListStudentReportEntityDebtStatus } from "./ListStudentReportEntity"
-import type ListCostEntity from "@schoolify/features/user/school/management/cost/types/api/ListCostEntity"
-import type ListStudentPaymentEntity from "@schoolify/features/user/school/management/studentPayment/types/api/ListStudentPaymentEntity"
+import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
+import type {
+  ListStudentReportEntityClass,
+  ListStudentReportEntityDebtStatus
+} from '@schoolify/features/user/school/report/students/full/types/api/ListStudentReportEntity'
+import type ListCostEntity from '@schoolify/features/user/school/management/cost/types/api/ListCostEntity'
+import type ListStudentPaymentEntity from '@schoolify/features/user/school/management/studentPayment/types/api/ListStudentPaymentEntity'
 
 export default interface StudentReportEntity {
   firstName: string

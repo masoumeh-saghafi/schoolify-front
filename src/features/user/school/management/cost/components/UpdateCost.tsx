@@ -13,8 +13,6 @@ import Grid from '@schoolify/core/components/base/inputs/Grid'
 import ContentBox from '@schoolify/core/components/common/ContentBox'
 import ControlledGridTextField from '@schoolify/core/components/common/ControlledGridTextField'
 import SubmitButton from '@schoolify/core/components/common/SubmitButton'
-// Custom Utilities
-import { updateCostData } from '@schoolify/features/user/school/management/cost/utilities/updateCostData'
 
 // Validation Schema
 import { updateCostValidationSchema } from '@schoolify/features/user/school/management/cost/validation/updateCostValidationSchema'

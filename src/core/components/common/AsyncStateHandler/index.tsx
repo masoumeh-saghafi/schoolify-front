@@ -1,10 +1,10 @@
-// MUI Components
-import CircularProgress from '@mui/material/CircularProgress'
-import Box from '@schoolify/core/components/base/inputs/Box'
-import Typography from '@schoolify/core/components/base/inputs/Typography'
-
 // React Types
 import React from 'react'
+
+// MUI Components
+import Box from '@schoolify/core/components/base/inputs/Box'
+import Typography from '@schoolify/core/components/base/inputs/Typography'
+import CircularProgress from '@schoolify/core/components/base/inputs/CircularProgress'
 
 // Custom Types
 interface AsyncStateHandlerProps {
@@ -18,7 +18,6 @@ const AsyncStateHandler = (props: AsyncStateHandlerProps) => {
   const { isLoading, error, children } = props
 
   if (isLoading) {
-
     // Render
     return (
       <Box sx={{ textAlign: 'center', p: 2 }}>

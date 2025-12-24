@@ -1,8 +1,8 @@
-
-import { listSummaryCostType } from "@schoolify/features/user/school/management/cost/utilities/api/api";
+import ms from "ms";
 import { useQuery } from "@tanstack/react-query";
 
-import ms from "ms";
+import { listSummaryCostType } from "@schoolify/features/user/school/management/cost/utilities/api/api";
+
 
 const useListSummaryCostType = (costTypeId: string) =>
   useQuery({

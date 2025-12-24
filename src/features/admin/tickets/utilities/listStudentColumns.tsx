@@ -3,8 +3,8 @@ import type { GridColDef } from '@mui/x-data-grid/models/colDef'
 import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 
 import FormattedDate from '@schoolify/core/components/common/FormattedDate'
-import { statusOptions, typeOptions } from '../validation/baseTypes'
-import type ListAdminTicketsEntity from '../types/api/ListAdminTicketEntity'
+import { statusOptions, typeOptions } from '@schoolify/features/admin/tickets/validation/baseTypes'
+import type ListAdminTicketsEntity from '@schoolify/features/admin/tickets/types/api/ListAdminTicketEntity'
 
 export const listAdminTicketColumns: GridColDef<
   BaseIdDataEntity<ListAdminTicketsEntity>

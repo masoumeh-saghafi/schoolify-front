@@ -1,6 +1,6 @@
 import ms from "ms";
 import { useQuery } from "@tanstack/react-query";
-import { getUserTicket } from "../utilities/api/api";
+import { getUserTicket } from "@schoolify/features/user/profile/tickets/utilities/api/api";
 
 export const userTicketQueryKey = (ticketId: string) => [
   "getUserTicket",
@@ -17,8 +17,7 @@ const useGetUserTicket = (ticketId: string) => {
     refetchOnReconnect: true,
     retry: 2,
     retryDelay: 1000,
-    // enabled: !!token,
-    select: (data) => data.data,
+       select: (data) => data.data,
   });
 };
 

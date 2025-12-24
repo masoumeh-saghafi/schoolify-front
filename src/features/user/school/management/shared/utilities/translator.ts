@@ -1,4 +1,4 @@
-import type { UserSchoolRoles } from "../types/api/ListSummarySchoolsEntity";
+import type { UserSchoolRoles } from "@schoolify/features/user/school/management/shared/types/api/ListSummarySchoolsEntity";
 
 export const translateUserSchoolRoleToPersian = (
   role: UserSchoolRoles | null | undefined

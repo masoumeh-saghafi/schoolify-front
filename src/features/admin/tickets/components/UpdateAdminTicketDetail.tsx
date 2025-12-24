@@ -1,5 +1,4 @@
 // React Type
-import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 //Type Definitions
@@ -9,28 +8,19 @@ import type z from "zod";
 // MUI Components
 import Box from "@schoolify/core/components/base/inputs/Box";
 import Grid from "@schoolify/core/components/base/inputs/Grid";
+import ContentBox from "@schoolify/core/components/common/ContentBox";
 
 // Core Components
-import ContentBox from "@schoolify/core/components/common/ContentBox";
 import ControlledAutocomplete from "@schoolify/core/components/common/ControlledAutocomplete";
+import SubmitButton from "@schoolify/core/components/common/SubmitButton";
 
 // Custom Utilities
-// import { UpdateAdminTicketDetailData } from '@schoolify/features/user/school/management/Ticket/utilities/UpdateAdminTicketDetailData'
+import { updateAdminTicketData } from "@schoolify/features/admin/tickets/utilities/updateAdminTicketData";
+
 
 // Validation Schema
+import { updateAdminTicketValidationSchema } from "@schoolify/features/admin/tickets/validation/updateAdminTicketValidation";
 
-// import { identityTypeOptions } from '@schoolify/features/user/school/management/Ticket/validation/baseTypes'
-
-// Custom Hooks
-// import useUpdateAdminTicketDetail from '@schoolify/features/user/school/management/Ticket/hooks/useUpdateAdminTicketDetail'
-// import useUpdateAdminTicketDetail from '../hooks/useUpdateAdminTicketDetail'
-import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
-import { updateAdminTicketValidationSchema } from "../validation/updateAdminTicketValidation";
-import useGetAdminTicket from "../hooks/useGetAdminTicket";
-import useUpdateAdminTicket from "../hooks/useUpdateAdminTicket";
-import { updateAdminTicketData } from "../utilities/updateAdminTicketData";
-import SubmitButton from "@schoolify/core/components/common/SubmitButton";
-import { useEffect } from "react";
 
 // Form schema
 type SchemaProps = z.infer<typeof updateAdminTicketValidationSchema>;
@@ -47,10 +37,6 @@ const UpdateAdminTicketDetail = (props: UpdateAdminTicketDetailProps) => {
   const { defaultValues, onSubmit, recordId } = props;
 
   // Hooks
-
-  const theme = useAppTheme();
-  const { ticketId = "" } = useParams();
-
   const {
     handleSubmit,
     control,

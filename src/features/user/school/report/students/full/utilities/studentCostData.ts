@@ -1,6 +1,5 @@
-import type ListStudentReportEntity from "../types/api/ListStudentReportEntity";
-import type StudentReportEntity from "../types/api/StudentReportEntity";
-import { referenceTypeLabels } from "../validation/baseTypes";
+import type StudentReportEntity from "@schoolify/features/user/school/report/students/full/types/api/StudentReportEntity";
+import { referenceTypeLabels } from "@schoolify/features/user/school/report/students/full/validation/baseTypes";
 
 export interface StudentCostField {
   title: string;

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addAdminTicketResponse } from "../utilities/api/api";
-import { adminTicketQueryKey } from "./useGetAdminTicket";
-// import { userTicketQueryKey } from "./useGetAdminTicket";
+import { addAdminTicketResponse } from "@schoolify/features/admin/tickets/utilities/api/api";
+import { adminTicketQueryKey } from "@schoolify/features/admin/tickets/hooks/useGetAdminTicket";
+
 
 const useAddAdminTicketResponse = () => {
   const queryClient = useQueryClient();

@@ -1,4 +1,4 @@
-import type UserTicketEntity from "../types/api/UserTicketEntity";
+import type UserTicketEntity from "@schoolify/features/user/profile/tickets/types/api/UserTicketEntity";
 interface TicketInfoField {
   label: string;
   value?: string | number | null;

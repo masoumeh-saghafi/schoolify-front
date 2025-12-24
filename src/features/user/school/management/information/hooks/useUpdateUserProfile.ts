@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateSchoolName } from "@schoolify/features/user/school/management/information/utilities/api/api";
-import { schoolInfoQueryKey } from "./useInfoSchool";
+import { schoolInfoQueryKey } from "@schoolify/features/user/school/management/information/hooks/useInfoSchool";
 import { listSummarySchoolsQueryKey } from "@schoolify/features/user/shared/school/hooks/useListSummarySchools";
 
 const useUpdateSchoolName = () => {

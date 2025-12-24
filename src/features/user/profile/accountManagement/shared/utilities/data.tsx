@@ -1,7 +1,7 @@
 import type { TabBoxDataProps } from '@schoolify/core/components/common/TabBox'
 
 import PersonalInfoTab from '@schoolify/features/user/profile/accountManagement/personalInfo/components/index'
-import RecentPaymentTab from '@schoolify/features/user/profile/accountManagement/payment/components/idex'
+import RecentPaymentTab from '@schoolify/features/user/profile/accountManagement/payment/components'
 import SubscriptionTab from '@schoolify/features/user/profile/accountManagement/subscription/components/index'
 import EditInfoTab from '@schoolify/features/user/profile/accountManagement/editInfo/components/index'
 

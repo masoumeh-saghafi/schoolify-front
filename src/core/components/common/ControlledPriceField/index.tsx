@@ -1,9 +1,12 @@
+// React Type
 import { useState, useEffect } from 'react'
 import { Controller } from 'react-hook-form'
 
+// MUI Components
 import TextField from '@schoolify/core/components/base/inputs/TextField'
 import Grid from '@schoolify/core/components/base/inputs/Grid'
 
+// Custom Types
 interface ControlledPriceFieldProps {
   control: any
   name: string
@@ -12,27 +15,28 @@ interface ControlledPriceFieldProps {
   sm?: number
 }
 
+// format price
 const formatPrice = (value: string | number) => {
   if (!value) return ''
   const num = Number(String(value).replace(/,/g, ''))
   return isNaN(num) ? '' : num.toLocaleString('en-US')
 }
 
+// parse price
 const parsePrice = (value: string) => {
   const cleaned = value.replace(/,/g, '')
   const num = Number(cleaned)
   return isNaN(num) ? undefined : num
 }
 
-const ControlledPriceField = ({
-  control,
-  name,
-  label,
-  xs = 12,
-  sm = 6
-}: ControlledPriceFieldProps) => {
+const ControlledPriceField = (props: ControlledPriceFieldProps) => {
+  // Props
+  const { control, name, label, xs = 12, sm = 6 } = props
+
+  // States
   const [displayValue, setDisplayValue] = useState('')
 
+  // Render
   return (
     <Grid size={{ xs, sm }}>
       <Controller

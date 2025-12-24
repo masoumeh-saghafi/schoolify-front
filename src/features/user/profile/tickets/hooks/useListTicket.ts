@@ -1,8 +1,8 @@
-import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
-
 import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
-import { listTicket } from "../utilities/api/api";
+
+import type { BaseRequestPaginationParams } from "@schoolify/core/types/core/api/request";
+import { listTicket } from "@schoolify/features/user/profile/tickets/utilities/api/api";
 
 interface useListTicketProps {
   pagination?: BaseRequestPaginationParams;
@@ -27,7 +27,7 @@ const useListticket = (props: useListTicketProps) => {
     retry: 2,
     retryDelay: 1000,
     select: (data) => data.data,
-    // enabled: !!props.educationYearId,
+  
   });
 };
 
