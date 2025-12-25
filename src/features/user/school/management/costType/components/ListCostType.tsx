@@ -9,6 +9,7 @@ import Grid from '@schoolify/core/components/base/inputs/Grid'
 import ContentBox from '@schoolify/core/components/common/ContentBox'
 import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
 import AutocompleteSelect from '@schoolify/core/components/common/AutocompleteSelect'
+import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 
 // Custom Hooks
 import useListCostType from '@schoolify/features/user/school/management/costType/hooks/useListCostType'
@@ -21,6 +22,7 @@ import useMapToOptions from '@schoolify/core/hooks/common/useMapToOptions'
 
 // Custom Utilities
 import { listCostTypeColumns } from '@schoolify/features/user/school/management/costType/utilities/listCostTypeColumns'
+import type ListCostTypeEntity from '@schoolify/features/user/school/management/costType/types/api/ListCostTypeEntity'
 
 // Custom Types
 // interface ListStudentProps {}
@@ -82,7 +84,6 @@ const ListCostType = () => {
           options={educationYearOptions}
           value={educationYearId}
           onChange={setEducationYearId}
-          loading={isLoading}
         />
       </Grid>
 
@@ -96,7 +97,9 @@ const ListCostType = () => {
         onUpdateRow={handleUpdateCostType}
         onUpdateForm={UpdateCostType}
         onDeleteRow={handleDeleteCostType}
-        onDeleteRowGetTitle={row => `${row.data.title}`}
+        onDeleteRowGetTitle={(row: BaseIdDataEntity<ListCostTypeEntity>) =>
+          `${row.data?.title}`
+        }
       />
     </ContentBox>
   )

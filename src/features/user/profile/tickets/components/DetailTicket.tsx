@@ -34,6 +34,8 @@ import { ticketInfoData } from '@schoolify/features/user/profile/tickets/utiliti
 // Validation Schema
 import { UnitOptions } from '@schoolify/features/user/profile/tickets/validation/baseTypes'
 import { ticketDetailValidationSchema } from '@schoolify/features/user/profile/tickets/validation/ticketDetailValidation'
+import AsyncStateHandler from '@schoolify/core/components/common/AsyncStateHandler'
+import { size } from 'zod'
 
 // Form schema
 type SchemaProps = z.infer<typeof ticketDetailValidationSchema>
@@ -48,7 +50,7 @@ const DetailTicket = (props: DetailTicketProps) => {
   const params = new URLSearchParams(queryParams)
   const ticketId = params.get('id') ?? ''
 
-  const { data: ticketData } = useGetUserTicket(ticketId)
+  const { data: ticketData, isLoading, error } = useGetUserTicket(ticketId)
   const theme = useAppTheme()
   const { mutateAsync: addTicketMessage } = useAddMessageToTicket()
   const { mutateAsync: closeTicket } = useCloseTicket()
@@ -130,8 +132,8 @@ const DetailTicket = (props: DetailTicketProps) => {
         onSubmit={handleSubmit(handleAddTicketMessage)}
       >
         <ControlledGridTextField
-          key='content'
           label='متن پیام'
+          placeholder='در صورت حل‌نشدن مشکل، لطفاً شرح دقیقی از موضوع را در این قسمت وارد نمایید.'
           name='content'
           rows={5}
           helperText={errors.content?.message}
@@ -162,48 +164,50 @@ const DetailTicket = (props: DetailTicketProps) => {
       </ContentBox>
 
       <ContentBox label='لیست پیام‌ها'>
-        {ticketData?.data?.messages?.map((message, index) => {
-          const role = message.user.role
-          let backgroundColor = theme.palette.background.default
+        <AsyncStateHandler isLoading={isLoading} error={error}>
+          {ticketData?.data?.messages?.map((message, index) => {
+            const role = message.user.role
+            let backgroundColor = theme.palette.background.default
 
-          if (role === 'support') {
-            backgroundColor = theme.palette.background.support
-          } else if (role === 'user') {
-            backgroundColor = theme.palette.background.user
-          }
+            if (role === 'support') {
+              backgroundColor = theme.palette.background.support
+            } else if (role === 'user') {
+              backgroundColor = theme.palette.background.user
+            }
 
-          return (
-            <Card key={index} sx={{ mb: 2, backgroundColor }}>
-              <CardContent sx={{ position: 'relative' }}>
-                <Typography
-                  variant='subtitle2'
-                  sx={{ mb: 1, fontWeight: 'bold' }}
-                >
-                  {message.user?.fullName}
-                </Typography>
+            return (
+              <Card key={index} sx={{ mb: 2, backgroundColor }}>
+                <CardContent sx={{ position: 'relative' }}>
+                  <Typography
+                    variant='subtitle2'
+                    sx={{ mb: 1, fontWeight: 'bold' }}
+                  >
+                    {message.user?.fullName}
+                  </Typography>
 
-                <Typography
-                  variant='body2'
-                  sx={{
-                    mb: 3,
-                    color: theme.palette.text.black,
-                    textAlign: 'justify'
-                  }}
-                >
-                  {message.content}
-                </Typography>
+                  <Typography
+                    variant='body2'
+                    sx={{
+                      mb: 3,
+                      color: theme.palette.text.black,
+                      textAlign: 'justify'
+                    }}
+                  >
+                    {message.content}
+                  </Typography>
 
-                <Typography
-                  variant='caption'
-                  color='text.secondary'
-                  sx={{ position: 'absolute', bottom: 8, right: 16 }}
-                >
-                  <FormattedDate date={message.createDate} showTime />
-                </Typography>
-              </CardContent>
-            </Card>
-          )
-        })}
+                  <Typography
+                    variant='caption'
+                    color='text.secondary'
+                    sx={{ position: 'absolute', bottom: 8, right: 16 }}
+                  >
+                    <FormattedDate date={message.createDate} showTime />
+                  </Typography>
+                </CardContent>
+              </Card>
+            )
+          })}
+        </AsyncStateHandler>
       </ContentBox>
     </Box>
   )

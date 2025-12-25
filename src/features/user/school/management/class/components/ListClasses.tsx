@@ -11,6 +11,7 @@ import UpdateClass from '@schoolify/features/user/school/management/class/compon
 import ContentBox from '@schoolify/core/components/common/ContentBox'
 import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
 import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGridState'
+import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 
 // Custom Hooks
 import useListSummaryEducationYears from '@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears'
@@ -24,6 +25,7 @@ import useMapToOptions from '@schoolify/core/hooks/common/useMapToOptions'
 // Custom Utilities
 import { listClassColumns } from '@schoolify/features/user/school/management/class/utilities/listClassData'
 import { addClassData } from '@schoolify/features/user/school/management/class/utilities/addClassData'
+import type ListClassEntity from '@schoolify/features/user/school/management/class/types/api/ListClassEntity'
 
 // Custom Types
 // interface ListStudentProps {}
@@ -136,8 +138,8 @@ const ListClasses = () => {
         onUpdateRow={handleUpdateClass}
         onUpdateForm={UpdateClass}
         onDeleteRow={handleDeleteClass}
-        onDeleteRowGetTitle={row =>
-          `${row.data.firstName} ${row.data.lastName}`
+        onDeleteRowGetTitle={(row:BaseIdDataEntity<ListClassEntity>)=>
+          `${row.data?.title}`
         }
       />
     </ContentBox>

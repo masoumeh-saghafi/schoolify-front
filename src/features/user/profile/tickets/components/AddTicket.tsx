@@ -52,7 +52,13 @@ const AddTicket = (props: AddTicketProps) => {
     formState: { isValid, isDirty }
   } = useForm<SchemaProps>({
     resolver: zodResolver(addTicketValidationSchema),
-    mode: 'onChange'
+    mode: 'onChange',
+    defaultValues: {
+      title: '',
+      type: '',
+      message: '',
+      schoolId: ''
+    }
   })
   const { data: schoolsData = [] } = useListSummarySchools()
 
@@ -72,11 +78,9 @@ const AddTicket = (props: AddTicketProps) => {
     if (result.isSuccess) reset(data)
   }
 
-
   const handleReturnToProfile = () => {
     navigate(routes.profile.baseUrl)
   }
-
 
   // Render
   return (
@@ -88,9 +92,9 @@ const AddTicket = (props: AddTicketProps) => {
       >
         <Grid container spacing={2.5}>
           <ControlledGridTextField
-            key='title'
             label='موضوع'
             name='title'
+            placeholder='موضوع تیکت را بیان کنید '
             control={control}
           />
 
@@ -114,18 +118,17 @@ const AddTicket = (props: AddTicketProps) => {
               })) ?? [])
             ]}
           />
-          
-            <ControlledGridTextField
-              key='message'
-              label='پیام'
-              name='message'
-              rows={5}
-              multiline={true}
-              control={control}
-              sm={12}
-              xs={12}
-            />
-       
+
+          <ControlledGridTextField
+            label='پیام'
+            name='message'
+            placeholder='لطفا پیام خود را وارد فرمایید'
+            rows={5}
+            multiline={true}
+            control={control}
+            sm={12}
+            xs={12}
+          />
 
           <Grid size={12}>
             <Box
@@ -162,7 +165,6 @@ const AddTicket = (props: AddTicketProps) => {
               >
                 ثبت
               </Button>
-
             </Box>
           </Grid>
         </Grid>

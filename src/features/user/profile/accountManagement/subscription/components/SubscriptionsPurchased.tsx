@@ -79,14 +79,8 @@ const SubscriptionsPurchased = () => {
                   <Button
                     variant='contained'
                     size='small'
-                    disabled={daysRemaining <= 0}
+                    disabled={daysRemaining >= 10}
                     onClick={() => handleRenewal({}, row.id)}
-                    sx={{
-                      backgroundColor:
-                        daysRemaining > 0
-                          ? theme.palette.primary.main
-                          : theme.palette.primary.dark
-                    }}
                   >
                     تمدید
                   </Button>

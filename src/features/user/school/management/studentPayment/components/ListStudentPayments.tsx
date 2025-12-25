@@ -9,6 +9,7 @@ import Grid from '@schoolify/core/components/base/inputs/Grid'
 import ContentBox from '@schoolify/core/components/common/ContentBox'
 import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
 import AutocompleteSelect from '@schoolify/core/components/common/AutocompleteSelect'
+import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 
 // Custom Hooks
 import useMapToOptions, {
@@ -27,6 +28,7 @@ import UpdateStudentPayment from '@schoolify/features/user/school/management/stu
 // Custom Utilities
 import { listStudentPaymentColumns } from '@schoolify/features/user/school/management/studentPayment/utilities/listStudentPaymentData'
 import { addStudentPaymentData } from '@schoolify/features/user/school/management/studentPayment/utilities/addStudentPaymentData'
+import type ListStudentPaymentEntity from '@schoolify/features/user/school/management/studentPayment/types/api/ListStudentPaymentEntity'
 
 // Custom Types
 // interface ListStudentProps {}
@@ -100,7 +102,6 @@ const ListStudentPayments = () => {
     }
   } as const
 
- 
   const columns = listStudentPaymentColumns
 
   // Handlers
@@ -134,7 +135,6 @@ const ListStudentPayments = () => {
               value={value}
               onChange={set}
               options={options}
-              loading={isLoading}
               inputValue={inputValue}
               onInputChange={onInputChange}
             />
@@ -152,7 +152,7 @@ const ListStudentPayments = () => {
         onUpdateRow={handleUpdateStudentPayment}
         onUpdateForm={UpdateStudentPayment}
         onDeleteRow={handleDeleteStudentPayment}
-        onDeleteRowGetTitle={row => `${row.data.amount}`}
+        onDeleteRowGetTitle={(row:BaseIdDataEntity<ListStudentPaymentEntity>) => `${row.data?.amount}`}
       />
     </ContentBox>
   )

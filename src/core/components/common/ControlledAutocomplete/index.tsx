@@ -62,6 +62,7 @@ const ControlledAutocomplete = <T extends FieldValues>(
             openText='باز کردن'
             closeText='بستن'
             clearText='پاک کردن'
+            loadingText='درحال دریافت اطلاعات'
             size={size}
             options={options}
             getOptionLabel={option => option.value}

@@ -99,22 +99,22 @@ const AddClass = (props: AddClassProps) => {
         component='form'
       >
         <Grid container spacing={2}>
-          <ControlledGridTextField
-            key='EducationGrade'
-            control={control}
-            name='title'
-            label='نام کلاس '
-          />
           {addClassData.map(field => (
             <ControlledAutocomplete
-              key={field.name}
-              control={control}
-              name={field.name}
-              label={field.label}
-              placeholder={`لطفا ${field.label.toLowerCase()} را انتخاب نمایید`}
-              options={field.optionsMapper(dataMap[field.name])}
+            key={field.name}
+            control={control}
+            name={field.name}
+            label={field.label}
+            placeholder={`لطفا ${field.label.toLowerCase()} را انتخاب نمایید`}
+            options={field.optionsMapper(dataMap[field.name])}
             />
           ))}
+          <ControlledGridTextField
+                       control={control}
+            name='title'
+            label='نام کلاس '
+            placeholder='نام کلاس مورد نظر را وارد نمایید.'
+          />
 
           <Grid size={{ xs: 12, sm: 6 }}>
             <SubmitButton isValid={isValid} isDirty={isDirty}>

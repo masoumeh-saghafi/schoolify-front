@@ -67,7 +67,7 @@ const AddUserRole = (props: AddUserRoleProps) => {
         <Grid container spacing={2}>
           <ControlledGridTextField
             label='شماره موبایل'
-            key='UserRole'
+           placeholder='*********09'
             control={control}
             name='phoneNumber'
           />

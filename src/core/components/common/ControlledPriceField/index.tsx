@@ -13,6 +13,7 @@ interface ControlledPriceFieldProps {
   label?: string
   xs?: number
   sm?: number
+  placeholder?:string
 }
 
 // format price
@@ -31,7 +32,7 @@ const parsePrice = (value: string) => {
 
 const ControlledPriceField = (props: ControlledPriceFieldProps) => {
   // Props
-  const { control, name, label, xs = 12, sm = 6 } = props
+  const { control, name,placeholder, label, xs = 12, sm = 6 } = props
 
   // States
   const [displayValue, setDisplayValue] = useState('')
@@ -57,6 +58,7 @@ const ControlledPriceField = (props: ControlledPriceFieldProps) => {
               value={displayValue}
               fullWidth
               size='small'
+              placeholder={placeholder}
               error={!!fieldState.error}
               helperText={fieldState.error?.message}
               onChange={e => {

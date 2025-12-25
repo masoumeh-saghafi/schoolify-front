@@ -80,15 +80,18 @@ const AddCostType = (props: AddCostTypeProps) => {
       >
         <Grid container spacing={2}>
           <ControlledGridTextField
-            key='CostType'
+          
             control={control}
             name='title'
             label='عنوان هزینه'
+            placeholder='مثال: هزینه سال تحصیلی / هزینه کتاب / شهریه'
           />
           <ControlledPriceField
             control={control}
             name='baseAmount'
             label='مبلغ پایه'
+            placeholder=''
+            
           />
           <ControlledAutocomplete
             label='سال تحصیلی'

@@ -79,6 +79,7 @@ const AddStudent = (props: AddStudentProps) => {
         <Grid container spacing={2.5}>
           {addStudentData.map(field => (
             <ControlledGridTextField
+              placeholder={`لطفا ${field.label} را وارد نمایید.`}
               key={field.name}
               control={control}
               name={field.name}

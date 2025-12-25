@@ -17,6 +17,9 @@ import { PersonalInfoData } from "@schoolify/features/user/profile/accountManage
 // Custom Hooks
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 import useUserProfile from "@schoolify/features/shared/profile/hooks/useUserProfile";
+import { useNavigate } from "react-router-dom";
+import router from "@schoolify/app/router";
+import routes from "@schoolify/core/utilities/routes";
 
 // Custom Types
 // interface PersonalInfoProps {}
@@ -29,6 +32,7 @@ const PersonalInfo = () => {
   const { data, isLoading, error } = useUserProfile();
 
   const theme = useAppTheme();
+  const navigate=useNavigate()
 
   // Helpers
   const user = data?.data;
@@ -52,7 +56,8 @@ const PersonalInfo = () => {
                 fullWidth
                 size="small"
                 variant="contained"
-                onClick={() => {}}
+            onClick={() => navigate(`${routes.profile.baseUrl}#edit-info`)}
+
                 startIcon={<EditIcon />}
                 sx={{
                   direction: "rtl",

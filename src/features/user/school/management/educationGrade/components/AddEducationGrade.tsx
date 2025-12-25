@@ -90,23 +90,23 @@ const AddEducationGrade = (props: AddEducationGradeProps) => {
         component='form'
       >
         <Grid container spacing={2}>
-          <ControlledGridTextField
-            key='EducationGrade'
-            control={control}
-            name='title'
-            label='نام پایه '
-          />
           {addEducationLGradeData.map(field => (
             <ControlledAutocomplete
-              key={field.name}
-              control={control}
-              name={field.name}
-              label={field.label}
-              placeholder={`لطفا ${field.label.toLowerCase()} را انتخاب نمایید`}
-              options={field.optionsMapper(dataMap[field.name])}
+            key={field.name}
+            control={control}
+            name={field.name}
+            label={field.label}
+            placeholder={`لطفا ${field.label.toLowerCase()} را انتخاب نمایید`}
+            options={field.optionsMapper(dataMap[field.name])}
             />
           ))}
 
+          <ControlledGridTextField
+            control={control}
+            name='title'
+            label='نام پایه '
+            placeholder='مثال :هشتم / نهم / دهم'
+          />
           <Grid size={{ xs: 12, sm: 6 }}>
             <SubmitButton isValid={isValid} isDirty={isDirty}>
               ایجاد

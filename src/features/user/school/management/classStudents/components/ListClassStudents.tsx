@@ -10,6 +10,7 @@ import AutocompleteSelect from '@schoolify/core/components/common/AutocompleteSe
 import ContentBox from '@schoolify/core/components/common/ContentBox'
 import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
 import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGridState'
+import type { BaseIdDataEntity } from '@schoolify/core/types/core/api/response'
 
 // Custom Hooks
 import useListSummaryEducationYears from '@schoolify/features/user/school/management/shared/hooks/useListSummaryEducationYears'
@@ -24,6 +25,7 @@ import useMapToOptions from '@schoolify/core/hooks/common/useMapToOptions'
 // Custom Utilities
 import { listClassStudentData } from '@schoolify/features/user/school/management/classStudents/utilities/listClassStudentData'
 import { listStudentColumns } from '@schoolify/features/user/school/management/student/utilities/listStudentColumns'
+import type ListStudentsEntity from '@schoolify/features/user/school/management/student/types/api/ListStudentsEntity'
 
 // Custom Types
 // interface ListStudentProps {}
@@ -123,7 +125,6 @@ const ListClassStudents = () => {
             fieldStateMap[field.name as keyof typeof fieldStateMap]
           return (
             <AutocompleteSelect
-              key={field.name}
               label={field.label}
               placeholder={`لطفا ${field.label.toLowerCase()} را انتخاب نمایید`}
               value={value}
@@ -144,8 +145,8 @@ const ListClassStudents = () => {
         onFilterChange={handleFilterChange}
         disableUpdateRowButton={true}
         onDeleteRow={handleDeleteClass}
-        onDeleteRowGetTitle={row =>
-          `${row.data.firstName} ${row.data.lastName}`
+        onDeleteRowGetTitle={(row: BaseIdDataEntity<ListStudentsEntity>) =>
+          `${row.data?.firstName} ${row.data?.lastName}`
         }
       />
     </ContentBox>

@@ -22,6 +22,7 @@ import {
 } from '@schoolify/features/admin/managers/validation/addAdminRoleValidation'
 import useAddAdminRole from '@schoolify/features/admin/managers/hooks/useAddAdminRole'
 import { addAdminInfoData } from '@schoolify/features/admin/managers/utilities/addAdminInfoData'
+import { file } from 'zod'
 
 // Form schema
 type SchemaProps = z.infer<typeof addAdminRoleValidationSchema>
@@ -62,10 +63,10 @@ const AddAdminRole = (props: AddAdminRoleProps) => {
         <Grid container spacing={2}>
           {addAdminInfoData.map(field => (
             <ControlledGridTextField
-              key={field.name}
               control={control}
               name={field.name}
               label={field.label}
+              placeholder={`لطفا ${field.label} را وارد نمایید.`}
             />
           ))}
 
@@ -74,7 +75,7 @@ const AddAdminRole = (props: AddAdminRoleProps) => {
             name='role'
             control={control}
             options={roleTypeOptions}
-            placeholder=' لطفا مورد را انتخاب نمایید'
+            placeholder=' لطفا یک مورد را انتخاب نمایید'
           />
 
           <Grid size={{ xs: 12, sm: 6 }}>

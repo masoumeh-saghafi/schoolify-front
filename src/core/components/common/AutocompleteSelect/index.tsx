@@ -48,6 +48,11 @@ const AutocompleteSelect = (props: AutocompleteSelectProps) => {
   return (
     <Grid size={{ xs, sm }}>
       <Autocomplete
+        noOptionsText='مقداری یافت نشد'
+        openText='باز کردن'
+        closeText='بستن'
+        clearText='پاک کردن'
+        loadingText='درحال دریافت اطلاعات'
         disabled={disabled}
         size={size}
         options={options}
@@ -72,6 +77,11 @@ const AutocompleteSelect = (props: AutocompleteSelectProps) => {
         slotProps={{
           listbox: {
             sx: { fontSize: '0.75rem' }
+          },
+          paper: {
+            sx: {
+              fontSize: '0.75rem'
+            }
           }
         }}
       />

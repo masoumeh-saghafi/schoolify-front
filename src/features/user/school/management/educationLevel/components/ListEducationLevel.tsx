@@ -10,10 +10,14 @@ import ContentBox from "@schoolify/core/components/common/ContentBox";
 import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
 import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
 import AutocompleteSelect from "@schoolify/core/components/common/AutocompleteSelect";
+import type { BaseIdDataEntity } from "@schoolify/core/types/core/api/response";
 
 // Feature Components
 import UpdateEducationLevel from "@schoolify/features/user/school/management/educationLevel/components/UpdateEducationLevel";
 import { listEducationLevelColumns } from "@schoolify/features/user/school/management/educationLevel/utilities/listEducationLevelColumns";
+
+// Custom Utilities
+import type ListEducationLevelEntity from "@schoolify/features/user/school/management/educationLevel/types/api/ListEducationLevelEntity";
 
 // Custom Hooks
 import useListEducationLevel from "@schoolify/features/user/school/management/educationLevel/hooks/useListEducationLevel";
@@ -97,8 +101,8 @@ const ListEducationLevel = () => {
         onUpdateRow={handleUpdateEducationLevel}
         onUpdateForm={UpdateEducationLevel}
         onDeleteRow={handleDeleteEducationLevel}
-        onDeleteRowGetTitle={(row) =>
-          `${row.data.firstName} ${row.data.lastName}`
+        onDeleteRowGetTitle={(row:BaseIdDataEntity<ListEducationLevelEntity>) =>
+          `${row.data?.title}`
         }
       />
     </ContentBox>
