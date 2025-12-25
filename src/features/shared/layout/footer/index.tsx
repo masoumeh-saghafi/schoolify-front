@@ -37,7 +37,7 @@ const Footer = (props: FooterProps) => {
         color: theme.palette.text.white,
         py: 6,
         px: { xs: 3, md: 8 },
-        direction: "rtl",
+        // direction: "rtl",
       }}
     >
       <Grid container spacing={4}>

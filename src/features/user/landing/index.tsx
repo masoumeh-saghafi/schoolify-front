@@ -90,16 +90,14 @@ const Landing = () => {
 
   // Render
   return (
-    <Box sx={{ direction: "rtl" }}>
+    <Box>
       {/* Header */}
       <Header />
 
       {/* Hero Section */}
       <Box
         sx={{
-          background: `linear-gradient(135deg, ${theme.palette.brand.main} 0%, ${theme.palette.primary.main} 100%)`,
-          color: theme.palette.text.white,
-          py: { xs: 8, md: 12 },
+          py: { xs: 15, md: 20 },
           px: { xs: 3, md: 8 },
           textAlign: "center",
           minHeight: "70vh",
@@ -110,21 +108,35 @@ const Landing = () => {
         }}
       >
         <Typography
-          variant="h3"
+          variant="h1"
           sx={{
+            color: theme.palette.brand.main,
             fontWeight: "bold",
-            mb: 3,
-            fontSize: { xs: "1.8rem", md: "2.5rem" },
+            mb: 1,
+            fontSize: { xs: "2.3rem", md: "4rem" },
           }}
         >
-          مدیریت مالی مدرسه، ساده، سریع و مطمئن
+          مدیریت مالی مدرسه
+        </Typography>
+        <Typography
+          variant="h1"
+          sx={{
+            color: theme.palette.primary.main,
+            fontWeight: "bold",
+            mb: 3,
+            fontSize: { xs: "1.9rem", md: "3rem" },
+          }}
+        >
+          ساده و مطمئن
         </Typography>
         <Typography
           variant="h6"
           sx={{
+            color: theme.palette.info.dark,
+            fontWeight: "normal",
             maxWidth: 800,
             mx: "auto",
-            mb: 4,
+            mb: 6,
             lineHeight: 2,
             opacity: 0.9,
             fontSize: { xs: "0.9rem", md: "1.1rem" },
@@ -139,14 +151,15 @@ const Landing = () => {
           variant="contained"
           size="large"
           sx={{
-            backgroundColor: theme.palette.primary.light,
-            color: theme.palette.brand.main,
+            backgroundColor: theme.palette.primary.main,
+            color: theme.palette.text.white,
             px: 4,
             py: 1.5,
             fontSize: "1rem",
             fontWeight: "bold",
             "&:hover": {
-              backgroundColor: theme.palette.background.paper,
+              backgroundColor: theme.palette.brand.main,
+              color: theme.palette.text.white,
             },
           }}
         >
@@ -154,7 +167,7 @@ const Landing = () => {
         </Button>
         <Typography
           variant="body2"
-          sx={{ mt: 3, opacity: 0.8, fontSize: "0.85rem" }}
+          sx={{ mt: 4, opacity: 0.8, fontSize: "0.85rem" }}
         >
           فرایند مدیریت مالی مدرسه را با دقت و کارآمدی بی‌نظیر تجربه کنید.
         </Typography>
@@ -163,18 +176,19 @@ const Landing = () => {
       {/* Features Section */}
       <Box
         sx={{
-          py: { xs: 6, md: 10 },
+          py: { xs: 15, md: 20 },
           px: { xs: 3, md: 8 },
-          backgroundColor: theme.palette.background.default,
+          backgroundColor: theme.palette.background.paper,
         }}
       >
         <Typography
-          variant="h4"
+          variant="h3"
           sx={{
             textAlign: "center",
             fontWeight: "bold",
             color: theme.palette.text.title,
             mb: 2,
+            fontSize: { xs: "1.9rem", md: "2.6rem" },
           }}
         >
           امکانات اسکولیفای
@@ -183,62 +197,94 @@ const Landing = () => {
           variant="body1"
           sx={{
             textAlign: "center",
-            color: theme.palette.text.primary,
+            color: theme.palette.info.dark,
             mb: 6,
+            // fontSize: { xs: "1.9rem", md: "3rem" },
           }}
         >
           ابزارهای قدرتمند برای مدیریت مالی مدرسه شما
         </Typography>
 
-        <Grid container spacing={3}>
+        <Grid
+          container
+          sx={{
+            maxWidth: { xs: "50%", sm: "100%" },
+          }}
+          spacing={3}
+        >
           {features.map((feature, index) => (
-            <Grid key={index} size={{ xs: 12, sm: 6, md: 3 }}>
+            <Grid key={index} size={{ xs: 12, sm: 6 }}>
               <Paper
                 elevation={0}
                 sx={{
                   p: 3,
                   height: "100%",
-                  backgroundColor: theme.palette.background.paper,
+                  backgroundColor: "#e0ffe0",
                   borderRadius: 3,
                   textAlign: "center",
+                  display: "flex",
                   transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                  boxShadow: "0 0px 2px rgba(0,0,0,0.1)",
                   "&:hover": {
                     transform: "translateY(-5px)",
                     boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+                    "& .card-info-icon": {
+                      bgcolor: "primary.main",
+                      transform: "scale(1.05)",
+                      "& svg": { color: "#fff" },
+                    },
                   },
                 }}
               >
                 <Box
+                  className="card-info-icon"
                   sx={{
-                    width: 60,
-                    height: 60,
-                    borderRadius: "50%",
-                    backgroundColor: theme.palette.primary.light,
+                    px: 1.7,
+                    py: 3.7,
+                    borderRadius: 3,
+                    bgcolor: "rgba(54, 176, 82,0.1)",
+                    transition: "all .3s",
+                    height: 50,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    mx: "auto",
-                    mb: 2,
+                    "& svg": {
+                      width: 36,
+                      height: 36,
+                      color: "primary.main",
+                      transition: ".3s",
+                    },
                   }}
                 >
-                  <feature.icon size={28} color={theme.palette.brand.main} />
+                  <feature.icon color={theme.palette.brand.light} />
                 </Box>
-                <Typography
-                  variant="h6"
+                <Box
                   sx={{
-                    fontWeight: "bold",
-                    color: theme.palette.text.cardTitle,
-                    mb: 1,
+                    mx: 3,
                   }}
                 >
-                  {feature.title}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{ color: theme.palette.text.primary, lineHeight: 1.8 }}
-                >
-                  {feature.description}
-                </Typography>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      textAlign: "start",
+                      fontWeight: "bold",
+                      color: theme.palette.brand.main,
+                      mb: 1,
+                    }}
+                  >
+                    {feature.title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      textAlign: "start",
+                      color: theme.palette.info.dark,
+                      lineHeight: 1.8,
+                    }}
+                  >
+                    {feature.description}
+                  </Typography>
+                </Box>
               </Paper>
             </Grid>
           ))}
@@ -248,7 +294,7 @@ const Landing = () => {
       {/* Why Schoolify Section */}
       <Box
         sx={{
-          py: { xs: 6, md: 10 },
+          py: { xs: 15, md: 20 },
           px: { xs: 3, md: 8 },
           backgroundColor: theme.palette.background.paper,
         }}
@@ -331,7 +377,7 @@ const Landing = () => {
       {/* CTA Section */}
       <Box
         sx={{
-          py: { xs: 6, md: 8 },
+          py: { xs: 15, md: 20 },
           px: { xs: 3, md: 8 },
           backgroundColor: theme.palette.brand.main,
           textAlign: "center",

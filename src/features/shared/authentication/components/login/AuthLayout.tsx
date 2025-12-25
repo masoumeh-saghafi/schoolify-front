@@ -40,7 +40,7 @@ const AuthLayout = (props: AuthLayoutProps) => {
       sx={{
         minHeight: "100vh",
         backgroundColor: theme.palette.background.paper,
-        direction: "rtl",
+        // direction: "rtl",
       }}
     >
       {/* Desktop Background & Logo */}

@@ -139,7 +139,7 @@ const Header = (props: HeaderProps) => {
           </Toolbar>
         </Box>
       </AppBar>
-      <Toolbar />
+      {/* <Toolbar /> */}
     </>
   );
 };
