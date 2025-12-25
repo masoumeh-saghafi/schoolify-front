@@ -38,26 +38,52 @@ const AuthLayout = (props: AuthLayoutProps) => {
     <Grid
       container
       sx={{
-        height: "100vh",
+        minHeight: "100vh",
         backgroundColor: theme.palette.background.paper,
-        directions: "rtl",
+        direction: "rtl",
       }}
     >
       {/* Desktop Background & Logo */}
-
       {!isMobile && (
         <Grid
           size={{ md: 6 }}
           sx={{
+            background: `linear-gradient(135deg, ${theme.palette.brand.main} 0%, ${theme.palette.primary.main} 100%)`,
             backgroundImage: `url(${loginBgLarge})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
+            position: "relative",
+            "&::before": {
+              content: '""',
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: `linear-gradient(135deg, ${theme.palette.brand.main}90 0%, ${theme.palette.primary.main}80 100%)`,
+            },
           }}
         >
-          <Logo variant="h4" sx={{ color: theme.palette.text.white }} />
+          <Box sx={{ position: "relative", zIndex: 1, textAlign: "center" }}>
+            <Logo
+              variant="h3"
+              sx={{ color: theme.palette.text.white, mb: 2 }}
+            />
+            <Typography
+              variant="h6"
+              sx={{
+                color: theme.palette.primary.light,
+                fontWeight: "normal",
+                maxWidth: 300,
+              }}
+            >
+              مدیریت مالی مدرسه، ساده و مطمئن
+            </Typography>
+          </Box>
         </Grid>
       )}
 
@@ -68,35 +94,67 @@ const AuthLayout = (props: AuthLayoutProps) => {
             sx={{
               backgroundImage: `url(${loginBgSmall})`,
               backgroundSize: "cover",
-              height: 75,
+              height: 120,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              position: "relative",
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                background: `linear-gradient(135deg, ${theme.palette.brand.main}90 0%, ${theme.palette.primary.main}80 100%)`,
+              },
             }}
           >
-            <Logo variant="h5" sx={{ color: theme.palette.text.white }} />
+            <Logo
+              variant="h5"
+              sx={{ color: theme.palette.text.white, position: "relative", zIndex: 1 }}
+            />
           </Box>
         )}
 
         {/* Form Content Wrapper */}
         <Box
           sx={{
-            px: 3,
-            py: 4,
+            px: { xs: 3, md: 6 },
+            py: { xs: 4, md: 6 },
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            height: isMobile ? "auto" : "100%",
+            minHeight: isMobile ? "auto" : "100%",
           }}
         >
           {/* Page Title */}
-          <Typography
-            variant="h6"
-            sx={{ mb: 4, color: theme.palette.text.title }}
+          <Box
+            sx={{
+              mb: 4,
+              textAlign: "center",
+            }}
           >
-            {"ورود | ثبت نام"}
-          </Typography>
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: "bold",
+                color: theme.palette.text.title,
+                mb: 1,
+              }}
+            >
+              ورود | ثبت نام
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: theme.palette.text.primary,
+              }}
+            >
+              به اسکولیفای خوش آمدید
+            </Typography>
+          </Box>
 
           {/* Children (Form Fields / Buttons) */}
           {children}

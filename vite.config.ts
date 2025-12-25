@@ -10,4 +10,9 @@ export default defineConfig({
       "@public": path.resolve(__dirname, "./public"),
     },
   },
+  server: {
+    // @ts-ignore
+    allowedHosts: process.env.TEMPO === "true" ? true : undefined,
+    host: process.env.TEMPO === "true" ? '0.0.0.0' : undefined,
+  }
 });
