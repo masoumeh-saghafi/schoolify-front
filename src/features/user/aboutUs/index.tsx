@@ -57,13 +57,13 @@ const contactInfo = [
   {
     icon: Phone,
     title: "شماره تماس",
-    items: ["021-1234-5678", "0912-345-6789"],
+    items: ["0919-158-7842", "0992-861-9396"],
   },
-  {
-    icon: Mail,
-    title: "ایمیل",
-    items: ["support@schoolify.ir", "info@schoolify.ir"],
-  },
+  // {
+  //   icon: Mail,
+  //   title: "ایمیل",
+  //   items: ["support@schoolify.ir", "info@schoolify.ir"],
+  // },
   {
     icon: Clock,
     title: "ساعات کاری",
@@ -75,15 +75,8 @@ const AboutUs = () => {
   // Hooks
   const theme = useAppTheme();
 
-  // Render
   return (
-    <Box
-      sx={
-        {
-          // direction: "rtl"
-        }
-      }
-    >
+    <Box>
       {/* Header */}
       <Header />
 
@@ -103,11 +96,12 @@ const AboutUs = () => {
         }}
       >
         <Typography
-          variant="h3"
+          variant="h1"
           sx={{
             fontWeight: "bold",
             mb: 3,
-            fontSize: { xs: "1.8rem", md: "2.5rem" },
+            fontSize: { xs: "1.8rem", md: "2.8rem" },
+            color: theme.palette.text.white,
           }}
         >
           مدیریت مالی مدارس، آسان، هوشمند و آماده برای فردا
@@ -120,6 +114,8 @@ const AboutUs = () => {
             lineHeight: 2,
             opacity: 0.9,
             fontSize: { xs: "0.9rem", md: "1.1rem" },
+            color: theme.palette.text.white,
+            fontWeight: "normal",
           }}
         >
           ما در اسکولیفای بر این باوریم که مدیران و کادر اداری مدارس باید وقت
@@ -141,11 +137,12 @@ const AboutUs = () => {
         <Grid container spacing={6} alignItems="center">
           <Grid size={{ xs: 12, md: 6 }}>
             <Typography
-              variant="h4"
+              variant="h3"
               sx={{
                 fontWeight: "bold",
                 color: theme.palette.text.title,
                 mb: 3,
+                fontSize: { xs: "1.8rem", md: "2.4rem" },
               }}
             >
               داستان اسکولیفای
@@ -153,9 +150,10 @@ const AboutUs = () => {
             <Typography
               variant="body1"
               sx={{
-                color: theme.palette.text.primary,
-                lineHeight: 2.2,
+                color: theme.palette.info.dark,
+                lineHeight: 2,
                 mb: 3,
+                fontSize: { xs: "0.9rem", md: "1.1rem" },
               }}
             >
               اسکولیفای از یک ایده ساده شروع شد: اینکه مدیریت مالی مدارس نباید
@@ -167,8 +165,9 @@ const AboutUs = () => {
             <Typography
               variant="body1"
               sx={{
-                color: theme.palette.text.primary,
-                lineHeight: 2.2,
+                color: theme.palette.info.dark,
+                lineHeight: 2,
+                fontSize: { xs: "0.9rem", md: "1.1rem" },
               }}
             >
               اسکولیفای با تکیه بر دانش فنی و طراحی رابط کاربری بهینه، فرآیندهای
@@ -191,6 +190,7 @@ const AboutUs = () => {
                   fontWeight: "bold",
                   color: theme.palette.brand.main,
                   mb: 2,
+                  fontSize: { xs: "1.8rem", md: "2.4rem" },
                 }}
               >
                 با اسکولیفای
@@ -198,8 +198,9 @@ const AboutUs = () => {
               <Typography
                 variant="body1"
                 sx={{
-                  color: theme.palette.text.primary,
+                  color: theme.palette.info.dark,
                   lineHeight: 2,
+                  fontSize: { xs: "0.9rem", md: "1.1rem" },
                 }}
               >
                 مدیریت مالی دیگر دغدغه‌ای سخت و پیچیده نیست؛ بلکه تجربه‌ای ساده،
@@ -219,12 +220,13 @@ const AboutUs = () => {
         }}
       >
         <Typography
-          variant="h4"
+          variant="h3"
           sx={{
             textAlign: "center",
             fontWeight: "bold",
             color: theme.palette.text.title,
             mb: 2,
+            fontSize: { xs: "1.8rem", md: "2.4rem" },
           }}
         >
           ارزش‌های کلیدی
@@ -233,8 +235,9 @@ const AboutUs = () => {
           variant="body1"
           sx={{
             textAlign: "center",
-            color: theme.palette.text.primary,
+            color: theme.palette.info.dark,
             mb: 6,
+            fontSize: { xs: "0.9rem", md: "1.1rem" },
           }}
         >
           اصولی که ما را در مسیر خود هدایت می‌کنند
@@ -279,13 +282,18 @@ const AboutUs = () => {
                     fontWeight: "bold",
                     color: theme.palette.text.cardTitle,
                     mb: 1,
+                    fontSize: { xs: "1rem", md: "1.2rem" },
                   }}
                 >
                   {value.title}
                 </Typography>
                 <Typography
                   variant="body2"
-                  sx={{ color: theme.palette.text.primary, lineHeight: 1.8 }}
+                  sx={{
+                    color: theme.palette.info.dark,
+                    lineHeight: 1.8,
+                    fontSize: { xs: "0.85rem", md: "1rem" },
+                  }}
                 >
                   {value.description}
                 </Typography>
@@ -304,12 +312,13 @@ const AboutUs = () => {
         }}
       >
         <Typography
-          variant="h4"
+          variant="h3"
           sx={{
             textAlign: "center",
             fontWeight: "bold",
             color: theme.palette.text.title,
             mb: 2,
+            fontSize: { xs: "1.8rem", md: "2.4rem" },
           }}
         >
           تماس با ما
@@ -318,8 +327,9 @@ const AboutUs = () => {
           variant="body1"
           sx={{
             textAlign: "center",
-            color: theme.palette.text.primary,
+            color: theme.palette.info.dark,
             mb: 6,
+            fontSize: { xs: "0.9rem", md: "1.1rem" },
           }}
         >
           در صورت بروز هرگونه مشکل یا سوال، تیم پشتیبانی ما آماده کمک به شماست
@@ -359,6 +369,7 @@ const AboutUs = () => {
                     fontWeight: "bold",
                     color: theme.palette.text.cardTitle,
                     mb: 1,
+                    fontSize: { xs: "1rem", md: "1.2rem" },
                   }}
                 >
                   {contact.title}
@@ -368,7 +379,8 @@ const AboutUs = () => {
                     key={idx}
                     variant="body2"
                     sx={{
-                      color: theme.palette.text.primary,
+                      color: theme.palette.info.dark,
+                      fontSize: { xs: "0.85rem", md: "1rem" },
                       direction: contact.icon === Phone ? "ltr" : "rtl",
                     }}
                   >
