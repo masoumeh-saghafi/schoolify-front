@@ -308,7 +308,7 @@ const Landing = () => {
         sx={{
           py: { xs: 15, md: 20 },
           px: { xs: 3, md: 8 },
-          backgroundColor: theme.palette.background.paper,
+          backgroundColor: theme.palette.background.default,
         }}
       >
         <Typography
@@ -357,7 +357,7 @@ const Landing = () => {
                 maxWidth: 520,
                 mx: "auto",
                 borderRadius: 4,
-                backgroundColor: "#fff5f5",
+                backgroundColor: theme.palette.background.paper,
                 border: "1px solid rgba(255,0,0,0.08)",
               }}
             >
@@ -407,7 +407,7 @@ const Landing = () => {
                 maxWidth: 520,
                 mx: "auto",
                 borderRadius: 4,
-                backgroundColor: "#f0fff4",
+                backgroundColor: theme.palette.background.paper,
                 border: "1px solid rgba(0,128,0,0.08)",
               }}
             >
