@@ -25,6 +25,7 @@ import { CloseIcon } from "@schoolify/core/components/icon/CloseIcon";
 // Custom Utilities
 import headerButtonsData from "@schoolify/features/user/landing/utilities/header";
 import useClientDeviceTypeIsMobile from "@schoolify/core/hooks/common/useClientDeviceTypeIsMobile";
+import { scrollToTop } from "@schoolify/core/utilities/scroll";
 
 // Custom Types
 interface HeaderProps {}
@@ -75,7 +76,10 @@ const Header = (props: HeaderProps) => {
                     component={Link}
                     to={page.link}
                     key={page.title}
-                    onClick={handleDrawerClose}
+                    onClick={() => {
+                      handleDrawerClose();
+                      scrollToTop();
+                    }}
                     sx={{
                       mx: 1,
                       mt: 2,
@@ -116,6 +120,7 @@ const Header = (props: HeaderProps) => {
                 <Button
                   component={Link}
                   to={page.link}
+                  onClick={scrollToTop}
                   key={page.title}
                   sx={{
                     color: isActive(page.link)

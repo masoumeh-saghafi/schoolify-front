@@ -30,6 +30,7 @@ import {
   Headphones,
 } from "lucide-react";
 import { ArrowLeftWithLineIcon } from "@schoolify/core/components/icon/ArrowLeftWithLineIcon";
+import { useEffect } from "react";
 
 // Data
 const features = [
@@ -546,7 +547,7 @@ const Landing = () => {
 
           <Button
             component={Link}
-            to={routes.aboutUs}
+            to={routes.contactUs}
             variant="outlined"
             sx={{
               color: theme.palette.text.white,
