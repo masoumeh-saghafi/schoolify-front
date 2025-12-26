@@ -4,9 +4,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Box from "@schoolify/core/components/base/inputs/Box";
 import Button from "@schoolify/core/components/base/inputs/Button";
 import Typography from "@schoolify/core/components/base/inputs/Typography";
+import TextField from "@schoolify/core/components/base/inputs/TextField";
+import InputAdornment from "@schoolify/core/components/base/inputs/InputAdornment";
+import FormHelperText from "@schoolify/core/components/base/inputs/FormHelperText";
 
 // Core Components
-import FormField from "@schoolify/core/components/base/inputs/FormField";
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
 // Feature Components
@@ -14,7 +16,7 @@ import { phoneSchema } from "@schoolify/features/shared/authentication/validatio
 
 // React Types
 import { useForm, type FieldErrors, type SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 // Icons
 import { Phone, ArrowLeft } from "lucide-react";
@@ -49,81 +51,117 @@ const SendCode = (props: SendCodeProps) => {
     <Box
       component="form"
       onSubmit={handleSubmit(onSubmit)}
-      sx={{ width: "100%", maxWidth: 400 }}
+      sx={{ width: "100%" }}
     >
-      {/* Icon */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          mb: 3,
-        }}
-      >
-        <Box
+      {/* Phone Number Field */}
+      <Box sx={{ mb: 3 }}>
+        <Typography
+          component="label"
           sx={{
-            width: 70,
-            height: 70,
-            borderRadius: "50%",
-            backgroundColor: theme.palette.primary.light,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            display: "block",
+            textAlign: "right",
+            mb: 1,
+            fontSize: "0.875rem",
+            fontWeight: 500,
+            color: theme.palette.text.label,
           }}
         >
-          <Phone size={32} color={theme.palette.brand.main} />
-        </Box>
+          شماره موبایل
+        </Typography>
+        <TextField
+          fullWidth
+          type="text"
+          placeholder="09*********"
+          {...register("phoneNumber")}
+          error={!!errors.phoneNumber}
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              backgroundColor: theme.palette.background.paper,
+              borderRadius: 2,
+              "& fieldset": {
+                borderColor: theme.palette.grey[300],
+              },
+              "&:hover fieldset": {
+                borderColor: theme.palette.primary.main,
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: theme.palette.primary.main,
+              },
+            },
+            "& .MuiInputBase-input": {
+              textAlign: "right",
+              direction: "ltr",
+            },
+          }}
+          slotProps={{
+            input: {
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Phone size={20} color={theme.palette.grey[200]} />
+                </InputAdornment>
+              ),
+            },
+          }}
+        />
+        {errors.phoneNumber && (
+          <FormHelperText error sx={{ textAlign: "right", mt: 0.5 }}>
+            {errors.phoneNumber.message}
+          </FormHelperText>
+        )}
       </Box>
 
-      <Typography
+      {/* Submit Button */}
+      <Button
+        type="submit"
+        variant="contained"
+        fullWidth
         sx={{
-          textAlign: "center",
-          fontSize: "0.9rem",
-          mb: 3,
-          color: theme.palette.text.primary,
+          py: 1.5,
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.text.white,
+          fontWeight: "bold",
+          borderRadius: 2,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 1,
+          fontSize: "1rem",
+          "&:hover": {
+            backgroundColor: theme.palette.brand.main,
+          },
         }}
       >
-        لطفا شماره موبایل خود را وارد نمایید.
-      </Typography>
+        ارسال کد تایید
+        <ArrowLeft size={18} />
+      </Button>
 
-      <FormField
-        name="phoneNumber"
-        type="text"
-        placeholder="*********09"
-        register={register}
-        error={(errors as FieldErrors<SendCodeFormProps>).phoneNumber}
-      />
-
-      <Box sx={{ display: "flex", justifyContent: "space-between", mt: 3, gap: 2 }}>
-        <Button
-          type="submit"
-          variant="contained"
-          sx={{
-            flex: 1,
-            py: 1.5,
-            backgroundColor: theme.palette.primary.main,
-            color: theme.palette.text.white,
-            fontWeight: "bold",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 1,
-          }}
+      {/* Register Link */}
+      <Box
+        sx={{
+          mt: 3,
+          textAlign: "center",
+        }}
+      >
+        <Typography
+          variant="body2"
+          sx={{ color: theme.palette.text.primary }}
         >
-          ارسال کد تایید
-          <ArrowLeft size={18} />
-        </Button>
-        <Button
-          variant="contained"
-          onClick={() => navigate("/")}
-          sx={{
-            width: "35%",
-            py: 1.5,
-            backgroundColor: theme.palette.secondary.main,
-            color: theme.palette.text.white,
-          }}
-        >
-          بازگشت
-        </Button>
+          هنوز حساب کاربری ندارید؟{" "}
+          <Box
+            component={Link}
+            to="/"
+            sx={{
+              color: theme.palette.primary.main,
+              textDecoration: "none",
+              fontWeight: 500,
+              "&:hover": {
+                textDecoration: "underline",
+              },
+            }}
+          >
+            ثبت‌نام کنید
+          </Box>
+        </Typography>
       </Box>
     </Box>
   );

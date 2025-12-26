@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 // MUI Components
 import Typography from "@schoolify/core/components/base/inputs/Typography";
@@ -14,6 +14,9 @@ import { useForm, type SubmitHandler, Controller } from "react-hook-form";
 // Feature Components
 import { codeSchema } from "@schoolify/features/shared/authentication/validations/phoneValidation";
 import OtpInput from "@schoolify/features/shared/authentication/components/login/OtpInput";
+
+// Icons
+import { ArrowLeft } from "lucide-react";
 
 // Custom Types
 export type VerifyCodeFormProps = z.infer<typeof codeSchema>;
@@ -49,8 +52,7 @@ const VerifyCode = (props: VerifyCodeProps) => {
     }
   }, [countdown, onBack]);
 
-  // Calculate progress for circular timer
-  const progress = (countdown / 120) * 100;
+  // Calculate time
   const minutes = Math.floor(countdown / 60);
   const seconds = countdown % 60;
 
@@ -59,21 +61,25 @@ const VerifyCode = (props: VerifyCodeProps) => {
     <Box
       component="form"
       onSubmit={handleSubmit(onSubmit)}
-      sx={{ width: "100%", maxWidth: 400 }}
+      sx={{ width: "100%" }}
     >
-      <Typography
-        sx={{
-          textAlign: "center",
-          fontSize: "0.9rem",
-          mb: 3,
-          color: theme.palette.text.primary,
-        }}
-      >
-        لطفا کد ۶ رقمی ارسال شده را وارد نمایید.
-      </Typography>
-
-      {/* OTP Input */}
+      {/* Code Field Label */}
       <Box sx={{ mb: 3 }}>
+        <Typography
+          component="label"
+          sx={{
+            display: "block",
+            textAlign: "right",
+            mb: 1,
+            fontSize: "0.875rem",
+            fontWeight: 500,
+            color: theme.palette.text.label,
+          }}
+        >
+          کد تایید
+        </Typography>
+        
+        {/* OTP Input */}
         <Controller
           name="code"
           control={control}
@@ -91,7 +97,7 @@ const VerifyCode = (props: VerifyCodeProps) => {
             sx={{
               color: theme.palette.error.main,
               display: "block",
-              textAlign: "center",
+              textAlign: "right",
               mt: 1,
             }}
           >
@@ -100,118 +106,102 @@ const VerifyCode = (props: VerifyCodeProps) => {
         )}
       </Box>
 
-      {/* Timer */}
+      {/* Timer and Resend */}
       <Box
         sx={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "space-between",
           mb: 3,
-          gap: 1,
         }}
       >
-        <Box
+        <Typography
+          variant="body2"
+          onClick={countdown <= 0 ? onBack : undefined}
           sx={{
-            position: "relative",
-            width: 50,
-            height: 50,
+            color:
+              countdown <= 0
+                ? theme.palette.primary.main
+                : theme.palette.text.primary,
+            cursor: countdown <= 0 ? "pointer" : "default",
+            fontSize: "0.85rem",
+            "&:hover": countdown <= 0
+              ? { textDecoration: "underline" }
+              : undefined,
           }}
         >
-          <svg
-            width="50"
-            height="50"
-            style={{ transform: "rotate(-90deg)" }}
-          >
-            {/* Background circle */}
-            <circle
-              cx="25"
-              cy="25"
-              r="22"
-              fill="none"
-              stroke={theme.palette.grey[300]}
-              strokeWidth="3"
-            />
-            {/* Progress circle */}
-            <circle
-              cx="25"
-              cy="25"
-              r="22"
-              fill="none"
-              stroke={
-                countdown > 30
-                  ? theme.palette.primary.main
-                  : countdown > 10
-                  ? theme.palette.warning.main
-                  : theme.palette.error.main
-              }
-              strokeWidth="3"
-              strokeDasharray={`${(progress / 100) * 138.23} 138.23`}
-              strokeLinecap="round"
-            />
-          </svg>
-          <Typography
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              fontSize: "0.7rem",
-              fontWeight: "bold",
-              color:
-                countdown > 30
-                  ? theme.palette.primary.main
-                  : countdown > 10
-                  ? theme.palette.warning.main
-                  : theme.palette.error.main,
-            }}
-          >
-            {`${minutes.toString().padStart(2, "0")}:${seconds
-              .toString()
-              .padStart(2, "0")}`}
-          </Typography>
-        </Box>
+          ارسال مجدد کد
+        </Typography>
         <Typography
           variant="body2"
           sx={{
             color: theme.palette.text.primary,
             fontSize: "0.85rem",
+            direction: "ltr",
           }}
         >
-          زمان مانده تا دریافت مجدد کد
+          {`${minutes.toString().padStart(2, "0")}:${seconds
+            .toString()
+            .padStart(2, "0")}`}
         </Typography>
       </Box>
 
-      {/* Buttons */}
-      <Box sx={{ display: "flex", justifyContent: "space-between", gap: 2 }}>
-        <Button
-          type="submit"
-          variant="contained"
-          disabled={countdown <= 0}
-          sx={{
-            flex: 1,
-            py: 1.5,
-            backgroundColor: theme.palette.primary.main,
-            color: theme.palette.text.white,
-            fontWeight: "bold",
-            "&:disabled": {
-              backgroundColor: theme.palette.grey[300],
-            },
-          }}
+      {/* Submit Button */}
+      <Button
+        type="submit"
+        variant="contained"
+        fullWidth
+        disabled={countdown <= 0}
+        sx={{
+          py: 1.5,
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.text.white,
+          fontWeight: "bold",
+          borderRadius: 2,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 1,
+          fontSize: "1rem",
+          "&:hover": {
+            backgroundColor: theme.palette.brand.main,
+          },
+          "&:disabled": {
+            backgroundColor: theme.palette.grey[300],
+          },
+        }}
+      >
+        ورود
+        <ArrowLeft size={18} />
+      </Button>
+
+      {/* Back Link */}
+      <Box
+        sx={{
+          mt: 3,
+          textAlign: "center",
+        }}
+      >
+        <Typography
+          variant="body2"
+          sx={{ color: theme.palette.text.primary }}
         >
-          ورود
-        </Button>
-        <Button
-          onClick={onBack}
-          variant="contained"
-          sx={{
-            width: "35%",
-            py: 1.5,
-            backgroundColor: theme.palette.secondary.main,
-            color: theme.palette.text.white,
-          }}
-        >
-          بازگشت
-        </Button>
+          شماره اشتباه وارد شده؟{" "}
+          <Box
+            component="span"
+            onClick={onBack}
+            sx={{
+              color: theme.palette.primary.main,
+              cursor: "pointer",
+              fontWeight: 500,
+              "&:hover": {
+                textDecoration: "underline",
+              },
+            }}
+          >
+            تغییر شماره
+          </Box>
+        </Typography>
       </Box>
     </Box>
   );
