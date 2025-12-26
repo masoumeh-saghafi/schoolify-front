@@ -69,11 +69,13 @@ const VerifyCode = (props: VerifyCodeProps) => {
           component="label"
           sx={{
             display: "block",
-            textAlign: "right",
+            textAlign: "left",
             mb: 1,
             fontSize: "0.875rem",
             fontWeight: 500,
             color: theme.palette.text.label,
+
+            direction:'ltr'
           }}
         >
           کد تایید

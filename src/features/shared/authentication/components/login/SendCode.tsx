@@ -55,19 +55,32 @@ const SendCode = (props: SendCodeProps) => {
     >
       {/* Phone Number Field */}
       <Box sx={{ mb: 3 }}>
-        <Typography
+        {/* <Typography
           component="label"
           sx={{
             display: "block",
-            textAlign: "right",
+            textAlign: "left",
             mb: 1,
             fontSize: "0.875rem",
             fontWeight: 500,
             color: theme.palette.text.label,
+            // direction:'ltr'
           }}
         >
           شماره موبایل
-        </Typography>
+        </Typography> */}
+        <Typography
+          component = 'label'
+
+  variant='overline'
+  sx={{
+    color: theme.palette.info.dark,
+    mb: 3
+  }}
+>
+  لطفا شماره موبایل خود را وارد کنید
+</Typography>
+
         <TextField
           fullWidth
           type="text"
@@ -75,6 +88,7 @@ const SendCode = (props: SendCodeProps) => {
           {...register("phoneNumber")}
           error={!!errors.phoneNumber}
           sx={{
+            // direction:'rtl',
             "& .MuiOutlinedInput-root": {
               backgroundColor: theme.palette.background.paper,
               borderRadius: 2,
@@ -89,8 +103,8 @@ const SendCode = (props: SendCodeProps) => {
               },
             },
             "& .MuiInputBase-input": {
-              textAlign: "right",
-              direction: "ltr",
+              textAlign: "left",
+              direction: "rtl",
             },
           }}
           slotProps={{
@@ -104,7 +118,7 @@ const SendCode = (props: SendCodeProps) => {
           }}
         />
         {errors.phoneNumber && (
-          <FormHelperText error sx={{ textAlign: "right", mt: 0.5 }}>
+          <FormHelperText  error sx={{ textAlign: "left", mt: 0.5 }}>
             {errors.phoneNumber.message}
           </FormHelperText>
         )}
@@ -116,7 +130,7 @@ const SendCode = (props: SendCodeProps) => {
         variant="contained"
         fullWidth
         sx={{
-          py: 1.5,
+          py: 1.3,
           backgroundColor: theme.palette.primary.main,
           color: theme.palette.text.white,
           fontWeight: "bold",
@@ -125,7 +139,7 @@ const SendCode = (props: SendCodeProps) => {
           alignItems: "center",
           justifyContent: "center",
           gap: 1,
-          fontSize: "1rem",
+          fontSize: "0.8rem",
           "&:hover": {
             backgroundColor: theme.palette.brand.main,
           },
@@ -136,7 +150,7 @@ const SendCode = (props: SendCodeProps) => {
       </Button>
 
       {/* Register Link */}
-      <Box
+      {/* <Box
         sx={{
           mt: 3,
           textAlign: "center",
@@ -162,7 +176,37 @@ const SendCode = (props: SendCodeProps) => {
             ثبت‌نام کنید
           </Box>
         </Typography>
-      </Box>
+      </Box> */}
+
+
+      {/* Terms Text */}
+      <Box   sx={{
+                           mt: 2,
+                  textAlign: 'center'
+                }}>
+
+              <Typography
+                variant='caption'
+                sx={{
+                  color: theme.palette.text.primary,
+                  mt: 3,
+                  textAlign: 'center'
+                }}
+              >
+                با ورود به سیستم، شما{' '}
+                <Box
+                  component='span'
+                  sx={{
+                    color: theme.palette.primary.main,
+                    cursor: 'pointer',
+                    '&:hover': { textDecoration: 'underline' }
+                  }}
+                >
+                  قوانین و مقررات
+                </Box>{' '}
+                را می‌پذیرید
+              </Typography>
+                  </Box>
     </Box>
   );
 };
