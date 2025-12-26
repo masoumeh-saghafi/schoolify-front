@@ -14,6 +14,8 @@ import routes from "@schoolify/core/utilities/routes";
 
 // Icons
 import { Instagram, Send, Twitter, Phone, Mail } from "lucide-react";
+import { WhatsAppIcon } from "@schoolify/core/components/icon/WhatsAppIcon";
+import { TelegramIcon } from "@schoolify/core/components/icon/TelegramIcon";
 
 // Custom Types
 interface FooterProps {}
@@ -33,7 +35,7 @@ const Footer = (props: FooterProps) => {
     <Box
       component="footer"
       sx={{
-        backgroundColor: theme.palette.brand.main,
+        backgroundColor: theme.palette.background.paper,
         color: theme.palette.text.white,
         py: 6,
         px: { xs: 3, md: 8 },
@@ -48,16 +50,22 @@ const Footer = (props: FooterProps) => {
             sx={{
               fontWeight: "bold",
               mb: 2,
-              color: theme.palette.primary.main,
+              color: theme.palette.text.primary,
+              // color: theme.palette.primary.main,
             }}
           >
             اسکولیفای
           </Typography>
           <Typography
             variant="body2"
-            sx={{ color: theme.palette.grey[300], lineHeight: 2 }}
+            sx={{
+              color: theme.palette.info.dark,
+              lineHeight: 2,
+            }}
           >
-            مدیریت مالی مدرسه، ساده و مطمئن
+            مدیریت مالی مدرسه،
+            <br></br>
+            ساده و مطمئن
           </Typography>
         </Grid>
 
@@ -68,7 +76,7 @@ const Footer = (props: FooterProps) => {
             sx={{
               fontWeight: "bold",
               mb: 2,
-              color: theme.palette.primary.light,
+              color: theme.palette.text.primary,
             }}
           >
             دسترسی سریع
@@ -80,7 +88,7 @@ const Footer = (props: FooterProps) => {
                 component={Link}
                 to={item.link}
                 sx={{
-                  color: theme.palette.grey[300],
+                  color: theme.palette.info.dark,
                   textDecoration: "none",
                   transition: "color 0.2s ease",
                   "&:hover": {
@@ -101,7 +109,7 @@ const Footer = (props: FooterProps) => {
             sx={{
               fontWeight: "bold",
               mb: 2,
-              color: theme.palette.primary.light,
+              color: theme.palette.text.primary,
             }}
           >
             شبکه‌های اجتماعی
@@ -109,36 +117,27 @@ const Footer = (props: FooterProps) => {
           <Box sx={{ display: "flex", gap: 2 }}>
             <Box
               component="a"
-              href="#"
+              href="https://wa.me/+989191587842"
+              target="_blank"
               sx={{
-                color: theme.palette.grey[300],
+                color: theme.palette.info.dark,
                 transition: "color 0.2s ease",
                 "&:hover": { color: theme.palette.primary.main },
               }}
             >
-              <Instagram size={24} />
+              <WhatsAppIcon />
             </Box>
             <Box
               component="a"
-              href="#"
+              href="https://t.me/+989191587842"
+              target="_blank"
               sx={{
-                color: theme.palette.grey[300],
+                color: theme.palette.info.dark,
                 transition: "color 0.2s ease",
-                "&:hover": { color: theme.palette.primary.main },
+                "&:hover": { color: "#0088cc" },
               }}
             >
-              <Send size={24} />
-            </Box>
-            <Box
-              component="a"
-              href="#"
-              sx={{
-                color: theme.palette.grey[300],
-                transition: "color 0.2s ease",
-                "&:hover": { color: theme.palette.primary.main },
-              }}
-            >
-              <Twitter size={24} />
+              <TelegramIcon />
             </Box>
           </Box>
         </Grid>
@@ -147,14 +146,21 @@ const Footer = (props: FooterProps) => {
       {/* Divider */}
       <Box
         sx={{
-          borderTop: `1px solid ${theme.palette.grey[200]}`,
+          borderTop: `1px solid ${theme.palette.grey[600]}`,
           mt: 4,
           pt: 3,
           textAlign: "center",
         }}
       >
-        <Typography variant="body2" sx={{ color: theme.palette.grey[300] }}>
-          © 2025 اسکولیفای. تمامی حقوق محفوظ است
+        <Typography
+          variant="body2"
+          sx={{
+            color: theme.palette.info.dark,
+            textAlign: "center",
+            mt: 4, // فاصله از بالا
+          }}
+        >
+          © {new Date().getFullYear()} اسکولیفای. تمامی حقوق محفوظ است.
         </Typography>
       </Box>
     </Box>

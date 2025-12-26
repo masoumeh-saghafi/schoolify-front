@@ -29,6 +29,7 @@ import {
   Eye,
   Headphones,
 } from "lucide-react";
+import { ArrowLeftWithLineIcon } from "@schoolify/core/components/icon/ArrowLeftWithLineIcon";
 
 // Data
 const features = [
@@ -188,7 +189,7 @@ const Landing = () => {
             fontWeight: "bold",
             color: theme.palette.text.title,
             mb: 2,
-            fontSize: { xs: "1.9rem", md: "2.6rem" },
+            fontSize: { xs: "1.8rem", md: "2.4rem" },
           }}
         >
           امکانات اسکولیفای
@@ -207,22 +208,26 @@ const Landing = () => {
 
         <Grid
           container
-          sx={{
-            maxWidth: { xs: "50%", sm: "100%" },
-          }}
           spacing={3}
+          sx={{
+            maxWidth: 1200, // سقف عرض کل کارت‌ها
+            mx: "auto", // وسط‌چین
+          }}
         >
           {features.map((feature, index) => (
-            <Grid key={index} size={{ xs: 12, sm: 6 }}>
+            <Grid key={index} size={{ xs: 12, md: 6 }}>
               <Paper
                 elevation={0}
                 sx={{
                   p: 3,
-                  height: "100%",
+                  maxWidth: 520,
+                  mx: "auto",
+                  height: "100%", // ⬅ همه کارت‌ها هم‌قد
                   backgroundColor: "#e0ffe0",
                   borderRadius: 3,
                   textAlign: "center",
                   display: "flex",
+                  // flexDirection: "column", // ⬅ ستون‌بندی
                   transition: "transform 0.3s ease, box-shadow 0.3s ease",
                   boxShadow: "0 0px 2px rgba(0,0,0,0.1)",
                   "&:hover": {
@@ -261,6 +266,9 @@ const Landing = () => {
                 <Box
                   sx={{
                     mx: 3,
+                    display: "flex",
+                    flexDirection: "column",
+                    flexGrow: 1, // ⬅ پرکننده ارتفاع
                   }}
                 >
                   <Typography
@@ -280,6 +288,10 @@ const Landing = () => {
                       textAlign: "start",
                       color: theme.palette.info.dark,
                       lineHeight: 1.8,
+                      display: "-webkit-box",
+                      WebkitLineClamp: 4, // ⬅ همه کارت‌ها ۴ خط
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
                     }}
                   >
                     {feature.description}
@@ -291,7 +303,7 @@ const Landing = () => {
         </Grid>
       </Box>
 
-      {/* Why Schoolify Section */}
+      {/* Before / After Section */}
       <Box
         sx={{
           py: { xs: 15, md: 20 },
@@ -300,112 +312,196 @@ const Landing = () => {
         }}
       >
         <Typography
-          variant="h4"
+          variant="h3"
           sx={{
             textAlign: "center",
             fontWeight: "bold",
             color: theme.palette.text.title,
             mb: 2,
+            fontSize: { xs: "1.8rem", md: "2.4rem" },
           }}
         >
-          چرا اسکولیفای؟
+          تحول در مدیریت مالی مدرسه
         </Typography>
+
         <Typography
           variant="body1"
           sx={{
             textAlign: "center",
-            color: theme.palette.text.primary,
-            mb: 6,
-            maxWidth: 700,
+            color: theme.palette.info.dark,
+            mb: 8,
+            maxWidth: 800,
+            mx: "auto",
+            lineHeight: 2,
+          }}
+        >
+          اسکولیفای فقط یک نرم‌افزار نیست؛ تغییری اساسی در شیوه مدیریت مالی
+          مدرسه شما ایجاد می‌کند.
+        </Typography>
+
+        <Grid
+          container
+          spacing={4}
+          sx={{
+            maxWidth: 1200,
             mx: "auto",
           }}
         >
-          با اسکولیفای، مدیریت مالی مدرسه نه تنها ساده و سریع می‌شود، بلکه:
-        </Typography>
-
-        <Grid container spacing={3}>
-          {whyUs.map((item, index) => (
-            <Grid key={index} size={{ xs: 12, sm: 6 }}>
-              <Box
+          {/* Before */}
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Paper
+              elevation={0}
+              sx={{
+                p: 4,
+                height: "100%",
+                maxWidth: 520,
+                mx: "auto",
+                borderRadius: 4,
+                backgroundColor: "#fff5f5",
+                border: "1px solid rgba(255,0,0,0.08)",
+              }}
+            >
+              <Typography
+                variant="h6"
                 sx={{
-                  display: "flex",
-                  gap: 2,
-                  p: 3,
-                  backgroundColor: theme.palette.background.card,
-                  borderRadius: 3,
-                  height: "100%",
+                  fontWeight: "bold",
+                  color: "error.main",
+                  mb: 3,
                 }}
               >
-                <Box
-                  sx={{
-                    width: 50,
-                    height: 50,
-                    borderRadius: 2,
-                    backgroundColor: theme.palette.primary.main,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  <item.icon size={24} color={theme.palette.text.white} />
-                </Box>
-                <Box>
+                ❌ قبل از اسکولیفای
+              </Typography>
+
+              <Box component="ul" sx={{ pl: 2, m: 0 }}>
+                {[
+                  "ثبت دستی پرداخت‌ها و احتمال بالای خطای انسانی",
+                  "پیگیری بدهی‌ها با دفتر، تماس تلفنی یا پیام‌های پراکنده",
+                  "گزارش‌گیری زمان‌بر و بدون دید تحلیلی",
+                  "عدم شفافیت مالی برای مدیریت مدرسه",
+                  "وابستگی شدید سیستم مالی به یک فرد خاص",
+                ].map((item, index) => (
                   <Typography
-                    variant="subtitle1"
+                    key={index}
+                    component="li"
+                    variant="body2"
                     sx={{
-                      fontWeight: "bold",
-                      color: theme.palette.text.cardTitle,
-                      mb: 0.5,
+                      mb: 1.5,
+                      color: theme.palette.text.primary,
+                      lineHeight: 1.9,
                     }}
                   >
-                    {item.title}
+                    {item}
                   </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{ color: theme.palette.text.primary, lineHeight: 1.8 }}
-                  >
-                    {item.description}
-                  </Typography>
-                </Box>
+                ))}
               </Box>
-            </Grid>
-          ))}
+            </Paper>
+          </Grid>
+
+          {/* After */}
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Paper
+              elevation={0}
+              sx={{
+                p: 4,
+                height: "100%",
+                maxWidth: 520,
+                mx: "auto",
+                borderRadius: 4,
+                backgroundColor: "#f0fff4",
+                border: "1px solid rgba(0,128,0,0.08)",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: "bold",
+                  color: "success.main",
+                  mb: 3,
+                }}
+              >
+                ✅ بعد از اسکولیفای
+              </Typography>
+
+              <Box component="ul" sx={{ pl: 2, m: 0 }}>
+                {[
+                  "ثبت دقیق تمام پرداخت‌ها بدون خطا",
+                  "دسترسی سریع به وضعیت مالی هر دانش‌آموز",
+                  "گزارش‌های لحظه‌ای و قابل تحلیل برای تصمیم‌گیری",
+                  "شفافیت کامل مالی برای مدیران و حسابداران",
+                  "سیستمی پایدار، مستقل از افراد و قابل توسعه",
+                ].map((item, index) => (
+                  <Typography
+                    key={index}
+                    component="li"
+                    variant="body2"
+                    sx={{
+                      mb: 1.5,
+                      color: theme.palette.text.primary,
+                      lineHeight: 1.9,
+                    }}
+                  >
+                    {item}
+                  </Typography>
+                ))}
+              </Box>
+            </Paper>
+          </Grid>
         </Grid>
       </Box>
-
-      {/* CTA Section */}
+      {/* CTA Section – Energetic */}
       <Box
         sx={{
-          py: { xs: 15, md: 20 },
+          py: { xs: 16, md: 22 },
           px: { xs: 3, md: 8 },
-          backgroundColor: theme.palette.brand.main,
+          background: (theme) =>
+            `linear-gradient(135deg, ${theme.palette.primary.main} 0%, rgba(52,171,69,0.8) 100%)`,
           textAlign: "center",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <Typography
-          variant="h5"
+        {/* subtle glow */}
+        <Box
           sx={{
-            fontWeight: "bold",
+            position: "absolute",
+            inset: 0,
+            background:
+              "radial-gradient(circle at top, rgba(255,255,255,0.18), transparent 60%)",
+            pointerEvents: "none",
+          }}
+        />
+
+        <Typography
+          variant="h3"
+          sx={{
+            fontWeight: 900,
             color: theme.palette.text.white,
             mb: 2,
+            letterSpacing: "-0.5px",
+            fontSize: { xs: "1.8rem", md: "2.4rem" },
           }}
         >
           آماده‌اید امور مالی مدرسه را ساده کنید؟
         </Typography>
+
         <Typography
           variant="body1"
           sx={{
-            color: theme.palette.grey[300],
-            mb: 4,
+            color: "rgba(255,255,255,0.9)",
+            mb: 5,
+            maxWidth: 700,
+            mx: "auto",
+            lineHeight: 2,
+            fontSize: { xs: "0.95rem", md: "1.05rem" },
           }}
         >
-          همین حالا ثبت‌نام کنید و از تمام امکانات اسکولیفای استفاده کنید.
+          همین حالا ثبت‌نام کنید و امور مالی مدرسه‌تان را با اسکولیفای در یک
+          سیستم هوشمند و شفاف مدیریت کنید!
         </Typography>
         <Box
           sx={{
             display: "flex",
-            gap: 2,
+            gap: { xs: 2, md: 2.5 },
             justifyContent: "center",
             flexWrap: "wrap",
           }}
@@ -415,34 +511,64 @@ const Landing = () => {
             to={routes.login}
             variant="contained"
             sx={{
-              backgroundColor: theme.palette.primary.main,
-              color: theme.palette.text.white,
-              px: 4,
-              py: 1.5,
+              backgroundColor: theme.palette.text.white,
+              color: theme.palette.primary.main,
+              px: { xs: 3, md: 5 },
+              py: { xs: 1.3, md: 1.7 },
+              minWidth: { xs: 160, md: 200 }, // طول حداقل برابر
+              fontWeight: "bold",
+              fontSize: { xs: "0.9rem", md: "1rem" },
+              boxShadow: "0 12px 30px rgba(0,0,0,0.2)",
+              transition: "0.2s",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
               "&:hover": {
-                backgroundColor: theme.palette.primary.light,
-                color: theme.palette.brand.main,
+                transform: "translateY(-2px)",
+                boxShadow: "0 5px 35px rgba(255, 255, 255, 0.1)",
+                "& .svg-arrow-signup": {
+                  transform: "translateX(5px)",
+                },
+              },
+              "& .svg-arrow-signup": {
+                transition: "0.2s",
+                ml: 1,
               },
             }}
           >
-            ثبت‌نام رایگان
+            ثبت‌ نام سریع
+            <ArrowLeftWithLineIcon
+              className="svg-arrow-signup"
+              width={20}
+              height={20}
+            />
           </Button>
+
           <Button
             component={Link}
             to={routes.aboutUs}
             variant="outlined"
             sx={{
-              borderColor: theme.palette.primary.light,
-              color: theme.palette.primary.light,
-              px: 4,
-              py: 1.5,
+              color: theme.palette.text.white,
+              borderColor: theme.palette.text.white,
+              borderWidth: 2,
+              px: { xs: 3, md: 4 },
+              py: { xs: 1.3, md: 1.7 },
+              minWidth: { xs: 160, md: 200 }, // طول حداقل برابر با دکمه اصلی
+              fontWeight: 500,
+              fontSize: { xs: "0.8rem", md: "1rem" },
+              opacity: 0.9,
+              transition: "0.2s",
               "&:hover": {
-                backgroundColor: theme.palette.primary.light,
-                color: theme.palette.brand.main,
+                backgroundColor: theme.palette.text.white,
+                color: theme.palette.primary.main,
+                borderColor: theme.palette.text.white,
+                opacity: 1,
+                textDecoration: "none",
               },
             }}
           >
-            تماس با ما
+            مشاوره و تماس با ما
           </Button>
         </Box>
       </Box>
