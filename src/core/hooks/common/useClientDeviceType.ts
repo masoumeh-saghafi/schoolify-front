@@ -6,7 +6,7 @@ export function useClientDeviceType() {
   const theme = useAppTheme();
 
   // Mobile
-  if (useMediaQuery(theme.breakpoints.down("sm"))) {
+  if (useMediaQuery(theme.breakpoints.down("md"))) {
     return "mobile";
   }
   return "desktop";

@@ -70,16 +70,15 @@ const SendCode = (props: SendCodeProps) => {
           شماره موبایل
         </Typography> */}
         <Typography
-          component = 'label'
-
-  variant='overline'
-  sx={{
-    color: theme.palette.info.dark,
-    mb: 3
-  }}
->
-  لطفا شماره موبایل خود را وارد کنید
-</Typography>
+          component="label"
+          variant="overline"
+          sx={{
+            color: theme.palette.info.dark,
+            mb: 3,
+          }}
+        >
+          لطفا شماره موبایل خود را وارد کنید
+        </Typography>
 
         <TextField
           fullWidth
@@ -118,7 +117,7 @@ const SendCode = (props: SendCodeProps) => {
           }}
         />
         {errors.phoneNumber && (
-          <FormHelperText  error sx={{ textAlign: "left", mt: 0.5 }}>
+          <FormHelperText error sx={{ textAlign: "left", mt: 0.5 }}>
             {errors.phoneNumber.message}
           </FormHelperText>
         )}
@@ -178,35 +177,35 @@ const SendCode = (props: SendCodeProps) => {
         </Typography>
       </Box> */}
 
-
       {/* Terms Text */}
-      <Box   sx={{
-                           mt: 2,
-                  textAlign: 'center'
-                }}>
-
-              <Typography
-                variant='caption'
-                sx={{
-                  color: theme.palette.text.primary,
-                  mt: 3,
-                  textAlign: 'center'
-                }}
-              >
-                با ورود به سیستم، شما{' '}
-                <Box
-                  component='span'
-                  sx={{
-                    color: theme.palette.primary.main,
-                    cursor: 'pointer',
-                    '&:hover': { textDecoration: 'underline' }
-                  }}
-                >
-                  قوانین و مقررات
-                </Box>{' '}
-                را می‌پذیرید
-              </Typography>
-                  </Box>
+      <Box
+        sx={{
+          mt: 2,
+          textAlign: "center",
+        }}
+      >
+        <Typography
+          variant="caption"
+          sx={{
+            color: theme.palette.text.primary,
+            mt: 3,
+            textAlign: "center",
+          }}
+        >
+          با ورود به سیستم، شما{" "}
+          <Box
+            component="span"
+            sx={{
+              color: theme.palette.primary.main,
+              cursor: "pointer",
+              "&:hover": { textDecoration: "underline" },
+            }}
+          >
+            قوانین و مقررات
+          </Box>{" "}
+          را می‌پذیرید
+        </Typography>
+      </Box>
     </Box>
   );
 };

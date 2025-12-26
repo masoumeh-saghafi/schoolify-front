@@ -17,6 +17,7 @@ import OtpInput from "@schoolify/features/shared/authentication/components/login
 
 // Icons
 import { ArrowLeft } from "lucide-react";
+import { FormHelperText, TextField } from "@mui/material";
 
 // Custom Types
 export type VerifyCodeFormProps = z.infer<typeof codeSchema>;
@@ -35,6 +36,7 @@ const VerifyCode = (props: VerifyCodeProps) => {
 
   const {
     handleSubmit,
+    register,
     control,
     formState: { errors },
   } = useForm<VerifyCodeFormProps>({
@@ -75,36 +77,55 @@ const VerifyCode = (props: VerifyCodeProps) => {
             fontWeight: 500,
             color: theme.palette.text.label,
 
-            direction:'ltr'
+            direction: "ltr",
           }}
         >
           کد تایید
         </Typography>
-        
+
         {/* OTP Input */}
-        <Controller
-          name="code"
-          control={control}
-          render={({ field }) => (
-            <OtpInput
-              value={field.value}
-              onChange={field.onChange}
-              error={!!errors.code}
-            />
-          )}
+        <TextField
+          fullWidth
+          type="text"
+          placeholder="******"
+          {...register("code")}
+          error={!!errors.code}
+          sx={{
+            // direction:'rtl',
+            "& .MuiOutlinedInput-root": {
+              backgroundColor: theme.palette.background.paper,
+              borderRadius: 2,
+              "& fieldset": {
+                borderColor: theme.palette.grey[300],
+              },
+              "&:hover fieldset": {
+                borderColor: theme.palette.primary.main,
+              },
+              "&.Mui-focused fieldset": {
+                borderColor: theme.palette.primary.main,
+              },
+            },
+            "& .MuiInputBase-input": {
+              textAlign: "left",
+              direction: "rtl",
+            },
+          }}
+          slotProps={
+            {
+              // input: {
+              //   endAdornment: (
+              //     <InputAdornment position="end">
+              //       <Phone size={20} color={theme.palette.grey[200]} />
+              //     </InputAdornment>
+              //   ),
+              // },
+            }
+          }
         />
         {errors.code && (
-          <Typography
-            variant="caption"
-            sx={{
-              color: theme.palette.error.main,
-              display: "block",
-              textAlign: "right",
-              mt: 1,
-            }}
-          >
+          <FormHelperText error sx={{ textAlign: "left", mt: 0.5 }}>
             {errors.code.message}
-          </Typography>
+          </FormHelperText>
         )}
       </Box>
 
@@ -127,9 +148,8 @@ const VerifyCode = (props: VerifyCodeProps) => {
                 : theme.palette.text.primary,
             cursor: countdown <= 0 ? "pointer" : "default",
             fontSize: "0.85rem",
-            "&:hover": countdown <= 0
-              ? { textDecoration: "underline" }
-              : undefined,
+            "&:hover":
+              countdown <= 0 ? { textDecoration: "underline" } : undefined,
           }}
         >
           ارسال مجدد کد
@@ -184,10 +204,7 @@ const VerifyCode = (props: VerifyCodeProps) => {
           textAlign: "center",
         }}
       >
-        <Typography
-          variant="body2"
-          sx={{ color: theme.palette.text.primary }}
-        >
+        <Typography variant="body2" sx={{ color: theme.palette.text.primary }}>
           شماره اشتباه وارد شده؟{" "}
           <Box
             component="span"

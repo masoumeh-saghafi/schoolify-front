@@ -1,138 +1,113 @@
-// ==============================
-// AuthLayout Component
-// Layout container for authentication-related pages.
-// Handles responsive background images, logo display, and overall page structure.
-// ==============================
+import { Link } from "react-router-dom";
 
 // Custom Hooks
-import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
+import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
 // MUI Components
-import Box from '@schoolify/core/components/base/inputs/Box'
-import Typography from '@schoolify/core/components/base/inputs/Typography'
+import Box from "@schoolify/core/components/base/inputs/Box";
+import Typography from "@schoolify/core/components/base/inputs/Typography";
+import IconButton from "@schoolify/core/components/base/inputs/IconButton";
+
+// Icons
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 // Core Components
-import Logo from '@schoolify/core/shared/Logo'
+import Logo from "@schoolify/core/shared/Logo";
+import routes from "@schoolify/core/utilities/routes";
+import { ArrowRightIcon } from "@schoolify/core/components/icon/ArrowRightIcon";
 
-// Custom Types
+// Routes
+
 interface AuthLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
-const AuthLayout = (props: AuthLayoutProps) => {
-  // Props
-  const { children } = props
+const AuthLayout = ({ children }: AuthLayoutProps) => {
+  const theme = useAppTheme();
 
-  // Hooks
-  const theme = useAppTheme()
-
-  // Render
   return (
     <Box
       sx={{
-        minHeight: '100vh',
+        minHeight: "100vh",
         backgroundColor: theme.palette.background.default,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        py: 4,
-        px: 2
-        // direction: 'rtl'
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        px: { xs: 0, sm: 2 },
       }}
     >
-      {/* Form Card Container */}
+      {/* Container */}
       <Box
         sx={{
-          width: '100%',
-          maxWidth: 480,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
-          // direction: 'ltr'
+          width: "100%",
+          maxWidth: { xs: "100%", sm: 480 },
+          height: { xs: "100vh", sm: "auto" },
+          display: "flex",
+          flexDirection: "column",
         }}
       >
-        {/* Logo */}
-
-        {/* Form Card */}
+        {/* Card / Fullscreen on Mobile */}
         <Box
           sx={{
-            width: '100%',
+            position: "relative",
+            width: "100%",
+            height: { xs: "100%", sm: "auto" },
             backgroundColor: theme.palette.background.paper,
-            borderRadius: 3,
+            borderRadius: { xs: 0, sm: 3 },
+            boxShadow: {
+              xs: "none",
+              sm: "0 4px 20px rgba(0, 0, 0, 0.08)",
+            },
             p: { xs: 3, sm: 4 },
-            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)'
-            // direction: 'rtl'
+            display: "flex",
+            flexDirection: "column",
           }}
         >
-          {/* Children (Form Fields / Buttons) */}
-          <Box
+          {/* Back Button */}
+          <IconButton
+            component={Link}
+            to={routes.index}
             sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              width: '100%',
-              mb: 3
+              position: "absolute",
+              top: 12,
+              left: 12,
+              color: theme.palette.text.secondary,
             }}
           >
-            <Logo
-              variant='h5'
-              sx={{
-                color: theme.palette.text.title
-              }}
-            />
+            <ArrowRightIcon fontSize="small" />
+          </IconButton>
+
+          {/* Logo */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              mb: 3,
+              mt: { xs: 4, sm: 0 },
+            }}
+          >
+            <Logo variant="h5" sx={{ color: theme.palette.text.title }} />
           </Box>
 
-          {/* Welcome Text */}
-            <Typography
-          variant="body2"
-          sx={{
-            fontWeight: "bold",
-            color: theme.palette.primary.dark,
-            mb: 2,
-          }}
-        >
-         ورود یا ثبت نام در اسکولیفای 
-        </Typography>
-
-        
-
-          {/* <Typography
-            variant='body2'
+          {/* Title */}
+          <Typography
+            variant="body2"
             sx={{
-              color: theme.palette.primary.main,
-              mb: 4
+              fontWeight: "bold",
+              color: theme.palette.primary.dark,
+              mb: 1,
+              textAlign: "start",
             }}
           >
-            برای ادامه وارد حساب کاربری خود شوید
-          </Typography> */}
+            ورود یا ثبت نام در اسکولیفای
+          </Typography>
 
+          {/* Content */}
           {children}
         </Box>
-
-        {/* Terms Text
-        <Typography
-          variant='caption'
-          sx={{
-            color: theme.palette.text.primary,
-            mt: 3,
-            textAlign: 'center'
-          }}
-        >
-          با ورود به سیستم، شما{' '}
-          <Box
-            component='span'
-            sx={{
-              color: theme.palette.primary.main,
-              cursor: 'pointer',
-              '&:hover': { textDecoration: 'underline' }
-            }}
-          >
-            قوانین و مقررات
-          </Box>{' '}
-          را می‌پذیرید
-        </Typography> */}
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default AuthLayout
+export default AuthLayout;

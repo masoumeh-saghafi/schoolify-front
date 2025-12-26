@@ -63,7 +63,7 @@ const Login = (props: LoginProps) => {
   // Handlers
 
   const handleSendCode = async (data: SendCodeFormProps) => {
-    const response = await sendCode(data.phoneNumber);
+    const response = await sendCode(data.phoneNumber); //{ isSuccess: true };
     if (response.isSuccess) {
       // then
       setPhoneNumber(data.phoneNumber);
