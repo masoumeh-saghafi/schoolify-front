@@ -1,13 +1,13 @@
-// Feature Components
-import Landing from '@schoolify/features/user/landing'
+import Home from "@schoolify/features/landing/home/components";
 
+// Feature Components
 const LandingPage = () => {
   // Render
   return (
     <>
-      <Landing />
+      <Home />
     </>
-  )
-}
+  );
+};
 
-export default LandingPage
+export default LandingPage;

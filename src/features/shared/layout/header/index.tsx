@@ -23,9 +23,25 @@ import { MenuIcon } from "@schoolify/core/components/icon/MenuIcon";
 import { CloseIcon } from "@schoolify/core/components/icon/CloseIcon";
 
 // Custom Utilities
-import headerButtonsData from "@schoolify/features/user/landing/utilities/header";
+// import headerButtonsData from "@schoolify/features/user/landing/utilities/header";
 import useClientDeviceTypeIsMobile from "@schoolify/core/hooks/common/useClientDeviceTypeIsMobile";
 import { scrollToTop } from "@schoolify/core/utilities/scroll";
+import routes from "@schoolify/core/utilities/routes";
+
+const headerButtonsData = [
+  {
+    title: "خانه",
+    link: routes.index,
+  },
+  {
+    title: "ورود",
+    link: routes.login,
+  },
+  {
+    title: "درباره ما ",
+    link: routes.aboutUs,
+  },
+];
 
 // Custom Types
 interface HeaderProps {}

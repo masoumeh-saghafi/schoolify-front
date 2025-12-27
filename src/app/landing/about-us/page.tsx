@@ -1,5 +1,5 @@
 // Feature Components
-import AboutUs from '@schoolify/features/user/aboutUs'
+import AboutUs from "@schoolify/features/landing/aboutUs/components";
 
 const AboutUsPage = () => {
   // Render
@@ -7,7 +7,7 @@ const AboutUsPage = () => {
     <>
       <AboutUs />
     </>
-  )
-}
+  );
+};
 
-export default AboutUsPage
+export default AboutUsPage;

@@ -1,17 +1,21 @@
 // Feature Components
-import LandingHeader from '@schoolify/features/user/landing/header'
+import Footer from "@schoolify/features/shared/layout/footer";
+import Header from "@schoolify/features/shared/layout/header";
 
 // React Type
-import { Outlet } from 'react-router-dom'
+import { Outlet } from "react-router-dom";
 
 const LandingLayout = () => {
   // Render
   return (
     <>
-      <LandingHeader />
-      <Outlet />
-    </>
-  )
-}
+      <Header />
 
-export default LandingLayout
+      <Outlet />
+
+      <Footer />
+    </>
+  );
+};
+
+export default LandingLayout;
