@@ -3,33 +3,33 @@ import {
   Controller,
   type Control,
   type FieldValues,
-  type Path
-} from 'react-hook-form'
+  type Path,
+} from "react-hook-form";
 
 // MUI Components
-import Autocomplete from '@schoolify/core/components/base/inputs/Autocomplete'
-import TextField from '@schoolify/core/components/base/inputs/TextField'
-import Grid from '@schoolify/core/components/base/inputs/Grid'
-import type { SxProps } from '@mui/material'
+import Autocomplete from "@schoolify/core/components/base/inputs/Autocomplete";
+import TextField from "@schoolify/core/components/base/inputs/TextField";
+import Grid from "@schoolify/core/components/base/inputs/Grid";
+import type { SxProps } from "@mui/material";
 
 // Custom Types
 interface OptionType {
-  key: string | boolean
-  value: string
+  key: string | boolean;
+  value: string;
 }
 
 interface ControlledAutocompleteProps<T extends FieldValues> {
-  control: Control<T>
-  name: Path<T>
-  label?: string
-  placeholder?: string
-  options: OptionType[]
-  size?: 'small' | 'medium'
-  xs?: number
-  sm?: number
-  onInputChange?: (val: string) => void
-  inputValue?: string
-  sxListbox?: SxProps
+  control: Control<T>;
+  name: Path<T>;
+  label?: string;
+  placeholder?: string;
+  options: OptionType[];
+  size?: "small" | "medium";
+  xs?: number;
+  sm?: number;
+  onInputChange?: (val: string) => void;
+  inputValue?: string;
+  sxListbox?: SxProps;
 }
 
 const ControlledAutocomplete = <T extends FieldValues>(
@@ -44,11 +44,11 @@ const ControlledAutocomplete = <T extends FieldValues>(
     options,
     onInputChange,
     inputValue,
-    size = 'small',
+    size = "small",
     xs = 12,
     sm = 6,
-    sxListbox
-  } = props
+    sxListbox,
+  } = props;
 
   // Render
   return (
@@ -58,49 +58,55 @@ const ControlledAutocomplete = <T extends FieldValues>(
         control={control}
         render={({ field, fieldState }) => (
           <Autocomplete
-            noOptionsText='مقداری یافت نشد'
-            openText='باز کردن'
-            closeText='بستن'
-            clearText='پاک کردن'
-            loadingText='درحال دریافت اطلاعات'
+            noOptionsText="مقداری یافت نشد"
+            openText="باز کردن"
+            closeText="بستن"
+            clearText="پاک کردن"
+            loadingText="درحال دریافت اطلاعات"
             size={size}
             options={options}
-            getOptionLabel={option => option.value}
-            value={options.find(opt => opt.key === field.value) || null}
+            isOptionEqualToValue={(option, value) => option.key === value.key}
+            getOptionLabel={(option) => option.value}
+            renderOption={(props, option) => (
+              <li {...props} key={String(option.key)}>
+                {option.value}
+              </li>
+            )}
+            value={options.find((opt) => opt.key === field.value) || null}
             {...(inputValue !== undefined ? { inputValue } : {})}
             onInputChange={(_, val) => onInputChange?.(val)}
             onChange={(_, newValue) =>
-              field.onChange(newValue ? newValue.key : '')
+              field.onChange(newValue ? newValue.key : "")
             }
-            renderInput={params => (
+            renderInput={(params) => (
               <TextField
                 {...params}
                 label={label}
                 placeholder={placeholder}
                 error={!!fieldState.error}
-                helperText={fieldState.error?.message ?? ''}
+                helperText={fieldState.error?.message ?? ""}
                 slotProps={{
                   inputLabel: {
-                    shrink: true
-                  }
+                    shrink: true,
+                  },
                 }}
               />
             )}
             slotProps={{
               listbox: {
-                sx: sxListbox ?? { fontSize: '0.75rem' }
+                sx: sxListbox ?? { fontSize: "0.75rem" },
               },
               paper: {
                 sx: {
-                  fontSize: '0.75rem'
-                }
-              }
+                  fontSize: "0.75rem",
+                },
+              },
             }}
           />
         )}
       />
     </Grid>
-  )
-}
+  );
+};
 
-export default ControlledAutocomplete
+export default ControlledAutocomplete;
