@@ -1,6 +1,6 @@
 import ms from "ms";
 import { useQuery } from "@tanstack/react-query";
-import { listSummarySchools } from "@schoolify/features/user/school/management/shared/utilities/api/api";
+import { listSummarySchools } from "@schoolify/features/user/shared/school/utilities/api/api";
 
 export const listSummarySchoolsQueryKey = ["listSummarySchools"];
 
