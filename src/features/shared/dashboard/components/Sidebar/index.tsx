@@ -14,6 +14,7 @@ import useClientDeviceType from "@schoolify/core/hooks/common/useClientDeviceTyp
 
 //Type Definitions
 import type { JSX } from "@emotion/react/jsx-runtime";
+import UserProfileButton from "@schoolify/core/shared/UserProfileButton";
 
 // Custom Types
 // Base shared interface
@@ -65,6 +66,8 @@ const DashboardSidebar = (props: DashboardSidebarProps) => {
         position: "relative",
       }}
     >
+      {deviceType === "mobile" && <UserProfileButton />}
+
       {/* Scrollable List */}
       <Box
         sx={{
