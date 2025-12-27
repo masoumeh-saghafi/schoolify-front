@@ -1,0 +1,55 @@
+import { Code, Palette, Linkedin, Mail } from "lucide-react";
+
+export interface Developer {
+  name: string;
+  role: string;
+  description: string;
+  icon: typeof Code;
+  email: string;
+  linkedin: string;
+  experience: string;
+  skills: string[];
+}
+
+export const developersData: Developer[] = [
+  {
+    name: "متین خالقی نژاد",
+    role: "توسعه‌دهنده بک‌اند",
+    description:
+      "با نزدیک به 6 سال سابقه در برنامه‌نویسی بک‌اند، مسئول اصلی تحلیل سیستم، طراحی معماری و پیاده‌سازی زیرساخت‌های بک‌اند و دیتابیس سامانه اسکولیفای است. تخصص او در ساخت سامانه‌های پایدار و مقیاس‌پذیر، ستون فقرات فنی این پروژه را تشکیل می‌دهد و عملکرد روان و قابل اتکای آن را تضمین می‌کند.",
+    icon: Code,
+    email: "matin.khaleghi.nezhad@gmail.com",
+    linkedin: "https://www.linkedin.com/in/matin-khaleghi-nezhad/",
+    experience: "۶ سال",
+    skills: ["معماری نرم‌افزار", "طراحی دیتابیس", "API Development", "مقیاس‌پذیری"],
+  },
+  {
+    name: "معصومه ثقفی",
+    role: "توسعه‌دهنده فرانت‌اند و طراح UI/UX",
+    description:
+      "با حدود 2 سال تجربه در حوزه فرانت‌اند و طراحی UI/UX، مسئول ایجاد رابط کاربری بصری جذاب و تجربه‌ی کاربری روان برای اسکولیفای است. مهارت او در تبدیل ایده‌ها به طراحی‌های کاربرپسند، تعامل آسان و لذت‌بخش کاربران با سامانه را فراهم می‌آورد و تضمین می‌کند که پیچیدگی‌های پشت صحنه، به سادگی و زیبایی به کاربران ارائه شود.",
+    icon: Palette,
+    email: "masoumehsaghafi2002@gmail.com",
+    linkedin: "https://www.linkedin.com/in/masoumeh-saghafi-839a75354/",
+    experience: "۲ سال",
+    skills: ["React", "UI/UX Design", "TypeScript", "Responsive Design"],
+  },
+];
+
+export const teamStats = [
+  { label: "سال تجربه ترکیبی", value: "۸+" },
+  { label: "خط کد", value: "۵۰,۰۰۰+" },
+  { label: "پروژه موفق", value: "۱۰+" },
+  { label: "رضایت مشتری", value: "۱۰۰٪" },
+];
+
+export const techStack = [
+  "React",
+  "TypeScript",
+  "Node.js",
+  "PostgreSQL",
+  "Python",
+  "REST API",
+  "Git",
+  "Material-UI",
+];

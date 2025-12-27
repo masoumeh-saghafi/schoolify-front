@@ -12,6 +12,7 @@ import LandingLayout from '@schoolify/app/landing/layout'
 import LandingPage from '@schoolify/app/landing/page'
 import LoginPage from '@schoolify/app/authentication/login/page'
 import AboutUsPage from '@schoolify/app/landing/about-us/page'
+import DevelopersPage from '@schoolify/app/landing/developers/page'
 
 // Profile
 import ProfileLayout from '@schoolify/app/profile/layout'
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: routes.aboutUs,
         element: <AboutUsPage />
+      },
+      {
+        path: routes.developers,
+        element: <DevelopersPage />
       }
     ]
   },

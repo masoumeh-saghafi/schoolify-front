@@ -3,6 +3,8 @@ const routes = {
 
   aboutUs: "/about-us",
 
+  developers: "/developers",
+
   contactUs: "/about-us#contact",
 
   login: "/login",
