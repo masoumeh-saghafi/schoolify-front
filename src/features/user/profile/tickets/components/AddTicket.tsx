@@ -27,6 +27,7 @@ import useListSummarySchools from "@schoolify/features/user/shared/school/hooks/
 
 // Validation Schema
 import { addTicketValidationSchema } from "@schoolify/features/user/profile/tickets/validation/addTicketValidation";
+import { tabBoxGenerateFullUrlPath } from "@schoolify/core/components/common/tabBoxGenerateFullUrlPath";
 
 // Form schema
 type SchemaProps = z.infer<typeof addTicketValidationSchema>;
@@ -75,7 +76,14 @@ const AddTicket = (props: AddTicketProps) => {
     };
 
     const result = await addTicket({ data: payload });
-    if (result.isSuccess) reset(data);
+    if (result.isSuccess) {
+      reset();
+      const changeTabUrl = tabBoxGenerateFullUrlPath(
+        location.pathname,
+        `ticket?id=${result.data?.id}`
+      );
+      navigate(changeTabUrl);
+    }
   };
 
   const handleReturnToProfile = () => {

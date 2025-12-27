@@ -1,17 +1,17 @@
 // React Type
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 // Core Components
-import ContentBox from '@schoolify/core/components/common/ContentBox'
-import TableDataGrid from '@schoolify/core/components/common/TableDataGrid'
-import { tabBoxGenerateFullUrlPath } from '@schoolify/core/components/common/tabBoxGenerateFullUrlPath'
+import ContentBox from "@schoolify/core/components/common/ContentBox";
+import TableDataGrid from "@schoolify/core/components/common/TableDataGrid";
+import { tabBoxGenerateFullUrlPath } from "@schoolify/core/components/common/tabBoxGenerateFullUrlPath";
 
 // Custom Hooks
-import useTableDataGridState from '@schoolify/core/hooks/common/useTableDataGridState'
-import useListTicket from '@schoolify/features/user/profile/tickets/hooks/useListTicket'
+import useTableDataGridState from "@schoolify/core/hooks/common/useTableDataGridState";
+import useListTicket from "@schoolify/features/user/profile/tickets/hooks/useListTicket";
 
 // Custom Utilities
-import { listTicketColumns } from '@schoolify/features/user/profile/tickets/utilities/listStudentColumns'
+import { listTicketColumns } from "@schoolify/features/user/profile/tickets/utilities/listStudentColumns";
 
 // Custom Types
 interface ListTicketProps {}
@@ -26,31 +26,31 @@ const ListTicket = (props: ListTicketProps) => {
     paginationData: pagination,
     handleFilterChange,
     handlePaginationModelChange,
-    handleSortModelChange
-  } = useTableDataGridState()
+    handleSortModelChange,
+  } = useTableDataGridState();
 
   const { data, isLoading } = useListTicket({
     pagination,
-    filters
-  })
+    filters,
+  });
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // Helpers
-  const columns = listTicketColumns
+  const columns = listTicketColumns;
 
   // Handlers
   const handleOpenTicketDetails = async (id: string, row: any) => {
     const changeTabUrl = tabBoxGenerateFullUrlPath(
       location.pathname,
       `ticket?id=${id}`
-    )
-    navigate(changeTabUrl)
-  }
+    );
+    navigate(changeTabUrl);
+  };
 
   // Render
   return (
-    <ContentBox label='لیست تیکت‌ها'>
+    <ContentBox label="لیست تیکت‌ها">
       <TableDataGrid
         data={data}
         isLoading={isLoading}
@@ -61,10 +61,10 @@ const ListTicket = (props: ListTicketProps) => {
         disableDeleteRowButton={true}
         disableUpdateRowButton={true}
         disableAddRowButton={false}
-        addRowTitle='جزئیات'
+        addRowTitle="جزئیات"
         onAddRow={handleOpenTicketDetails}
       />
     </ContentBox>
-  )
-}
-export default ListTicket
+  );
+};
+export default ListTicket;
