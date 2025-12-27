@@ -1,47 +1,50 @@
-import routes from '@schoolify/core/utilities/routes'
+import routes from "@schoolify/core/utilities/routes";
 
-import type { DashboardSidebarDataProps } from '@schoolify/features/shared/dashboard/components/Sidebar'
-import type { userRoles } from '@schoolify/features/shared/profile/types/api/UserProfileEntity'
+import type { DashboardSidebarDataProps } from "@schoolify/features/shared/dashboard/components/Sidebar";
+import type { UserRoles } from "@schoolify/features/shared/profile/types/api/UserProfileEntity";
+import { translateUserRoleToPersian } from "@schoolify/features/shared/profile/utilities/translator";
 
 export const adminDashboardSidebarData = (
-  role: userRoles | undefined
+  role: UserRoles | undefined
 ): DashboardSidebarDataProps[] =>
-  role && role !== 'user'
+  role && role !== "user"
     ? [
         {
-          key: 'adminTitle',
-          title: 'داشبورد ادمین',
-          type: 'contentBox'
+          key: "adminTitle",
+          title: "داشبورد ادمین",
+          type: "contentBox",
         },
         {
-          key: 'role',
-          title: role ? `نقش کاربر: ${role}` : 'درحال دریافت اطلاعات',
-          type: 'text'
+          key: "role",
+          title: role
+            ? `نقش کاربر: ${translateUserRoleToPersian(role)}`
+            : "درحال دریافت اطلاعات",
+          type: "text",
         },
 
         {
-          key: 'tickets',
-          title: 'تیکت‌ها',
-          link: routes.admin.tickets.index()
+          key: "tickets",
+          title: "تیکت‌ها",
+          link: routes.admin.tickets.index(),
         },
         {
-          key: 'customers',
-          title: 'مشتریان',
-          link: routes.admin.customers.index()
+          key: "customers",
+          title: "مشتریان",
+          link: routes.admin.customers.index(),
         },
         {
-          key: 'payments',
-          title: 'پرداخت‌ها',
+          key: "payments",
+          title: "پرداخت‌ها",
           link: routes.admin.payments.index(),
 
-          disabled: role !== 'superManager' && role !== 'manager'
+          disabled: role !== "superManager" && role !== "manager",
         },
         {
-          key: 'managers',
-          title: 'مدیران',
+          key: "managers",
+          title: "مدیران",
           link: routes.admin.managers.index(),
 
-          disabled: role !== 'superManager'
-        }
+          disabled: role !== "superManager",
+        },
       ]
-    : []
+    : [];
