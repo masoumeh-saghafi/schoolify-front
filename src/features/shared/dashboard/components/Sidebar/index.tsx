@@ -63,7 +63,9 @@ const DashboardSidebar = (props: DashboardSidebarProps) => {
         display: "flex",
         flexDirection: "column",
         height: "100%",
+        minHeight: deviceType === "mobile" ? "88vh" : "100%",
         position: "relative",
+        overflowY: "auto",
       }}
     >
       {deviceType === "mobile" && <UserProfileButton />}
