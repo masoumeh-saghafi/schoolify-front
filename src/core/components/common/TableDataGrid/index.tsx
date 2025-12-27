@@ -141,10 +141,10 @@ const TableDataGrid = (params: TableDataGridProps) => {
             filterValue = `%${filterValue}`;
             break;
           case "equals":
-            filterValue = filterValue;
+            // filterValue = filterValue;
             break;
           default:
-            filterValue = filterValue;
+            // filterValue = filterValue;
             break;
         }
         filterParams[filter.field] = filterValue;
