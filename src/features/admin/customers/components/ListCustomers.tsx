@@ -16,8 +16,6 @@ import routes from "@schoolify/core/utilities/routes";
 import { setImpersonateTokenCookie } from "@schoolify/core/utilities/impersonate";
 import { listCustomerColumns } from "@schoolify/features/admin/customers/utilities/listCustomerColumns";
 
-
-
 // Custom Types
 // interface ListStudentProps {}
 
@@ -47,7 +45,7 @@ const ListCustomer = () => {
   // Helpers
   const columns = listCustomerColumns;
 
-// Handlers
+  // Handlers
   const handleGetImpersonateToken = async (id: string, updatedFields: any) => {
     try {
       const impersonateData = await getImpersonateToken({
@@ -59,9 +57,8 @@ const ListCustomer = () => {
         impersonateData.data?.expireDate
       );
 
-      queryClient.resetQueries();
-
       navigate(routes.profile.baseUrl);
+      queryClient.resetQueries();
     } catch (error) {
       // console.log(error);
     }
