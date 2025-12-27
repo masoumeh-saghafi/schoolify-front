@@ -21,7 +21,12 @@ export const developersData: Developer[] = [
     email: "matin.khaleghi.nezhad@gmail.com",
     linkedin: "https://www.linkedin.com/in/matin-khaleghi-nezhad/",
     experience: "۶ سال",
-    skills: ["معماری نرم‌افزار", "طراحی دیتابیس", "API Development", "مقیاس‌پذیری"],
+    skills: [
+      "Software Architecture",
+      "Database Design",
+      "API Development",
+      "ASP.NET Core",
+    ],
   },
   {
     name: "معصومه ثقفی",
@@ -46,10 +51,8 @@ export const teamStats = [
 export const techStack = [
   "React",
   "TypeScript",
-  "Node.js",
-  "PostgreSQL",
-  "Python",
-  "REST API",
-  "Git",
   "Material-UI",
+  "ASP .NET Core",
+  "REST API",
+  "SQL Server",
 ];

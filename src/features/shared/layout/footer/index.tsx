@@ -24,9 +24,10 @@ interface FooterProps {}
 
 const quickLinks = [
   { title: "صفحه اصلی", link: routes.index, scrollToTop: true },
+  { title: "ورود", link: routes.login, scrollToTop: true },
   { title: "درباره ما", link: routes.aboutUs, scrollToTop: true },
   { title: "تماس باما", link: routes.contactUs, scrollToTop: false },
-  { title: "ورود", link: routes.login, scrollToTop: true },
+  { title: "توسعه‌دهندگان", link: routes.developers, scrollToTop: true },
 ];
 
 const Footer = (props: FooterProps) => {
