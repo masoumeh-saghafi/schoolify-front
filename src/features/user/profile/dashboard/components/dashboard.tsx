@@ -16,6 +16,7 @@ import { removeImpersonateTokenCookie } from "@schoolify/core/utilities/imperson
 
 // Custom Hooks
 import useUserProfile from "@schoolify/features/shared/profile/hooks/useUserProfile";
+import { useQueryClient } from "@tanstack/react-query";
 
 // Custom Types
 interface ProfileDashboardProps {
@@ -30,10 +31,10 @@ const ProfileDashboard = (props: ProfileDashboardProps) => {
   const sidebarData = useDashboardSidebarData();
 
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { data, isLoading, isError } = useUserProfile();
   const impersonationStore = useImpersonationStore();
-
 
   // Helpers
   let exitButtonData: DashboardSidebarExitButtonDataProps;
@@ -42,6 +43,7 @@ const ProfileDashboard = (props: ProfileDashboardProps) => {
       title: "خروج از داشبورد مشتری",
       onClick: () => {
         removeImpersonateTokenCookie();
+        queryClient.resetQueries();
         navigate(routes.admin.customers.index());
       },
     };
@@ -51,7 +53,6 @@ const ProfileDashboard = (props: ProfileDashboardProps) => {
       onClick: () => navigate(routes.logout),
     };
   }
-
 
   // Effect
   useEffect(() => {

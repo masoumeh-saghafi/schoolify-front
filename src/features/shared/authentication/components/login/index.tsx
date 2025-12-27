@@ -44,7 +44,7 @@ const Login = (props: LoginProps) => {
       if (profile.data.data?.role === "user") {
         navigate(routes.profile.baseUrl);
       } else {
-        navigate(routes.profile.baseUrl);
+        navigate(routes.admin.baseUrl);
       }
     }
   };
