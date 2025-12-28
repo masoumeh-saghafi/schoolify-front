@@ -1,22 +1,22 @@
+// React Type
 import { Link } from "react-router-dom";
-
-// Custom Hooks
-import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
 // MUI Components
 import Box from "@schoolify/core/components/base/inputs/Box";
 import Typography from "@schoolify/core/components/base/inputs/Typography";
 import IconButton from "@schoolify/core/components/base/inputs/IconButton";
 
-// Icons
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-
 // Core Components
 import Logo from "@schoolify/core/shared/Logo";
 import routes from "@schoolify/core/utilities/routes";
+
+// Custom Hooks
+import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
+
+// Icon Components
 import { ArrowRightIcon } from "@schoolify/core/components/icon/ArrowRightIcon";
 
-// Routes
+
 
 interface AuthLayoutProps {
   children: React.ReactNode;

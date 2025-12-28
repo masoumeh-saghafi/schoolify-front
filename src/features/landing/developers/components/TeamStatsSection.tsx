@@ -4,11 +4,12 @@ import Typography from "@schoolify/core/components/base/inputs/Typography";
 import Grid from "@schoolify/core/components/base/inputs/Grid";
 import Paper from "@schoolify/core/components/base/inputs/Paper";
 
+// Feature Components
+import { teamStats } from "@schoolify/features/landing/developers/utilities/developersData";
+
 // Custom Hooks
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
-// Data
-import { teamStats } from "@schoolify/features/landing/developers/utilities/developersData";
 
 const TeamStatsSection = () => {
   // Hooks

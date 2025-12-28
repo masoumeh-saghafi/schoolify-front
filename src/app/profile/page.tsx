@@ -1,5 +1,5 @@
 // MUI Components
-import AccountManagementTabBox from "@schoolify/features/user/profile/accountManagement/shared/components";
+import AccountManagementTabBox from '@schoolify/features/user/profile/accountManagement/shared/components'
 
 const ProfilePage = () => {
   // Render
@@ -7,7 +7,7 @@ const ProfilePage = () => {
     <>
       <AccountManagementTabBox />
     </>
-  );
-};
+  )
+}
 
-export default ProfilePage;
+export default ProfilePage

@@ -6,6 +6,8 @@ import Paper from "@schoolify/core/components/base/inputs/Paper";
 
 // Custom Hooks
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
+
+// Custom Utilities
 import { coreValuesSectionData } from "@schoolify/features/landing/aboutUs/utilities/coreValuesSectionData";
 
 const CoreValuesSection = () => {
@@ -48,8 +50,8 @@ const CoreValuesSection = () => {
         container
         spacing={3}
         sx={{
-          maxWidth: 1200, // سقف عرض کل کارت‌ها
-          mx: "auto", // وسط‌چین
+          maxWidth: 1200, 
+          mx: "auto", 
         }}
       >
         {coreValuesSectionData.map((value, index) => (
@@ -82,7 +84,7 @@ const CoreValuesSection = () => {
                   mb: 2,
                 }}
               >
-                <value.icon size={28} color={theme.palette.text.white} />
+                <value.icon width={28} height={28} color={theme.palette.text.white} />
               </Box>
               <Typography
                 variant="h6"

@@ -1,55 +1,58 @@
 // MUI Components
-import Box from "@schoolify/core/components/base/inputs/Box";
-import Typography from "@schoolify/core/components/base/inputs/Typography";
-import Grid from "@schoolify/core/components/base/inputs/Grid";
-import Paper from "@schoolify/core/components/base/inputs/Paper";
-import IconButton from "@schoolify/core/components/base/inputs/IconButton";
+import Box from '@schoolify/core/components/base/inputs/Box'
+import Typography from '@schoolify/core/components/base/inputs/Typography'
+import Grid from '@schoolify/core/components/base/inputs/Grid'
+import Paper from '@schoolify/core/components/base/inputs/Paper'
+import IconButton from '@schoolify/core/components/base/inputs/IconButton'
+
+// Custom Utilities
+import { developersData } from '@schoolify/features/landing/developers/utilities/developersData'
 
 // Custom Hooks
-import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
+import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
 
-// Icons
-import { Linkedin, Mail, Briefcase, Award } from "lucide-react";
-
-// Data
-import { developersData } from "@schoolify/features/landing/developers/utilities/developersData";
+// Icon Components
+import { AwardIcon } from '@schoolify/core/components/icon/AwardIcon'
+import { LinkedinIcon } from '@schoolify/core/components/icon/LinkedinIcon'
+import { BriefcaseIcon } from '@schoolify/core/components/icon/BriefcaseIcon'
+import { MailIcon } from '@schoolify/core/components/icon/MailIcon'
 
 const TeamMembersSection = () => {
   // Hooks
-  const theme = useAppTheme();
+  const theme = useAppTheme()
 
   return (
     <Box
-      component="section"
-      aria-label="اعضای تیم توسعه"
+      component='section'
+      aria-label='اعضای تیم توسعه'
       sx={{
         py: { xs: 6, md: 10 },
         px: { xs: 3, md: 8 },
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: theme.palette.background.default
       }}
     >
       <Typography
-        component="h2"
-        variant="h2"
+        component='h2'
+        variant='h2'
         sx={{
-          textAlign: "center",
-          fontWeight: "bold",
+          textAlign: 'center',
+          fontWeight: 'bold',
           color: theme.palette.text.title,
           mb: 2,
-          fontSize: { xs: "1.8rem", md: "2.4rem" },
+          fontSize: { xs: '1.8rem', md: '2.4rem' }
         }}
       >
         تیم ما
       </Typography>
       <Typography
-        component="p"
+        component='p'
         sx={{
-          textAlign: "center",
+          textAlign: 'center',
           color: theme.palette.info.dark,
           mb: 6,
-          fontSize: { xs: "0.9rem", md: "1.1rem" },
+          fontSize: { xs: '0.9rem', md: '1.1rem' },
           maxWidth: 700,
-          mx: "auto",
+          mx: 'auto'
         }}
       >
         آشنایی با متخصصانی که پشت سامانه اسکولیفای هستند
@@ -58,92 +61,96 @@ const TeamMembersSection = () => {
       <Grid
         container
         spacing={4}
-        justifyContent="center"
+        justifyContent='center'
         sx={{
           maxWidth: 1200,
-          mx: "auto",
+          mx: 'auto'
         }}
       >
         {developersData.map((developer, index) => (
           <Grid key={index} size={{ xs: 12, md: 6 }}>
             <Paper
-              component="article"
+              component='article'
               itemScope
-              itemType="https://schema.org/Person"
+              itemType='https://schema.org/Person'
               elevation={0}
               sx={{
                 p: { xs: 3, md: 4 },
-                height: "100%",
+                height: '100%',
                 backgroundColor: theme.palette.background.card,
                 borderRadius: 4,
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                position: "relative",
-                overflow: "hidden",
-                "&:hover": {
-                  transform: "translateY(-8px)",
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.12)",
-                },
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                position: 'relative',
+                overflow: 'hidden',
+                '&:hover': {
+                  transform: 'translateY(-8px)',
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.12)'
+                }
               }}
             >
               {/* Decorative top accent */}
               <Box
                 sx={{
-                  position: "absolute",
+                  position: 'absolute',
                   top: 0,
                   left: 0,
                   right: 0,
                   height: 4,
-                  background: `linear-gradient(90deg, ${theme.palette.brand.main}, ${theme.palette.primary.main})`,
+                  background: `linear-gradient(90deg, ${theme.palette.brand.main}, ${theme.palette.primary.main})`
                 }}
-                aria-hidden="true"
+                aria-hidden='true'
               />
 
               {/* Header with icon and name */}
               <Box
                 sx={{
-                  display: "flex",
-                  alignItems: "flex-start",
+                  display: 'flex',
+                  alignItems: 'flex-start',
                   gap: 2,
-                  mb: 3,
+                  mb: 3
                 }}
               >
                 <Box
                   sx={{
                     width: 70,
                     height: 70,
-                    borderRadius: "16px",
+                    borderRadius: '16px',
                     background: `linear-gradient(135deg, ${theme.palette.brand.main} 0%, ${theme.palette.primary.main} 100%)`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
                   }}
-                  aria-hidden="true"
+                  aria-hidden='true'
                 >
-                  <developer.icon size={32} color={theme.palette.text.white} />
+                  <developer.icon
+                    width={32}
+                    height={32}
+                    color={theme.palette.text.white}
+                  />
                 </Box>
                 <Box sx={{ flex: 1 }}>
                   <Typography
-                    component="h3"
-                    variant="h5"
-                    itemProp="name"
+                    component='h3'
+                    variant='h5'
+                    itemProp='name'
                     sx={{
-                      fontWeight: "bold",
+                      fontWeight: 'bold',
                       color: theme.palette.text.cardTitle,
                       mb: 0.5,
-                      fontSize: { xs: "1.2rem", md: "1.4rem" },
+                      fontSize: { xs: '1.2rem', md: '1.4rem' }
                     }}
                   >
                     {developer.name}
                   </Typography>
                   <Typography
-                    component="span"
-                    itemProp="jobTitle"
+                    component='span'
+                    itemProp='jobTitle'
                     sx={{
                       color: theme.palette.brand.main,
-                      fontWeight: "medium",
-                      fontSize: { xs: "0.9rem", md: "1rem" },
-                      display: "block",
+                      fontWeight: 'medium',
+                      fontSize: { xs: '0.9rem', md: '1rem' },
+                      display: 'block'
                     }}
                   >
                     {developer.role}
@@ -154,23 +161,27 @@ const TeamMembersSection = () => {
               {/* Experience badge */}
               <Box
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
+                  display: 'flex',
+                  alignItems: 'center',
                   gap: 1,
                   mb: 2,
                   p: 1.5,
                   backgroundColor: theme.palette.primary.light,
                   borderRadius: 2,
-                  width: "fit-content",
+                  width: 'fit-content'
                 }}
               >
-                <Briefcase size={18} color={theme.palette.brand.main} />
+                <BriefcaseIcon
+                  width={18}
+                  height={18}
+                  color={theme.palette.brand.main}
+                />
                 <Typography
-                  component="span"
+                  component='span'
                   sx={{
-                    fontSize: "0.9rem",
+                    fontSize: '0.9rem',
                     color: theme.palette.brand.main,
-                    fontWeight: "medium",
+                    fontWeight: 'medium'
                   }}
                 >
                   {developer.experience} تجربه
@@ -179,13 +190,13 @@ const TeamMembersSection = () => {
 
               {/* Description */}
               <Typography
-                component="p"
-                itemProp="description"
+                component='p'
+                itemProp='description'
                 sx={{
                   color: theme.palette.info.dark,
                   lineHeight: 2,
                   mb: 3,
-                  fontSize: { xs: "0.9rem", md: "1rem" },
+                  fontSize: { xs: '0.9rem', md: '1rem' }
                 }}
               >
                 {developer.description}
@@ -195,19 +206,23 @@ const TeamMembersSection = () => {
               <Box sx={{ mb: 3 }}>
                 <Box
                   sx={{
-                    display: "flex",
-                    alignItems: "center",
+                    display: 'flex',
+                    alignItems: 'center',
                     gap: 1,
-                    mb: 1.5,
+                    mb: 1.5
                   }}
                 >
-                  <Award size={18} color={theme.palette.brand.main} />
+                  <AwardIcon
+                    width={18}
+                    height={18}
+                    color={theme.palette.brand.main}
+                  />
                   <Typography
-                    component="span"
+                    component='span'
                     sx={{
-                      fontSize: "0.9rem",
-                      fontWeight: "bold",
-                      color: theme.palette.text.cardTitle,
+                      fontSize: '0.9rem',
+                      fontWeight: 'bold',
+                      color: theme.palette.text.cardTitle
                     }}
                   >
                     تخصص‌ها
@@ -215,24 +230,24 @@ const TeamMembersSection = () => {
                 </Box>
                 <Box
                   sx={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: 1,
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: 1
                   }}
                 >
                   {developer.skills.map((skill, idx) => (
                     <Box
                       key={idx}
-                      component="span"
-                      itemProp="knowsAbout"
+                      component='span'
+                      itemProp='knowsAbout'
                       sx={{
                         px: 2,
                         py: 0.5,
                         backgroundColor: theme.palette.background.paper,
-                        borderRadius: "20px",
-                        fontSize: "0.85rem",
+                        borderRadius: '20px',
+                        fontSize: '0.85rem',
                         color: theme.palette.info.dark,
-                        border: `1px solid ${theme.palette.divider}`,
+                        border: `1px solid ${theme.palette.divider}`
                       }}
                     >
                       {skill}
@@ -244,45 +259,45 @@ const TeamMembersSection = () => {
               {/* Social Links */}
               <Box
                 sx={{
-                  display: "flex",
+                  display: 'flex',
                   gap: 1,
                   pt: 2,
-                  borderTop: `1px solid ${theme.palette.divider}`,
+                  borderTop: `1px solid ${theme.palette.divider}`
                 }}
               >
                 <IconButton
-                  component="a"
+                  component='a'
                   href={`mailto:${developer.email}`}
-                  itemProp="email"
+                  itemProp='email'
                   aria-label={`ارسال ایمیل به ${developer.name}`}
                   sx={{
                     color: theme.palette.brand.main,
                     backgroundColor: theme.palette.primary.light,
-                    "&:hover": {
+                    '&:hover': {
                       backgroundColor: theme.palette.brand.main,
-                      color: theme.palette.text.white,
-                    },
+                      color: theme.palette.text.white
+                    }
                   }}
                 >
-                  <Mail size={20} />
+                  <MailIcon width={20} height={20} />
                 </IconButton>
                 <IconButton
-                  component="a"
+                  component='a'
                   href={developer.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  itemProp="sameAs"
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  itemProp='sameAs'
                   aria-label={`پروفایل لینکدین ${developer.name}`}
                   sx={{
                     color: theme.palette.brand.main,
                     backgroundColor: theme.palette.primary.light,
-                    "&:hover": {
-                      backgroundColor: "#0077B5",
-                      color: theme.palette.text.white,
-                    },
+                    '&:hover': {
+                      backgroundColor: '#0077B5',
+                      color: theme.palette.text.white
+                    }
                   }}
                 >
-                  <Linkedin size={20} />
+                  <LinkedinIcon width={20} height={20} />
                 </IconButton>
               </Box>
             </Paper>
@@ -290,7 +305,7 @@ const TeamMembersSection = () => {
         ))}
       </Grid>
     </Box>
-  );
-};
+  )
+}
 
-export default TeamMembersSection;
+export default TeamMembersSection

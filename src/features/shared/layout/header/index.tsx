@@ -12,6 +12,7 @@ import HeaderMobileDrawer from "@schoolify/features/shared/layout/header/MobileD
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
 // Core Components
+import useClientDeviceTypeIsMobile from "@schoolify/core/hooks/common/useClientDeviceTypeIsMobile";
 import Button from "@schoolify/core/components/base/inputs/Button";
 import Logo from "@schoolify/core/shared/Logo";
 
@@ -23,8 +24,6 @@ import { MenuIcon } from "@schoolify/core/components/icon/MenuIcon";
 import { CloseIcon } from "@schoolify/core/components/icon/CloseIcon";
 
 // Custom Utilities
-// import headerButtonsData from "@schoolify/features/user/landing/utilities/header";
-import useClientDeviceTypeIsMobile from "@schoolify/core/hooks/common/useClientDeviceTypeIsMobile";
 import { scrollToTop } from "@schoolify/core/utilities/scroll";
 import routes from "@schoolify/core/utilities/routes";
 

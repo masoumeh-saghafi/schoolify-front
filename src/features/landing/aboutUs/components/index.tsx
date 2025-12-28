@@ -1,9 +1,11 @@
-import HeroSection from "./HeroSection";
-import StorySection from "./StorySection";
-import CoreValuesSection from "./CoreValuesSection";
-import ContactSection from "./ContactSection";
+// Feature Components
+import HeroSection from '@schoolify/features/landing/aboutUs/components/HeroSection'
+import StorySection from '@schoolify/features/landing/aboutUs/components/StorySection'
+import CoreValuesSection from '@schoolify/features/landing/aboutUs/components/CoreValuesSection'
+import ContactSection from '@schoolify/features/landing/aboutUs/components/ContactSection'
 
 const AboutUs = () => {
+  //Render
   return (
     <>
       <HeroSection />
@@ -11,7 +13,7 @@ const AboutUs = () => {
       <CoreValuesSection />
       <ContactSection />
     </>
-  );
-};
+  )
+}
 
-export default AboutUs;
+export default AboutUs

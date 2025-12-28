@@ -1,9 +1,12 @@
-// MUI Components
-import Box from "@schoolify/core/components/base/inputs/Box";
-
-// Custom Hooks
+// React Type
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+
+//Type Definitions
+import { useQueryClient } from '@tanstack/react-query'
+
+// MUI Components
+import Box from "@schoolify/core/components/base/inputs/Box";
 
 // Core Components
 import routes from "@schoolify/core/utilities/routes";
@@ -23,7 +26,8 @@ import {
   verifyCode,
 } from "@schoolify/features/shared/authentication/utilities/api/api";
 import { getUserProfile } from "@schoolify/features/shared/profile/utilities/api/api";
-import { useQueryClient } from "@tanstack/react-query";
+
+
 
 // Custom Types
 interface LoginProps {}
@@ -63,7 +67,7 @@ const Login = (props: LoginProps) => {
   // Handlers
 
   const handleSendCode = async (data: SendCodeFormProps) => {
-    const response = await sendCode(data.phoneNumber); //{ isSuccess: true };
+    const response = await sendCode(data.phoneNumber); 
     if (response.isSuccess) {
       // then
       setPhoneNumber(data.phoneNumber);
@@ -92,12 +96,7 @@ const Login = (props: LoginProps) => {
   // Render
   return (
     <Box
-      sx={
-        {
-          // direction: "rtl"
-        }
-      }
-    >
+        >
       <AuthLayout>
         {step === "sendCode" ? (
           <SendCode onSubmit={handleSendCode} />

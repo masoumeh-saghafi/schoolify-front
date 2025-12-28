@@ -1,3 +1,6 @@
+// React Router
+import { Link } from "react-router-dom";
+
 // MUI Components
 import Box from "@schoolify/core/components/base/inputs/Box";
 import Typography from "@schoolify/core/components/base/inputs/Typography";
@@ -7,10 +10,8 @@ import Button from "@schoolify/core/components/base/inputs/Button";
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
 // Icons
-import { MessageCircle, ArrowLeft } from "lucide-react";
-
-// React Router
-import { Link } from "react-router-dom";
+import { MessageCircleIcon } from "@schoolify/core/components/icon/MessageCircleIcon";
+import { ArrowLeftWithLineIcon } from "@schoolify/core/components/icon/ArrowLeftWithLineIcon";
 
 const CTASection = () => {
   // Hooks
@@ -47,7 +48,7 @@ const CTASection = () => {
           }}
           aria-hidden="true"
         >
-          <MessageCircle size={35} color={theme.palette.text.white} />
+          <MessageCircleIcon width={38} height={38} color={theme.palette.text.white} />
         </Box>
 
         <Typography
@@ -90,7 +91,7 @@ const CTASection = () => {
             to="/about-us#contact"
             variant="contained"
             size="large"
-            endIcon={<ArrowLeft size={20} />}
+            endIcon={<ArrowLeftWithLineIcon width={20} height={20} />}
             sx={{
               backgroundColor: theme.palette.text.white,
               color: theme.palette.brand.main,

@@ -1,20 +1,20 @@
 // React Types
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
 // MUI Components
-import Box from "@schoolify/core/components/base/inputs/Box";
-import Typography from "@schoolify/core/components/base/inputs/Typography";
-import Button from "@schoolify/core/components/base/inputs/Button";
+import Box from '@schoolify/core/components/base/inputs/Box'
+import Typography from '@schoolify/core/components/base/inputs/Typography'
+import Button from '@schoolify/core/components/base/inputs/Button'
 
 // Custom Hooks
-import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
+import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
 
 // Core Utilities
-import routes from "@schoolify/core/utilities/routes";
+import routes from '@schoolify/core/utilities/routes'
 
 const HeroSection = () => {
   // Hooks
-  const theme = useAppTheme();
+  const theme = useAppTheme()
 
   // Render
   return (
@@ -22,47 +22,47 @@ const HeroSection = () => {
       sx={{
         py: { xs: 15, md: 20 },
         px: { xs: 3, md: 8 },
-        textAlign: "center",
-        minHeight: "70vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
+        textAlign: 'center',
+        minHeight: '70vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
       }}
     >
       <Typography
-        variant="h1"
+        variant='h1'
         sx={{
           color: theme.palette.brand.main,
-          fontWeight: "bold",
+          fontWeight: 'bold',
           mb: 1,
-          fontSize: { xs: "2.3rem", md: "4rem" },
+          fontSize: { xs: '2.3rem', md: '4rem' }
         }}
       >
         مدیریت مالی مدرسه
       </Typography>
       <Typography
-        variant="h1"
+        variant='h1'
         sx={{
           color: theme.palette.primary.main,
-          fontWeight: "bold",
+          fontWeight: 'bold',
           mb: 3,
-          fontSize: { xs: "1.9rem", md: "3rem" },
+          fontSize: { xs: '1.9rem', md: '3rem' }
         }}
       >
         ساده و مطمئن
       </Typography>
       <Typography
-        variant="h6"
+        variant='h6'
         sx={{
           color: theme.palette.info.dark,
-          fontWeight: "normal",
+          fontWeight: 'normal',
           maxWidth: 800,
-          mx: "auto",
+          mx: 'auto',
           mb: 6,
           lineHeight: 2,
           opacity: 0.9,
-          fontSize: { xs: "0.9rem", md: "1.1rem" },
+          fontSize: { xs: '0.9rem', md: '1.1rem' }
         }}
       >
         اسکولیفای، راهکاری نوین برای ساماندهی امور مالی مدارس: از ثبت شهریه تا
@@ -71,31 +71,31 @@ const HeroSection = () => {
       <Button
         component={Link}
         to={routes.login}
-        variant="contained"
-        size="large"
+        variant='contained'
+        size='large'
         sx={{
           backgroundColor: theme.palette.primary.main,
           color: theme.palette.text.white,
           px: 4,
           py: 1.5,
-          fontSize: "1rem",
-          fontWeight: "bold",
-          "&:hover": {
+          fontSize: '1rem',
+          fontWeight: 'bold',
+          '&:hover': {
             backgroundColor: theme.palette.brand.main,
-            color: theme.palette.text.white,
-          },
+            color: theme.palette.text.white
+          }
         }}
       >
         همین حالا شروع کنید
       </Button>
       <Typography
-        variant="body2"
-        sx={{ mt: 4, opacity: 0.8, fontSize: "0.85rem" }}
+        variant='body2'
+        sx={{ mt: 4, opacity: 0.8, fontSize: '0.85rem' }}
       >
         فرایند مدیریت مالی مدرسه را با دقت و کارآمدی بی‌نظیر تجربه کنید.
       </Typography>
     </Box>
-  );
-};
+  )
+}
 
-export default HeroSection;
+export default HeroSection

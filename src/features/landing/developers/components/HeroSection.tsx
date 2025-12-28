@@ -1,80 +1,82 @@
 // MUI Components
-import Box from "@schoolify/core/components/base/inputs/Box";
-import Typography from "@schoolify/core/components/base/inputs/Typography";
+import Box from '@schoolify/core/components/base/inputs/Box'
+import Typography from '@schoolify/core/components/base/inputs/Typography'
 
 // Custom Hooks
-import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
+import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
 
 // Icons
-import { Users, Code2, Heart } from "lucide-react";
+import { CodeSlashIcon } from '@schoolify/core/components/icon/CodeSlashIcon'
+import { HeartIcon } from '@schoolify/core/components/icon/HeartIcon'
+import { UsersIcon } from '@schoolify/core/components/icon/UsersIcon'
 
 const HeroSection = () => {
   // Hooks
-  const theme = useAppTheme();
+  const theme = useAppTheme()
 
   return (
     <Box
-      component="section"
+      component='section'
       itemScope
-      itemType="https://schema.org/AboutPage"
+      itemType='https://schema.org/AboutPage'
       sx={{
         background: `linear-gradient(135deg, ${theme.palette.brand.main} 0%, ${theme.palette.primary.main} 100%)`,
         color: theme.palette.text.white,
         py: { xs: 8, md: 12 },
         px: { xs: 3, md: 8 },
-        textAlign: "center",
-        minHeight: "50vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        position: "relative",
-        overflow: "hidden",
+        textAlign: 'center',
+        minHeight: '50vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'relative',
+        overflow: 'hidden'
       }}
     >
       {/* Background decorative elements */}
       <Box
         sx={{
-          position: "absolute",
-          top: "10%",
-          left: "5%",
+          position: 'absolute',
+          top: '10%',
+          left: '5%',
           opacity: 0.1,
-          transform: "rotate(-15deg)",
+          transform: 'rotate(-15deg)'
         }}
-        aria-hidden="true"
+        aria-hidden='true'
       >
-        <Code2 size={120} />
+        <CodeSlashIcon width={130} height={130} />
       </Box>
       <Box
         sx={{
-          position: "absolute",
-          bottom: "10%",
-          right: "5%",
+          position: 'absolute',
+          bottom: '10%',
+          right: '5%',
           opacity: 0.1,
-          transform: "rotate(15deg)",
+          transform: 'rotate(15deg)'
         }}
-        aria-hidden="true"
+        aria-hidden='true'
       >
-        <Users size={100} />
+        <UsersIcon width={120} height={120} />
       </Box>
 
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           gap: 2,
-          mb: 3,
+          mb: 3
         }}
       >
-        <Heart size={32} color={theme.palette.text.white} />
+        <HeartIcon width={32} height={32} color={theme.palette.text.white} />
         <Typography
-          component="span"
+          component='span'
           sx={{
-            fontSize: { xs: "0.9rem", md: "1.1rem" },
-            fontWeight: "medium",
+            fontSize: { xs: '0.9rem', md: '1.1rem' },
+            fontWeight: 'medium',
             opacity: 0.9,
-            color: theme.palette.text.white,
+            color: theme.palette.text.white
           }}
         >
           با افتخار ساخته شده توسط تیم ایرانی
@@ -82,31 +84,31 @@ const HeroSection = () => {
       </Box>
 
       <Typography
-        component="h1"
-        variant="h1"
-        itemProp="name"
+        component='h1'
+        variant='h1'
+        itemProp='name'
         sx={{
-          fontWeight: "bold",
+          fontWeight: 'bold',
           mb: 3,
-          fontSize: { xs: "2rem", md: "3rem" },
-          color: theme.palette.text.white,
+          fontSize: { xs: '2rem', md: '3rem' },
+          color: theme.palette.text.white
         }}
       >
         توسعه‌دهندگان اسکولیفای
       </Typography>
 
       <Typography
-        component="p"
-        variant="h6"
-        itemProp="description"
+        component='p'
+        variant='h6'
+        itemProp='description'
         sx={{
           maxWidth: 900,
-          mx: "auto",
+          mx: 'auto',
           lineHeight: 2,
           opacity: 0.95,
-          fontSize: { xs: "0.95rem", md: "1.15rem" },
+          fontSize: { xs: '0.95rem', md: '1.15rem' },
           color: theme.palette.text.white,
-          fontWeight: "normal",
+          fontWeight: 'normal'
         }}
       >
         ما با تلفیق تخصص‌های مکمل در حوزه برنامه‌نویسی بک‌اند و طراحی فرانت‌اند،
@@ -115,7 +117,7 @@ const HeroSection = () => {
         هر یک از اعضای تیم در حوزه کاری خودشان است.
       </Typography>
     </Box>
-  );
-};
+  )
+}
 
-export default HeroSection;
+export default HeroSection

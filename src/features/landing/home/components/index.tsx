@@ -1,7 +1,7 @@
-import HeroSection from "./HeroSection";
-import FeaturesSection from "./FeaturesSection";
-import BeforeAfterSection from "./BeforeAfterSection";
-import CTASection from "./CTASection";
+import HeroSection from "@schoolify/features/landing/home/components/HeroSection"
+import FeaturesSection from "@schoolify/features/landing/home/components/FeaturesSection";
+import BeforeAfterSection from "@schoolify/features/landing/home/components/BeforeAfterSection";
+import CTASection from "@schoolify/features/landing/home/components/CTASection";
 
 const Home = () => {
   // Render

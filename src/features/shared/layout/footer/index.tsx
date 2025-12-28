@@ -13,7 +13,6 @@ import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 import routes from "@schoolify/core/utilities/routes";
 
 // Icons
-import { Instagram, Send, Twitter, Phone, Mail } from "lucide-react";
 import { WhatsAppIcon } from "@schoolify/core/components/icon/WhatsAppIcon";
 import { TelegramIcon } from "@schoolify/core/components/icon/TelegramIcon";
 import useClientDeviceTypeIsMobile from "@schoolify/core/hooks/common/useClientDeviceTypeIsMobile";
@@ -44,7 +43,7 @@ const Footer = (props: FooterProps) => {
         color: theme.palette.text.white,
         py: 6,
         px: { xs: 3, md: 8 },
-        // direction: "rtl",
+       
       }}
     >
       <Grid container spacing={4}>
@@ -64,7 +63,7 @@ const Footer = (props: FooterProps) => {
                 mb: 2,
                 color: theme.palette.text.primary,
                 fontSize: "1.2rem",
-                // color: theme.palette.primary.main,
+                
               }}
             >
               اسکولیفای

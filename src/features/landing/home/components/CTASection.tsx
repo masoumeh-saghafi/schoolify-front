@@ -87,7 +87,7 @@ const CTASection = () => {
             color: theme.palette.primary.main,
             px: { xs: 3, md: 5 },
             py: { xs: 1.3, md: 1.7 },
-            minWidth: { xs: 160, md: 200 }, // طول حداقل برابر
+            minWidth: { xs: 160, md: 200 }, 
             fontWeight: "bold",
             fontSize: { xs: "0.9rem", md: "1rem" },
             boxShadow: "0 12px 30px rgba(0,0,0,0.2)",
@@ -126,7 +126,7 @@ const CTASection = () => {
             borderWidth: 2,
             px: { xs: 3, md: 4 },
             py: { xs: 1.3, md: 1.7 },
-            minWidth: { xs: 160, md: 200 }, // طول حداقل برابر با دکمه اصلی
+            minWidth: { xs: 160, md: 200 }, 
             fontWeight: 500,
             fontSize: { xs: "0.8rem", md: "1rem" },
             opacity: 0.9,

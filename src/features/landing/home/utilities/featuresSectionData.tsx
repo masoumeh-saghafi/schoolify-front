@@ -1,28 +1,31 @@
-import { CreditCard, BarChart3, Shield, Layout } from "lucide-react";
+import { BarChartIcon } from '@schoolify/core/components/icon/BarChartIcon'
+import { CreditCardIcon } from '@schoolify/core/components/icon/CreditCardIcon'
+import { LayoutIcon } from '@schoolify/core/components/icon/LayoutIcon'
+import { ShieldIcon } from '@schoolify/core/components/icon/ShieldIcon'
 
 export const featuresSectionData = [
   {
-    icon: CreditCard,
-    title: "مدیریت پرداخت‌ها",
+    icon: CreditCardIcon,
+    title: 'مدیریت پرداخت‌ها',
     description:
-      "ثبت و پیگیری دقیق شهریه‌ها، خدمات و پرداخت‌های دانش‌آموزان با سیستم هوشمند یادآوری.",
+      'ثبت و پیگیری دقیق شهریه‌ها، خدمات و پرداخت‌های دانش‌آموزان با سیستم هوشمند یادآوری.'
   },
   {
-    icon: BarChart3,
-    title: "گزارش‌های حرفه‌ای",
+    icon: BarChartIcon,
+    title: 'گزارش‌های حرفه‌ای',
     description:
-      "تولید گزارش‌های مالی متنوع و قابل تنظیم برای تصمیم‌گیری سریع و دقیق مدیران.",
+      'تولید گزارش‌های مالی متنوع و قابل تنظیم برای تصمیم‌گیری سریع و دقیق مدیران.'
   },
   {
-    icon: Shield,
-    title: "امنیت اطلاعات",
+    icon: ShieldIcon,
+    title: 'امنیت اطلاعات',
     description:
-      "نگهداری امن داده‌های مالی با رمزنگاری پیشرفته و دسترسی محدود به افراد مجاز.",
+      'نگهداری امن داده‌های مالی با رمزنگاری پیشرفته و دسترسی محدود به افراد مجاز.'
   },
   {
-    icon: Layout,
-    title: "رابط کاربری ساده",
+    icon: LayoutIcon,
+    title: 'رابط کاربری ساده',
     description:
-      "طراحی شهودی و کاربرپسند که نیازی به آموزش تخصصی ندارد — فقط وارد شوید و شروع کنید.",
-  },
-];
+      'طراحی شهودی و کاربرپسند که نیازی به آموزش تخصصی ندارد — فقط وارد شوید و شروع کنید.'
+  }
+]

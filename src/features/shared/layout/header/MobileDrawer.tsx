@@ -1,8 +1,10 @@
+// React Types
+import type { ReactNode } from "react";
+
 // MUI Components
 import Drawer from "@schoolify/core/components/base/inputs/Drawer";
 
-// React Types
-import type { ReactNode } from "react";
+// Core Components
 import useClientDeviceTypeIsMobile from "@schoolify/core/hooks/common/useClientDeviceTypeIsMobile";
 
 // Custom Types

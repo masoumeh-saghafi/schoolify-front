@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import HeroSection from "./HeroSection";
-import TeamStatsSection from "./TeamStatsSection";
-import TeamMembersSection from "./TeamMembersSection";
-import TechStackSection from "./TechStackSection";
-import CTASection from "./CTASection";
+import HeroSection from "@schoolify/features/landing/developers/components/HeroSection";
+import TeamStatsSection from "@schoolify/features/landing/developers/components/TeamStatsSection";
+import TeamMembersSection from "@schoolify/features/landing/developers/components/TeamMembersSection";
+import TechStackSection from "@schoolify/features/landing/developers/components/TechStackSection";
+import CTASection from "@schoolify/features/landing/developers/components/CTASection";
 
 const Developers = () => {
   // JSON-LD Structured Data for SEO
