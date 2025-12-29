@@ -1,4 +1,5 @@
 import type { SxProps, Theme } from "@mui/material";
+import type { GridSlotProps } from "@mui/x-data-grid";
 import { theme } from "@schoolify/core/style/themes/muiTheme";
 
 export const getDataGridStyles = (minWidth: number): SxProps<Theme> => ({
@@ -12,7 +13,7 @@ export const getDataGridStyles = (minWidth: number): SxProps<Theme> => ({
 
   // Fix pagination buttons direction for RTL
   "& .MuiTablePagination-actions": {
-    direction: "ltr",
+    direction: "rtl",
   },
 
   // Sticky footer for pagination
@@ -24,9 +25,9 @@ export const getDataGridStyles = (minWidth: number): SxProps<Theme> => ({
     minWidth: "fit-content",
   },
 
-  "& .MuiDataGrid-filterForm": {
-    direction: "rtl",
-  },
+  // "& .MuiDataGrid-filterForm": {
+  //   direction: "rtl",
+  // },
 });
 
 export const containerStyles: SxProps<Theme> = {
@@ -44,15 +45,28 @@ export const footerWrapperStyles: SxProps<Theme> = {
 };
 
 // Slot props for filter panel positioning
-export const getSlotProps = () => ({
-  panel: {
-    placement: "bottom" as const,
-  },
-  filterPanel: {
-    sx: {
-      "& .MuiDataGrid-filterForm": {
-        direction: "rtl",
+export const getSlotProps = () =>
+  ({
+    panel: {
+      placement: "top" as const,
+      sx: {
+        "& .MuiDataGrid-paper": {
+          // backgroundColor: "red",
+          // direction: "rtl",
+          width: {
+            xs: "80%",
+            sm: "80%",
+            md: "88%",
+            xl: "100%",
+          },
+          mx: "auto",
+        },
       },
     },
-  },
-});
+    filterPanel: {
+      sx: {
+        "& .MuiDataGrid-filterForm": {},
+        "& .MuiDataGrid-panelContent": {},
+      },
+    },
+  } as unknown as GridSlotProps);

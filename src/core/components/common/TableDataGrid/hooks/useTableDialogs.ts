@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { SelectedRecord } from "../types";
+import type { SelectedRecord } from "../types/types";
 
 interface UseTableDialogsProps {
   onDeleteRowGetTitle?: (row: any) => string;

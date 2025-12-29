@@ -21,6 +21,7 @@ export const getDataGridLocaleText = (data: any) => ({
   columnMenuHideColumn: "مخفی کردن ستون",
   columnMenuManageColumns: "مدیریت ستون‌ها",
   columnMenuUnsort: "حذف مرتب‌سازی",
+  filterPanelDeleteIconLabel: "حذف",
   filterPanelColumns: "ستون",
   filterPanelOperator: "نوع فیلتر",
   filterPanelInputLabel: "مقدار فیلتر",
@@ -39,8 +40,9 @@ export const getDataGridLocaleText = (data: any) => ({
   columnsManagementSearchTitle: "جستجو",
   paginationRowsPerPage: "تعداد رکورد در صفحه",
   paginationDisplayedRows: () => {
-    if (data?.pagination.page == undefined)
-      return "در حال دریافت اطلاعات...";
-    return `صفحه ${data?.pagination.page + 1} از ${data?.pagination.totalPages}`;
+    if (data?.pagination.page == undefined) return "در حال دریافت اطلاعات...";
+    return `صفحه ${data?.pagination.page + 1} از ${
+      data?.pagination.totalPages
+    }`;
   },
 });

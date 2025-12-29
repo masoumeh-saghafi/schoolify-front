@@ -5,7 +5,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import Box from "@schoolify/core/components/base/inputs/Box";
 
 // Types
-import type { TableDataGridProps } from "./types";
+import type { TableDataGridProps } from "./types/types";
 
 // Hooks
 import { useTablePagination } from "./hooks/useTablePagination";
@@ -23,8 +23,12 @@ import {
 } from "./components/ActionButtons";
 
 // Constants & Styles
-import { getDataGridLocaleText } from "./constants";
-import { getDataGridStyles, containerStyles, getSlotProps } from "./styles";
+import { getDataGridLocaleText } from "./utilities/constants";
+import {
+  getDataGridStyles,
+  containerStyles,
+  getSlotProps,
+} from "./utilities/styles";
 
 const TableDataGrid = (props: TableDataGridProps) => {
   // Destructure props
@@ -55,7 +59,9 @@ const TableDataGrid = (props: TableDataGridProps) => {
   const { paginationModel, setPaginationModel, sortModel, setSortModel } =
     useTablePagination({ onPageChange, onSortChange });
 
-  const { filterModel, handleFilterChange } = useTableFilter({ onFilterChange });
+  const { filterModel, handleFilterChange } = useTableFilter({
+    onFilterChange,
+  });
 
   const {
     editRow,
@@ -144,7 +150,6 @@ const TableDataGrid = (props: TableDataGridProps) => {
           }}
         />
       </Box>
-
 
       {/* Edit Dialog */}
       <EditDialog

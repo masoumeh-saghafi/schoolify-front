@@ -14,7 +14,7 @@ import Slide from "@schoolify/core/components/base/inputs/Slide";
 import { theme } from "@schoolify/core/style/themes/muiTheme";
 
 // Types
-import type { SelectedRecord } from "../types";
+import type { SelectedRecord } from "../types/types";
 
 // Transition component for dialog
 const Transition = React.forwardRef(function Transition(

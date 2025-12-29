@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import type { GridColDef } from "@mui/x-data-grid";
-import { customStringOperators } from "../constants";
+import { customStringOperators } from "../utilities/constants";
 
 interface UseTableColumnsProps {
   columns: GridColDef[];
@@ -9,13 +9,33 @@ interface UseTableColumnsProps {
   disableAddRowButton: boolean;
   disableActions: boolean;
   addRowTitle: string;
-  addRowColor: "error" | "success" | "primary" | "secondary" | "info" | "warning";
+  addRowColor:
+    | "error"
+    | "success"
+    | "primary"
+    | "secondary"
+    | "info"
+    | "warning";
   onEditClick: (row: any) => void;
   onDeleteClick: (row: any) => void;
   onAddClick?: (id: string, row: any) => void;
-  renderEditButton: (row: any, disabled: boolean, onClick: () => void) => React.ReactNode;
-  renderDeleteButton: (row: any, disabled: boolean, onClick: () => void) => React.ReactNode;
-  renderAddButton: (row: any, disabled: boolean, onClick: () => void, title: string, color: string) => React.ReactNode;
+  renderEditButton: (
+    row: any,
+    disabled: boolean,
+    onClick: () => void
+  ) => React.ReactNode;
+  renderDeleteButton: (
+    row: any,
+    disabled: boolean,
+    onClick: () => void
+  ) => React.ReactNode;
+  renderAddButton: (
+    row: any,
+    disabled: boolean,
+    onClick: () => void,
+    title: string,
+    color: string
+  ) => React.ReactNode;
 }
 
 export const useTableColumns = ({
