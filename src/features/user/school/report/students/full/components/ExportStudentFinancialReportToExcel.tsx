@@ -13,6 +13,7 @@ const formatValue = (val: any): string =>
 
 interface ExportStudentFinancialReportParams {
   student: ListStudentReportEntity
+  
 }
 
 export const exportStudentFinancialReportToExcel = async ({

@@ -21,15 +21,18 @@ import {
   StudentCostData
 } from '@schoolify/features/user/school/report/students/full/utilities/studentCostData'
 import { StudentInfoData } from '@schoolify/features/user/school/report/students/full/utilities/studentInfoData'
-import { studentPaymentColumns, StudentPaymentData } from '@schoolify/features/user/school/report/students/full/utilities/studentPaymentData'
-
+import {
+  studentPaymentColumns,
+  StudentPaymentData
+} from '@schoolify/features/user/school/report/students/full/utilities/studentPaymentData'
+import Button from '@schoolify/core/components/base/inputs/Button'
+import { exportStudentFinancialReportToExcel } from './ExportStudentFinancialReportToExcel'
 
 // Custom Types
 interface DetailStudentReportProps {}
 
 const DetailStudentReport = (props: DetailStudentReportProps) => {
-
-// Hooks
+  // Hooks
   const location = useLocation()
   const queryParams = location.hash.split('?')[1]
   const params = new URLSearchParams(queryParams)
@@ -37,8 +40,9 @@ const DetailStudentReport = (props: DetailStudentReportProps) => {
   const studentId = params.get('studentId') ?? ''
 
   const { data } = useGetStudentReport(educationYearId, studentId)
-
-
+  const handleExportToExcel = () => {
+    exportStudentFinancialReportToExcel({ student })
+  }
   // Helpers
   const StudentInfoFields = StudentInfoData(data?.data)
   const StudentDebtFields = StudentDebtData(data?.data)
@@ -96,6 +100,15 @@ const DetailStudentReport = (props: DetailStudentReportProps) => {
           }}
         />
       </ContentBox>
+      <Box display='flex' justifyContent='flex-start' mt={2}>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={handleExportToExcel}
+        >
+          خروجی اکسل گزارش
+        </Button>
+      </Box>
     </Box>
   )
 }
