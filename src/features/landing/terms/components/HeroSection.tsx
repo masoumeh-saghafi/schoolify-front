@@ -6,7 +6,8 @@ import Typography from "@schoolify/core/components/base/inputs/Typography";
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
 // Icons
-import { FileText, Shield } from "lucide-react";
+import { FileTextIcon } from "@schoolify/core/components/icon/FileTextIcon";
+import { ShieldIcon } from "@schoolify/core/components/icon/ShieldIcon";
 
 const HeroSection = () => {
   // Hooks
@@ -29,13 +30,13 @@ const HeroSection = () => {
       <Box
         sx={{
           position: "absolute",
-          top: "10%",
+          top: "25%",
           left: "5%",
           opacity: 0.1,
         }}
         aria-hidden="true"
       >
-        <FileText size={100} />
+        <FileTextIcon width={100} height={100} />
       </Box>
       <Box
         sx={{
@@ -46,7 +47,7 @@ const HeroSection = () => {
         }}
         aria-hidden="true"
       >
-        <Shield size={80} />
+        <ShieldIcon width={80} height={80} />
       </Box>
 
       <Box
@@ -69,7 +70,11 @@ const HeroSection = () => {
             justifyContent: "center",
           }}
         >
-          <FileText size={30} color={theme.palette.text.white} />
+          <FileTextIcon
+            width={30}
+            height={30}
+            color={theme.palette.text.white}
+          />
         </Box>
       </Box>
 

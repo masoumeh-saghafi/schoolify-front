@@ -1,5 +1,15 @@
+import { EyeIcon } from "@schoolify/core/components/icon/EyeIcon";
+import { FileTextIcon } from "@schoolify/core/components/icon/FileTextIcon";
+import { LockIcon } from "@schoolify/core/components/icon/LockIcon";
+import { RefreshCwIcon } from "@schoolify/core/components/icon/RefreshCwIcon";
+import { ScaleIcon } from "@schoolify/core/components/icon/ScaleIcon";
+import { TriangleAlertIcon } from "@schoolify/core/components/icon/TriangleAlertIcon";
+import { UserCheckIcon } from "@schoolify/core/components/icon/UserCheckIcon";
+import { CopyrightIcon } from "@schoolify/core/components/icon/UserCheckIcon copy";
+
 export interface TermsSection {
   id: string;
+  icon: typeof FileTextIcon;
   title: string;
   content: string;
 }
@@ -7,48 +17,56 @@ export interface TermsSection {
 export const termsData: TermsSection[] = [
   {
     id: "intro",
+    icon: FileTextIcon,
     title: "مقدمه",
     content:
       "کاربر گرامی، قبل از استفاده از خدمات سامانه «اسکولیفای» لطفاً موارد زیر را با دقت مطالعه نمایید. استفاده شما از این سامانه به معنای پذیرش کامل و بدون قید و شرط کلیه قوانین و مقررات مندرج در این صفحه است و ادامه استفاده یا ورود به حساب کاربری به معنی اعلام موافقت و تعهد به رعایت این شرایط تلقی می‌شود.",
   },
   {
     id: "registration",
+    icon: UserCheckIcon,
     title: "ثبت‌نام و اطلاعات کاربری",
     content:
       "استفاده از امکانات، خدمات و محتوای سامانه اسکولیفای فقط برای کاربران ثبت‌نام‌شده مجاز است. کاربر موظف است اطلاعات صحیح و معتبر خود را وارد نماید و مسئولیت صحت، جامعیت و به‌روزرسانی این اطلاعات بر عهده خودش است.",
   },
   {
     id: "disclaimer",
+    icon: TriangleAlertIcon,
     title: "سلب مسئولیت",
     content:
       "سامانه اسکولیفای تلاش می‌کند اطلاعات و سرویس‌ها را به‌صورت دقیق ارائه کند، اما هیچ‌گونه تضمینی در مورد کامل‌بودن، به‌روزبودن یا تطابق کامل با نیازهای خاص کاربر داده نمی‌شود. کاربر می‌پذیرد که استفاده از خدمات، گزارش‌ها، داده‌ها، تحلیل‌ها یا تصمیم‌گیری بر اساس اطلاعات واردشده یا نمایش‌داده‌شده کاملاً تحت مسئولیت خودش است و سامانه هیچ‌گونه مسئولیتی در قبال نتایج ناشی از استفاده یا سوءاستفاده از سیستم نخواهد داشت.",
   },
   {
     id: "account-security",
+    icon: LockIcon,
     title: "امنیت حساب کاربری",
     content:
       "اطلاعات حساب کاربری از جمله نام کاربری، رمز عبور و شناسه‌های احراز هویت باید محرمانه نگه داشته شوند. هرگونه استفاده یا دسترسی به حساب کاربری، به‌عنوان استفاده قانونی از طرف دارنده‌ی آن در نظر گرفته شده و مسئولیت آن بر عهده‌ی کاربر است.",
   },
   {
     id: "legal-compliance",
+    icon: ScaleIcon,
     title: "رعایت قوانین",
     content:
       "کاربر موظف است در استفاده از سامانه، قوانین و مقررات جاری کشور، قوانین تجارت الکترونیکی، حمایت از حقوق مصرف‌کننده و سایر مقررات مرتبط را رعایت کند. هرگونه استفاده‌ی مغایر با قوانین مذکور ممکن است منجر به مسدودشدن دسترسی یا پیگیری قانونی گردد.",
   },
   {
     id: "changes",
+    icon: RefreshCwIcon,
     title: "تغییرات قوانین",
     content:
       "امکان به‌روزرسانی، تکمیل، حذف یا تغییر قوانین و مقررات در هر زمان وجود دارد. ادامه‌ی استفاده از سامانه پس از انتشار نسخه‌ی جدید این قوانین به‌معنای پذیرش تغییرات خواهد بود.",
   },
   {
     id: "privacy",
+    icon: EyeIcon,
     title: "حریم خصوصی",
     content:
       "اسکولیفای متعهد به حفظ حریم خصوصی کاربران است. اطلاعات شخصی کاربران تنها برای ارائه خدمات بهتر استفاده شده و بدون رضایت کاربر در اختیار اشخاص ثالث قرار نخواهد گرفت، مگر در مواردی که قانون الزام کرده باشد.",
   },
   {
     id: "intellectual-property",
+    icon: CopyrightIcon,
     title: "مالکیت معنوی",
     content:
       "کلیه حقوق مادی و معنوی سامانه اسکولیفای، شامل طراحی، کد، محتوا، لوگو و سایر عناصر متعلق به تیم توسعه‌دهنده است. هرگونه کپی‌برداری، بازنشر یا استفاده غیرمجاز از این موارد پیگرد قانونی خواهد داشت.",

@@ -13,27 +13,8 @@ import {
 } from "@schoolify/features/landing/terms/utilities/termsData";
 
 // Icons
-import {
-  FileText,
-  UserCheck,
-  AlertTriangle,
-  Lock,
-  Scale,
-  RefreshCw,
-  Eye,
-  Copyright,
-} from "lucide-react";
-
-const iconMap: Record<string, typeof FileText> = {
-  intro: FileText,
-  registration: UserCheck,
-  disclaimer: AlertTriangle,
-  "account-security": Lock,
-  "legal-compliance": Scale,
-  changes: RefreshCw,
-  privacy: Eye,
-  "intellectual-property": Copyright,
-};
+import { FileTextIcon } from "@schoolify/core/components/icon/FileTextIcon";
+import { RefreshCwIcon } from "@schoolify/core/components/icon/RefreshCwIcon";
 
 const TermsContentSection = () => {
   // Hooks
@@ -68,7 +49,11 @@ const TermsContentSection = () => {
             gap: 1,
           }}
         >
-          <RefreshCw size={18} color={theme.palette.brand.main} />
+          <RefreshCwIcon
+            width={18}
+            height={18}
+            color={theme.palette.brand.main}
+          />
           <Typography
             sx={{
               color: theme.palette.brand.main,
@@ -82,7 +67,7 @@ const TermsContentSection = () => {
 
         {/* Terms Sections */}
         {termsData.map((section, index) => {
-          const IconComponent = iconMap[section.id] || FileText;
+          const IconComponent = section.icon;
           return (
             <Paper
               key={section.id}
@@ -119,7 +104,11 @@ const TermsContentSection = () => {
                     flexShrink: 0,
                   }}
                 >
-                  <IconComponent size={22} color={theme.palette.text.white} />
+                  <IconComponent
+                    width={22}
+                    height={22}
+                    color={theme.palette.text.white}
+                  />
                 </Box>
                 <Box>
                   <Typography
