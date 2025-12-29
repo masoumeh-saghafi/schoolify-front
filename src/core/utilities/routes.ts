@@ -5,6 +5,8 @@ const routes = {
 
   developers: "/developers",
 
+  terms: "/terms",
+
   contactUs: "/about-us#contact",
 
   login: "/login",

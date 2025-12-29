@@ -1,6 +1,6 @@
 // React Types
 import { useForm, type SubmitHandler } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 //Type Definitions
 import { z } from 'zod'
@@ -19,6 +19,9 @@ import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
 
 // Feature Components
 import { phoneSchema } from '@schoolify/features/shared/authentication/validations/phoneValidation'
+
+// Custom Utilities
+import routes from '@schoolify/core/utilities/routes'
 
 // Icon Components
 import { ArrowLeftIcon } from '@schoolify/core/components/icon/ArrowLeftIcon'
@@ -48,7 +51,7 @@ const SendCode = (props: SendCodeProps) => {
     mode: 'onChange'
   })
 
-  const navigate = useNavigate()
+  
 
   const theme = useAppTheme()
 
@@ -156,10 +159,12 @@ const SendCode = (props: SendCodeProps) => {
         >
           با ورود به سیستم، شما{' '}
           <Box
-            component='span'
+            component={Link}
+            to={routes.terms}
             sx={{
               color: theme.palette.primary.main,
               cursor: 'pointer',
+              textDecoration: 'none',
               '&:hover': { textDecoration: 'underline' }
             }}
           >
