@@ -10,7 +10,6 @@ import {
 
 import Cookies from "js-cookie";
 
-
 // ---------------------------
 // Base URL
 // ---------------------------
@@ -78,7 +77,12 @@ async function request<T>(
     if (response.status == 403) {
       throw new Error("شما مجوز استفاده از این قسمت را ندارید");
     }
-
+    if (response.status == 404) {
+      throw new Error("اطلاعاتی یافت نشد");
+    }
+    if (response.status >= 500) {
+      throw new Error("خطای سرور");
+    }
     const isImpersonation = response.headers.get("is-impersonation");
     handleImpersonation(isImpersonation);
 
