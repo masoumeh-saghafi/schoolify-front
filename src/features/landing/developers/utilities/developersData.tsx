@@ -1,6 +1,12 @@
-import { CodeIcon } from "@schoolify/core/components/icon/CodeIcon";
+// Icons Components
 import { PaletteIcon } from "@schoolify/core/components/icon/PaletteIcon";
+import { LayoutIcon } from "@schoolify/core/components/icon/LayoutIcon";
+import { CpuIcon } from "@schoolify/core/components/icon/CpuIcon";
+import { ServerIcon } from "@schoolify/core/components/icon/ServerIcon";
+import { DatabaseIcon } from "@schoolify/core/components/icon/DatabaseIcon";
+import { GitBranchIcon } from "@schoolify/core/components/icon/GitBranchIcon";
 
+import { CodeIcon } from "@schoolify/core/components/icon/CodeIcon";
 
 export interface Developer {
   name: string;
@@ -51,10 +57,9 @@ export const teamStats = [
 ];
 
 export const techStack = [
-  "React",
-  "TypeScript",
-  "Material-UI",
-  "ASP .NET Core",
-  "REST API",
-  "SQL Server",
+  { title: "React", icon: LayoutIcon },
+  { title: "TypeScript", icon: CpuIcon },
+  { title: "Material-UI", icon: PaletteIcon },
+  { title: "ASP .NET Core", icon: CpuIcon },
+  { title: "SQL Server", icon: DatabaseIcon },
 ];
