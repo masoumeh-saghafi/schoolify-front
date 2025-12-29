@@ -5,11 +5,12 @@ import Typography from "@schoolify/core/components/base/inputs/Typography";
 // Custom Hooks
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
-// Icons
+// Icon Components
 import { FileTextIcon } from "@schoolify/core/components/icon/FileTextIcon";
 import { ShieldIcon } from "@schoolify/core/components/icon/ShieldIcon";
 
 const HeroSection = () => {
+  
   // Hooks
   const theme = useAppTheme();
 

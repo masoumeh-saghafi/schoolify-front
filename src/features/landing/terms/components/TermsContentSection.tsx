@@ -6,14 +6,13 @@ import Paper from "@schoolify/core/components/base/inputs/Paper";
 // Custom Hooks
 import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 
-// Data
+// Custom Utilities
 import {
   termsData,
   lastUpdated,
 } from "@schoolify/features/landing/terms/utilities/termsData";
 
-// Icons
-import { FileTextIcon } from "@schoolify/core/components/icon/FileTextIcon";
+// Icon Components
 import { RefreshCwIcon } from "@schoolify/core/components/icon/RefreshCwIcon";
 
 const TermsContentSection = () => {

@@ -1,3 +1,4 @@
+// React Type
 import React from "react";
 import type { TransitionProps } from "@mui/material/transitions";
 
@@ -10,11 +11,11 @@ import Typography from "@schoolify/core/components/base/inputs/Typography";
 import Button from "@schoolify/core/components/base/inputs/Button";
 import Slide from "@schoolify/core/components/base/inputs/Slide";
 
-// Theme
+// Custom Hooks
 import { theme } from "@schoolify/core/style/themes/muiTheme";
 
-// Types
-import type { SelectedRecord } from "../types/types";
+// Custom Types
+import type { SelectedRecord } from "@schoolify/core/components/common/TableDataGrid/types/types";
 
 // Transition component for dialog
 const Transition = React.forwardRef(function Transition(

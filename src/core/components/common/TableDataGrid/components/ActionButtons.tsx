@@ -3,7 +3,7 @@ import React from "react";
 // MUI Components
 import Button from "@schoolify/core/components/base/inputs/Button";
 
-// Icons
+// Icon Components
 import { EditIcon } from "@schoolify/core/components/icon/EditIcon";
 import { DeleteIcon } from "@schoolify/core/components/icon/DeleteIcon";
 
