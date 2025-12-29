@@ -28,7 +28,7 @@ const PaymentGateway = () => {
   // Helpers
   const paymentId = searchParams.get("paymentId");
   const backPath = location.state?.from;
-  const refetchQueryKey: string[] = location.state?.refetchQueryKey;
+  const refetchQueryKeys: string[][] = location.state?.refetchQueryKey;
 
   if (!paymentId) {
     alert("شناسه پرداخت نامعتبر است.");
@@ -47,13 +47,14 @@ const PaymentGateway = () => {
           : "پرداخت ناموفق بود! لطفاً مجدداً تلاش کنید."
       );
     } catch (error) {
-    
       alert("خطایی در ارتباط با سرور رخ داد. لطفاً دوباره تلاش کنید.");
     } finally {
-      if (refetchQueryKey) {
-        queryClient.invalidateQueries({
-          queryKey: refetchQueryKey,
-        });
+      if (refetchQueryKeys) {
+        for (const queryKey of refetchQueryKeys) {
+          queryClient.invalidateQueries({
+            queryKey: queryKey,
+          });
+        }
       }
       if (backPath) {
         navigate(backPath);

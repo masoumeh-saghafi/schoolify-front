@@ -3,6 +3,7 @@ import { updateRenewalSubscription } from "@schoolify/features/user/profile/acco
 import { useNavigate } from "react-router-dom";
 import routes from "@schoolify/core/utilities/routes";
 import { listUserSubscriptionsQueryKey } from "@schoolify/features/user/profile/accountManagement/subscription/hooks/useListUserSubscriptions";
+import { listSummarySchoolsQueryKey } from "@schoolify/features/user/shared/school/hooks/useListSummarySchools";
 
 const useRenewalSubscription = () => {
   const navigate = useNavigate();
@@ -21,7 +22,10 @@ const useRenewalSubscription = () => {
         navigate(routes.paymentGateway(response.data.paymentId), {
           state: {
             from: location.pathname + location.hash,
-            refetchQueryKey: listUserSubscriptionsQueryKey,
+            refetchQueryKey: [
+              listUserSubscriptionsQueryKey,
+              listSummarySchoolsQueryKey,
+            ],
           },
         });
       } else {

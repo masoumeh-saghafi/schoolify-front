@@ -48,7 +48,7 @@ const RecentPayments = () => {
     navigate(routes.paymentGateway(paymentId), {
       state: {
         from: location.pathname + location.hash,
-        refetchQueryKey: listPaymentQueryKey,
+        refetchQueryKey: [listPaymentQueryKey],
       },
     });
   };
