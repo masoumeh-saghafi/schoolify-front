@@ -88,7 +88,7 @@ const AddClassStudent = (props: AddClassStudentProps) => {
     schoolId: schoolId,
     pagination: { size: -1 },
     filters: {
-      classRoomId: selectedClassId,
+      // classRoomId: selectedClassId,
       // identityCode: `%${studentSearchText}%`
     },
     disabled: !selectedClassId,

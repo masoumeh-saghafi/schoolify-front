@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { listEducationGradeQueryKey } from "@schoolify/features/user/school/management/educationGrade/hooks/useListEducationGrade";
 import { addEducationGrade } from "@schoolify/features/user/school/management/educationGrade/utilities/api/api";
+import { listSummaryEducationGradeQueryKey } from "../../shared/hooks/useListSummaryEducationGrade";
 
 const useAddEducationGrade = () => {
   const queryClient = useQueryClient();
@@ -17,6 +18,11 @@ const useAddEducationGrade = () => {
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
         queryKey: listEducationGradeQueryKey({
+          educationLevelId: variables.educationLevelId,
+        }),
+      });
+      queryClient.invalidateQueries({
+        queryKey: listSummaryEducationGradeQueryKey({
           educationLevelId: variables.educationLevelId,
         }),
       });

@@ -3,9 +3,17 @@ import ms from "ms";
 
 import { listSummaryEducationYear } from "@schoolify/features/user/school/management/educationLevel/utilities/api/api";
 
+interface UseListSummaryEducationYearProps {
+  schoolId: string;
+}
+
+export const listSummaryEducationYearQueryKey = (
+  props: UseListSummaryEducationYearProps
+) => ["ListSummaryEducationYear", props.schoolId].filter(Boolean);
+
 const useListSummaryEducationYear = (schoolId: string) =>
   useQuery({
-    queryKey: ["ListSummaryEducationYear", schoolId],
+    queryKey: listSummaryEducationYearQueryKey({ schoolId }),
     queryFn: ({ queryKey }) => listSummaryEducationYear(queryKey[1] as string),
 
     staleTime: ms("1h"),
@@ -15,4 +23,5 @@ const useListSummaryEducationYear = (schoolId: string) =>
     select: (data) => data?.data,
     enabled: !!schoolId,
   });
+
 export default useListSummaryEducationYear;

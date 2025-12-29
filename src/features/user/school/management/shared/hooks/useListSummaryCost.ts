@@ -3,10 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 
 import { listSummaryCostType } from "@schoolify/features/user/school/management/cost/utilities/api/api";
 
+interface UseListSummaryCostProps {
+  educationYearId: string;
+}
 
-const useListSummaryCostType = (costTypeId: string) =>
+export const listSummaryCostQueryKey = (props: UseListSummaryCostProps) =>
+  ["ListSummaryCostType", props.educationYearId].filter(Boolean);
+
+const useListSummaryCost = (educationYearId: string) =>
   useQuery({
-    queryKey: ["ListSummaryCostType", costTypeId],
+    queryKey: listSummaryCostQueryKey({ educationYearId }),
     queryFn: ({ queryKey }) => listSummaryCostType(queryKey[1] as string),
 
     staleTime: ms("1h"),
@@ -14,6 +20,7 @@ const useListSummaryCostType = (costTypeId: string) =>
     refetchOnReconnect: true,
     retryDelay: 1000,
     select: (data) => data?.data,
-    enabled: !!costTypeId,
+    enabled: !!educationYearId,
   });
-export default useListSummaryCostType;
+
+export default useListSummaryCost;

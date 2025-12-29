@@ -3,10 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 
 import { listSummaryClasses } from "@schoolify/features/user/school/management/classStudents/utilities/api/api";
 
+interface UseListSummaryClassProps {
+  educationGradeId: string;
+}
 
-const useListSummaryClass = (classId: string) =>
+export const listSummaryClassQueryKey = (props: UseListSummaryClassProps) =>
+  ["ListSummaryClass", props.educationGradeId].filter(Boolean);
+
+const useListSummaryClass = (educationGradeId: string) =>
   useQuery({
-    queryKey: ["ListSummaryClass", classId],
+    queryKey: listSummaryClassQueryKey({ educationGradeId }),
     queryFn: ({ queryKey }) => listSummaryClasses(queryKey[1] as string),
 
     staleTime: ms("1h"),
@@ -14,6 +20,7 @@ const useListSummaryClass = (classId: string) =>
     refetchOnReconnect: true,
     retryDelay: 1000,
     select: (data) => data?.data,
-    enabled: !!classId,
+    enabled: !!educationGradeId,
   });
+
 export default useListSummaryClass;

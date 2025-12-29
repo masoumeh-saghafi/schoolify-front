@@ -59,9 +59,7 @@ const ListCustomer = () => {
 
       navigate(routes.profile.baseUrl);
       queryClient.resetQueries();
-    } catch (error) {
-      // console.log(error);
-    }
+    } catch (error) {}
   };
 
   // Render

@@ -20,8 +20,6 @@ const useListStudents = (props: useListStudentsProps) => {
   return useQuery({
     queryKey: listStudentsQueryKey(props),
     queryFn: ({ queryKey }) => {
-      console.log("FFFFFFFFFFFFFFFFFFFFFFFFFFFF     -   ", queryKey);
-
       return listStudent(
         queryKey[1] as string,
         queryKey[2] as BaseRequestPaginationParams,

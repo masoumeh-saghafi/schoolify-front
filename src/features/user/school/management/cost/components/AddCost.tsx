@@ -131,8 +131,6 @@ const AddCost = (props: AddCostProps) => {
     if (result.isSuccess) reset(data);
   };
 
-
-
   // Render
   return (
     <Box>
@@ -172,6 +170,7 @@ const AddCost = (props: AddCostProps) => {
             control={control}
             name="amount"
             label="مبلغ پرداختی"
+            placeholder="مبلغ ثابت هزینه برای همه (مبلغ ثابت + مبلغ پرداختی = مبلغ نهایی)"
             key="paymentAmount"
           />
 
@@ -266,7 +265,6 @@ const AddCost = (props: AddCostProps) => {
                 options={studentDataOptions}
                 value={referenceRecordId}
                 onChange={setReferenceRecordId}
-             
               />
             </>
           )}

@@ -93,8 +93,6 @@ async function request<T>(
         handleSuccessNotification();
       }
     } else {
-      console.log(data);
-
       handleError(data.errors);
     }
 

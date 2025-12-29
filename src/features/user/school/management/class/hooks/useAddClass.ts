@@ -1,28 +1,34 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { listClassQueryKey } from '@schoolify/features/user/school/management/class/hooks/useListClass'
-import { addClass } from '@schoolify/features/user/school/management/class/utilities/api/api'
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { listClassQueryKey } from "@schoolify/features/user/school/management/class/hooks/useListClass";
+import { addClass } from "@schoolify/features/user/school/management/class/utilities/api/api";
+import { listSummaryClassQueryKey } from "../../shared/hooks/useListSummaryClass";
 
 const useAddClass = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({
       data,
-      educationGradeId
+      educationGradeId,
     }: {
-      data: any
-      educationGradeId: string
+      data: any;
+      educationGradeId: string;
     }) => addClass(data),
 
     onSuccess: (data, variables) => {
       queryClient.invalidateQueries({
         queryKey: listClassQueryKey({
-          educationGradeId: variables.educationGradeId
-        })
-      })
+          educationGradeId: variables.educationGradeId,
+        }),
+      });
+      queryClient.invalidateQueries({
+        queryKey: listSummaryClassQueryKey({
+          educationGradeId: variables.educationGradeId,
+        }),
+      });
     },
-    onError: error => {}
-  })
-}
+    onError: (error) => {},
+  });
+};
 
-export default useAddClass
+export default useAddClass;
