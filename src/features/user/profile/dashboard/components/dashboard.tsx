@@ -13,6 +13,7 @@ import Dashboard from "@schoolify/features/shared/dashboard/components";
 import routes from "@schoolify/core/utilities/routes";
 import { useDashboardSidebarData } from "@schoolify/features/user/profile/dashboard/utilities/data";
 import { removeImpersonateTokenCookie } from "@schoolify/core/utilities/impersonate";
+import { updateSEO, defaultSEOConfigs } from "@schoolify/core/utilities/seo";
 
 // Custom Hooks
 import useUserProfile from "@schoolify/features/shared/profile/hooks/useUserProfile";
@@ -62,6 +63,11 @@ const ProfileDashboard = (props: ProfileDashboardProps) => {
       navigate(routes.login);
     }
   }, [data]);
+
+  // SEO
+  useEffect(() => {
+    updateSEO(defaultSEOConfigs.profile);
+  }, []);
 
   // Render
   return (

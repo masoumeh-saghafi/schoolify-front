@@ -27,6 +27,7 @@ const quickLinks = [
   { title: "درباره ما", link: routes.aboutUs, scrollToTop: true },
   { title: "تماس باما", link: routes.contactUs, scrollToTop: false },
   { title: "توسعه‌دهندگان", link: routes.developers, scrollToTop: true },
+  { title: "قوانین و مقررات", link: routes.terms, scrollToTop: true },
 ];
 
 const Footer = (props: FooterProps) => {
@@ -38,6 +39,10 @@ const Footer = (props: FooterProps) => {
   return (
     <Box
       component="footer"
+      role="contentinfo"
+      aria-label="پاورقی سایت اسکولیفای"
+      itemScope
+      itemType="https://schema.org/WPFooter"
       sx={{
         backgroundColor: theme.palette.background.paper,
         color: theme.palette.text.white,
@@ -151,25 +156,31 @@ const Footer = (props: FooterProps) => {
                 component="a"
                 href="https://wa.me/+989191587842"
                 target="_blank"
+                rel="noopener noreferrer"
+                aria-label="تماس از طریق واتساپ"
+                title="واتساپ اسکولیفای"
                 sx={{
                   color: theme.palette.info.dark,
                   transition: "color 0.2s ease",
                   "&:hover": { color: theme.palette.primary.main },
                 }}
               >
-                <WhatsAppIcon />
+                <WhatsAppIcon aria-hidden="true" />
               </Box>
               <Box
                 component="a"
                 href="https://t.me/+989191587842"
                 target="_blank"
+                rel="noopener noreferrer"
+                aria-label="تماس از طریق تلگرام"
+                title="تلگرام اسکولیفای"
                 sx={{
                   color: theme.palette.info.dark,
                   transition: "color 0.2s ease",
                   "&:hover": { color: "#0088cc" },
                 }}
               >
-                <TelegramIcon />
+                <TelegramIcon aria-hidden="true" />
               </Box>
             </Box>
           </Box>

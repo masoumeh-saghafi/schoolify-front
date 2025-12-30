@@ -53,6 +53,9 @@ const LogoTitle = (props: LogoProps) => {
       {...(variant ? { variant } : {})}
       component="button"
       onClick={handleClick}
+      aria-label="اسکولیفای - بازگشت به صفحه اصلی"
+      title="اسکولیفای - سامانه مدیریت مالی مدارس"
+      itemProp="name"
       sx={{
         background: "none",
         border: "none",

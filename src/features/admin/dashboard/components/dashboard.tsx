@@ -9,6 +9,7 @@ import type { DashboardSidebarExitButtonDataProps } from '@schoolify/features/sh
 // Custom Utilities
 import routes from '@schoolify/core/utilities/routes'
 import { adminDashboardSidebarData } from '@schoolify/features/admin/dashboard/utilities/data'
+import { updateSEO, defaultSEOConfigs } from '@schoolify/core/utilities/seo'
 
 // Custom Hooks
 import useUserProfile from '@schoolify/features/shared/profile/hooks/useUserProfile'
@@ -35,6 +36,11 @@ const AdminDashboard = (props: AdminDashboardProps) => {
       navigate(routes.profile.baseUrl)
     }
   }, [data])
+
+  // SEO
+  useEffect(() => {
+    updateSEO(defaultSEOConfigs.admin)
+  }, [])
 
   // Helpers
   const sidebarData = adminDashboardSidebarData(data?.data?.role)

@@ -14,6 +14,8 @@ const BeforeAfterSection = () => {
   // Render
   return (
     <Box
+      component="section"
+      aria-labelledby="comparison-heading"
       sx={{
         py: { xs: 15, md: 20 },
         px: { xs: 3, md: 8 },
@@ -21,6 +23,8 @@ const BeforeAfterSection = () => {
       }}
     >
       <Typography
+        component="h2"
+        id="comparison-heading"
         variant="h3"
         sx={{
           textAlign: "center",
@@ -34,6 +38,7 @@ const BeforeAfterSection = () => {
       </Typography>
 
       <Typography
+        component="p"
         variant="body1"
         sx={{
           textAlign: "center",
@@ -71,6 +76,7 @@ const BeforeAfterSection = () => {
             }}
           >
             <Typography
+              component="h3"
               variant="h6"
               sx={{
                 fontWeight: "bold",
@@ -78,7 +84,7 @@ const BeforeAfterSection = () => {
                 mb: 3,
               }}
             >
-              ❌ قبل از اسکولیفای
+              <span aria-hidden="true">❌</span> قبل از اسکولیفای
             </Typography>
 
             <Box component="ul" sx={{ pl: 2, m: 0 }}>
@@ -121,6 +127,7 @@ const BeforeAfterSection = () => {
             }}
           >
             <Typography
+              component="h3"
               variant="h6"
               sx={{
                 fontWeight: "bold",
@@ -128,7 +135,7 @@ const BeforeAfterSection = () => {
                 mb: 3,
               }}
             >
-              ✅ بعد از اسکولیفای
+              <span aria-hidden="true">✅</span> بعد از اسکولیفای
             </Typography>
 
             <Box component="ul" sx={{ pl: 2, m: 0 }}>

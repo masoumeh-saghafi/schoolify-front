@@ -1,0 +1,15 @@
+# Robots.txt for Schoolify
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://schoolify.ir/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Disallow private areas
+Disallow: /admin/
+Disallow: /profile/
+Disallow: /school/
+Disallow: /gateway/

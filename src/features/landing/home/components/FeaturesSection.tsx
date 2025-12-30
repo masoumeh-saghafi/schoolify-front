@@ -15,6 +15,8 @@ const FeaturesSection = () => {
   // Render
   return (
     <Box
+      component="section"
+      aria-labelledby="features-heading"
       sx={{
         py: { xs: 15, md: 20 },
         px: { xs: 3, md: 8 },
@@ -22,6 +24,8 @@ const FeaturesSection = () => {
       }}
     >
       <Typography
+        component="h2"
+        id="features-heading"
         variant='h3'
         sx={{
           textAlign: 'center',
@@ -34,6 +38,7 @@ const FeaturesSection = () => {
         امکانات اسکولیفای
       </Typography>
       <Typography
+        component="p"
         variant='body1'
         sx={{
           textAlign: 'center',
@@ -55,6 +60,7 @@ const FeaturesSection = () => {
         {featuresSectionData.map((feature, index) => (
           <Grid key={index} size={{ xs: 12, md: 6 }}>
             <Paper
+              component="article"
               elevation={0}
               sx={{
                 p: 3,
@@ -80,6 +86,7 @@ const FeaturesSection = () => {
             >
               <Box
                 className='card-info-icon'
+                aria-hidden="true"
                 sx={{
                   px: 1.7,
                   py: 3.7,
@@ -109,6 +116,7 @@ const FeaturesSection = () => {
                 }}
               >
                 <Typography
+                  component="h3"
                   variant='h6'
                   sx={{
                     textAlign: 'start',
@@ -120,6 +128,7 @@ const FeaturesSection = () => {
                   {feature.title}
                 </Typography>
                 <Typography
+                  component="p"
                   variant='body2'
                   sx={{
                     textAlign: 'start',

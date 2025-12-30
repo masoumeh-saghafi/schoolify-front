@@ -19,6 +19,10 @@ const HeroSection = () => {
   // Render
   return (
     <Box
+      component="section"
+      itemScope
+      itemType="https://schema.org/WebPageElement"
+      aria-label="بخش معرفی اسکولیفای"
       sx={{
         py: { xs: 15, md: 20 },
         px: { xs: 3, md: 8 },
@@ -31,7 +35,9 @@ const HeroSection = () => {
       }}
     >
       <Typography
+        component="h1"
         variant='h1'
+        itemProp="headline"
         sx={{
           color: theme.palette.brand.main,
           fontWeight: 'bold',
@@ -42,6 +48,7 @@ const HeroSection = () => {
         مدیریت مالی مدرسه
       </Typography>
       <Typography
+        component="span"
         variant='h1'
         sx={{
           color: theme.palette.primary.main,
@@ -53,7 +60,9 @@ const HeroSection = () => {
         ساده و مطمئن
       </Typography>
       <Typography
+        component="p"
         variant='h6'
+        itemProp="description"
         sx={{
           color: theme.palette.info.dark,
           fontWeight: 'normal',
@@ -73,6 +82,7 @@ const HeroSection = () => {
         to={routes.login}
         variant='contained'
         size='large'
+        aria-label="شروع استفاده از اسکولیفای"
         sx={{
           backgroundColor: theme.palette.primary.main,
           color: theme.palette.text.white,
@@ -89,6 +99,7 @@ const HeroSection = () => {
         همین حالا شروع کنید
       </Button>
       <Typography
+        component="p"
         variant='body2'
         sx={{ mt: 4, opacity: 0.8, fontSize: '0.85rem' }}
       >

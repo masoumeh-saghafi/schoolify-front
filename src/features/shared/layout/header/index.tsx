@@ -62,8 +62,14 @@ const Header = (props: HeaderProps) => {
   // Render
   return (
     <>
-      <AppBar position="fixed" sx={{ paddingX: { xs: "32px", md: "44px" } }}>
-        <Box>
+      <AppBar 
+        position="fixed" 
+        component="header"
+        role="banner"
+        aria-label="منوی اصلی سایت"
+        sx={{ paddingX: { xs: "32px", md: "44px" } }}
+      >
+        <Box component="nav" aria-label="ناوبری اصلی">
           <Toolbar disableGutters>
             {/* Mobile Menu Button + Drawer  */}
             <Box
@@ -76,9 +82,11 @@ const Header = (props: HeaderProps) => {
                 size="large"
                 onClick={() => setOpen(!open)}
                 edge="end"
+                aria-label={open ? "بستن منو" : "باز کردن منو"}
+                aria-expanded={open}
                 sx={{ color: theme.palette.text.iconButton }}
               >
-                {open ? <CloseIcon /> : <MenuIcon />}
+                {open ? <CloseIcon aria-hidden="true" /> : <MenuIcon aria-hidden="true" />}
               </IconButton>
               <HeaderMobileDrawer
                 collapsedDrawerWidth={0}

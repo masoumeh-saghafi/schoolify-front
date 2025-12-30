@@ -11,6 +11,8 @@ const HeroSection = () => {
 
   return (
     <Box
+      component="section"
+      aria-label="معرفی اسکولیفای"
       sx={{
         background: `linear-gradient(135deg, ${theme.palette.brand.main} 0%, ${theme.palette.primary.main} 100%)`,
         color: theme.palette.text.white,
@@ -25,6 +27,7 @@ const HeroSection = () => {
       }}
     >
       <Typography
+        component="h1"
         variant="h1"
         sx={{
           fontWeight: "bold",
@@ -36,6 +39,7 @@ const HeroSection = () => {
         مدیریت مالی مدارس، آسان، هوشمند و آماده برای فردا
       </Typography>
       <Typography
+        component="p"
         variant="h6"
         sx={{
           maxWidth: 900,

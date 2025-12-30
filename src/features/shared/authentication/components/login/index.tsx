@@ -27,6 +27,9 @@ import {
 } from "@schoolify/features/shared/authentication/utilities/api/api";
 import { getUserProfile } from "@schoolify/features/shared/profile/utilities/api/api";
 
+// SEO Utilities
+import { updateSEO, defaultSEOConfigs } from "@schoolify/core/utilities/seo";
+
 
 
 // Custom Types
@@ -55,6 +58,8 @@ const Login = (props: LoginProps) => {
 
   useEffect(() => {
     handleAutoNavigation();
+    // Set SEO for login page
+    updateSEO(defaultSEOConfigs.login);
   }, []);
 
   useEffect(() => {

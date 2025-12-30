@@ -22,6 +22,8 @@ const CTASection = () => {
   // Render
   return (
     <Box
+      component="section"
+      aria-labelledby="cta-heading"
       sx={{
         py: { xs: 16, md: 22 },
         px: { xs: 3, md: 8 },
@@ -34,6 +36,7 @@ const CTASection = () => {
     >
       {/* subtle glow */}
       <Box
+        aria-hidden="true"
         sx={{
           position: "absolute",
           inset: 0,
@@ -44,6 +47,8 @@ const CTASection = () => {
       />
 
       <Typography
+        component="h2"
+        id="cta-heading"
         variant="h3"
         sx={{
           fontWeight: 900,
@@ -57,6 +62,7 @@ const CTASection = () => {
       </Typography>
 
       <Typography
+        component="p"
         variant="body1"
         sx={{
           color: "rgba(255,255,255,0.9)",
@@ -82,6 +88,7 @@ const CTASection = () => {
           component={Link}
           to={routes.login}
           variant="contained"
+          aria-label="ثبت نام در سامانه اسکولیفای"
           sx={{
             backgroundColor: theme.palette.text.white,
             color: theme.palette.primary.main,
@@ -113,6 +120,7 @@ const CTASection = () => {
             className="svg-arrow-signup"
             width={20}
             height={20}
+            aria-hidden="true"
           />
         </Button>
 
@@ -120,6 +128,7 @@ const CTASection = () => {
           component={Link}
           to={routes.contactUs}
           variant="outlined"
+          aria-label="تماس با تیم پشتیبانی اسکولیفای"
           sx={{
             color: theme.palette.text.white,
             borderColor: theme.palette.text.white,

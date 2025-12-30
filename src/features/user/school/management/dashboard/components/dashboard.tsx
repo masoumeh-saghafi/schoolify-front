@@ -11,6 +11,7 @@ import type { DashboardSidebarExitButtonDataProps } from '@schoolify/features/sh
 
 // Custom Utilities
 import { schoolManagementSidebarData } from '@schoolify/features/user/school/management/dashboard/utilities/data'
+import { updateSEO, defaultSEOConfigs } from '@schoolify/core/utilities/seo'
 
 // Custom Hooks
 import useListSummarySchools from '@schoolify/features/user/shared/school/hooks/useListSummarySchools'
@@ -50,6 +51,11 @@ const SchoolManagementDashboard = (props: SchoolManagementDashboardProps) => {
       navigate(routes.profile.baseUrl)
     }
   }, [schoolData])
+
+  // SEO
+  useEffect(() => {
+    updateSEO(defaultSEOConfigs.school)
+  }, [])
 
   // Render
   return (
