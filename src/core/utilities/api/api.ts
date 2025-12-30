@@ -13,7 +13,7 @@ import Cookies from "js-cookie";
 // ---------------------------
 // Base URL
 // ---------------------------
-const BASE_URL = "https://schoolify.ir/api/v1";
+const BASE_URL = "https://api.schoolify.ir/api/v1";
 // const BASE_URL = "https://localhost:7251/api/v1";
 
 // ---------------------------
