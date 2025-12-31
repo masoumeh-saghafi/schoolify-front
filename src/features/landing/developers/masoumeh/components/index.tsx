@@ -455,7 +455,7 @@ const MasoumehSaghafiPage = () => {
                     fontSize: "0.9rem",
                   }}
                 >
-                  طراحی رابط کاربری، تجربه کاربری، پروتوتایپینگ، Figma
+                  طراحی رابط کاربری، تجربه کاربری، Figma
                 </Typography>
               </Paper>
             </Grid>
@@ -496,7 +496,7 @@ const MasoumehSaghafiPage = () => {
                     fontSize: "0.9rem",
                   }}
                 >
-                  React، TypeScript، Material-UI، Tailwind CSS
+                  React، TypeScript، Material-UI، Bootstrap
                 </Typography>
               </Paper>
             </Grid>
@@ -537,7 +537,7 @@ const MasoumehSaghafiPage = () => {
                     fontSize: "0.9rem",
                   }}
                 >
-                  طراحی واکنش‌گرا، Mobile-First، Cross-Browser
+                  طراحی واکنش‌گرا، Mobile-First
                 </Typography>
               </Paper>
             </Grid>

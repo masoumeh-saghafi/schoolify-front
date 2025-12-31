@@ -455,7 +455,7 @@ const MatinKhaleghiPage = () => {
                     fontSize: "0.9rem",
                   }}
                 >
-                  Python، Django، FastAPI، Node.js، Express
+                  ASP .NET Core
                 </Typography>
               </Paper>
             </Grid>
@@ -496,7 +496,7 @@ const MatinKhaleghiPage = () => {
                     fontSize: "0.9rem",
                   }}
                 >
-                  PostgreSQL، MongoDB، Redis، MySQL
+                  SQL Server
                 </Typography>
               </Paper>
             </Grid>
@@ -537,7 +537,7 @@ const MatinKhaleghiPage = () => {
                     fontSize: "0.9rem",
                   }}
                 >
-                  Git، Docker، Linux، REST APIs
+                  Git، Git Actions
                 </Typography>
               </Paper>
             </Grid>

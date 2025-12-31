@@ -54,7 +54,6 @@ const Footer = (props: FooterProps) => {
         color: theme.palette.text.white,
         py: 6,
         px: { xs: 3, md: 8 },
-       
       }}
     >
       <Grid container spacing={4}>
@@ -74,7 +73,6 @@ const Footer = (props: FooterProps) => {
                 mb: 2,
                 color: theme.palette.text.primary,
                 fontSize: "1.2rem",
-                
               }}
             >
               اسکولیفای
@@ -203,15 +201,25 @@ const Footer = (props: FooterProps) => {
         }}
       >
         <Typography
+          variant="body2"
+          sx={{
+            color: theme.palette.info.dark,
+            textAlign: "center",
+          }}
+        >
+          © {new Date().getFullYear()} اسکولیفای. تمامی حقوق محفوظ است.
+        </Typography>
+
+        <Typography
           component="p"
           variant="body2"
           sx={{
             color: theme.palette.info.dark,
-            mb: 2,
-            fontSize: "0.85rem",
+            mt: 3,
+            fontSize: "0.60rem",
           }}
         >
-          ساخته شده با ❤️ توسط{" "}
+          ساخته شده توسط{" "}
           {developerLinks.map((dev, index) => (
             <span key={dev.name}>
               <Typography
@@ -220,6 +228,7 @@ const Footer = (props: FooterProps) => {
                 onClick={scrollToTop}
                 sx={{
                   color: theme.palette.brand.main,
+                  fontSize: "0.65rem",
                   textDecoration: "none",
                   fontWeight: "medium",
                   "&:hover": {
@@ -232,16 +241,6 @@ const Footer = (props: FooterProps) => {
               {index < developerLinks.length - 1 && " و "}
             </span>
           ))}
-        </Typography>
-
-        <Typography
-          variant="body2"
-          sx={{
-            color: theme.palette.info.dark,
-            textAlign: "center",
-          }}
-        >
-          © {new Date().getFullYear()} اسکولیفای. تمامی حقوق محفوظ است.
         </Typography>
       </Box>
     </Box>

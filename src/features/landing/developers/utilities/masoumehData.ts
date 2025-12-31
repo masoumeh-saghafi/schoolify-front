@@ -23,10 +23,8 @@ export const masoumehPersonData = {
     "UI/UX Design",
     "Responsive Design",
     "Material-UI",
-    "Tailwind CSS",
+    "Bootstrap",
     "Figma",
-    "User Research",
-    "Prototyping",
     "Frontend Architecture",
   ],
 
