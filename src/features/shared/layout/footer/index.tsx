@@ -30,6 +30,12 @@ const quickLinks = [
   { title: "قوانین و مقررات", link: routes.terms, scrollToTop: true },
 ];
 
+// Entity SEO: Developer personal page links with exact name anchor text
+const developerLinks = [
+  { name: "متین خالقی نژاد", link: routes.developerMatin },
+  { name: "معصومه ثقفی", link: routes.developerMasoumeh },
+];
+
 const Footer = (props: FooterProps) => {
   // Hooks
   const theme = useAppTheme();
@@ -187,7 +193,7 @@ const Footer = (props: FooterProps) => {
         </Grid>
       </Grid>
 
-      {/* Divider */}
+      {/* Developer Links - Entity SEO with exact name anchor text */}
       <Box
         sx={{
           borderTop: `1px solid ${theme.palette.grey[600]}`,
@@ -197,11 +203,42 @@ const Footer = (props: FooterProps) => {
         }}
       >
         <Typography
+          component="p"
+          variant="body2"
+          sx={{
+            color: theme.palette.info.dark,
+            mb: 2,
+            fontSize: "0.85rem",
+          }}
+        >
+          ساخته شده با ❤️ توسط{" "}
+          {developerLinks.map((dev, index) => (
+            <span key={dev.name}>
+              <Typography
+                component={Link}
+                to={dev.link}
+                onClick={scrollToTop}
+                sx={{
+                  color: theme.palette.brand.main,
+                  textDecoration: "none",
+                  fontWeight: "medium",
+                  "&:hover": {
+                    textDecoration: "underline",
+                  },
+                }}
+              >
+                {dev.name}
+              </Typography>
+              {index < developerLinks.length - 1 && " و "}
+            </span>
+          ))}
+        </Typography>
+
+        <Typography
           variant="body2"
           sx={{
             color: theme.palette.info.dark,
             textAlign: "center",
-            mt: 4, // فاصله از بالا
           }}
         >
           © {new Date().getFullYear()} اسکولیفای. تمامی حقوق محفوظ است.

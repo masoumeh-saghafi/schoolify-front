@@ -1,12 +1,16 @@
+import { Link } from 'react-router-dom'
+
 // MUI Components
 import Box from '@schoolify/core/components/base/inputs/Box'
 import Typography from '@schoolify/core/components/base/inputs/Typography'
 import Grid from '@schoolify/core/components/base/inputs/Grid'
 import Paper from '@schoolify/core/components/base/inputs/Paper'
 import IconButton from '@schoolify/core/components/base/inputs/IconButton'
+import Button from '@schoolify/core/components/base/inputs/Button'
 
 // Custom Utilities
 import { developersData } from '@schoolify/features/landing/developers/utilities/developersData'
+import routes from '@schoolify/core/utilities/routes'
 
 // Custom Hooks
 import useAppTheme from '@schoolify/core/hooks/common/useAppTheme'
@@ -16,6 +20,13 @@ import { AwardIcon } from '@schoolify/core/components/icon/AwardIcon'
 import { LinkedinIcon } from '@schoolify/core/components/icon/LinkedinIcon'
 import { BriefcaseIcon } from '@schoolify/core/components/icon/BriefcaseIcon'
 import { MailIcon } from '@schoolify/core/components/icon/MailIcon'
+import { ArrowLeftIcon } from '@schoolify/core/components/icon/ArrowLeftIcon'
+
+// Personal page routes mapping
+const personalPageRoutes: Record<string, string> = {
+  'متین خالقی نژاد': routes.developerMatin,
+  'معصومه ثقفی': routes.developerMasoumeh,
+}
 
 const TeamMembersSection = () => {
   // Hooks
@@ -262,43 +273,65 @@ const TeamMembersSection = () => {
                   display: 'flex',
                   gap: 1,
                   pt: 2,
-                  borderTop: `1px solid ${theme.palette.divider}`
+                  borderTop: `1px solid ${theme.palette.divider}`,
+                  alignItems: 'center',
+                  justifyContent: 'space-between'
                 }}
               >
-                <IconButton
-                  component='a'
-                  href={`mailto:${developer.email}`}
-                  itemProp='email'
-                  aria-label={`ارسال ایمیل به ${developer.name}`}
-                  sx={{
-                    color: theme.palette.brand.main,
-                    backgroundColor: theme.palette.primary.light,
-                    '&:hover': {
-                      backgroundColor: theme.palette.brand.main,
-                      color: theme.palette.text.white
-                    }
-                  }}
-                >
-                  <MailIcon width={20} height={20} />
-                </IconButton>
-                <IconButton
-                  component='a'
-                  href={developer.linkedin}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  itemProp='sameAs'
-                  aria-label={`پروفایل لینکدین ${developer.name}`}
-                  sx={{
-                    color: theme.palette.brand.main,
-                    backgroundColor: theme.palette.primary.light,
-                    '&:hover': {
-                      backgroundColor: '#0077B5',
-                      color: theme.palette.text.white
-                    }
-                  }}
-                >
-                  <LinkedinIcon width={20} height={20} />
-                </IconButton>
+                <Box sx={{ display: 'flex', gap: 1 }}>
+                  <IconButton
+                    component='a'
+                    href={`mailto:${developer.email}`}
+                    itemProp='email'
+                    aria-label={`ارسال ایمیل به ${developer.name}`}
+                    sx={{
+                      color: theme.palette.brand.main,
+                      backgroundColor: theme.palette.primary.light,
+                      '&:hover': {
+                        backgroundColor: theme.palette.brand.main,
+                        color: theme.palette.text.white
+                      }
+                    }}
+                  >
+                    <MailIcon width={20} height={20} />
+                  </IconButton>
+                  <IconButton
+                    component='a'
+                    href={developer.linkedin}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    itemProp='sameAs'
+                    aria-label={`پروفایل لینکدین ${developer.name}`}
+                    sx={{
+                      color: theme.palette.brand.main,
+                      backgroundColor: theme.palette.primary.light,
+                      '&:hover': {
+                        backgroundColor: '#0077B5',
+                        color: theme.palette.text.white
+                      }
+                    }}
+                  >
+                    <LinkedinIcon width={20} height={20} />
+                  </IconButton>
+                </Box>
+
+                {/* Link to personal page - Entity SEO anchor text */}
+                {personalPageRoutes[developer.name] && (
+                  <Button
+                    component={Link}
+                    to={personalPageRoutes[developer.name]}
+                    endIcon={<ArrowLeftIcon width={16} height={16} />}
+                    sx={{
+                      color: theme.palette.brand.main,
+                      fontSize: '0.85rem',
+                      '&:hover': {
+                        backgroundColor: theme.palette.primary.light
+                      }
+                    }}
+                  >
+                    درباره {developer.name}
+                  </Button>
+                )}
               </Box>
             </Paper>
           </Grid>

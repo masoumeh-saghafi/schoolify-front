@@ -4,6 +4,10 @@ const routes = {
   aboutUs: "/about-us",
 
   developers: "/developers",
+  
+  developerMatin: "/developers/matin-khaleghi",
+  
+  developerMasoumeh: "/developers/masoumeh-saghafi",
 
   terms: "/terms",
 

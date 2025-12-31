@@ -80,13 +80,15 @@ const Developers = () => {
       "developers-breadcrumb"
     );
 
-    // Add Person structured data for each developer (for better Google indexing)
+    // Add Person structured data with URL to personal pages for Entity SEO
     addStructuredData(
       {
         "@context": "https://schema.org",
         "@type": "Person",
+        "@id": "https://schoolify.ir/developers/matin-khaleghi#person",
         name: "متین خالقی نژاد",
-        alternateName: "Matin Khaleghi Nezhad",
+        alternateName: ["متین خالقی", "Matin Khaleghi Nezhad", "Matin Khaleghi"],
+        url: "https://schoolify.ir/developers/matin-khaleghi",
         jobTitle: "توسعه‌دهنده بک‌اند",
         worksFor: {
           "@type": "Organization",
@@ -110,8 +112,10 @@ const Developers = () => {
       {
         "@context": "https://schema.org",
         "@type": "Person",
+        "@id": "https://schoolify.ir/developers/masoumeh-saghafi#person",
         name: "معصومه ثقفی",
         alternateName: "Masoumeh Saghafi",
+        url: "https://schoolify.ir/developers/masoumeh-saghafi",
         jobTitle: "توسعه‌دهنده فرانت‌اند و طراح UI/UX",
         worksFor: {
           "@type": "Organization",

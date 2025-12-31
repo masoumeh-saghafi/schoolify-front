@@ -20,12 +20,28 @@
     <priority>0.8</priority>
   </url>
   
-  <!-- Developers -->
+  <!-- Developers Team Page -->
   <url>
     <loc>https://schoolify.ir/developers</loc>
     <lastmod>2025-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  
+  <!-- متین خالقی نژاد - Personal Page -->
+  <url>
+    <loc>https://schoolify.ir/developers/matin-khaleghi</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- معصومه ثقفی - Personal Page -->
+  <url>
+    <loc>https://schoolify.ir/developers/masoumeh-saghafi</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <!-- Terms -->

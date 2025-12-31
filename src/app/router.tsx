@@ -13,6 +13,8 @@ import LandingPage from '@schoolify/app/landing/page'
 import LoginPage from '@schoolify/app/authentication/login/page'
 import AboutUsPage from '@schoolify/app/landing/about-us/page'
 import DevelopersPage from '@schoolify/app/landing/developers/page'
+import MatinKhaleghiPersonalPage from '@schoolify/app/landing/developers/matin-khaleghi/page'
+import MasoumehSaghafiPersonalPage from '@schoolify/app/landing/developers/masoumeh-saghafi/page'
 import TermsPage from '@schoolify/app/landing/terms/page'
 
 // Profile
@@ -66,6 +68,14 @@ const router = createBrowserRouter([
       {
         path: routes.developers,
         element: <DevelopersPage />
+      },
+      {
+        path: routes.developerMatin,
+        element: <MatinKhaleghiPersonalPage />
+      },
+      {
+        path: routes.developerMasoumeh,
+        element: <MasoumehSaghafiPersonalPage />
       },
       {
         path: routes.terms,
