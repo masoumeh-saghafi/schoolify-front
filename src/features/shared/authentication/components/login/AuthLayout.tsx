@@ -16,8 +16,6 @@ import useAppTheme from "@schoolify/core/hooks/common/useAppTheme";
 // Icon Components
 import { ArrowRightIcon } from "@schoolify/core/components/icon/ArrowRightIcon";
 
-
-
 interface AuthLayoutProps {
   children: React.ReactNode;
 }
@@ -61,6 +59,7 @@ const AuthLayout = ({ children }: AuthLayoutProps) => {
             p: { xs: 3, sm: 4 },
             display: "flex",
             flexDirection: "column",
+            justifyContent: "center",
           }}
         >
           {/* Back Button */}

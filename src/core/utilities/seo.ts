@@ -141,7 +141,7 @@ export const defaultSEOConfigs = {
   developers: {
     title: "توسعه‌دهندگان اسکولیفای | متین خالقی نژاد و معصومه ثقفی",
     description:
-      "آشنایی با تیم توسعه‌دهندگان اسکولیفای - متین خالقی نژاد (توسعه‌دهنده بک‌اند با 6 سال تجربه) و معصومه ثقفی (توسعه‌دهنده فرانت‌اند و طراح UI/UX).",
+      "آشنایی با تیم توسعه‌دهندگان اسکولیفای - متین خالقی نژاد (توسعه‌دهنده بک‌اند با 6 سال تجربه) و معصومه ثقفی (توسعه‌دهنده فرانت‌اند).",
     keywords:
       "متین خالقی نژاد, معصومه ثقفی, توسعه‌دهنده بک‌اند, توسعه‌دهنده فرانت‌اند, طراح UI/UX, اسکولیفای, Matin Khaleghi Nezhad, Masoumeh Saghafi",
     url: "https://schoolify.ir/developers",
@@ -155,11 +155,11 @@ export const defaultSEOConfigs = {
     url: "https://schoolify.ir/developers/matin-khaleghi",
   },
   masoumehSaghafi: {
-    title: "معصومه ثقفی | توسعه‌دهنده فرانت‌اند و طراح UI/UX",
+    title: "معصومه ثقفی | توسعه‌دهنده فرانت‌اند",
     description:
-      "معصومه ثقفی، توسعه‌دهنده فرانت‌اند و طراح UI/UX با تجربه در React، TypeScript و طراحی تجربه کاربری. متخصص در ساخت رابط‌های کاربری زیبا و کاربردی.",
+      "معصومه ثقفی، توسعه‌دهنده فرانت‌اند با تجربه در React و TypeScript و پیاده‌سازی رابط‌های کاربری وب به‌صورت کامپوننت‌محور و واکنش‌گرا.",
     keywords:
-      "معصومه ثقفی, Masoumeh Saghafi, توسعه‌دهنده فرانت‌اند, Frontend Developer, طراح UI/UX, UI/UX Designer, React Developer",
+      "معصومه ثقفی, Masoumeh Saghafi, توسعه‌دهنده فرانت‌اند, Frontend Developer, React Developer, TypeScript Developer",
     url: "https://schoolify.ir/developers/masoumeh-saghafi",
   },
   login: {

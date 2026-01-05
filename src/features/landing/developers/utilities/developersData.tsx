@@ -38,14 +38,19 @@ export const developersData: Developer[] = [
   },
   {
     name: "معصومه ثقفی",
-    role: "توسعه‌دهنده فرانت‌اند و طراح UI/UX",
+    role: "توسعه‌دهنده فرانت‌اند",
     description:
       "با حدود 2 سال تجربه در حوزه فرانت‌اند و طراحی UI/UX، مسئول ایجاد رابط کاربری بصری جذاب و تجربه‌ی کاربری روان برای اسکولیفای است. مهارت او در تبدیل ایده‌ها به طراحی‌های کاربرپسند، تعامل آسان و لذت‌بخش کاربران با سامانه را فراهم می‌آورد و تضمین می‌کند که پیچیدگی‌های پشت صحنه، به سادگی و زیبایی به کاربران ارائه شود.",
     icon: PaletteIcon,
     email: "masoumehsaghafi2002@gmail.com",
     linkedin: "https://www.linkedin.com/in/masoumeh-saghafi-839a75354/",
     experience: "۲ سال",
-    skills: ["React", "UI/UX Design", "TypeScript", "Responsive Design"],
+    skills: [
+      "Frontend Development",
+      "Responsive Design",
+      "React",
+      "TypeScript",
+    ],
   },
 ];
 

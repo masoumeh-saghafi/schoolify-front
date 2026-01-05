@@ -445,7 +445,7 @@ const MasoumehSaghafiPage = () => {
                       color: theme.palette.text.cardTitle,
                     }}
                   >
-                    طراحی UI/UX
+                    توسعه رابط کاربری
                   </Typography>
                 </Box>
                 <Typography
@@ -455,7 +455,8 @@ const MasoumehSaghafiPage = () => {
                     fontSize: "0.9rem",
                   }}
                 >
-                  طراحی رابط کاربری، تجربه کاربری، Figma
+                  پیاده‌سازی رابط‌های کاربری مبتنی بر کامپوننت، ساخت صفحات وب
+                  مقیاس‌پذیر و قابل نگهداری
                 </Typography>
               </Paper>
             </Grid>
@@ -486,7 +487,7 @@ const MasoumehSaghafiPage = () => {
                       color: theme.palette.text.cardTitle,
                     }}
                   >
-                    فرانت‌اند
+                    فرانت‌اند مدرن
                   </Typography>
                 </Box>
                 <Typography
@@ -496,7 +497,8 @@ const MasoumehSaghafiPage = () => {
                     fontSize: "0.9rem",
                   }}
                 >
-                  React، TypeScript، Material-UI، Bootstrap
+                  React، TypeScript، Feature-based Architecture، Material-UI،
+                  Bootstrap
                 </Typography>
               </Paper>
             </Grid>
@@ -527,7 +529,7 @@ const MasoumehSaghafiPage = () => {
                       color: theme.palette.text.cardTitle,
                     }}
                   >
-                    واکنش‌گرا
+                    طراحی واکنش‌گرا
                   </Typography>
                 </Box>
                 <Typography
@@ -537,7 +539,7 @@ const MasoumehSaghafiPage = () => {
                     fontSize: "0.9rem",
                   }}
                 >
-                  طراحی واکنش‌گرا، Mobile-First
+                  پیاده‌سازی Mobile-First، سازگاری کامل با موبایل، تبلت و دسکتاپ
                 </Typography>
               </Paper>
             </Grid>

@@ -11,8 +11,8 @@ export const masoumehPersonData = {
   email: "masoumehsaghafi2002@gmail.com",
 
   // Professional Info
-  jobTitle: "توسعه‌دهنده فرانت‌اند و طراح UI/UX",
-  jobTitleEnglish: "Frontend Developer & UI/UX Designer",
+  jobTitle: "توسعه‌دهنده فرانت‌اند",
+  jobTitleEnglish: "Frontend Developer",
   experience: "۲ سال",
   experienceYears: 2,
 
@@ -20,7 +20,7 @@ export const masoumehPersonData = {
   skills: [
     "React",
     "TypeScript",
-    "UI/UX Design",
+    "UI/UX Fundamentals",
     "Responsive Design",
     "Material-UI",
     "Bootstrap",
@@ -30,22 +30,22 @@ export const masoumehPersonData = {
 
   // Biography sections
   biography: {
-    intro: `معصومه ثقفی توسعه‌دهنده فرانت‌اند و طراح UI/UX با حدود ۲ سال تجربه حرفه‌ای در طراحی و پیاده‌سازی رابط‌های کاربری است. معصومه ثقفی تخصص ویژه‌ای در ترکیب زیبایی‌شناسی با کاربردپذیری دارد.`,
+    intro: `معصومه ثقفی توسعه‌دهنده فرانت‌اند با حدود ۲ سال تجربه در پیاده‌سازی رابط‌های کاربری وب است. تمرکز اصلی او بر توسعه فرانت‌اند و ساخت رابط‌های قابل استفاده و منسجم است.`,
 
-    role: `در پروژه اسکولیفای، معصومه ثقفی مسئولیت طراحی و پیاده‌سازی کامل رابط کاربری را بر عهده دارد. معصومه ثقفی با تمرکز بر تجربه کاربری، سامانه‌ای ساخته که استفاده از آن ساده و لذت‌بخش است.`,
+    role: `در پروژه اسکولیفای، معصومه ثقفی مسئول پیاده‌سازی رابط کاربری و همکاری در بهبود تجربه کاربری بوده است. او با درک نیازهای کاربران، رابط‌هایی ساده و قابل فهم را توسعه داده است.`,
 
-    expertise: `حوزه‌های تخصصی معصومه ثقفی شامل طراحی رابط کاربری (UI)، تجربه کاربری (UX)، توسعه فرانت‌اند با React و TypeScript و طراحی واکنش‌گرا است. معصومه ثقفی با استفاده از ابزارهای مدرن مانند Figma و Material-UI، طراحی‌هایی خلق می‌کند که هم زیبا و هم کاربردی هستند.`,
+    expertise: `زمینه‌های کاری معصومه ثقفی شامل توسعه فرانت‌اند با React و TypeScript، طراحی واکنش‌گرا و آشنایی با مفاهیم UI و UX است. او از ابزارهایی مانند Figma و Material-UI برای پیاده‌سازی طراحی‌ها و هماهنگی بهتر بین طراحی و توسعه استفاده می‌کند.`,
 
-    philosophy: `معصومه ثقفی بر این باور است که یک طراحی خوب باید نامرئی باشد - کاربر باید بتواند بدون فکر کردن به رابط کاربری، کارش را انجام دهد. این فلسفه در طراحی اسکولیفای کاملاً مشهود است.`,
+    philosophy: `معصومه ثقفی معتقد است رابط کاربری خوب باید کار با سیستم را ساده‌تر کند و مانعی برای انجام وظایف کاربر نباشد. این دیدگاه در پیاده‌سازی رابط کاربری اسکولیفای لحاظ شده است.`,
   },
 
   // SEO Meta
   seo: {
-    title: "معصومه ثقفی | توسعه‌دهنده فرانت‌اند و طراح UI/UX",
+    title: "معصومه ثقفی | توسعه‌دهنده فرانت‌اند",
     description:
-      "معصومه ثقفی، توسعه‌دهنده فرانت‌اند و طراح UI/UX با تجربه در React، TypeScript و طراحی تجربه کاربری. متخصص در ساخت رابط‌های کاربری زیبا و کاربردی.",
+      "معصومه ثقفی، توسعه‌دهنده فرانت‌اند با تجربه در React و TypeScript و آشنایی با مفاهیم UI و UX. فعال در پیاده‌سازی رابط‌های کاربری واکنش‌گرا.",
     keywords:
-      "معصومه ثقفی, Masoumeh Saghafi, توسعه‌دهنده فرانت‌اند, Frontend Developer, طراح UI/UX, UI/UX Designer, React Developer",
+      "معصومه ثقفی, Masoumeh Saghafi, توسعه‌دهنده فرانت‌اند, Frontend Developer, UI UX, React Developer",
   },
 };
 
@@ -57,9 +57,9 @@ export const masoumehStructuredData = {
   name: "معصومه ثقفی",
   alternateName: ["Masoumeh Saghafi"],
   url: "https://schoolify.ir/developers/masoumeh-saghafi",
-  jobTitle: "توسعه‌دهنده فرانت‌اند و طراح UI/UX",
+  jobTitle: "توسعه‌دهنده فرانت‌اند",
   description:
-    "معصومه ثقفی توسعه‌دهنده فرانت‌اند و طراح UI/UX با تجربه در React، TypeScript و طراحی تجربه کاربری است.",
+    "معصومه ثقفی توسعه‌دهنده فرانت‌اند با تجربه در React و TypeScript و آشنایی با مفاهیم UI و UX است.",
   email: "masoumehsaghafi2002@gmail.com",
   sameAs: ["https://www.linkedin.com/in/masoumeh-saghafi-839a75354/"],
   worksFor: {
@@ -69,12 +69,12 @@ export const masoumehStructuredData = {
   },
   knowsAbout: [
     "Frontend Development",
-    "UI/UX Design",
+    "UI/UX Fundamentals",
     "React",
     "TypeScript",
     "Material-UI",
     "Responsive Design",
-    "User Experience",
+    "User Interface",
   ],
   nationality: {
     "@type": "Country",
